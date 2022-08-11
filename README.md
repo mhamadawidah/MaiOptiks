@@ -1,4 +1,4 @@
-# Prototyp einer Branchenlösung für Optikerhandwerk zur Wartung und Kundenbetreuung 
+# Prototyp einer Branchenlösung für das Optikerhandwerk zur Inventar- und Kundenbetreuung
 
 ## Ist-Analyse
 
