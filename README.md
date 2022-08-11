@@ -6,3 +6,6 @@
 - Die Gestaltung der Benutzeroberfläche ist nicht mehr aktuell.
 
 ## Soll-Analyse
+
+- Es soll ein modernes Datenbanksystem (SQL) verwendet werden.
+- Es soll eine moderne, benutzerfreundliche Weboberfläche gestaltet werden.
