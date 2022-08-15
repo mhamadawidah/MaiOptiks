@@ -9,3 +9,8 @@
 
 - Es soll ein modernes Datenbanksystem (SQL) verwendet werden.
 - Es soll eine moderne, benutzerfreundliche Weboberfläche gestaltet werden.
+
+## Struktur
+* Frontend: HTML
+* Backend: Java Springboot
+* Database: MySQL
