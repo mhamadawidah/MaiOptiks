@@ -19,3 +19,5 @@
 [Lastenheft](https://kstlinfo-my.sharepoint.com/:w:/g/personal/marten_knystock_campus_kstl_de/EWdrL29u_n9MoWcfNHLSBcoBSCiM-zFt9eo9uOuwIlvDog?e=k9mJ6w)
 <br>
 [Pflichtenheft](https://kstlinfo-my.sharepoint.com/:w:/g/personal/tom_volmer_campus_kstl_de/EQo7P0h-HmlJqI1qdyyq3ZwBZkbRvNAZmD0urwarAb6m0w?rtime=PGvW8PWA2kg)
+<br>
+[Netzplan](https://kstlinfo-my.sharepoint.com/:x:/g/personal/marten_knystock_campus_kstl_de/EStvpgzskKpLkfu888DZk0cBtcmsMb1jRR7kZ5JvLuGoBw)
