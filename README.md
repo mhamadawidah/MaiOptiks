@@ -14,3 +14,6 @@
 * Frontend: HTML
 * Backend: Java Springboot
 * Database: MySQL
+
+## Links
+[Pflichtenheft](https://kstlinfo-my.sharepoint.com/:w:/g/personal/tom_volmer_campus_kstl_de/EQo7P0h-HmlJqI1qdyyq3ZwBZkbRvNAZmD0urwarAb6m0w?rtime=PGvW8PWA2kg)
