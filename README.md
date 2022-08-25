@@ -21,3 +21,5 @@
 [Pflichtenheft](https://kstlinfo-my.sharepoint.com/:w:/g/personal/tom_volmer_campus_kstl_de/EQo7P0h-HmlJqI1qdyyq3ZwBZkbRvNAZmD0urwarAb6m0w?rtime=PGvW8PWA2kg)
 <br>
 [Netzplan](https://kstlinfo-my.sharepoint.com/:x:/g/personal/marten_knystock_campus_kstl_de/EStvpgzskKpLkfu888DZk0cBtcmsMb1jRR7kZ5JvLuGoBw)
+<br>
+[Database ER Diagram](https://lucid.app/lucidchart/08941d25-94ba-4ccc-87b8-e5279fa2f4c5/edit?viewport_loc=-199%2C-21%2C3426%2C1558%2C0_0&invitationId=inv_fa3c614f-6ac6-4183-a9d4-6889f62b9cfc#)
