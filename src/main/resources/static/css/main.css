@@ -1,6 +1,7 @@
 /*Headings*/
 .heading {
     position: relative;
+    text-align: center;
     font-family: "MV Boli", sans-serif;
 }
 
