@@ -3,22 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <style>
-        aside{
-            width: 30%;
-            padding-right: 15px;
-            margin-right: 15px;
+        aside
+        {
             float: right;
         }
-        table, th, td{
+        table, th, td
+        {
         border: 1px solid black;
         border-collapse: collapse;
         }
 
-        th{
+        th
+        {
             background-color: lightgrey;
         }
 
-        tr:nth-child(even) {
+        tr:nth-child(even)
+        {
             background-color: lightgrey;
         }
     </style>
@@ -27,62 +28,53 @@
 <body>
     <h1>Lagerverwaltung</h1>
 
-<aside>
-    <input type="text" id="fModell" name="fModell" value="Modell"><br><br>
+    <aside style="width:20%">
+        <input type="text" id="fArtikelNr" name="fArtikelNr" value="Artikelnummer"><br><br>
+        <input type="text" id="fFaktor" name="fFaktor" value="Faktor"><br><br>
+        <input type="text" id="fVK" name="fVK" value="VK">
+        <input type="button" id ="fVK-Manuell" name="fVK-Manuell" value="VK-Manuell"><br><br>
+        <input type="text" id="fFassungscode" name="fFassungscode" value="Fassungscode"><br><br>
+        <input type="text" id="fDatum" name="fDatum" value="Datum"><br><br>
+        <input type="checkbox" id="fKomission" name="fKomission" value="Komission">
+        <label>Komission</label><br>
+        <input type="button" id="fSpeichern" name="fSpeichern" value="Speichern">
+        <input type="button" id="fNeu" name="fNeu" value="Neu"><br>
+    </aside>
 
-    <select name="fFarbe" id="fFarbe">
-        <option value="farbe">Farbe</option>
-    </select><br><br>
+    <aside style="width:40%">
+        <input type="text" id="fModell" name="fModell" value="Modell"><br><br>
+        <select name="fFarbe" id="fFarbe">
+            <option value="farbe">Farbe</option>
+        </select><br><br>
+        <select name="fGroeße" id="fGroeße">
+            <option value="groeße">Größe</option>
+        </select><br><br>
+        <select name="fBuegel" id="fBuegel">
+           <option value="buegel">Bügel</option>
+        </select><br><br>
+        <input type="text" id="fRabatt" name="fRabatt" value="EK o. Mwst Rabatt"><br><br>
+        <select name="fBemerkung" id="fBemerkung">
+            <option value="bemerkung">Bemerkung</option>
+        </select><br><br>
+    </aside>
 
-    <select name="fGroeße" id="fGroeße">
-        <option value="groeße">Größe</option>
-    </select><br><br>
 
-    <select name="fBuegel" id="fBuegel">
-        <option value="buegel">Bügel</option>
-    </select><br><br>
-
-    <input type="text" id="fRabatt" name="fRabatt" value="EK o. Mwst Rabatt"><br><br>
-
-    <select name="fBemerkung" id="fBemerkung">
-        <option value="bemerkung">Bemerkung</option>
-    </select><br><br>
-</aside>
-
-<aside>
-    <input type="text" id="fArtikelNr" name="fArtikelNr" value="Artikelnummer"><br><br>
-    <input type="text" id="fFaktor" name="fFaktor" value="Faktor"><br><br>
-    <input type="text" id="fVK" name="fVK" value="VK">
-    <input type="button" id ="fVK-Manuell" name="fVK-Manuell" value="VK-Manuell"><br><br>
-    <input type="text" id="fFassungscode" name="fFassungscode" value="Fassungscode"><br><br>
-    <input type="text" id="fDatum" name="fDatum" value="Datum"><br><br>
-    <input type="checkbox" id="fKomission" name="fKomission" value="Komission">
-    <label>Komission</label><br><br>
-</aside>
-
-    <select name="fLieranten" id="fLieranten">
+    <select name="fLiefranten" id="fLiefranten">
       <option value="lieferanten">Lieferanten</option>
     </select><br><br>
-
     <select name="fVerwendung" id="fVerwendung">
      <option value="verwendung">Verwendung</option>
     </select><br><br>
-
     <select name="fGattung" id="fGattung">
       <option value="gattung">Gattung</option>
     </select><br><br>
-
     <select name="fMaterial" id="fMaterial">
       <option value="material">Material</option>
     </select><br><br>
     <input type="text" id="fAnzahl" name="fAnzahl" value="Anzahl"><br><br><br><br>
 
     <input type="text" id="fSuche" name="fSuche" value="Suchen">
-    <aside>
-        <input type="button" id="fSpeichern" name="fSpeichern" value="Speichern">
-        <input type="button" id="fNeu" name="fNeu" value="Neu">
-    </aside>
-    <input type="button" id="fAllesAnzeigen" name="fAllesAnzeigen" value="Alles anzeigen"><br><br>
+    <input type="button" id="fAllesAnzeigen" name="fAllesAnzeigen" value="Alles anzeigen">
 
     <table style="width:100%">
         <thead style="text-align:left">
