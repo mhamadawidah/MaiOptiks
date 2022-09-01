@@ -21,7 +21,8 @@
 | git fetch                     | Zieht alle Änderungen                      |
 | git merge origin/develop      | Merged diese Änderungen                    |
 | git checkout <branch_name>    | Brach wechseln                             |
-| git checkout -b <branch_name> | Neue Brach erstellen und rein wechseln     |
+| git checkout -b <branch_name> | Neue Branch erstellen und rein wechseln    |
+| git pull <repository>         | Daten aus Repository ziehen                |
 
 ## Links
 [Lastenheft](https://kstlinfo-my.sharepoint.com/:w:/g/personal/marten_knystock_campus_kstl_de/EWdrL29u_n9MoWcfNHLSBcoBSCiM-zFt9eo9uOuwIlvDog?e=k9mJ6w)
