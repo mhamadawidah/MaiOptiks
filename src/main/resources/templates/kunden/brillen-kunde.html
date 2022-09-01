@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <title th:text="${title}"></title>
@@ -7,8 +7,7 @@
     <link rel="stylesheet" th:href="@{/css/startseite-style.css}"/>
 </head>
 <body>
-
-<h1 class="heading">MyOptiks</h1>
+<h1 class="heading">Brillen-Kunde</h1>
 
 <div class="combobox" style="width:200px">
     <label for="Kunden"></label>
@@ -21,6 +20,19 @@
         </select>
         <input type="submit">
     </form>
+</div>
+
+<div class="search-fields">
+  <input class="input" type="text" placeholder="Name"><br>
+  <input class="input" type="text" placeholder="Vorname"><br>
+  <input class="input" type="text" placeholder="Auftrags-Nr."><br>
+  <button class="submit-button" type="submit">Suchen</button>
+</div>
+
+<div class="direction-buttons">
+    <button class="submit-button" type="submit">Neuer Kunde</button>
+    <button class="submit-button" type="submit">Organisation</button>
+    <button class="submit-button" type="submit">Führerschein-Sehtest</button>
 </div>
 
 <!--Combobox script-->
