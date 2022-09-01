@@ -2,6 +2,7 @@
 .search-fields {
     position: relative;
     text-align: center;
+    visibility: hidden;
 }
 
 /* Combobox */

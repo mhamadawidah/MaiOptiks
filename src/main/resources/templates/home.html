@@ -4,19 +4,25 @@
     <meta charset="UTF-8">
     <title th:text="${title}"></title>
     <link rel="stylesheet" th:href="@{/css/main.css}"/>
+    <link rel="stylesheet" th:href="@{/css/startseite-style.css}"/>
 </head>
 <body>
-<h1 class="heading">Brillen-Kunde</h1>
+
+<h1 class="heading">MyOptiks</h1>
+
 <div class="combobox" style="width:200px">
-    <label>
-        <select>
-            <option value="0">Kundenart wählen:</option>
-            <option value="1">Brillen-Kunde</option>
+    <label for="Kunden"></label>
+    <form action="">
+        <select name="Kunden" id="Kunden">
+            <option value="">Kundenart wählen:</option>
+            <option value="kunden/brillen-kunde.html" th:action="@{/kunden/brillen-kunde.html}">Brillen-Kunde</option>
             <option value="2">CL-Kunde</option>
             <option value="3">VS-Kunde</option>
         </select>
-    </label>
+    </form>
 </div>
+
+<!--Combobox script-->
 <script>
     let x, i, j, l, ll, selElmnt, a, b, c;
     /*look for any elements with the class "combobox":*/
@@ -38,7 +44,7 @@
             create a new DIV that will act as an option item:*/
             c = document.createElement("DIV");
             c.innerHTML = selElmnt.options[j].innerHTML;
-            c.addEventListener("click", function(e) {
+            c.addEventListener("click", function (e) {
                 /*when an item is clicked, update the original select box,
                 and the selected item:*/
                 var y, i, k, s, h, sl, yl;
@@ -63,7 +69,7 @@
             b.appendChild(c);
         }
         x[i].appendChild(b);
-        a.addEventListener("click", function(e) {
+        a.addEventListener("click", function (e) {
             /*when the select box is clicked, close any other select boxes,
             and open/close the current select box:*/
             e.stopPropagation();
@@ -72,6 +78,7 @@
             this.classList.toggle("select-arrow-active");
         });
     }
+
     function closeAllSelect(elmnt) {
         /*a function that will close all select boxes in the document,
         except the current select box:*/
@@ -93,9 +100,11 @@
             }
         }
     }
+
     /*if the user clicks anywhere outside the select box,
     then close all select boxes:*/
     document.addEventListener("click", closeAllSelect);
 </script>
+
 </body>
 </html>
