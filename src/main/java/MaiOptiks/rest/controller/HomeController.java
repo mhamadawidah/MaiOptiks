@@ -1,4 +1,4 @@
-package com.github.mhamadawidah.experimental.rest.controller;
+package MaiOptiks.rest.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

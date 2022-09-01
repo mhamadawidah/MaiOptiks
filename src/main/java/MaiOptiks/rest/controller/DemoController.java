@@ -1,6 +1,6 @@
-package com.github.mhamadawidah.experimental.rest.controller;
+package MaiOptiks.rest.controller;
 
-import com.github.mhamadawidah.experimental.rest.model.DemoModel;
+import MaiOptiks.rest.model.DemoModel;
 import com.sun.net.httpserver.Authenticator;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;

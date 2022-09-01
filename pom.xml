@@ -9,11 +9,11 @@
         <relativePath/>
     </parent>
 
-    <groupId>com.github.mhamadawidah</groupId>
-    <artifactId>experimental</artifactId>
+    <groupId>MaiOptiks</groupId>
+    <artifactId>app</artifactId>
     <version>1.0.0</version>
-    <name>experimental</name>
-    <description>Demo project for Spring Boot</description>
+    <name>MaiOptiks</name>
+    <description>Prototyp einer Branchenlösung für das Optikerhandwerk zur Inventar- und Kundenbetreuung</description>
 
     <properties>
         <java.version>18</java.version>
