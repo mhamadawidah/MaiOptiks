@@ -1,5 +1,16 @@
 # Prototyp einer Branchenlösung für das Optikerhandwerk zur Inventar- und Kundenbetreuung
 
+[Home](http://localhost:8080/)   
+[Swagger UI (API Documentation)](http://localhost:8080/api/swagger)   
+[H2 Console (Database)](http://localhost:8080/console)   
+ 
+
+## Database
+| JDBC URL  | jdbc:h2:mem:MaiOptik |
+| --------- | -------------------- |
+| User Name | admin                |
+| Password  | admin                |
+
 ## Ist-Analyse
 
 - Die Software verwendet ein veraltetes Datenbanksystem (MS-Access).
