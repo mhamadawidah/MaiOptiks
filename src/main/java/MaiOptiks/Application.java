@@ -6,7 +6,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-@OpenAPIDefinition(info = @Info(title = "API", version = "1.0.0"))
+@OpenAPIDefinition(info = @Info(title = "MaiOptiks", version = "1.0.0"))
 public class Application {
 
     public static void main(String[] args) {

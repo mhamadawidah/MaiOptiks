@@ -7,9 +7,57 @@
 
 ## Database
 | JDBC URL  | jdbc:h2:file:~/MaiOptiks/database |
-| --------- | -------------------- |
-| User Name | admin                |
-| Password  | admin                |
+|-----------|-----------------------------------|
+| User Name | admin                             |
+| Password  | admin                             |
+
+
+## Springboot + Thymeleaf
+
+Der Sinn der MVC-Design-Architektur (Model–View–Controller) besteht darin, Anfragen immer an Controller zu senden, die sie dann an Views weiterleiten.
+D.h. jede View (HTML-Seite) sollte ihren eigenen Controller und ggf. ihr eigenes Model haben.
+
+- HTML-Seiten werden unter ``src/main/resources/templates`` erstellt. Es können auch Unterordner angelegt werden.
+- Controller werden unter ``src/main/java//MaiOptiks/routing`` erstellt.
+
+### Beispiel einer Seite
+``` html
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/main.css}"/>
+</head>
+<body>
+<p>Hello Thymeleaf!<p>
+</body>
+</html>
+
+```
+
+### Der Controller
+``` java
+package MaiOptiks.routing;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+public class MyController {
+
+    @RequestMapping("/myurl") // beliebige URL
+    public String myMethod() {
+        return "subfolder/mypage"; // Seitenpfad
+    }
+}
+```
+
+### Verlinkung
+Sobald die Seite einen eigenen Controller hat, kann sie wie folgt verlinkt werden
+``` html
+<a th:href="@{/myurl}"> Click me! </a> <!-- Hier wirde die Url der Mapping-Methode verwendet -->
+```
+
 
 ## Ist-Analyse
 
@@ -27,13 +75,13 @@
 * Database: MySQL
 
 ## Git Befehle
-| Befehl                        | Beschreibung                               |
-| ----------------------------- | ------------------------------------------ |
-| git fetch                     | Zieht alle Änderungen                      |
-| git merge origin/develop      | Merged diese Änderungen                    |
-| git checkout <branch_name>    | Branch wechseln                            |
-| git checkout -b <branch_name> | Neue Branch erstellen und rein wechseln    |
-| git pull \<repository\>       | Daten aus Repository ziehen                |
+| Befehl                        | Beschreibung                            |
+|-------------------------------|-----------------------------------------|
+| git fetch                     | Zieht alle Änderungen                   |
+| git merge origin/develop      | Merged diese Änderungen                 |
+| git checkout <branch_name>    | Branch wechseln                         |
+| git checkout -b <branch_name> | Neue Branch erstellen und rein wechseln |
+| git pull \<repository\>       | Daten aus Repository ziehen             |
 
 ## Links
 [Lastenheft](https://kstlinfo-my.sharepoint.com/:w:/g/personal/marten_knystock_campus_kstl_de/EWdrL29u_n9MoWcfNHLSBcoBSCiM-zFt9eo9uOuwIlvDog?e=k9mJ6w)

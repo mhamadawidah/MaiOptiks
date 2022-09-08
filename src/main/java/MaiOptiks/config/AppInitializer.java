@@ -1,4 +1,4 @@
-package MaiOptiks.rest.config;
+package MaiOptiks.config;
 
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.ContextLoaderListener;
