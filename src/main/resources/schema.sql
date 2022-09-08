@@ -30,6 +30,8 @@ CREATE TABLE IF NOT EXISTS Material (MaterialID int NOT NULL, Bezeichung varchar
 
 CREATE TABLE IF NOT EXISTS Refraktion (RefraktionID int NOT NULL, Sph float, Cyl float, Ach int, Adds float, Pris float, Bas int, Visus float, PRIMARY KEY (RefraktionID));
 
+CREATE TABLE IF NOT EXISTS Hornhaut (HornhautID int NOT NULL, RefraktionID int NOT NULL, HSIR float, A0R int, H2SHR float, A90R int, massalR float, tempR float, supR float, intR float, HSIL float, A0L int, HSHL float, A90L int, massalL float, tempL float , supL float, intL float, PRIMARY KEY(HornhautID), FOREIGN KEY (RefraktionID) REFERENCES Refraktion(RefraktionID));
+
 CREATE TABLE IF NOT EXISTS Artikelart (ArtID int NOT NULL, Bezeichnung varchar(254), PRIMARY KEY (ArtID));
 
 CREATE TABLE IF NOT EXISTS Artikel (ArtikelNr int NOT NULL, Bezeichnung varchar(254), Artikelart varchar(254), Material int, Farbe int, Einkaufspreis float, Verkaufspreis float, Lieferant int, PRIMARY KEY (ArtikelNr), FOREIGN KEY (Material) REFERENCES Material(MaterialID), FOREIGN KEY (Farbe) REFERENCES Farbe(FarbeID), FOREIGN KEY (Lieferant) REFERENCES Lieferant(LieferantID));
