@@ -15,7 +15,7 @@
 ## Springboot + Thymeleaf
 
 Der Sinn der MVC-Design-Architektur (Model–View–Controller) besteht darin, Anfragen immer an Controller zu senden, die sie dann an Views weiterleiten.
-D.h. jede View (HTML-Seite) sollte ihren eigenen Controller und ggf. ihr eigenes Model haben.
+D.h. jede View (HTML-Seite) sollte ihren eigenen Controller haben.
 
 - HTML-Seiten werden unter ``src/main/resources/templates`` erstellt. Es können auch Unterordner angelegt werden.
 - Controller werden unter ``src/main/java//MaiOptiks/routing`` erstellt.
