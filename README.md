@@ -6,7 +6,7 @@
  
 
 ## Database
-| JDBC URL  | jdbc:h2:mem:MaiOptik |
+| JDBC URL  | jdbc:h2:file:~/MaiOptiks/database |
 | --------- | -------------------- |
 | User Name | admin                |
 | Password  | admin                |
