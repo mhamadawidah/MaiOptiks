@@ -9,11 +9,11 @@
         <relativePath/>
     </parent>
 
-    <groupId>com.github.mhamadawidah</groupId>
-    <artifactId>experimental</artifactId>
+    <groupId>MaiOptiks</groupId>
+    <artifactId>app</artifactId>
     <version>1.0.0</version>
-    <name>experimental</name>
-    <description>Demo project for Spring Boot</description>
+    <name>MaiOptiks</name>
+    <description>Prototyp einer Branchenlösung für das Optikerhandwerk zur Inventar- und Kundenbetreuung</description>
 
     <properties>
         <java.version>18</java.version>
@@ -29,6 +29,19 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>org.springdoc</groupId>
@@ -37,13 +50,9 @@
         </dependency>
 
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-thymeleaf</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
-            <optional>true</optional>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
 
