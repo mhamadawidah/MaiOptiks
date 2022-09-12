@@ -1,10 +1,10 @@
-package com.github.mhamadawidah.experimental;
+package MaiOptiks;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ExperimentalApplicationTests {
+class ApplicationTests {
 
 	@Test
 	void contextLoads() {
