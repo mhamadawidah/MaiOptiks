@@ -1,0 +1,79 @@
+/*Tabelle*/
+* {
+	font-family: "MV Boli", sans-serif;
+
+}
+
+table, th, td {
+	border-collapse: collapse;
+    border: thin solid black;
+}
+
+table {
+    position: relative;
+    text-align: center;
+	font-size: 17px;
+	width: 90%;
+	margin: 20px;
+}
+
+tr:nth-child(even) {
+	background-color: #f2f2f2;
+}
+
+td {
+	text-align: right;
+	width: 25%;
+	height: 10%;
+}
+
+th {
+	border-bottom-width: medium;
+	background-color: SlateBlue;
+	color: white;
+}
+
+/*Buttons*/
+.buttons {
+    border-radius: 3px;
+    border: 1px solid black;
+    margin: 40px;
+	font-size: 17px;
+}
+
+.combobox {
+    position: relative;
+	width: 300px;
+	font-size: 17px;
+}
+
+label {
+	margin-left: 20px;
+	font-size: 17px;
+}
+
+/*Text*/
+div{
+	position: relative;
+    border-bottom: 2px solid black;
+	width: 25%;
+	font-size: 17px;
+}
+
+.bar {
+    margin-left: 20px;
+}
+.summe {
+    position: relative;
+	bottom: 25px;
+	left: 800px;
+}
+.rueckgeld {
+    position: relative;
+	bottom: 25px;
+	left: 800px;
+}
+
+.heading {
+    text-align: center;
+}

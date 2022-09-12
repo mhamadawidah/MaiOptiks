@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="de" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Abrechnung</title>
+    <link rel="stylesheet" th:href="@{/css/main.css}"/>
+    <link rel="stylesheet" th:href="@{/css/abrechnung-style.css}"/>
+</head>
+<body>
+    <h1 class="heading">Abrechnung</h1>
+<br>
+<table>
+    <tr>
+        <th>Auftragsnummer</th>
+        <th>Artikelnummer</th>
+        <th>Beschreibung</th>
+        <th>Betrag</th>
+    </tr>
+    <tr>
+        <td>1 </td>
+        <td>2 </td>
+        <td> <select name="Beschr1" id="Beschr1" class="combobox" >
+            <option value="0"> </option>
+            <option value="1"> </option>
+            <option value="2"> </option>
+            <option value="3"> </option>
+        </select> </td>
+        <td> </td>
+    </tr>
+    <tr>
+        <td> </td>
+        <td> </td>
+        <td> <select name="Beschr2" id="Beschr2" class="combobox" >
+            <option value="0"> </option>
+            <option value="1"> </option>
+            <option value="2"> </option>
+            <option value="3"> </option>
+        </select> </td>
+        <td> </td>
+    </tr>
+    <tr>
+        <td> </td>
+        <td> </td>
+        <td> <select name="Beschr3" id="Beschr3" class="combobox" >
+            <option value="0"> </option>
+            <option value="1"> </option>
+            <option value="2"> </option>
+            <option value="3"> </option>
+        </select> </td>
+        <td> </td>
+    </tr>
+    <tr>
+        <td> </td>
+        <td> </td>
+        <td> <select name="Beschr4" id="Beschr4" class="combobox" >
+            <option value="0"> </option>
+            <option value="1"> </option>
+            <option value="2"> </option>
+            <option value="3"> </option>
+        </select> </td>
+        <td> </td>
+    </tr>
+    <tr>
+        <td> </td>
+        <td> </td>
+        <td> <select name="Beschr5" id="Beschr5" class="combobox" >
+            <option value="0"> </option>
+            <option value="1"> </option>
+            <option value="2"> </option>
+            <option value="3"> </option>
+        </select> </td>
+        <td> </td>
+    </tr>
+    <tr>
+        <td> </td>
+        <td> </td>
+        <td> <select name="Beschr6" id="Beschr6" class="combobox" >
+            <option value="0"> </option>
+            <option value="1"> </option>
+            <option value="2"> </option>
+            <option value="3"> </option>
+        </select> </td>
+        <td> </td>
+    </tr>
+    <tr>
+        <td> </td>
+        <td> </td>
+        <td> <select name="Beschr7" id="Beschr7" class="combobox" >
+            <option value="0"> </option>
+            <option value="1"> </option>
+            <option value="2"> </option>
+            <option value="3"> </option>
+        </select> </td>
+        <td> </td>
+    </tr>
+</table>
+<hr>
+<br>
+<div class="bar">Bareinzahlung</div>
+<div class="summe">Summe</div>
+<label for="Mitarbeiter">Verkäufer:</label>
+<select name="Mitarbeiter" id="Mitarbeiter" class="combobox" >
+    <option value="0">Name </option>
+    <option value="1"> </option>
+    <option value="2"> </option>
+    <option value="3"> </option>
+</select>
+<div class="rueckgeld">Rückgeld</div>
+<br>
+<button type="button" class="buttons">Zurück</button>
+<button type="button" class="buttons">Kassenbuch</button>
+<button type="button" class="buttons">Storno/Kassenbuch</button>
+<button type="button" class="buttons">Bank-Gebucht</button>
+<button type="button" class="buttons">EC-Bezahlt</button>
+<button type="button" class="buttons">Bar-Bezahlt</button>
+</body>
+</html>
