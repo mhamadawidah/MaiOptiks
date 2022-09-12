@@ -18,9 +18,7 @@ CREATE TABLE IF NOT EXISTS Arzt (ArztNr int NOT NULL, Name varchar(254), Vorname
 
 CREATE TABLE IF NOT EXISTS Refraktion_durchgefuert (RefraktionsNr int NOT NULL, MitarbeiterNr int, ArztNr int, PRIMARY KEY (RefraktionsNr), FOREIGN KEY (MitarbeiterNr) REFERENCES Mitarbeiter (MitarbeiterNr), FOREIGN KEY (ArztNr) REFERENCES Arzt(ArztNr));
 
-CREATE TABLE IF NOT EXISTS Auftrag (Auftragsnummer int NOT NULL, AbrechnungsID varchar(254), Rezepturvorhanden bit, Womit varchar(254), Wann varchar(254), Fertig bit, Abgeholt bit, Bezahlt bit, Auftragsbestaetigung varchar(254), Rechnung varchar(254), ErsteMahnung bit, ZweiteMahnung bit, DritteMahnung bit, KundenNr int, Datum date, Werkstatt int, Berater int, Refraktion int, PRIMARY KEY (Auftragsnummer), FOREIGN KEY (KundenNr) REFERENCES Kunde(KundenNr), FOREIGN KEY (Berater) REFERENCES Mitarbeiter(MitarbeiterNr), FOREIGN KEY (Werkstatt) REFERENCES Mitarbeiter(MitarbeiterNr), FOREIGN KEY (Refraktion) REFERENCES Refraktion_durchgefuert(RefraktionsNr));
-
-CREATE TABLE IF NOT EXISTS Auftragsartikel (AuftragsNr int NOT NULL, SehhilfeID int NOT NULL, SehhilfenArt int, PRIMARY KEY (AuftragsNr, SehhilfeID));
+CREATE TABLE IF NOT EXISTS Auftrag (Auftragsnummer int NOT NULL, AbrechnungsID varchar(254), Rezepturvorhanden bit, Womit varchar(254), Wann varchar(254), Fertig bit, Abgeholt bit, Bezahlt bit, Auftragsbestaetigung varchar(254), Rechnung varchar(254), ErsteMahnung bit, ZweiteMahnung bit, DritteMahnung bit, KundenNr int, Datum date, Werkstatt int, Berater int, Refraktion int, PRIMARY KEY (Auftragsnummer), FOREIGN KEY (KundenNr) REFERENCES Kunde(KundenNr), FOREIGN KEY (Berater) REFERENCES Mitarbeiter(MitarbeiterNr), FOREIGN KEY (Werkstatt) REFERENCES Mitarbeiter(MitarbeiterNr), FOREIGN KEY (Refraktion) REFERENCES Refraktion_durchgefuert(RefraktionsNr),FOREIGN KEY (AbrechnungsID) REFERENCES Abrechnungsart(ID));
 
 CREATE TABLE IF NOT EXISTS Farbe (FarbeID int NOT NULL, Bezeichnung varchar(254), Info varchar(254), PRIMARY KEY (FarbeID));
 
@@ -43,3 +41,5 @@ CREATE TABLE IF NOT EXISTS Fassungen (ArtikelNr int NOT NULL, Art int NOT NULL, 
 CREATE TABLE IF NOT EXISTS Kontaktlinsen (ArtikelNr int NOT NULL, Art varchar(254) NOT NULL, Material int, Farbe int, Einkaufspreis float, Verkaufspreis float, Lieferant int, PRIMARY KEY (ArtikelNr,Art), FOREIGN KEY (Art) REFERENCES Artikelart(ArtID), FOREIGN KEY (Material) REFERENCES Material(MaterialID), FOREIGN KEY (Farbe) REFERENCES Farbe(FarbeID), FOREIGN KEY (Lieferant) REFERENCES Lieferant(LieferantID));
 
 CREATE TABLE IF NOT EXISTS Brille (BrillenID int NOT NULL, GlasArtikelIDLinks int, GlasArtikelIDRechts int, FassungsArtikelID int, PRIMARY KEY (BrillenID), FOREIGN KEY (GlasArtikelIDLinks) REFERENCES Artikel (ArtikelNr), FOREIGN KEY (GlasArtikelIDRechts) REFERENCES Artikel(ArtikelNr), FOREIGN KEY (FassungsArtikelID) REFERENCES Artikel(ArtikelNr));
+
+CREATE TABLE IF NOT EXISTS Auftragsartikel (AuftragsArtikelID int NOT NULL,AuftragsNr int, SehhilfeID int, SehhilfenArt int, PRIMARY KEY (AuftragsArtikelID), FOREIGN KEY (AuftragsNr) REFERENCES Auftrag(Auftragsnummer),FOREIGN KEY (SehhilfeID) REFERENCES Brille(BrillenID));
