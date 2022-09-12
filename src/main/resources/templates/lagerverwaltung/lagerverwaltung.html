@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/main.css}"/>
+    <style>
+        aside
+        {
+            float: right;
+        }
+        table, th, td
+        {
+        border: 1px solid black;
+        border-collapse: collapse;
+        }
+
+        th
+        {
+            background-color: lightgrey;
+        }
+
+        select
+        {
+            width: 13%;
+            border: none;
+            border-radius: 4px;
+            background-color: #f1f1f1;
+        }
+    </style>
+    <title>Lagerverwaltung</title>
+</head>
+<body>
+    <h1>Lagerverwaltung</h1>
+
+    <aside style="width:60%">
+        <input type="text" id="fArtikelNr" name="fArtikelNr" value="Artikelnummer"><br><br>
+        <input type="text" id="fFaktor" name="fFaktor" value="Faktor"><br><br>
+        <input type="text" id="fVK" name="fVK" value="VK">
+        <input type="button" id ="fVK-Manuell" name="fVK-Manuell" value="VK-Manuell"><br><br>
+        <input type="text" id="fFassungscode" name="fFassungscode" value="Fassungscode"><br><br>
+        <input type="text" id="fDatum" name="fDatum" value="Datum"><br><br>
+        <input type="checkbox" id="fKomission" name="fKomission" value="Komission">
+        <label>Komission</label><br>
+        <input type="button" id="fSpeichern" name="fSpeichern" value="Speichern">
+        <input type="button" id="fNeu" name="fNeu" value="Neu"><br>
+    </aside>
+
+    <aside style="width:20%">
+        <input type="text" id="fModell" name="fModell" value="Modell"><br><br>
+        <select style="width:65%" name="fFarbe" id="fFarbe">
+            <option value="farbe">Farbe</option>
+        </select><br><br>
+        <select style="width:65%" name="fGroeße" id="fGroeße">
+            <option value="groeße">Größe</option>
+        </select><br><br>
+        <select style="width:65%" name="fBuegel" id="fBuegel">
+           <option value="buegel">Bügel</option>
+        </select><br><br>
+        <input type="text" id="fRabatt" name="fRabatt" value="EK o. Mwst Rabatt"><br><br>
+        <select style="width:65%" name="fBemerkung" id="fBemerkung">
+            <option value="bemerkung">Bemerkung</option>
+        </select><br><br>
+    </aside>
+
+
+    <select name="fLiefranten" id="fLiefranten">
+      <option value="lieferanten">Lieferanten</option>
+    </select><br><br>
+    <select name="fVerwendung" id="fVerwendung">
+     <option value="verwendung">Verwendung</option>
+    </select><br><br>
+    <select name="fGattung" id="fGattung">
+      <option value="gattung">Gattung</option>
+    </select><br><br>
+    <select name="fMaterial" id="fMaterial">
+      <option value="material">Material</option>
+    </select><br><br>
+    <input type="text" id="fAnzahl" name="fAnzahl" value="Anzahl"><br><br><br><br>
+
+    <input type="text" id="fSuche" name="fSuche" value="Suchen">
+    <aside style="width:100%">
+        <input type="button" id="fAllesAnzeigen" name="fAllesAnzeigen" value="Alles anzeigen">
+    </aside>
+
+    <table style="width:100%">
+        <thead style="text-align:left">
+        <tr>
+            <th>ArtNr</th>
+            <th>Lieferant</th>
+            <th>Verwendung</th>
+            <th>Gattung</th>
+            <th>Material</th>
+            <th>Model</th>
+            <th>Farbe</th>
+            <th>Größe</th>
+            <th>Bügel</th>
+            <th>EK</th>
+            <th>Bemerkung</th>
+            <th>Faktor</th>
+            <th>VK</th>
+            <th>Fa-Code</th>
+            <th>Datum</th>
+            <th>Kom</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>1</td>
+            <td>Lieferando</td>
+            <td>Tragen</td>
+            <td>Brille</td>
+            <td>Plastik</td>
+            <td>Gucci</td>
+            <td>Schwarz</td>
+            <td>10</td>
+            <td>B200</td>
+            <td>EK</td>
+            <td>Keine</td>
+            <td>x3.5</td>
+            <td>VK</td>
+            <td>#001</td>
+            <td>01.09.2022</td>
+            <td>Ja</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Lieferheld</td>
+            <td>Ins Regal stellen</td>
+            <td>Brille</td>
+            <td>Plastik</td>
+            <td>Supreme</td>
+            <td>Weiß</td>
+            <td>10000</td>
+            <td>D99</td>
+            <td>EK</td>
+            <td>Keine</td>
+            <td>x4.20</td>
+            <td>VK</td>
+            <td>#69</td>
+            <td>01.09.2022</td>
+            <td>Nein</td>
+        </tr>
+        </tbody>
+    </table>
+</body>
+</html>
