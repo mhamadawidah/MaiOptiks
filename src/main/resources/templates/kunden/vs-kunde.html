@@ -12,12 +12,11 @@
 
 <div class="combobox" style="width:200px">
     <label for="Kunden"></label>
-    <form action="#" onsubmit="return gotToPage()">
+    <form action="">
         <select name="Kunden" id="Kunden">
             <option value="">Kundenart wählen:</option>
-            <option value="kunden/brillen-kunde.html" th:href="@{/kunden/brillen-kunde.html}">Brillen-Kunde</option>
+            <option value="brillen-kunde" th:href="@{/kunden/brillen-kunde.html}">Brillen-Kunde</option>
             <option value="cl-kunde" th:href="@{/kunden/cl-kunde.html}">CL-Kunde</option>
-            <option value="vs-kunde" th:href="@{/kunden/vs-kunde.html}">VS-Kunde</option>
         </select>
         <input type="submit" value="Auswählen">
     </form>
@@ -105,13 +104,6 @@
     /*if the user clicks anywhere outside the select box,
     then close all select boxes:*/
     document.addEventListener("click", closeAllSelect);
-</script>
-
-<script>
-function goToPage() {
-   let value = document.querySelector('#Kunden').selectedOptions.value;
-}
-
 </script>
 </body>
 </html>
