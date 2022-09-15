@@ -12,6 +12,6 @@ public class VsKundeController {
     @RequestMapping("/vs-kunde")
     public String home(Model model) {
         model.addAttribute("title", TITLE);
-        return "kunden/vs-kunde";
+        return "Kunden/vs-kunde";
     }
 }
