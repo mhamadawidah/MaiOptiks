@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS Mail (EMail varchar(254) NOT NULL, Benutzername varch
 
 CREATE TABLE IF NOT EXISTS Abrechnungsart (ID int NOT NULL, Art varchar(254), PRIMARY KEY (ID));
 
-CREATE TABLE IF NOT EXISTS Mitarbeiter (MitarbeiterNr int NOT NULL, Name varchar(254), Vorname varchar(254), Strasse varchar(254), HausNr varchar(254), PLZ int, TelefonNr varchar(254), Handy varchar(254), Email varchar(254), Geburtsdatum date, PRIMARY KEY (MitarbeiterNr), FOREIGN KEY (PLZ) REFERENCES Stadt(PLZ));
+CREATE TABLE IF NOT EXISTS Mitarbeiter (MitarbeiterNr int NOT NULL, Name varchar(254), Vorname varchar(254), Starsse varchar(254), HausNr varchar(254), PLZ int, TelefonNr varchar(254), Handy varchar(254), Email varchar(254), Geburtsdatum date, PRIMARY KEY (MitarbeiterNr), FOREIGN KEY (PLZ) REFERENCES Stadt(PLZ));
 
 CREATE TABLE IF NOT EXISTS Arzt (ArztNr int NOT NULL, Name varchar(254), Vorname varchar(254), Strasse varchar(254), HausNr varchar(254), PLZ int, TelefonNr varchar(254), Handy varchar(254), Email varchar(254), PRIMARY KEY (ArztNr), FOREIGN KEY (PLZ) REFERENCES Stadt(PLZ));
 
