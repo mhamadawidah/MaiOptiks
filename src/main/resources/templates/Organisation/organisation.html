@@ -13,7 +13,7 @@
     <div class="header">
         <h3>Organisation</h3>
         <div class="header-button">
-            <button class="button-startseite"><a th:href="@{/myurl}">Startseite</a></button>
+            <button class="button-startseite"><a th:href="@{/}">Startseite</a></button>
             <hr class="linetop">
         </div>
     </div>
@@ -21,14 +21,14 @@
         <h4>Verwaltung</h4>
         <div class="main-buttons">
             <div class="main-left-buttons">
-                <button><a th:href="@{/myurl}">Lager-und Etikettenverwaltung</a></button>
+                <button><a th:href="@{~/lagerverwaltung}">Lager-und Etikettenverwaltung</a></button>
                 <button><a th:href="@{/myurl}">Inventur und Abschreibung</a></button>
                 <button><a th:href="@{/myurl}">Auftragsorganisation und Mahnwesen</a></button>
                 <button><a th:href="@{/myurl}">Arzt/Mitarbeiter-Adressenverwaltung</a></button>
             </div>
             <div class="main-right-buttons">
                 <button><a th:href="@{/myurl}">Mailing</a></button>
-                <button><a th:href="@{/myurl}">Abrechnung</a></button>
+                <button><a th:href="@{~/abrechnung}">Abrechnung</a></button>
                 <button><a th:href="@{/myurl}">Formular-Editor</a></button>
                 <button><a th:href="@{/myurl}">System-Code ändern</a></button>
             </div>
