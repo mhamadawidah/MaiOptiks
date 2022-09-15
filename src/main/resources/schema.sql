@@ -2,7 +2,7 @@ CREATE TABLE IF NOT EXISTS Land (LandID varchar(254) NOT NULL, Name varchar(254)
 
 CREATE TABLE IF NOT EXISTS Stadt (PLZ int NOT NULL, Ort varchar(254), Land varchar(254), PRIMARY KEY (PLZ), FOREIGN KEY (Land) REFERENCES Land(LandID));
 
-CREATE TABLE IF NOT EXISTS Krankenkasse (KrankenkassenNr varchar(254) NOT NULL, Name varchar(254), Starsse varchar(254), PLZ int, TelefonNr varchar(254), Email varchar(254), PRIMARY KEY (KrankenkassenNr), FOREIGN KEY (PLZ) REFERENCES Stadt(PLZ));
+CREATE TABLE IF NOT EXISTS Krankenkasse (KrankenkassenNr varchar(254) NOT NULL, Name varchar(254), Strasse varchar(254), PLZ int, TelefonNr varchar(254), Email varchar(254), PRIMARY KEY (KrankenkassenNr), FOREIGN KEY (PLZ) REFERENCES Stadt(PLZ));
 
 CREATE TABLE IF NOT EXISTS Kunde (KundenNr int NOT NULL, Anrede varchar(254), Name varchar(254), Vorname varchar(254), Strasse varchar(254), HausNr varchar(254), PLZ Int, Geburtsdatum date, TelefonNr varchar(254), Handy varchar(254), EMail varchar(254), KrankenkassenNr varchar(254), VersicherungsNr varchar(254), Gueltigkeit date, Bemerkung varchar(254),PRIMARY KEY (KundenNr), FOREIGN KEY (PLZ) REFERENCES Stadt(PLZ), FOREIGN KEY (KrankenkassenNr) REFERENCES Krankenkasse(KrankenkassenNr));
 
