@@ -4,8 +4,15 @@
     <meta charset="UTF-8">
     <title th:text="${title}"></title>
     <link rel="stylesheet" th:href="@{/css/main.css}"/>
+    <link rel="stylesheet" th:href="@{/css/startseite-style.css}"/>
 </head>
 <body>
-<h1>Hey!</h1>
+
+<h1 class="heading">MyOptiks</h1>
+
+<button class="customer-button"><a th:href="@{/brillen-kunde}" class="customer">Brillen-Kunde</a></button><br>
+<button class="customer-button"><a th:href="@{/cl-kunde}" class="customer">CL-Kunde</a></button><br>
+<button class="customer-button"><a th:href="@{/vs-kunde}" class="customer">VS-Kunde</a></button><br>
+
 </body>
 </html>
