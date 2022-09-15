@@ -5,19 +5,43 @@
     font-family: "MV Boli", sans-serif;
 }
 
-/*Inputs*/
-.search-fields {
-    position: relative;
-    text-align: center;
+/*Container*/
+.customers {
+    height: 20%;
+    width: 20%;
+    left: 0.5%;
+
+    position: absolute;
 }
 
+.search-fields {
+    height: 40%;
+    width: 40%;
+    left: 20%;
+
+    position: absolute;
+}
+
+.table {
+    width:40%;
+}
+
+.direction-buttons {
+    position: absolute;
+    height: 5%;
+    width: 50%;
+    left: 0.5%;
+    bottom: 2%;
+}
+
+/*Inputs*/
 .input {
-    height: 0.7cm;
-    width: 5cm;
+    height: 7%;
+    width: 49%;
     border-radius: 5px;
     border: 1px solid black;
-    padding: 3px;
-    margin-top: 5px;
+    padding: 0.5%;
+    margin-top: 0.7%;
 }
 
 .input::placeholder {
@@ -25,40 +49,48 @@
 }
 
 /*Buttons*/
-.direction-buttons {
-    position: absolute;
-    left: 0.2cm;
-    bottom: 1.5cm;
-}
-
-.direction-button {
-    height: 1cm;
-    width: 5cm;
-    border-radius: 3px;
-    border: 1px solid black;
-    margin-top: 0.5cm;
-    margin-right: 0.1cm;
-}
-
 .submit-button {
-    height: 1cm;
-    width: 5cm;
+    height: 9%;
+    width: 50%;
     border-radius: 3px;
     border: 1px solid black;
-    margin-top: 0.5cm;
+    margin-top: 0.8%;
+
+    cursor: pointer;
 }
 
 .customer-button {
-    height: 1cm;
-    width: 5cm;
+    height: 30%;
+    width: 80%;
     border-radius: 3px;
     border: 1px solid black;
-    margin-top: 0.3cm;
+    margin-top: 2%;
+
     text-decoration: none;
     color: #FF0000;
+
+    cursor: pointer;
 }
 
-.customer {
+.customer { /*Links*/
     text-decoration: none;
     color: black;
 }
+
+.direction-button {
+    height: 100%;
+    width: 32%;
+    border-radius: 3px;
+    border: 1px solid black;
+    margin-top: 0.5%;
+    margin-right: 0.1%;
+
+    cursor: pointer;
+}
+
+/*Tables*/
+
+.customer-input-table:first-child {
+
+}
+

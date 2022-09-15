@@ -9,14 +9,20 @@
 <body>
 <h1 class="heading">Brillen-Kunde</h1>
 
-<button class="customer-button"><a th:href="@{/cl-kunde}" class="customer">CL-Kunde</a></button><br>
-<button class="customer-button"><a th:href="@{/vs-kunde}" class="customer">VS-Kunde</a></button><br>
+<div class="table">
+    <div class="customers">
+        <button class="customer-button"><a th:href="@{/cl-kunde}" class="customer">CL-Kunde</a></button>
+        <br>
+        <button class="customer-button"><a th:href="@{/vs-kunde}" class="customer">VS-Kunde</a></button>
+        <br>
+    </div>
 
-<div class="search-fields">
-  <input class="input" type="text" placeholder="Name"><br>
-  <input class="input" type="text" placeholder="Vorname"><br>
-  <input class="input" type="text" placeholder="Auftrags-Nr."><br>
-  <button class="submit-button" type="submit">Suchen</button>
+    <div class="search-fields">
+        <input class="input" type="text" placeholder="Name"><br>
+        <input class="input" type="text" placeholder="Vorname"><br>
+        <input class="input" type="text" placeholder="Auftrags-Nr."><br>
+        <button class="submit-button" type="submit">Suchen</button>
+    </div>
 </div>
 
 <div class="direction-buttons">
