@@ -11,9 +11,9 @@
 
 <div class="table">
     <div class="customers">
-        <button class="customer-button"><a th:href="@{/brillen-kunde}" class="customer">Brillen-Kunde</a></button>
+        <button class="button customer-button"><a th:href="@{/brillen-kunde}" class="link">Brillen-Kunde</a></button>
         <br>
-        <button class="customer-button"><a th:href="@{/cl-kunde}" class="customer">CL-Kunde</a></button>
+        <button class="button customer-button"><a th:href="@{/cl-kunde}" class="link">CL-Kunde</a></button>
         <br>
     </div>
 
@@ -21,14 +21,14 @@
         <input class="input" type="text" placeholder="Name"><br>
         <input class="input" type="text" placeholder="Vorname"><br>
         <input class="input" type="text" placeholder="Auftrags-Nr."><br>
-        <button class="submit-button" type="submit">Suchen</button>
+        <button class="button submit-button" type="submit">Suchen</button>
     </div>
 </div>
 
 <div class="direction-buttons">
-    <button class="direction-button"><a >Neuer Kunde</a></button>
-    <button class="direction-button"><a th:href="@{/organisation}">Organisation</a></button>
-    <button class="direction-button"><a >Führerschein-Sehtest</a></button>
+    <button class="button direction-button"><a >Neuer Kunde</a></button>
+    <button class="button direction-button"><a th:href="@{/organisation}" class="link">Organisation</a></button>
+    <button class="button direction-button"><a >Führerschein-Sehtest</a></button>
 </div>
 
 </body>
