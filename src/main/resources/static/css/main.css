@@ -19,7 +19,24 @@
 
 /*Buttons*/
 .submit-button {
+    height: 50px;
+    width: 200px;
     border-radius: 3px;
     border: 1px solid black;
     margin-top: 5px;
+}
+
+.customer-button {
+    height: 50px;
+    width: 200px;
+    border-radius: 3px;
+    border: 1px solid black;
+    margin-top: 5px;
+    text-decoration: none;
+    color: #FF0000;
+}
+
+.customer {
+    text-decoration: none;
+    color: black;
 }
