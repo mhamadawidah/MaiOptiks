@@ -1,10 +1,3 @@
-/*Headings*/
-.heading {
-    position: relative;
-    text-align: center;
-    font-family: "MV Boli", sans-serif;
-}
-
 /*Container*/
 .customers {
     height: 20%;
@@ -45,7 +38,7 @@
 }
 
 .input::placeholder {
-    font-family: "MV Boli", sans-serif;
+    font-family: "Roboto Thin", sans-serif;
 }
 
 /*Buttons*/
