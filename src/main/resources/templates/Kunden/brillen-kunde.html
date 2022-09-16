@@ -7,7 +7,13 @@
     <link rel="stylesheet" th:href="@{/css/startseite-style.css}"/>
 </head>
 <body>
-<h1 class="heading">Brillen-Kunde</h1>
+<div class="title-bar">
+    <h1 class="heading">Brillen-Kunde</h1>
+</div>
+
+<div class="vertical-bar">
+    <p></p>
+</div>
 
 <div class="table">
     <div class="customers">
@@ -26,9 +32,9 @@
 </div>
 
 <div class="direction-buttons">
-    <button class="button direction-button"><a >Neuer Kunde</a></button>
+    <button class="button direction-button"><a>Neuer Kunde</a></button>
     <button class="button direction-button"><a th:href="@{/organisation}" class="link">Organisation</a></button>
-    <button class="button direction-button"><a >Führerschein-Sehtest</a></button>
+    <button class="button direction-button"><a>Führerschein-Sehtest</a></button>
 </div>
 
 </body>
