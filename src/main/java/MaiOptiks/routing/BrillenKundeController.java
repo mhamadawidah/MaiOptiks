@@ -12,6 +12,6 @@ public class BrillenKundeController {
     @RequestMapping("/brillen-kunde")
     public String home(Model model) {
         model.addAttribute("title", TITLE);
-        return "kunden/brillen-kunde";
+        return "Kunden/brillen-kunde";
     }
 }

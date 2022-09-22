@@ -1,42 +1,63 @@
+:root {
+--somecolor: #007acc;
+--background: #f5f5f5;
+--primary: #007acc;
+--light: #5ca9ff;
+--dark: #004f9b;
+--button: #e1e1e1;
+--buttonHover: #bdbdbd;
+}
+
+html {
+    background-color: var(--background);
+}
+
 /*Headings*/
 .heading {
     position: relative;
     text-align: center;
-    font-family: "MV Boli", sans-serif;
+    font-family: "Roboto Light", sans-serif;
+    color: var(--buttonHover);
 }
 
-/*Inputs*/
-.input {
-    border-radius: 5px;
-    border: 1px solid black;
-    padding: 3px;
-    margin-top: 5px;
-}
-
-.input::placeholder {
-    font-family: "MV Boli", sans-serif;
-}
-
-/*Buttons*/
-.submit-button {
-    height: 50px;
-    width: 200px;
+.button {
     border-radius: 3px;
     border: 1px solid black;
-    margin-top: 5px;
-}
-
-.customer-button {
-    height: 50px;
-    width: 200px;
-    border-radius: 3px;
-    border: 1px solid black;
-    margin-top: 5px;
-    text-decoration: none;
-    color: #FF0000;
-}
-
-.customer {
-    text-decoration: none;
+    font-family: "Roboto Light", sans-serif;
+    font-size: 17px;
+    font-weight: bold;
+    background-color: var(--button);
     color: black;
 }
+
+.button:hover {
+    background-color: var(--buttonHover);
+}
+
+.title-bar {
+    width: 100%;
+    background-color: var(--dark);
+    overflow: auto;
+}
+
+.vertical-bar {
+    width: 4%;
+    height: 90%;
+    left: 95.45%;
+    background-color: var(--primary);
+    display: block;
+    position: absolute;
+}
+
+.vertical-bar p {
+    display: block;
+}
+
+/*
+Farbpalette:
+Background: #f5f5f5
+Background: #e1e1e1
+Primary: #007acc
+Light: #5ca9ff
+Dark: #004f9b
+*/
