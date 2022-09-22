@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="de" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org/">
 <head>
     <meta charset="UTF-8">
     <title th:text="${title}"></title>
@@ -32,9 +32,9 @@
 </div>
 
 <div class="direction-buttons">
-    <button class="button direction-button"><a>Neuer Kunde</a></button>
+    <button class="button direction-button" onclick="openLink('/neuer-kunde')">Neuer Kunde</button>
     <button class="button direction-button" onclick="openLink('/organisation')">Organisation</button>
-    <button class="button direction-button"><a>Führerschein-Sehtest</a></button>
+    <button class="button direction-button" onclick="openLink('/führerscheinsehtest')">Führerschein-Sehtest</button>
 </div>
 
 </body>
