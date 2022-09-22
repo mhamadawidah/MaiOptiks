@@ -12,6 +12,6 @@ public class ClKundeController {
     @RequestMapping("/cl-kunde")
     public String home(Model model) {
         model.addAttribute("title", TITLE);
-        return "kunden/cl-kunde";
+        return "Kunden/cl-kunde";
     }
 }

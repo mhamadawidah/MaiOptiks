@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <title th:text="${title}"></title>
@@ -7,12 +7,22 @@
     <link rel="stylesheet" th:href="@{/css/startseite-style.css}"/>
 </head>
 <body>
+<div class="title-bar">
+    <h1 class="heading">MaiOptics</h1>
+</div>
 
-<h1 class="heading">MyOptiks</h1>
+<div class="vertical-bar">
+    <p></p>
+</div>
 
-<button class="customer-button"><a th:href="@{/brillen-kunde}" class="customer">Brillen-Kunde</a></button><br>
-<button class="customer-button"><a th:href="@{/cl-kunde}" class="customer">CL-Kunde</a></button><br>
-<button class="customer-button"><a th:href="@{/vs-kunde}" class="customer">VS-Kunde</a></button><br>
+<div class="customers">
+    <button class="button customer-button"><a th:href="@{/brillen-kunde}" class="link">Brillen-Kunde</a></button>
+    <br>
+    <button class="button customer-button"><a th:href="@{/cl-kunde}" class="link">CL-Kunde</a></button>
+    <br>
+    <button class="button customer-button"><a th:href="@{/vs-kunde}" class="link">VS-Kunde</a></button>
+    <br>
+</div>
 
 </body>
 </html>
