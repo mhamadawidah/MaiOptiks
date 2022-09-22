@@ -17,9 +17,9 @@
 
 <div class="table">
     <div class="customers">
-        <button class="button customer-button"><a th:href="@{/brillen-kunde}" class="link">Brillen-Kunde</a></button>
+        <button class="button customer-button" onclick="openLink('/brillen-kunde')">Brillen-Kunde</button>
         <br>
-        <button class="button customer-button"><a th:href="@{/cl-kunde}" class="link">CL-Kunde</a></button>
+        <button class="button customer-button" onclick="openLink('/cl-kunde')">CL-Kunde</button>
         <br>
     </div>
 
@@ -33,9 +33,14 @@
 
 <div class="direction-buttons">
     <button class="button direction-button"><a>Neuer Kunde</a></button>
-    <button class="button direction-button"><a th:href="@{/organisation}" class="link">Organisation</a></button>
+    <button class="button direction-button" onclick="openLink('/organisation')">Organisation</button>
     <button class="button direction-button"><a>Führerschein-Sehtest</a></button>
 </div>
 
 </body>
+<script>
+    function openLink(link) {
+        window.location.href = link;
+    }
+</script>
 </html>
