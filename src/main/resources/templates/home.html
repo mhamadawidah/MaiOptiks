@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.thymeleaf.org ">
 <head>
     <meta charset="UTF-8">
     <title th:text="${title}"></title>
@@ -10,9 +11,12 @@
 
 <h1 class="heading">MyOptiks</h1>
 
-<button class="customer-button"><a th:href="@{/brillen-kunde}" class="customer">Brillen-Kunde</a></button><br>
-<button class="customer-button"><a th:href="@{/cl-kunde}" class="customer">CL-Kunde</a></button><br>
-<button class="customer-button"><a th:href="@{/vs-kunde}" class="customer">VS-Kunde</a></button><br>
+<button class="customer-button"><a th:href="@{/brillen-kunde}" class="customer">Brillen-Kunde</a></button>
+<br>
+<button class="customer-button"><a th:href="@{/cl-kunde}" class="customer">CL-Kunde</a></button>
+<br>
+<button class="customer-button"><a th:href="@{/vs-kunde}" class="customer">VS-Kunde</a></button>
+<br>
 
 </body>
 </html>
