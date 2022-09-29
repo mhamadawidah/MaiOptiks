@@ -1,5 +1,5 @@
 <!DOCTYPE>
-<html lang="de" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org/">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org/">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,37 +18,43 @@
     <p></p>
 </div>
 
-<div class="header-button">
-    <button class=" button button-startseite"><a th:href="@{/}">Startseite</a></button>
-    <hr class="linetop">
-</div>
-</div>
-<div class="main">
-    <h4>Verwaltung</h4>
-    <div class="main-buttons">
-        <div class="main-left-buttons">
-            <button class="button"><a th:href="@{~/lagerverwaltung}">Lager-und Etikettenverwaltung</a></button>
-            <button class="button"><a th:href="@{/myurl}">Inventur und Abschreibung</a></button>
-            <button class="button"><a th:href="@{/myurl}">Auftragsorganisation und Mahnwesen</a></button>
-            <button class="button"><a th:href="@{/myurl}">Arzt/Mitarbeiter-Adressenverwaltung</a></button>
-        </div>
-        <div class="main-right-buttons">
-            <button class="button"><a th:href="@{/myurl}">Mailing</a></button>
-            <button class="button"><a th:href="@{~/abrechnung}">Abrechnung</a></button>
-            <button class="button"><a th:href="@{/myurl}">Formular-Editor</a></button>
-            <button class="button"><a th:href="@{/myurl}">System-Code ändern</a></button>
-        </div>
+<div class="inner-window">
+    <div class="header">
+        <button class="button button-startseite" onclick="openLink('/')">Startseite</button>
+        <hr class="linetop">
     </div>
-    <hr class="linebottom">
-</div>
-<div class="footer">
-    <h4>Programmeinstellungen</h4>
-    <div class="footer-buttons">
-        <button class="button"><a th:href="@{/myurl}">Grundeinstellungen</a></button>
-        <button class="button"><a th:href="@{/myurl}">Hauptdatenbank sichern</a></button>
-        <button class="button"><a th:href="@{/myurl}">Hauptdatenbank zurück-Sichern</a></button>
-        <button class="button"><a th:href="@{/myurl}">Programm Update</a></button>
+    <div class="main">
+        <h4>Verwaltung</h4>
+        <div class="main-buttons">
+            <div class="main-left-buttons">
+                <button class="button" onclick="openLink('/lagerverwaltung')">Lager-und Etikettenverwaltung</button>
+                <button class="button" onclick="openLink('/myurl')">Inventur und Abschreibung</button>
+                <button class="button" onclick="openLink('/myurl')">Auftragsorganisation und Mahnwesen</button>
+                <button class="button" onclick="openLink('/myurl')">Arzt/Mitarbeiter-Adressenverwaltung</button>
+            </div>
+            <div class="main-right-buttons">
+                <button class="button" onclick="openLink('/myurl')">Mailing</button>
+                <button class="button" onclick="openLink('/abrechnung')">Abrechnung</button>
+                <button class="button" onclick="openLink('/myurl')">Formular-Editor</button>
+                <button class="button" onclick="openLink('/myurl')">System-Code ändern</button>
+            </div>
+        </div>
+        <hr class="linebottom">
+    </div>
+    <div class="footer">
+        <h4>Programmeinstellungen</h4>
+        <div class="footer-buttons">
+            <button class="button" onclick="openLink('/myurl')">Grundeinstellungen</button>
+            <button class="button" onclick="openLink('/myurl')">Hauptdatenbank sichern</button>
+            <button class="button" onclick="openLink('/myurl')">Hauptdatenbank zurück-Sichern</button>
+            <button class="button" onclick="openLink('/myurl')">Programm Update</button>
+        </div>
     </div>
 </div>
 </body>
+<script>
+    function openLink(link) {
+        window.location.href = link;
+    }
+</script>
 </html>
