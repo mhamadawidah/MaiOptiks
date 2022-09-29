@@ -22,7 +22,7 @@ html body {
     position: relative;
     text-align: center;
     font-family: "Roboto Light", sans-serif;
-    color: var(--buttonHover);
+    color: var(--button);
 }
 
 .button {
