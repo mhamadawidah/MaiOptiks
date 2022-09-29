@@ -2,43 +2,66 @@ aside {
     float: right;
 }
 
-table, th, td {
-    border: 1px solid black;
-    border-collapse: collapse;
+.header {
+    width: 96%;
+    text-align: left
+    font-size: 25px;
 }
+.header .button-startseite {
+    width: 10em;
+    height: 2.5em;
+    margin: 0.5%;
+}
+
 table {
-    width: 95%;
-}
-
-thead{
-    text-align: left;
-}
-
-th {
-    background-color: lightgrey;
+    width: 90%;
+    position: relative;
+    text-align: center;
+	font-size: 17px;
+	margin: 20px;
 }
 
 .select {
     width: 13%;
+    height: 21px;
     border: none;
     border-radius: 4px;
+    margin-left: 0.5%;
 }
 
 .select-mitte {
     width: 65%;
     border: none;
     border-radius: 4px;
+    margin-left: 50%;
 }
 
 .input {
-    height: 7%;
+    height: 21px;
     border-radius: 5px;
     border: 1px solid black;
-    padding: 0.5%;
-    margin-top: 0.7%;
+    margin-left: 0.5%;
+}
+
+.input-mitte {
+    height: 21px;
+    border-radius: 5px;
+    border: 1px solid black;
+    margin-left: 50%;
+}
+
+.input-rechts {
+    height: 21px;
+    border-radius: 5px;
+    border: 1px solid black;
+    margin-left: 80%;
 }
 
 .input::placeholder {
     font-family: "Roboto Thin", sans-serif;
-    font-size: 15px;
+    font-size: 17px;
+}
+
+.button: button-rechts {
+    margin-left: 80%;
 }
