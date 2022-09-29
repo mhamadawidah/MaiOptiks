@@ -15,8 +15,16 @@
     position: absolute;
 }
 
-.table {
-    width:40%;
+.customerButton-searchField {
+    width: 40%;
+}
+
+.table-container {
+    top: 30%;
+    width: 94.4%;
+    height: 60%;
+    position: absolute;
+    overflow: auto;
 }
 
 .direction-buttons {
@@ -67,4 +75,19 @@
     margin-right: 0.1%;
 
     cursor: pointer;
+}
+
+/*Tabelle*/
+.table-container table {
+    width: 95%;
+    height: 100%;
+}
+
+.table-container body {
+    width: auto;
+}
+
+.table-container tr {
+    height: 3%;
+    white-space: nowrap;
 }
