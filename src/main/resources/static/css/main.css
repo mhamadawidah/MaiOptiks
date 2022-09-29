@@ -61,6 +61,38 @@ html body {
     display: block;
 }
 
+/* Tabelle */
+table, th, td {
+	border-collapse: collapse;
+    border: thin solid black;
+}
+
+table {
+    position: relative;
+    text-align: center;
+	font-size: 17px;
+	margin: 20px;
+}
+
+tr:nth-child(even) {
+	background-color: var(--button);
+}
+
+td {
+	text-align: right;
+	width: 25%;
+	height: 10%;
+	padding-right: 5px;
+	padding-left: 5px;
+}
+
+th {
+	border-bottom-width: medium;
+	background-color: var(--primary);
+	color: white;
+	padding: 5px;
+}
+
 /*
 Farbpalette:
 Background: #f5f5f5
