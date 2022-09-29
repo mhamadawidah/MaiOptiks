@@ -7,30 +7,7 @@
     <title class="heading">Lagerverwaltung</title>
 
     <link rel="stylesheet" th:href="@{/css/main.css}"/>
-    <style>
-        aside
-        {
-            float: right;
-        }
-        table, th, td
-        {
-        border: 1px solid black;
-        border-collapse: collapse;
-        }
-
-        th
-        {
-            background-color: lightgrey;
-        }
-
-        select
-        {
-            width: 13%;
-            border: none;
-            border-radius: 4px;
-            background-color: #f1f1f1;
-        }
-    </style>
+    <link rel="stylesheet" th:href="@{/css/lagerverwaltung-style.css}">
 </head>
 <body>
 <div class="title-bar">
@@ -41,58 +18,60 @@
     <p></p>
 </div>
 
+    <aside>
+        <button class="button" onclick="openLink('/organisation')"><a>Zurück</a></button>
+    </aside>
+
     <aside style="width:60%">
-        <input type="text" id="fArtikelNr" onclick="FeldLeeren" name="fArtikelNr" value="Artikelnummer"><br><br>
-        <input type="text" id="fFaktor" name="fFaktor" value="Faktor"><br><br>
-        <input type="text" id="fVK" name="fVK" value="VK">
+        <input class="input" type="text" placeholder="Artikelnummer"><br><br>
+        <input class="input" type="text" placeholder="Faktor"><br><br>
+        <input class="input" type="text" placeholder="VK">
         <button class="button"><a>VK-Manuell</a></button><br><br>
-        <input type="text" id="fFassungscode" name="fFassungscode" value="Fassungscode"><br><br>
-        <input type="text" id="fDatum" name="fDatum" value="Datum"><br><br>
-        <input type="checkbox" id="fKomission" name="fKomission" value="Komission">
+        <input class="input" type="text" placeholder="Fassungscode"><br><br>
+        <input class="input" type="text" placeholder="Datum"><br><br>
+        <input class="input" type="checkbox" placeholder="Komission">
         <label>Komission</label><br>
         <button class="button"><a>Speichern</a></button>
         <button class="button"><a>Neu</a></button>
     </aside>
 
     <aside style="width:20%">
-        <input type="text" id="fModell" name="fModell" value="Modell"><br><br>
-        <select style="width:65%" name="fFarbe" id="fFarbe">
-            <option value="farbe">Farbe</option>
+        <input class="input" type="text" placeholder="Modell"><br><br>
+        <select class="select-mitte">
+            <option>Farbe</option>
         </select><br><br>
-        <select style="width:65%" name="fGroeße" id="fGroeße">
-            <option value="groeße">Größe</option>
+        <select class="select-mitte">
+            <option>Größe</option>
         </select><br><br>
-        <select style="width:65%" name="fBuegel" id="fBuegel">
-           <option value="buegel">Bügel</option>
+        <select class="select-mitte">
+           <option>Bügel</option>
         </select><br><br>
-        <input type="text" id="fRabatt" name="fRabatt" value="EK o. Mwst Rabatt"><br><br>
-        <select style="width:65%" name="fBemerkung" id="fBemerkung">
-            <option value="bemerkung">Bemerkung</option>
+        <input class="input" type="text" placeholder="EK o. Mwst Rabatt"><br><br>
+        <select class="select-mitte">
+            <option>Bemerkung</option>
         </select><br><br>
     </aside>
 
 
-    <select name="fLiefranten" id="fLiefranten">
-      <option value="lieferanten">Lieferanten</option>
+    <select class="select">
+      <option>Lieferanten</option>
     </select><br><br>
-    <select name="fVerwendung" id="fVerwendung">
-     <option value="verwendung">Verwendung</option>
+    <select class="select">
+     <option>Verwendung</option>
     </select><br><br>
-    <select name="fGattung" id="fGattung">
-      <option value="gattung">Gattung</option>
+    <select class="select">
+      <option>Gattung</option>
     </select><br><br>
-    <select name="fMaterial" id="fMaterial">
-      <option value="material">Material</option>
+    <select class="select">
+      <option>Material</option>
     </select><br><br>
-    <input type="text" id="fAnzahl" name="fAnzahl" value="Anzahl"><br><br><br><br>
+    <input class="input" type="text" placeholder="Anzahl"><br><br><br><br>
 
-    <input type="text" id="fSuche" name="fSuche" value="Suchen">
-    <aside style="width:100%">
-        <button class="button"><a>Alles anzeigen</a></button>
-    </aside>
+    <input class="input" type="text" placeholder="Suchen">
+    <button class="button"><a>Alles anzeigen</a></button>
 
-    <table style="width:95%">
-        <thead style="text-align:left">
+    <table>
+        <thead>
         <tr>
             <th>ArtNr</th>
             <th>Lieferant</th>
@@ -152,4 +131,9 @@
         </tbody>
     </table>
 </body>
+<script>
+    function openLink(link) {
+        window.location.href = link;
+    }
+</script>
 </html>
