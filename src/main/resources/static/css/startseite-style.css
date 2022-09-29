@@ -15,14 +15,22 @@
     position: absolute;
 }
 
-.table {
-    width:40%;
+.customerButton-searchField {
+    width: 40%;
+}
+
+.table-container {
+    top: 30%;
+    width: 94.4%;
+    height: 60%;
+    position: absolute;
+    overflow: auto;
 }
 
 .direction-buttons {
     position: absolute;
     height: 5%;
-    width: 50%;
+    width: 75%;
     left: 0.5%;
     bottom: 2%;
 }
@@ -62,9 +70,24 @@
 
 .direction-button {
     height: 100%;
-    width: 32%;
+    width: 24%;
     margin-top: 0.5%;
     margin-right: 0.1%;
 
     cursor: pointer;
+}
+
+/*Tabelle*/
+.table-container table {
+    width: 95%;
+    height: 100%;
+}
+
+.table-container body {
+    width: auto;
+}
+
+.table-container tr {
+    height: 3%;
+    white-space: nowrap;
 }
