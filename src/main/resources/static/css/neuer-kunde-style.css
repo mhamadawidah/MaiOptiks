@@ -1,0 +1,75 @@
+.header {
+    width: 96%;
+    text-align: left;
+    font-size: 25px;
+}
+.header .button-startseite {
+    width: 10em;
+    height: 2.5em;
+    margin: 0.5%;
+}
+
+.main {
+    margin-top: 2%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 96%;
+    font-size: 1em;
+    gap: 5em;
+    flex-wrap: wrap;
+}
+
+.input-tel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.input-person {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.input-insurance {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.input-country {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.input-tel > input {
+    width: 15em;
+    height: 2.5em;
+}
+
+.input-person > input {
+    width: 15em;
+    height: 2.5em;
+}
+.input-insurance > input {
+    width: 15em;
+    height: 2.5em;
+}
+.input-country > input {
+    width: 15em;
+    height: 2.5em;
+}
+
+.submit {
+    width: 8em;
+    height: 2em;
+    margin: 0.5%;
+}
+
+.footer {
+    text-align: center;
+}
