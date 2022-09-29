@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+    <th:block th:fragment="auftrag">
+        <form>
+            <div>
+                <input type="text" name="auftrangsnr" placeholder="Auftrags-Nr.">
+                <select name="abrechungsart">
+                    <option>Bruda, geht auf meinen Nacken</option>
+                </select>
+                <input type="checkbox" name="glass_bestellt">
+                <select name="bestellart">
+                    <option>MyDealerMobile</option>
+                </select>
+                <div>
+                    <input type="checkbox" name="rezept_bestellt">
+                    <label>Rezept verhanden?</label>
+                </div>
+                <div>
+                    <input type="checkbox" name="brille_fertig">
+                    <label>Brille vorhanden?</label>
+                </div>
+                <div>
+                    <input type="checkbox" name="brille_abgeholt">
+                    <label>Brille abgeholt?</label>
+                </div>
+                <div>
+                    <input type="checkbox" name="brille_bezahlt">
+                    <label>Brille bezahlen?</label>
+                </div>
+            </div>
+            <div>
+                <table>
+                    <tr>
+                        <th>Auftrags-Nr.</th>
+                        <th>Auftrags-Datum</th>
+                    </tr>
+                    <tr>
+                        <td>Beispiel Nr.</td>
+                        <td>Bespiel Datum</td>
+                    </tr>
+                </table>
+            </div>
+        </form>
+    </th:block>
+</body>
+</html>
