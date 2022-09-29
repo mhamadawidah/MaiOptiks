@@ -60,11 +60,6 @@
     cursor: pointer;
 }
 
-.link {
-    text-decoration: none;
-    color: black;
-}
-
 .direction-button {
     height: 100%;
     width: 32%;

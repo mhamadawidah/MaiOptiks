@@ -7,8 +7,12 @@
     <link rel="stylesheet" th:href="@{/css/abrechnung-style.css}"/>
 </head>
 <body>
+<div class="title-bar">
     <h1 class="heading">Abrechnung</h1>
-<br>
+</div>
+<div class="vertical-bar">
+    <p></p>
+</div>
 <table>
     <tr>
         <th>Auftragsnummer</th>
@@ -17,9 +21,9 @@
         <th>Betrag</th>
     </tr>
     <tr>
-        <td>1 </td>
-        <td>2 </td>
-        <td> <select name="Beschr1" id="Beschr1" class="combobox" >
+        <td> </td>
+        <td> </td>
+        <td> <select name="Beschr1" id="Beschr1" class="tabledd" >
             <option value="0"> </option>
             <option value="1"> </option>
             <option value="2"> </option>
@@ -30,7 +34,7 @@
     <tr>
         <td> </td>
         <td> </td>
-        <td> <select name="Beschr2" id="Beschr2" class="combobox" >
+        <td> <select name="Beschr2" id="Beschr2" class="tabledd" >
             <option value="0"> </option>
             <option value="1"> </option>
             <option value="2"> </option>
@@ -41,7 +45,7 @@
     <tr>
         <td> </td>
         <td> </td>
-        <td> <select name="Beschr3" id="Beschr3" class="combobox" >
+        <td> <select name="Beschr3" id="Beschr3" class="tabledd" >
             <option value="0"> </option>
             <option value="1"> </option>
             <option value="2"> </option>
@@ -52,7 +56,7 @@
     <tr>
         <td> </td>
         <td> </td>
-        <td> <select name="Beschr4" id="Beschr4" class="combobox" >
+        <td> <select name="Beschr4" id="Beschr4" class="tabledd" >
             <option value="0"> </option>
             <option value="1"> </option>
             <option value="2"> </option>
@@ -63,7 +67,7 @@
     <tr>
         <td> </td>
         <td> </td>
-        <td> <select name="Beschr5" id="Beschr5" class="combobox" >
+        <td> <select name="Beschr5" id="Beschr5" class="tabledd" >
             <option value="0"> </option>
             <option value="1"> </option>
             <option value="2"> </option>
@@ -74,7 +78,7 @@
     <tr>
         <td> </td>
         <td> </td>
-        <td> <select name="Beschr6" id="Beschr6" class="combobox" >
+        <td> <select name="Beschr6" id="Beschr6" class="tabledd" >
             <option value="0"> </option>
             <option value="1"> </option>
             <option value="2"> </option>
@@ -85,7 +89,7 @@
     <tr>
         <td> </td>
         <td> </td>
-        <td> <select name="Beschr7" id="Beschr7" class="combobox" >
+        <td> <select name="Beschr7" id="Beschr7" class="tabledd" >
             <option value="0"> </option>
             <option value="1"> </option>
             <option value="2"> </option>
@@ -95,23 +99,29 @@
     </tr>
 </table>
 <hr>
-<br>
+<br><br>
 <div class="bar">Bareinzahlung</div>
 <div class="summe">Summe</div>
 <label for="Mitarbeiter">Verkäufer:</label>
 <select name="Mitarbeiter" id="Mitarbeiter" class="combobox" >
-    <option value="0">Name </option>
+    <option value="0"> </option>
     <option value="1"> </option>
     <option value="2"> </option>
     <option value="3"> </option>
 </select>
 <div class="rueckgeld">Rückgeld</div>
 <br>
-<button type="button" class="buttons">Zurück</button>
-<button type="button" class="buttons">Kassenbuch</button>
-<button type="button" class="buttons">Storno/Kassenbuch</button>
-<button type="button" class="buttons">Bank-Gebucht</button>
-<button type="button" class="buttons">EC-Bezahlt</button>
-<button type="button" class="buttons">Bar-Bezahlt</button>
+<br>
+<button type="button" class="button" onclick="openLink('/organisation')">Zurück</button>
+<button type="button" class="button">Kassenbuch</button>
+<button type="button" class="button">Storno/Kassenbuch</button>
+<button type="button" class="button">Bank-Gebucht</button>
+<button type="button" class="button">EC-Bezahlt</button>
+<button type="button" class="button">Bar-Bezahlt</button>
 </body>
+<script>
+    function openLink(link) {
+        window.location.href = link;
+    }
+</script>
 </html>
