@@ -5,6 +5,7 @@
     <title th:text="${title}"></title>
     <link rel="stylesheet" th:href="@{/css/main.css}"/>
     <link rel="stylesheet" th:href="@{/css/startseite-style.css}"/>
+    <script th:src="@{/scripts/main.js}" type="text/javascript"></script>
 </head>
 <body>
 <div class="title-bar">
@@ -17,25 +18,26 @@
 
 <div class="customerButton-searchField">
     <div class="customers">
-        <button type="button" class="button customer-button" onclick="openLink('/cl-kunde')">CL-Kunde</button>
+        <button class="button customer-button" onclick="openLink('/cl-kunde')" type="button">CL-Kunde</button>
         <br>
         <button class="button customer-button" onclick="openLink('/vs-kunde')">VS-Kunde</button>
         <br>
     </div>
 
     <div class="search-fields">
-        <form action="#" th:action="@{/search}" th:object="${search}" method="post">
-            <input class="input" type="text" placeholder="Name"/><br>
-            <input class="input" type="text" placeholder="Vorname"/><br>
-            <input class="input" type="text" placeholder="Auftrags-Nr."/><br>
+        <form action="#" method="post" th:action="@{/search}" th:object="${search}">
+            <input class="input" placeholder="Name" type="text"/><br>
+            <input class="input" placeholder="Vorname" type="text"/><br>
+            <input class="input" placeholder="Auftrags-Nr." type="text"/><br>
             <button class="button submit-button" type="submit">Suchen</button>
         </form>
     </div>
 </div>
 
 <div class="table-container">
-    <table>
+    <table class="kunde">
         <tr>
+            <th>Kunden-Nr.</th>
             <th>Anrede</th>
             <th>Name</th>
             <th>Vorname</th>
@@ -52,9 +54,53 @@
             <th>Bemerkung</th>
         </tr>
         <tr>
+            <td>1</td>
             <td>Herr</td>
             <td>Max</td>
             <td>Mustermann</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+
+    <table class="auftrag">
+        <tr>
+            <th>Kunden-Nr.</th>
+            <th>Auftrags-Nr.</th>
+            <th>Abrechnungsart</th>
+            <th>Rezept vorhanden</th>
+            <th>Womit</th>
+            <th>Wann</th>
+            <th>Fertig</th>
+            <th>Abgeholt</th>
+            <th>Bezahlt</th>
+            <th>Auftragsbestätigung</th>
+            <th>Rechnung</th>
+            <th>1. Mahnung</th>
+            <th>2. Mahnung</th>
+            <th>3. Mahnung</th>
+            <th>Datum</th>
+            <th>Werkstatt</th>
+            <th>Berater</th>
+            <th>Refraktion</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
             <td></td>
             <td></td>
             <td></td>
@@ -78,9 +124,4 @@
 </div>
 
 </body>
-<script>
-    function openLink(link) {
-        window.location.href = link;
-    }
-</script>
 </html>

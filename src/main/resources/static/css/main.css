@@ -70,7 +70,7 @@ table, th, td {
 table {
     position: relative;
     text-align: center;
-    font-family: "Roboto Light", sans serif;
+    font-family: "Roboto Light", sans-serif;
     font-size: 17px;
     margin: 20px;
 }
@@ -84,7 +84,7 @@ tr:hover {
 }
 
 td {
-    text-align: right;
+    text-align: left;
     width: 25%;
     height: 10%;
     padding-right: 5px;
