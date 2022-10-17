@@ -5,13 +5,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class HomeController {
+public class FuehrerscheinSehtestController {
 
-    private static final String TITLE = "MaiOptics";
+    private static final String TITLE = "Führerschein Sehtest";
 
-    @RequestMapping("/")
+    @RequestMapping("/führerscheinsehtest")
     public String home(Model model) {
         model.addAttribute("title", TITLE);
-        return "home";
+        return "Sehtest/fuehrerschein-sehtest";
     }
 }

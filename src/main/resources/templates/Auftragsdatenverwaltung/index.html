@@ -27,10 +27,9 @@
     <th:block th:if="${selection == 2}">
         <div th:replace="fragments/Auftragsdatenverwaltung/auftrag.html"/>
     </th:block>
-    <th:block th:if="${selection == 3}">
+    <th:block th:if="${selection >= 3}">
      <div th:replace="fragments/Auftragsdatenverwaltung/augendaten.html"/>
     </th:block>
-
 </div>
 <div>
     <form>
