@@ -22,7 +22,7 @@ table {
 }
 
 .select {
-    width: 13%;
+    width: 175px;
     height: 21px;
     border: none;
     border-radius: 4px;
@@ -30,7 +30,6 @@ table {
 }
 
 .select-mitte {
-    width: 65%;
     border: none;
     border-radius: 4px;
     margin-left: 50%;
@@ -41,20 +40,12 @@ table {
     border-radius: 5px;
     border: 1px solid black;
     margin-left: 0.5%;
-}
-
-.input-mitte {
-    height: 21px;
-    border-radius: 5px;
-    border: 1px solid black;
-    margin-left: 50%;
-}
 
 .input-rechts {
     height: 21px;
     border-radius: 5px;
     border: 1px solid black;
-    margin-left: 80%;
+    margin-left: 50%;
 }
 
 .input::placeholder {
@@ -62,6 +53,6 @@ table {
     font-size: 17px;
 }
 
-.button: button-rechts {
-    margin-left: 80%;
+.button:button-rechts {
+    margin-left: 50%;
 }
