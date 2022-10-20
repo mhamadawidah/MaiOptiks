@@ -80,7 +80,8 @@
 /*Tabelle*/
 .table-container table {
     width: 95%;
-    height: 100%;
+    height: 10%;
+    margin-top: 5%;
 }
 
 .table-container body {
@@ -88,6 +89,5 @@
 }
 
 .table-container tr {
-    height: 3%;
     white-space: nowrap;
 }

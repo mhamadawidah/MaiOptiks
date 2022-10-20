@@ -5,13 +5,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class BrillenKundeController {
+public class AufträgeController {
 
-    private static final String TITLE = "Brillen-Kunde";
+    private static final String TITLE = "Auftrag";
 
-    @RequestMapping("/brillen-kunde")
+    @RequestMapping("/auftrag")
     public String home(Model model) {
         model.addAttribute("title", TITLE);
-        return "Kunden/brillen-kunde";
+        return "Kunden/auftrag";
     }
 }
