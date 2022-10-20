@@ -1,0 +1,55 @@
+body, html {
+    height: 100%;
+    font-family: "Roboto Light", sans-serif;
+    text-align: center;
+    color: beige;
+    margin: 0;
+    padding: 0;
+}
+
+.bg {
+    /* Full height */
+    height: 100%;
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: 1;
+}
+
+body .bg .errorMsg {
+    position: relative;
+    z-index: 5;
+}
+
+body .bg h1 {
+    position: relative;
+    z-index: 5;
+    padding-top: 20px;
+    padding-bottom: 2px;
+    margin: 0;
+}
+
+body .bg h2 {
+    position: relative;
+    z-index: 5;
+    padding-bottom: 10px;
+}
+
+body .bg a {
+    text-decoration: underline;
+    cursor: pointer;
+    position: relative;
+    z-index: 5;
+}
+
+body .bg img {
+    position: absolute;
+    bottom: 0px;
+    width: 40%;
+    padding-top: 20px;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    z-index: 5;
+}
