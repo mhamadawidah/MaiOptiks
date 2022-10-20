@@ -5,13 +5,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class VsKundeController {
+public class KundenController {
 
-    private static final String TITLE = "VS-Kunde";
+    private static final String TITLE = "Kunde";
 
-    @RequestMapping("/vs-kunde")
+    @RequestMapping("/kunde")
     public String home(Model model) {
         model.addAttribute("title", TITLE);
-        return "Kunden/vs-kunde";
+        return "Kunden/kunde";
     }
 }
