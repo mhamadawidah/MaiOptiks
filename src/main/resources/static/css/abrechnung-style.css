@@ -76,23 +76,26 @@ label {
 	font-size: 17px;
 }
 
-div{
-	position: relative;
-    border-bottom: 2px solid black;
-	width: 30%;
-	font-size: 17px;
-}
-
 .bar {
+    position: relative;
     margin-left: 20px;
+    border-bottom: 2px solid black;
+    width: 30%;
+    font-size: 17px;
 }
 .summe {
     position: relative;
 	bottom: 25px;
 	left: 60%;
+	border-bottom: 2px solid black;
+    width: 30%;
+    font-size: 17px;
 }
 .rueckgeld {
     position: relative;
 	bottom: 25px;
 	left: 60%;
+	border-bottom: 2px solid black;
+    width: 30%;
+    font-size: 17px;
 }
