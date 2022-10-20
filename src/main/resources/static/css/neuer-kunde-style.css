@@ -20,6 +20,10 @@
     flex-wrap: wrap;
 }
 
+input {
+    border: 1px solid gray;
+}
+
 .input-tel {
     display: flex;
     flex-direction: column;
