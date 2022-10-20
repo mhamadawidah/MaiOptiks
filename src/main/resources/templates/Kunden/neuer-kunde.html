@@ -1,10 +1,13 @@
 <!DOCTYPE html>
-<html lang="de" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org/">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org/">
 <head>
-  <meta charset="UTF-8">
-  <title th:text="${title}"></title>
-  <link rel="stylesheet" th:href="@{/css/main.css}"/>
-  <link rel="stylesheet" th:href="@{/css/neuer-kunde-style.css}"/>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${title}"></title>
+    <link rel="stylesheet" th:href="@{/css/main.css}"/>
+    <link rel="stylesheet" th:href="@{/css/neuer-kunde-style.css}">
+    <script type="text/javascript" th:src="@{/scripts/main.js}"></script>
 </head>
 <body>
 <div class="title-bar">
@@ -14,6 +17,49 @@
 <div class="vertical-bar">
   <p></p>
 </div>
-
+    <div class="inner-window">
+        <div class="header">
+          <button class="button button-startseite" onclick="openLink('/')">Startseite</button>
+          <hr class="linetop">
+        </div>
+        <div class="main">
+            <div class="inputs person">
+                <h4>Person</h4>
+                <div class="input-person">
+                    <input class="input" type="text" placeholder="Anrede*" required><br>
+                    <input class="input" type="text" placeholder="Name*" required><br>
+                    <input class="input" type="text" placeholder="Geburtsdatum*" required><br>
+                    <input class="input" type="text" placeholder="Vorname*" required><br>
+                </div>
+            </div>
+            <div class="inputs country">
+                <h4>Adresse</h4>
+                <div class="input-country">
+                    <input class="input" type="text" placeholder="PLZ*" required><br>
+                    <input class="input" type="text" placeholder="Straße*" required><br>
+                    <input class="input" type="text" placeholder="Hausnummer*" required><br>
+                </div>
+            </div>
+            <div class="inputs tel">
+                <h4>Telefon</h4>
+                <div class="input-tel">
+                  <input class="input" type="text" placeholder="E-Mail"><br>
+                  <input class="input" type="text" placeholder="Telefon"><br>
+                  <input class="input" type="text" placeholder="Mobil"><br>
+                </div>
+            </div>
+            <div class="inputs insurance">
+                <h4>Versicherung</h4>
+                <div class="input-insurance">
+                    <input class="input" type="text" placeholder="Krankenkassen-Nr."><br>
+                    <input class="input" type="text" placeholder="Versicherungs-Nr."><br>
+                    <input class="input" type="text" placeholder="Gueltigkeit"><br>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <button class="button submit">Kunde Anlegen</button>
+        </div>
+    </div>
 </body>
 </html>
