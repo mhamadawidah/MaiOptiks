@@ -45,6 +45,11 @@ public class KundeService {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
+    public KundeDTO get(final String name, final String vorname) {
+        return kundeRepository.findByNameAndVorname(name, vorname).map(kunde -> mapToDTO(kunde, new KundeDTO()))
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+    }
+
     public Integer create(final KundeDTO kundeDTO) {
         final Kunde kunde = new Kunde();
         mapToEntity(kundeDTO, kunde);
