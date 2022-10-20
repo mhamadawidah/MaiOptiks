@@ -1,0 +1,4 @@
+2022-10-20 12:18:48 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax Fehler in SQL Befehl "[*]LIEFERANT"
+Syntax error in SQL statement "[*]LIEFERANT"; SQL statement:
+LIEFERANT [42000-214]
