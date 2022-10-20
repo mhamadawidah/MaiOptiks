@@ -45,7 +45,7 @@ public class AuftragController {
     @ModelAttribute
     public void prepareContext(final Model model) {
         model.addAttribute("kundenNrValues", kundeRepository.findAll().stream().collect(
-                Collectors.toMap(Kunde::getKundenNr, Kunde::getAnrede)));
+                Collectors.toMap(Kunde::getKundennr, Kunde::getAnrede)));
         model.addAttribute("beraterValues", mitarbeiterRepository.findAll().stream().collect(
                 Collectors.toMap(Mitarbeiter::getMitarbeiterNr, Mitarbeiter::getName)));
         model.addAttribute("werkstattValues", mitarbeiterRepository.findAll().stream().collect(
