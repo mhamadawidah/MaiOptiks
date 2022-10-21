@@ -22,8 +22,8 @@
     </div>
 
     <div class="search-fields">
-        <input class="input" type="text" placeholder="Auftrags-Nr."><br>
-        <button class="button submit-button" type="submit">Suchen</button>
+        <input class="input" type="text" placeholder="Auftrags-Nr." id="auftragsNr"><br>
+        <button class="button submit-button" type="submit" onclick="searchOrder()">Suchen</button>
     </div>
 </div>
 
@@ -80,4 +80,11 @@
 </div>
 
 </body>
+<script>
+    function searchOrder() {
+        let auftragsNr = document.getElementById('auftragsNr').value;
+
+        doRequest('GET', '/api/auftrags/', auftragsNr);
+    }
+</script>
 </html>
