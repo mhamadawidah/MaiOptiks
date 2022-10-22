@@ -1,9 +1,20 @@
-<!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org/">
 <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title th:text="${status} + ' - ' + ${error}"/>
+    <link rel="stylesheet" th:href="@{/css/main.css}"/>
+    <link rel="stylesheet" th:href="@{/css/error.css}">
+    <script type="text/javascript" th:src="@{/scripts/main.js}"></script>
 </head>
 <body>
-<h1 th:text="${status} + ' - ' + ${error}"/>
+<div th:style="'background-image:url(' + @{imgs/wueste.gif} + ');'" class="bg">
+    <h1>Tut uns leid, aber es ist ein Fehler aufgetreten.</h1>
+    <h3 th:text="${status} + ' - ' + ${error}" class="errorMsg"/>
+    <h2>Bitte gehe zurück zu <a onclick="openLink('/')">Startseite</a>.</h2>
+    <img th:src="@{imgs/verwirrterAlex.gif}" class="alex"/>
+</div>
 </body>
 </html>
