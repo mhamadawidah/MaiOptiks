@@ -24,48 +24,11 @@
     <div class="search-fields">
         <input class="input" id="name" placeholder="Name" type="text"/><br>
         <input class="input" id="lastname" placeholder="Vorname" type="text"/><br>
-        <button class="button submit-button" onclick="searchCustomer()">Suchen</button>
+        <button class="button submit-button" onclick="createTable()">Suchen</button>
     </div>
 </div>
 
-<div class="table-container">
-    <table class="kunde">
-        <tr>
-            <th>Kunden-Nr.</th>
-            <th>Anrede</th>
-            <th>Name</th>
-            <th>Vorname</th>
-            <th>Straße</th>
-            <th>HausNr.</th>
-            <th>PLZ</th>
-            <th>Geburtsdatum</th>
-            <th>TelefonNr.</th>
-            <th>Handy</th>
-            <th>E-Mail</th>
-            <th>KrankenkassenNr.</th>
-            <th>VersicherungsNr.</th>
-            <th>Gültigkeit</th>
-            <th>Bemerkung</th>
-        </tr>
-        <tr>
-            <td>1</td>
-            <td>Herr</td>
-            <td>Max</td>
-            <td>Mustermann</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-    </table>
-</div>
+<div class="table-container"></div>
 
 <div class="direction-buttons">
     <button class="button direction-button" onclick="openLink('./')">Startseite</button>
@@ -77,17 +40,75 @@
 </body>
 <script>
     function searchCustomer() {
-        let vorname = document.getElementById('name').value;
-        let name = document.getElementById('lastname').value;
-        let data = null;
+        let name = document.getElementById('name').value;
+        let lastname = document.getElementById('lastname').value;
 
-        if (vorname !== '' && name !== '') {
-            data = {"name": name, "vorname": vorname}
+        doRequest(
+            'GET',
+            '/api/kundes/',
+            name,
+            (jsonString) => {   // func
+                let data = JSON.parse(jsonString);
+                // alert(data.exception);
+                createTable();
+            });
+    }
+
+    function createTable() {
+        if (document.getElementsByClassName('table-container')[0].firstElementChild !== null) {
+            return false;
         } else {
-            window.alert('Bitte geben Sie Vor- und Nachname ein');
-        }
+            let tableContainer = document.getElementsByClassName('table-container')[0];
+            let table = document.createElement('TABLE');
+            let tableHead = document.createElement('THEAD');
+            let tableBody = document.createElement('TBODY');
+            const headings = [
+                'Kunden-Nr.',
+                'Anrede',
+                'Name',
+                'Vorname',
+                'Straße',
+                'HausNr.',
+                'PLZ',
+                'Geburtsdatum',
+                'TelefonNr.',
+                'Handy',
+                'E-Mail',
+                'KrankenkassenNr.',
+                'VersicherungsNr.',
+                'Gültigkeit',
+                'Bemerkung',
+            ];
 
-        doRequest('GET', '/api/kundes', data);
+            table.appendChild(tableHead);
+            table.appendChild(tableBody);
+
+            // Table Head
+            let row1 = document.createElement('TR');
+
+            headings
+                .map((item) => {
+                    let th = document.createElement('TH');
+                    th.innerHTML = item.valueOf();
+                    row1.appendChild(th);
+                });
+
+            tableHead.appendChild(row1);
+
+            // Table Data
+            let row2 = document.createElement('TR');
+
+            for (let i = 1; i <= headings.length; i++) {
+                let data = document.createElement('TD');
+                data.innerHTML = 'test';
+
+                row2.appendChild(data);
+            }
+
+            tableBody.appendChild(row2);
+
+            tableContainer.appendChild(table);
+        }
     }
 </script>
 </html>

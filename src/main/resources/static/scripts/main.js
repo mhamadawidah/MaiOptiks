@@ -27,7 +27,7 @@ function doRequest(method, url, data, func) {
 
     request.onload = () => {
         if (request.status !== 200 || request.status !== 201 || request.status !== 202) {
-            // alert('\nError: ' + request.status + '\n\n' + JSON.parse(request.response).exception);
+            alert('\nError: ' + request.status + '\n\n' + JSON.parse(request.response).exception);
         }
 
         func(request.response);
