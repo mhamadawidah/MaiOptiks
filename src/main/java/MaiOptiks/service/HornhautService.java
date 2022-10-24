@@ -74,7 +74,7 @@ public class HornhautService {
         hornhautDTO.setTempL(hornhaut.getTempL());
         hornhautDTO.setSupL(hornhaut.getSupL());
         hornhautDTO.setIntL(hornhaut.getIntL());
-        hornhautDTO.setRefraktion(hornhaut.getRefraktion() == null ? null : hornhaut.getRefraktion().getRefraktionId());
+        hornhautDTO.setRefraktion(hornhaut.getRefraktion() == null ? null : hornhaut.getRefraktion().getRefraktionid());
         return hornhautDTO;
     }
 
