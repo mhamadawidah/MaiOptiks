@@ -5,7 +5,6 @@ function openLink(link) {
 
 // Datenbank Abfrage
 function doRequest(method, url, key, data, func) {
-    debugger;
     let request = new XMLHttpRequest();
 
     url = 'http://localhost:8080' + url;
@@ -26,7 +25,9 @@ function doRequest(method, url, key, data, func) {
             alert('\nError: ' + request.status + '\n\n' + JSON.parse(request.response).exception);
         }
 
-        func(request.response);
+        if (func !== undefined && func !== null) {
+            func(request.response);
+        }
     };
 
     request.onerror = () => {
@@ -34,15 +35,18 @@ function doRequest(method, url, key, data, func) {
     };
 }
 
-function doGetRequest(url, key, func){
+function doGetRequest(url, key, func) {
     doRequest('GET', url, key, undefined, func)
 }
-function doPutRequest(url, key, data, func){
+
+function doPutRequest(url, key, data, func) {
     doRequest('PUT', url, key, data, func)
 }
-function doPostRequest(url, data, func){
+
+function doPostRequest(url, data, func) {
     doRequest('POST', url, undefined, data, func)
 }
-function doDeleteRequest(url, key, func){
+
+function doDeleteRequest(url, key, func) {
     doRequest('DELETE', url, key, undefined, func)
 }
