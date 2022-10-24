@@ -4,42 +4,72 @@
     <th:block th:fragment="auftrag">
         <form>
             <div>
-                <input type="text" name="auftrangsnr" placeholder="Auftrags-Nr.">
-                <select name="abrechungsart">
-                    <option>Bruda, geht auf meinen Nacken</option>
-                </select>
-                <input type="checkbox" name="glass_bestellt">
-                <select name="bestellart">
-                    <option>MyDealerMobile</option>
-                </select>
-                <div>
-                    <input type="checkbox" name="rezept_bestellt">
-                    <label>Rezept verhanden?</label>
-                </div>
-                <div>
-                    <input type="checkbox" name="brille_fertig">
-                    <label>Brille vorhanden?</label>
-                </div>
-                <div>
-                    <input type="checkbox" name="brille_abgeholt">
-                    <label>Brille abgeholt?</label>
-                </div>
-                <div>
-                    <input type="checkbox" name="brille_bezahlt">
-                    <label>Brille bezahlen?</label>
-                </div>
-            </div>
-            <div>
-                <table>
-                    <tr>
-                        <th>Auftrags-Nr.</th>
-                        <th>Auftrags-Datum</th>
-                    </tr>
-                    <tr>
-                        <td>Beispiel Nr.</td>
-                        <td>Bespiel Datum</td>
-                    </tr>
-                </table>
+                <input type="text" name="auftrangsnr" placeholder="Auftrags-Nr."/>
+
+                <label>
+                    Abrechnungsart:
+                    <select name="abrechungsart"></select>
+                </label>
+
+                <label>
+                    rezept vorhanden?
+                    <input type="checkbox" name="rezept_vorhanden"/>
+                </label>
+
+                <input type="textbox" name="womit" placeholder="womit?"/>
+
+                <input type="textbox" name="wann" placeholder="wann?"/>
+
+                <label>
+                    Fertig:
+                    <input type="checkbox" name="fertig"/>
+                </label>
+
+                <label>
+                    Abgeholt:
+                    <input type="checkbox" name="abgeholt"/>
+                </label>
+
+                <label>
+                    Bezahlt:
+                    <input type="checkbox" name="bezahlt"/>
+                </label>
+
+                <input type="textbox" name="auftragsbestätigung" placeholder="Auftragsbestätigung"/>
+
+                <input type="textbox" name="rechnung" placeholder="rechnung"/>
+
+                <label>
+                    Mahnung 1:
+                    <input type="checkbox" name="mahnung_1"/>
+                </label>
+
+                <label>
+                    Mahnung 2:
+                    <input type="checkbox" name="mahnung_2"/>
+                </label>
+
+                <label>
+                    Mahnung 3:
+                    <input type="checkbox" name="mahnung_3"/>
+                </label>
+
+                <input type="date" name="datum">
+
+                <label>
+                    Werkstatt:
+                    <select name="werkstatt"></select>
+                </label>
+
+                <label>
+                    Berater:
+                    <select name="berater"></select>
+                </label>
+
+                <label>
+                    Geschlossen:
+                    <input type="checkbox" name="geschlossen">
+                </label>
             </div>
         </form>
     </th:block>

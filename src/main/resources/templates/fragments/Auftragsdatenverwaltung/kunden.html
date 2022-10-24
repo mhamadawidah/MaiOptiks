@@ -1,47 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <body>
-<th:block th:fragment="kunden">
-    <form>
-        <div>
-        <select name="titel">
-            <option>Prof.</option>
-            <option>Dr.</option>
-            <option>Huansohn</option>
-        </select>
-        <select name="anrede">
-            <option>Herr</option>
-            <option>Frau</option>
-            <option>Die dritte Option</option>
-        </select>
-        <input type="text" placeholder="Name" name="name">
-        <input type="text" placeholder="Vorname" name="vorname">
-        <input type="text" placeholder="Straße" name="strasse">
-        <input type="text" placeholder="PLZ / Ort" name="plz">
-            <div>
-                <input type="checkbox" name="Newsletter">
-                <label>Newsletter</label>
-            </div>
-        </div>
-        <div>
-            <select name="länder">
-                <option>Das einzig wahre Land</option>
-                <option>Vatikanstadt</option>
-            </select>
-            <input type="text" placeholder="Geburtstag" name="geburtstag">
-            <input type="text" placeholder="Telefon" name="telefon">
-            <input type="text" placeholder="Fax /  Mobil" name="fax">
-            <input type="text" placeholder="E-Mail" name="email">
-        </div>
-        <div>
-            <input type="text" placeholder="Krankenkassen-Nr" name="krankenkassennr">
-            <input type="text" placeholder="Krankenkasse" name="krankenkasse">
-            <input type="text" placeholder="Versicherungs-Nr." name="versicherungsnr">
-            <input type="text" placeholder="Status 1" name="status1">
-            <input type="text" placeholder="Status 2" name="status2">
-            <input type="text" placeholder="Gültig bis" name="gueltigbis">
-        </div>
-    </form>
+<th:block th:fragment="auftrag">
+   <label>table to search for "kunden" here</label>
+    <script>
+        document
+            .getElementsByName("kunden_id")
+            .forEach(input => input.value = 1 /*selected value here*/)
+    </script>
 </th:block>
 </body>
 </html>
