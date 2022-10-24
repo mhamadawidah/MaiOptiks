@@ -22,55 +22,12 @@
     </div>
 
     <div class="search-fields">
-        <input class="input" type="text" placeholder="Auftrags-Nr."><br>
-        <button class="button submit-button" type="submit">Suchen</button>
+        <input class="input" type="text" placeholder="Auftrags-Nr." id="auftragsNr"><br>
+        <button class="button submit-button" type="submit" onclick="createTable()">Suchen</button>
     </div>
 </div>
 
-<div class="table-container">
-    <table class="kunde">
-        <tr>
-            <th>Kunden-Nr.</th>
-            <th>Auftrags-Nr.</th>
-            <th>Abrechnungsart</th>
-            <th>Rezept vorhanden</th>
-            <th>Womit</th>
-            <th>Wann</th>
-            <th>Fertig</th>
-            <th>Abgeholt</th>
-            <th>Bezahlt</th>
-            <th>Auftragsbestätigung</th>
-            <th>Rechnung</th>
-            <th>1. Mahnung</th>
-            <th>2. Mahnung</th>
-            <th>3. Mahnung</th>
-            <th>Datum</th>
-            <th>Werkstatt</th>
-            <th>Berater</th>
-            <th>Refraktion</th>
-        </tr>
-        <tr>
-            <td>1</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-    </table>
-</div>
+<div class="table-container"></div>
 
 <div class="direction-buttons">
     <button class="button direction-button" onclick="openLink('./')">Startseite</button>
@@ -80,4 +37,77 @@
 </div>
 
 </body>
+<script>
+    function searchOrder() {
+        let auftragsNr = document.getElementById('auftragsNr').value;
+
+        doRequest(
+            'GET',
+            '/api/auftrags/',
+            auftragsNr,
+            (jsonString) => {   // func
+                let data = JSON.parse(jsonString);
+                // alert(data.exception);
+                createTable(data);
+            });
+    }
+
+    function createTable() {
+        if (document.getElementsByClassName('table-container')[0].firstElementChild !== null) {
+            return false;
+        } else {
+            let tableContainer = document.getElementsByClassName('table-container')[0];
+            let table = document.createElement('TABLE');
+            let tableHead = document.createElement('THEAD');
+            let tableBody = document.createElement('TBODY');
+            const headings = [
+                'Kunden-Nr.',
+                'Auftrags-Nr.',
+                'Abrechnungsart',
+                'Rezept vorhanden',
+                'Womit',
+                'Wann',
+                'Fertig',
+                'Abgeholt',
+                'Bezahlt',
+                'Auftragsbestätigung',
+                'Rechnung',
+                'Mahnung',
+                'Datum',
+                'Werkstatt',
+                'Berater',
+                'Refraktion',
+            ];
+
+            table.appendChild(tableHead);
+            table.appendChild(tableBody);
+
+            // Table Head
+            let row1 = document.createElement('TR');
+
+            headings
+                .map((item) => {
+                    let th = document.createElement('TH');
+                    th.innerHTML = item.valueOf();
+                    row1.appendChild(th);
+                });
+
+            tableHead.appendChild(row1);
+
+            // Table Data
+            let row2 = document.createElement('TR');
+
+            for (let i = 1; i <= headings.length; i++) {
+                let data = document.createElement('TD');
+                data.innerHTML = 'test';
+
+                row2.appendChild(data);
+            }
+
+            tableBody.appendChild(row2);
+
+            tableContainer.appendChild(table);
+        }
+    }
+</script>
 </html>
