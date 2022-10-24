@@ -22,9 +22,9 @@
     </div>
 
     <div class="search-fields">
-        <input class="input" id="name" placeholder="Name" type="text"/><br>
-        <input class="input" id="lastname" placeholder="Vorname" type="text"/><br>
-        <button class="button submit-button" onclick="createTable()">Suchen</button>
+        <input class="input" id="lastname" placeholder="Name" type="text" required/><br>
+        <input class="input" id="name" placeholder="Vorname" type="text" required/><br>
+        <button class="button submit-button" onclick="searchCustomer()">Suchen</button>
     </div>
 </div>
 
@@ -43,10 +43,9 @@
         let name = document.getElementById('name').value;
         let lastname = document.getElementById('lastname').value;
 
-        doRequest(
-            'GET',
+        doGetRequest(
             '/api/kundes/',
-            name,
+            (lastname + '/' + name),
             (jsonString) => {   // func
                 let data = JSON.parse(jsonString);
                 // alert(data.exception);

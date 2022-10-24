@@ -23,7 +23,7 @@
 
     <div class="search-fields">
         <input class="input" type="text" placeholder="Auftrags-Nr." id="auftragsNr"><br>
-        <button class="button submit-button" type="submit" onclick="createTable()">Suchen</button>
+        <button class="button submit-button" type="submit" onclick="searchOrder()">Suchen</button>
     </div>
 </div>
 
@@ -41,8 +41,7 @@
     function searchOrder() {
         let auftragsNr = document.getElementById('auftragsNr').value;
 
-        doRequest(
-            'GET',
+        doGetRequest(
             '/api/auftrags/',
             auftragsNr,
             (jsonString) => {   // func
