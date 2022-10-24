@@ -51,7 +51,7 @@ public class AuftragController {
         model.addAttribute("werkstattValues", mitarbeiterRepository.findAll().stream().collect(
                 Collectors.toMap(Mitarbeiter::getMitarbeiterNr, Mitarbeiter::getName)));
         model.addAttribute("refraktionValues", refraktionDurchgefuertRepository.findAll().stream().collect(
-                Collectors.toMap(RefraktionDurchgefuert::getRefraktionsNr, RefraktionDurchgefuert::getRefraktionsNr)));
+                Collectors.toMap(RefraktionDurchgefuert::getRefraktionsnr, RefraktionDurchgefuert::getRefraktionsnr)));
         model.addAttribute("abrechnungsValues", abrechnungsartRepository.findAll().stream().collect(
                 Collectors.toMap(Abrechnungsart::getId, Abrechnungsart::getArt)));
     }

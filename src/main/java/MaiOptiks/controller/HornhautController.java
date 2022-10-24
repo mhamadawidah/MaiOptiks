@@ -30,7 +30,7 @@ public class HornhautController {
     @ModelAttribute
     public void prepareContext(final Model model) {
         model.addAttribute("refraktionValues", refraktionRepository.findAll().stream().collect(
-                Collectors.toMap(Refraktion::getRefraktionId, Refraktion::getRefraktionId)));
+                Collectors.toMap(Refraktion::getRefraktionid, Refraktion::getRefraktionid)));
     }
 
     @GetMapping

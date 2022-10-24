@@ -81,7 +81,7 @@ public class AuftragService {
         auftragDTO.setKundenNr(auftrag.getKundenNr() == null ? null : auftrag.getKundenNr().getKundennr());
         auftragDTO.setBerater(auftrag.getBerater() == null ? null : auftrag.getBerater().getMitarbeiterNr());
         auftragDTO.setWerkstatt(auftrag.getWerkstatt() == null ? null : auftrag.getWerkstatt().getMitarbeiterNr());
-        auftragDTO.setRefraktion(auftrag.getRefraktion() == null ? null : auftrag.getRefraktion().getRefraktionsNr());
+        auftragDTO.setRefraktion(auftrag.getRefraktion() == null ? null : auftrag.getRefraktion().getRefraktionsnr());
         auftragDTO.setAbrechnungs(auftrag.getAbrechnungs() == null ? null : auftrag.getAbrechnungs().getId());
         return auftragDTO;
     }
