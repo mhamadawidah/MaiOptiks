@@ -95,6 +95,8 @@ Sobald die Seite einen eigenen Controller hat, kann sie wie folgt verlinkt werde
 [Planung UI](https://app.moqups.com/Zbmm5mG5cZXwIF5PqtXo1HitC3PoHLhZ/view/page/ad64222d5)
 <br>
 [SQL Commands](https://kstlinfo-my.sharepoint.com/:w:/g/personal/tom_volmer_campus_kstl_de/EYrUUIaw3alJsl7vVZM0Y0ABsxy7KA6Vl1CtLfj-cNjzYA?e=UhQrtM)
+<br>
+[Gestaltungsprinzipien-GUI](https://kstlinfo-my.sharepoint.com/:w:/g/personal/frederik_niehaus_campus_kstl_de/EcWEIKDGMy1ArE_qtgtFMDMBiosmJyTMwmDV3nzhrczZiQ?e=J3oAxF)
 
 ## Links external ressources
 [ISO-3166 ALPHA2](https://de.wikipedia.org/wiki/ISO-3166-1-Kodierliste)
