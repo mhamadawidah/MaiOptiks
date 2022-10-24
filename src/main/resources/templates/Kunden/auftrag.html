@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="de" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${title}"></title>
+    <link rel="stylesheet" th:href="@{/css/main.css}"/>
+    <link rel="stylesheet" th:href="@{/css/startseite-style.css}"/>
+    <script th:src="@{/scripts/main.js}" type="text/javascript"></script>
+</head>
+<body>
+<div class="title-bar">
+    <h1 class="heading">Auftrag</h1>
+</div>
+
+<div class="vertical-bar">
+    <p></p>
+</div>
+
+<div class="customerButton-searchField">
+    <div class="customers">
+        <button class="button customer-button" onclick="openLink('/kunde')">Kunde</button>
+    </div>
+
+    <div class="search-fields">
+        <input class="input" type="text" placeholder="Auftrags-Nr." id="auftragsNr"><br>
+        <button class="button submit-button" type="submit" onclick="createTable()">Suchen</button>
+    </div>
+</div>
+
+<div class="table-container"></div>
+
+<div class="direction-buttons">
+    <button class="button direction-button" onclick="openLink('./')">Startseite</button>
+    <button class="button direction-button" onclick="openLink('/neuer-kunde')">Neuer Kunde</button>
+    <button class="button direction-button" onclick="openLink('/organisation')">Organisation</button>
+    <button class="button direction-button" onclick="openLink('/führerscheinsehtest')">Führerschein-Sehtest</button>
+</div>
+
+</body>
+<script>
+    function searchOrder() {
+        let auftragsNr = document.getElementById('auftragsNr').value;
+
+        doRequest(
+            'GET',
+            '/api/auftrags/',
+            auftragsNr,
+            (jsonString) => {   // func
+                let data = JSON.parse(jsonString);
+                // alert(data.exception);
+                createTable(data);
+            });
+    }
+
+    function createTable() {
+        if (document.getElementsByClassName('table-container')[0].firstElementChild !== null) {
+            return false;
+        } else {
+            let tableContainer = document.getElementsByClassName('table-container')[0];
+            let table = document.createElement('TABLE');
+            let tableHead = document.createElement('THEAD');
+            let tableBody = document.createElement('TBODY');
+            const headings = [
+                'Kunden-Nr.',
+                'Auftrags-Nr.',
+                'Abrechnungsart',
+                'Rezept vorhanden',
+                'Womit',
+                'Wann',
+                'Fertig',
+                'Abgeholt',
+                'Bezahlt',
+                'Auftragsbestätigung',
+                'Rechnung',
+                'Mahnung',
+                'Datum',
+                'Werkstatt',
+                'Berater',
+                'Refraktion',
+            ];
+
+            table.appendChild(tableHead);
+            table.appendChild(tableBody);
+
+            // Table Head
+            let row1 = document.createElement('TR');
+
+            headings
+                .map((item) => {
+                    let th = document.createElement('TH');
+                    th.innerHTML = item.valueOf();
+                    row1.appendChild(th);
+                });
+
+            tableHead.appendChild(row1);
+
+            // Table Data
+            let row2 = document.createElement('TR');
+
+            for (let i = 1; i <= headings.length; i++) {
+                let data = document.createElement('TD');
+                data.innerHTML = 'test';
+
+                row2.appendChild(data);
+            }
+
+            tableBody.appendChild(row2);
+
+            tableContainer.appendChild(table);
+        }
+    }
+</script>
+</html>

@@ -45,9 +45,9 @@ body .bg a {
 }
 
 body .bg img {
-    position:absolute;
-    bottom:0px;
-    width = "40%";
+    position: absolute;
+    bottom: 0px;
+    width: 40%;
     padding-top: 20px;
     margin-bottom: 0;
     padding-bottom: 0;
