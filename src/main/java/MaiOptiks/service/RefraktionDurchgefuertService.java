@@ -34,7 +34,7 @@ public class RefraktionDurchgefuertService {
     }
 
     public List<RefraktionDurchgefuertDTO> findAll() {
-        return refraktionDurchgefuertRepository.findAll(Sort.by("refraktionsNr"))
+        return refraktionDurchgefuertRepository.findAll(Sort.by("refraktionsnr"))
                 .stream()
                 .map(refraktionDurchgefuert -> mapToDTO(refraktionDurchgefuert, new RefraktionDurchgefuertDTO()))
                 .collect(Collectors.toList());
@@ -49,7 +49,7 @@ public class RefraktionDurchgefuertService {
     public Integer create(final RefraktionDurchgefuertDTO refraktionDurchgefuertDTO) {
         final RefraktionDurchgefuert refraktionDurchgefuert = new RefraktionDurchgefuert();
         mapToEntity(refraktionDurchgefuertDTO, refraktionDurchgefuert);
-        return refraktionDurchgefuertRepository.save(refraktionDurchgefuert).getRefraktionsNr();
+        return refraktionDurchgefuertRepository.save(refraktionDurchgefuert).getRefraktionsnr();
     }
 
     public void update(final Integer refraktionsNr,
@@ -66,7 +66,7 @@ public class RefraktionDurchgefuertService {
 
     private RefraktionDurchgefuertDTO mapToDTO(final RefraktionDurchgefuert refraktionDurchgefuert,
             final RefraktionDurchgefuertDTO refraktionDurchgefuertDTO) {
-        refraktionDurchgefuertDTO.setRefraktionsNr(refraktionDurchgefuert.getRefraktionsNr());
+        refraktionDurchgefuertDTO.setRefraktionsNr(refraktionDurchgefuert.getRefraktionsnr());
         refraktionDurchgefuertDTO.setMitarbeiterNr(refraktionDurchgefuert.getMitarbeiterNr() == null ? null : refraktionDurchgefuert.getMitarbeiterNr().getMitarbeiterNr());
         refraktionDurchgefuertDTO.setArztNr(refraktionDurchgefuert.getArztNr() == null ? null : refraktionDurchgefuert.getArztNr().getArztNr());
         return refraktionDurchgefuertDTO;
