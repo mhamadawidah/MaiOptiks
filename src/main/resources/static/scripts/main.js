@@ -4,14 +4,14 @@ function openLink(link) {
 }
 
 // Datenbank Abfrage
-function doRequest(method, url, url_extend, data, func) {
+function doRequest(method, url, key, data, func) {
     debugger;
     let request = new XMLHttpRequest();
 
     url = 'http://localhost:8080' + url;
 
-    if (url_extend !== undefined && url_extend !== "") {
-        url += url_extend;
+    if (key !== undefined && key !== "") {
+        url += key;
     }
 
     request.open(method, url, true);
@@ -37,11 +37,11 @@ function doRequest(method, url, url_extend, data, func) {
 function doGetRequest(url, key, func){
     doRequest('GET', url, key, undefined, func)
 }
-function doPutRequest(url, data, func){
-    doRequest('PUT', url, undefined, data, func)
+function doPutRequest(url, key, data, func){
+    doRequest('PUT', url, key, data, func)
 }
-function doPostRequest(url, key, data, func){
-    doRequest('POST', url, key, data, func)
+function doPostRequest(url, data, func){
+    doRequest('POST', url, undefined, data, func)
 }
 function doDeleteRequest(url, key, func){
     doRequest('DELETE', url, key, undefined, func)
