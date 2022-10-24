@@ -72,9 +72,7 @@
                 'Bezahlt',
                 'Auftragsbestätigung',
                 'Rechnung',
-                '1. Mahnung',
-                '2. Mahnung',
-                '3. Mahnung',
+                'Mahnung',
                 'Datum',
                 'Werkstatt',
                 'Berater',
@@ -89,13 +87,9 @@
 
             headings
                 .map((item) => {
-                    // if ('1. Mahnung' || '2. Mahnung' || '3. Mahnung') {
-                    //     return false;
-                    // } else {
                     let th = document.createElement('TH');
                     th.innerHTML = item.valueOf();
                     row1.appendChild(th);
-                    // }
                 });
 
             tableHead.appendChild(row1);
