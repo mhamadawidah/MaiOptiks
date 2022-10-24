@@ -23,7 +23,7 @@ public class RefraktionService {
     }
 
     public List<RefraktionDTO> findAll() {
-        return refraktionRepository.findAll(Sort.by("refraktionId"))
+        return refraktionRepository.findAll(Sort.by("refraktionid"))
                 .stream()
                 .map(refraktion -> mapToDTO(refraktion, new RefraktionDTO()))
                 .collect(Collectors.toList());
@@ -38,7 +38,7 @@ public class RefraktionService {
     public Integer create(final RefraktionDTO refraktionDTO) {
         final Refraktion refraktion = new Refraktion();
         mapToEntity(refraktionDTO, refraktion);
-        return refraktionRepository.save(refraktion).getRefraktionId();
+        return refraktionRepository.save(refraktion).getRefraktionid();
     }
 
     public void update(final Integer refraktionId, final RefraktionDTO refraktionDTO) {
@@ -53,7 +53,7 @@ public class RefraktionService {
     }
 
     private RefraktionDTO mapToDTO(final Refraktion refraktion, final RefraktionDTO refraktionDTO) {
-        refraktionDTO.setRefraktionId(refraktion.getRefraktionId());
+        refraktionDTO.setRefraktionId(refraktion.getRefraktionid());
         refraktionDTO.setSph(refraktion.getSph());
         refraktionDTO.setCyl(refraktion.getCyl());
         refraktionDTO.setAch(refraktion.getAch());

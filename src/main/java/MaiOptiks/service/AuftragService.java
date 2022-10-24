@@ -74,14 +74,14 @@ public class AuftragService {
         auftragDTO.setBezahlt(auftrag.getBezahlt());
         auftragDTO.setAuftragsbestaetigung(auftrag.getAuftragsbestaetigung());
         auftragDTO.setRechnung(auftrag.getRechnung());
-        auftragDTO.setErsteMahnung(auftrag.getErsteMahnung());
-        auftragDTO.setZweiteMahnung(auftrag.getZweiteMahnung());
-        auftragDTO.setDritteMahnung(auftrag.getDritteMahnung());
+        auftragDTO.setErsteMahnung(auftrag.getErstemahnung());
+        auftragDTO.setZweiteMahnung(auftrag.getZweitemahnung());
+        auftragDTO.setDritteMahnung(auftrag.getDrittemahnung());
         auftragDTO.setDatum(auftrag.getDatum());
-        auftragDTO.setKundenNr(auftrag.getKundenNr() == null ? null : auftrag.getKundenNr().getKundenNr());
+        auftragDTO.setKundenNr(auftrag.getKundenNr() == null ? null : auftrag.getKundenNr().getKundennr());
         auftragDTO.setBerater(auftrag.getBerater() == null ? null : auftrag.getBerater().getMitarbeiterNr());
         auftragDTO.setWerkstatt(auftrag.getWerkstatt() == null ? null : auftrag.getWerkstatt().getMitarbeiterNr());
-        auftragDTO.setRefraktion(auftrag.getRefraktion() == null ? null : auftrag.getRefraktion().getRefraktionsNr());
+        auftragDTO.setRefraktion(auftrag.getRefraktion() == null ? null : auftrag.getRefraktion().getRefraktionsnr());
         auftragDTO.setAbrechnungs(auftrag.getAbrechnungs() == null ? null : auftrag.getAbrechnungs().getId());
         return auftragDTO;
     }
@@ -95,9 +95,9 @@ public class AuftragService {
         auftrag.setBezahlt(auftragDTO.getBezahlt());
         auftrag.setAuftragsbestaetigung(auftragDTO.getAuftragsbestaetigung());
         auftrag.setRechnung(auftragDTO.getRechnung());
-        auftrag.setErsteMahnung(auftragDTO.getErsteMahnung());
-        auftrag.setZweiteMahnung(auftragDTO.getZweiteMahnung());
-        auftrag.setDritteMahnung(auftragDTO.getDritteMahnung());
+        auftrag.setErstemahnung(auftragDTO.getErsteMahnung());
+        auftrag.setZweitemahnung(auftragDTO.getZweiteMahnung());
+        auftrag.setDrittemahnung(auftragDTO.getDritteMahnung());
         auftrag.setDatum(auftragDTO.getDatum());
         final Kunde kundenNr = auftragDTO.getKundenNr() == null ? null : kundeRepository.findById(auftragDTO.getKundenNr())
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "kundenNr not found"));
