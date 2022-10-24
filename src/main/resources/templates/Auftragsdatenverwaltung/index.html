@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${title}"></title>
+    <link rel="stylesheet" th:href="@{/css/main.css}"/>
+</head>
+<body>
+<label>Auftragsdatenverwaltung</label>
+<div class="head">
+    <form action="" method="GET">
+        <input type="hidden" name="selection" value="1">
+        <input type="hidden" name="kunden_id">
+        <input type="submit" value="Kunden"/>
+    </form>
+    <form action="" method="GET">
+        <input type="hidden" name="selection" value="2">
+        <input type="hidden" name="kunden_id">
+        <input type="submit" value="Auftrag"/>
+    </form>
+    <form action="" method="GET">
+        <input type="hidden" name="selection" value="3">
+        <input type="hidden" name="kunden_id">
+        <input type="submit" value="Augendaten"/>
+    </form>
+</div>
+<div class="body">
+    <th:block th:if="${selection == 1}">
+        <div th:replace="fragments/Auftragsdatenverwaltung/kunden.html"/>
+    </th:block>
+    <th:block th:if="${selection == 2}">
+        <div th:replace="fragments/Auftragsdatenverwaltung/auftrag.html"/>
+    </th:block>
+    <th:block th:if="${selection >= 3}">
+     <div th:replace="fragments/Auftragsdatenverwaltung/augendaten.html"/>
+    </th:block>
+</div>
+<div>
+    <form>
+        <input type="submit" value="Speichern" name="Save">
+        <input type="submit" value="Löschen" name="Delete">
+        <input type="submit" value="Drucken" name="Print">
+        <input type="submit" value="Neu"  name="New">
+        <input type="submit" value="Zurück" name="Back">
+    </form>
+</div>
+
+<script>
+    var URL = new URL(window.location.href);
+    var getParam = URL.searchParams.get('kunden_id');
+    document
+        .getElementsByName("kunden_id")
+        .forEach(input => input.value = getParam);
+</script>
+
+</body>
+</html>

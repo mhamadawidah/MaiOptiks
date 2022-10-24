@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+<th:block th:fragment="augendaten">
+    <div>
+        <div>
+            <form action="" method="GET">
+                <input type="hidden" name="selection" value="4">
+                <input type="submit" value="Refraktion"/>
+            </form>
+            <div class="Refaktion_value">0€</div>
+        </div>
+        <div>
+            <form action="" method="GET">
+                <input type="hidden" name="selection" value="5">
+                <input type="submit" value="Brillenfassung"/>
+            </form>
+            <div class="Brillenfassung_value">0€</div>
+        </div>
+        <div>
+            <form action="" method="GET">
+                <input type="hidden" name="selection" value="6">
+                <input type="submit" value="Brillenglas"/>
+            </form>
+            <div class="Brillenglas_value">0€</div>
+        </div>
+        <div>
+
+            <form action="" method="GET">
+                <input type="hidden" name="selection" value="7">
+                <input type="submit" value="Veredelungen"/>
+            </form>
+            <div class="Veredelungen_value">0€</div>
+        </div>
+        <div>
+            <form action="" method="GET">
+                <input type="hidden" name="selection" value="8">
+                <input type="submit" value="Zuschläge"/>
+            </form>
+            <div class="Zuschaege_value">0€</div>
+        </div>
+        <div>
+            <form action="" method="GET">
+                <input type="hidden" name="selection" value="9">
+                <input type="submit" value="Krankenkasse"/>
+            </form>
+            <div class="Krankenkasse_value">0€</div>
+        </div>
+        <div>
+            <form action="" method="GET">
+                <input type="hidden" name="selection" value="10">
+                <input type="submit" value="Bemerkung"/>
+            </form>
+            <div class="Bemerkung_value">0€</div>
+        </div>
+    </div>
+    <div>
+        <th:block th:if="${selection == 4}">
+        <div th:replace="fragments/Auftragsdatenverwaltung/Augendaten/Refraktion.html"/>
+        </th:block>
+        <th:block th:if="${selection == 5}">
+            <div th:replace="fragments/Auftragsdatenverwaltung/Augendaten/Brillenfassung.html"/>
+        </th:block>
+        <th:block th:if="${selection == 6}">
+            <div th:replace="fragments/Auftragsdatenverwaltung/Augendaten/Brillenglas.html"/>
+        </th:block>
+        <th:block th:if="${selection == 7}">
+            <div th:replace="fragments/Auftragsdatenverwaltung/Augendaten/Veredelungen.html"/>
+        </th:block>
+        <th:block th:if="${selection == 8}">
+            <div th:replace="fragments/Auftragsdatenverwaltung/Augendaten/Zuschlaege.html"/>
+        </th:block>
+        <th:block th:if="${selection == 9}">
+            <div th:replace="fragments/Auftragsdatenverwaltung/Augendaten/Krankenkasse.html"/>
+        </th:block>
+        <th:block th:if="${selection == 10}">
+            <div th:replace="fragments/Auftragsdatenverwaltung/Augendaten/Bemerkung.html"/>
+        </th:block>
+    </div>
+</th:block>
+</body>
+</html>
