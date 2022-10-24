@@ -33,7 +33,7 @@ public class KundeService {
     }
 
     public List<KundeDTO> findAll() {
-        return kundeRepository.findAll(Sort.by("kundenNr"))
+        return kundeRepository.findAll(Sort.by("kundennr"))
                 .stream()
                 .map(kunde -> mapToDTO(kunde, new KundeDTO()))
                 .collect(Collectors.toList());
@@ -45,10 +45,15 @@ public class KundeService {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
+    public KundeDTO get(final String name, final String vorname) {
+        return kundeRepository.findByNameAndVorname(name, vorname).map(kunde -> mapToDTO(kunde, new KundeDTO()))
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+    }
+
     public Integer create(final KundeDTO kundeDTO) {
         final Kunde kunde = new Kunde();
         mapToEntity(kundeDTO, kunde);
-        return kundeRepository.save(kunde).getKundenNr();
+        return kundeRepository.save(kunde).getKundennr();
     }
 
     public void update(final Integer kundenNr, final KundeDTO kundeDTO) {
@@ -63,17 +68,17 @@ public class KundeService {
     }
 
     private KundeDTO mapToDTO(final Kunde kunde, final KundeDTO kundeDTO) {
-        kundeDTO.setKundenNr(kunde.getKundenNr());
+        kundeDTO.setKundenNr(kunde.getKundennr());
         kundeDTO.setAnrede(kunde.getAnrede());
         kundeDTO.setName(kunde.getName());
         kundeDTO.setVorname(kunde.getVorname());
         kundeDTO.setStrasse(kunde.getStrasse());
-        kundeDTO.setHausNr(kunde.getHausNr());
+        kundeDTO.setHausNr(kunde.getHausnr());
         kundeDTO.setGeburtsdatum(kunde.getGeburtsdatum());
-        kundeDTO.setTelefonNr(kunde.getTelefonNr());
+        kundeDTO.setTelefonNr(kunde.getTelefonnr());
         kundeDTO.setHandy(kunde.getHandy());
         kundeDTO.setEmail(kunde.getEmail());
-        kundeDTO.setVersicherungsNr(kunde.getVersicherungsNr());
+        kundeDTO.setVersicherungsNr(kunde.getVersicherungsnr());
         kundeDTO.setGueltigkeit(kunde.getGueltigkeit());
         kundeDTO.setBemerkung(kunde.getBemerkung());
         kundeDTO.setPlz(kunde.getPlz() == null ? null : kunde.getPlz().getPlz());
@@ -86,12 +91,12 @@ public class KundeService {
         kunde.setName(kundeDTO.getName());
         kunde.setVorname(kundeDTO.getVorname());
         kunde.setStrasse(kundeDTO.getStrasse());
-        kunde.setHausNr(kundeDTO.getHausNr());
+        kunde.setHausnr(kundeDTO.getHausNr());
         kunde.setGeburtsdatum(kundeDTO.getGeburtsdatum());
-        kunde.setTelefonNr(kundeDTO.getTelefonNr());
+        kunde.setTelefonnr(kundeDTO.getTelefonNr());
         kunde.setHandy(kundeDTO.getHandy());
         kunde.setEmail(kundeDTO.getEmail());
-        kunde.setVersicherungsNr(kundeDTO.getVersicherungsNr());
+        kunde.setVersicherungsnr(kundeDTO.getVersicherungsNr());
         kunde.setGueltigkeit(kundeDTO.getGueltigkeit());
         kunde.setBemerkung(kundeDTO.getBemerkung());
         final Stadt plz = kundeDTO.getPlz() == null ? null : stadtRepository.findById(kundeDTO.getPlz())

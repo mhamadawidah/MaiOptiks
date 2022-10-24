@@ -34,6 +34,11 @@ public class AuftragResource {
         return ResponseEntity.ok(auftragService.get(auftragsnummer));
     }
 
+    @GetMapping("/count/all")
+    public ResponseEntity<Integer> countAll() {
+        return ResponseEntity.ok(auftragService.findAll().size());
+    }
+
     @PostMapping
     @ApiResponse(responseCode = "201")
     public ResponseEntity<Integer> createAuftrag(@RequestBody @Valid final AuftragDTO auftragDTO) {
