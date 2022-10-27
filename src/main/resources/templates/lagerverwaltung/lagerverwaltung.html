@@ -23,6 +23,7 @@
     <hr class="linetop">
 </div>
 
+<div>
     <aside style="width:60%">
         <input class="input-rechts" type="text" placeholder="Artikelnummer"><br><br>
         <input class="input-rechts" type="text" placeholder="Faktor"><br><br>
@@ -32,10 +33,12 @@
         <input class="input-rechts" type="text" placeholder="Datum"><br><br>
         <input class="input-rechts" type="checkbox" placeholder="Komission">
         <label>Komission</label><br>
-        <button class="button"><a>Speichern</a></button>
+        <button class="button" onclick="fillTable()"><a>Speichern</a></button>
         <button class="button"><a>Neu</a></button>
     </aside>
+</div>
 
+<div>
     <aside style="width:20%">
         <input class="input" type="text" placeholder="Modell"><br><br>
         <select class="select">
@@ -52,7 +55,9 @@
             <option>Bemerkung</option>
         </select><br><br>
     </aside>
+</div>
 
+<div>
     <select class="select">
       <option>Lieferanten</option>
     </select><br><br>
@@ -66,74 +71,92 @@
       <option>Material</option>
     </select><br><br>
     <input class="input" type="text" placeholder="Anzahl"><br><br><br><br>
+</div>
 
+<div>
     <input class="input" type="text" placeholder="Suchen">
-    <button class="button">Alles anzeigen</button>
+    <button class="button" type="submit" onclick="createTable()">Alles anzeigen</button>
+</div>
 
-    <table>
-        <thead>
-        <tr>
-            <th>ArtNr</th>
-            <th>Lieferant</th>
-            <th>Verwendung</th>
-            <th>Gattung</th>
-            <th>Material</th>
-            <th>Model</th>
-            <th>Farbe</th>
-            <th>Größe</th>
-            <th>Bügel</th>
-            <th>EK</th>
-            <th>Bemerkung</th>
-            <th>Faktor</th>
-            <th>VK</th>
-            <th>Fa-Code</th>
-            <th>Datum</th>
-            <th>Kom</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td>1</td>
-            <td>Lieferando</td>
-            <td>Tragen</td>
-            <td>Brille</td>
-            <td>Plastik</td>
-            <td>Gucci</td>
-            <td>Schwarz</td>
-            <td>10</td>
-            <td>B200</td>
-            <td>EK</td>
-            <td>Keine</td>
-            <td>x3.5</td>
-            <td>VK</td>
-            <td>#001</td>
-            <td>01.09.2022</td>
-            <td>Ja</td>
-        </tr>
-        <tr>
-            <td>2</td>
-            <td>Lieferheld</td>
-            <td>Ins Regal stellen</td>
-            <td>Brille</td>
-            <td>Plastik</td>
-            <td>Supreme</td>
-            <td>Weiß</td>
-            <td>10000</td>
-            <td>D99</td>
-            <td>EK</td>
-            <td>Keine</td>
-            <td>x4.20</td>
-            <td>VK</td>
-            <td>#0069</td>
-            <td>01.09.2022</td>
-            <td>Nein</td>
-        </tr>
-        </tbody>
-    </table>
+<div class="table">
+</div>
+
 </body>
 <script>
     function openLink(link) {
         window.location.href = link;
+    }
+
+    function searchOrder() {
+        let auftragsNr = document.getElementById('auftragsNr').value;
+
+        doRequest(
+            'GET',
+            '/api/auftrags/',
+            auftragsNr,
+            (jsonString) => {   // func
+                let data = JSON.parse(jsonString);
+                // alert(data.exception);
+                createTable(data);
+            });
+    }
+
+    function createTable() {
+        if (document.getElementsByClassName('table')[0].firstElementChild !== null) {
+            return false;
+        } else {
+            let tableContainer = document.getElementsByClassName('table')[0];
+            let table = document.createElement('TABLE');
+            let tableHead = document.createElement('THEAD');
+            let tableBody = document.createElement('TBODY');
+            const headings = [
+                'ArtNr.',
+                'Lieferant.',
+                'Verwendung',
+                'Gattung',
+                'Material',
+                'Model',
+                'Farbe',
+                'Größe',
+                'Bügel',
+                'EK',
+                'Bemerkung',
+                'Faktor',
+                'VK',
+                'Fa-Code',
+                'Datum',
+                'Kom',
+            ];
+
+            table.appendChild(tableHead);
+            table.appendChild(tableBody);
+
+            // Table Head
+            let row1 = document.createElement('TR');
+
+            headings
+                .map((item) => {
+                    let th = document.createElement('TH');
+                    th.innerHTML = item.valueOf();
+                    row1.appendChild(th);
+                });
+
+            tableHead.appendChild(row1);
+
+            // Table Data
+            let row2 = document.createElement('TR');
+
+            for (let i = 1; i <= headings.length; i++) {
+                let data = document.createElement('TD');
+                data.innerHTML = 'test';
+
+                row2.appendChild(data);
+            }
+
+            tableBody.appendChild(row2);
+
+            tableContainer.appendChild(table);
+        }
     }
 </script>
 </html>
