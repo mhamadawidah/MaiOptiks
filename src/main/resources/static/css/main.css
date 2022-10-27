@@ -26,6 +26,21 @@ html body {
     color: var(--button);
 }
 
+/*Inputs*/
+.input {
+    height: 7%;
+    width: 49%;
+    border-radius: 5px;
+    border: 1px solid black;
+    padding: 0.5%;
+    margin-top: 0.7%;
+}
+
+.input::placeholder {
+    font-family: "Roboto Thin", sans-serif;
+    font-size: 15px;
+}
+
 .button {
     border-radius: 3px;
     border: 1px solid black;
