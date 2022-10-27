@@ -7,6 +7,7 @@
     <link rel="stylesheet" th:href="@{/css/statistik-style.css}"/>
     <script th:src="@{/scripts/main.js}" type="text/javascript"></script>
 </head>
+
 <body>
 <div class="title-bar">
     <h1 class="heading">Statistik</h1>
@@ -18,19 +19,11 @@
 
 <div class="header-button">
     <button class=" button button-startseite" onclick="openLink('/')">Startseite</button>
+    <button class=" button button-startseite" onclick="Laden()">Laden</button>
+    <button class=" button button-startseite" onclick="print()">Drucken</button>
     <hr class="linetop">
 </div>
 
-<Script>
-    doGETRequest(
-            '/api/stadt/',
-            name,
-            (jsonString) => {   // func
-                let data = JSON.parse(jsonString);
-                // alert(data.exception);
-                
-            });
-</Script>
 
 <div class = "statistik"> 
     <div>
@@ -42,13 +35,30 @@
         <br> 
     </div>
     <div>
+        <form oninput = anzAuftrag>
         <output></output>
     </div> 
 </div> 
 
-
-
 </body>
+<script>
+    function Laden(){
+        anzAuftrag();
+    }
 
+    function anzAuftrag(){
+       doGetRequest(
+            '/api/stadts/',
+            48477,
+            (jsonString) => {   // func
+                let data = JSON.parse(jsonString);
+                data = Object.keys(data).length;
+                // alert(data)
+                // alert("test")
+            });
+            
+    }
+    
+</script>
 
 </html>
