@@ -68,7 +68,7 @@ public class RefraktionDurchgefuertService {
             final RefraktionDurchgefuertDTO refraktionDurchgefuertDTO) {
         refraktionDurchgefuertDTO.setRefraktionsNr(refraktionDurchgefuert.getRefraktionsnr());
         refraktionDurchgefuertDTO.setMitarbeiterNr(refraktionDurchgefuert.getMitarbeiternr() == null ? null : refraktionDurchgefuert.getMitarbeiternr().getMitarbeiternr());
-        refraktionDurchgefuertDTO.setArztNr(refraktionDurchgefuert.getArztNr() == null ? null : refraktionDurchgefuert.getArztNr().getArztNr());
+        refraktionDurchgefuertDTO.setArztNr(refraktionDurchgefuert.getArztnr() == null ? null : refraktionDurchgefuert.getArztnr().getArztnr());
         return refraktionDurchgefuertDTO;
     }
 
@@ -80,7 +80,7 @@ public class RefraktionDurchgefuertService {
         refraktionDurchgefuert.setMitarbeiternr(mitarbeiterNr);
         final Arzt arztNr = refraktionDurchgefuertDTO.getArztNr() == null ? null : arztRepository.findById(refraktionDurchgefuertDTO.getArztNr())
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "arztNr not found"));
-        refraktionDurchgefuert.setArztNr(arztNr);
+        refraktionDurchgefuert.setArztnr(arztNr);
         return refraktionDurchgefuert;
     }
 

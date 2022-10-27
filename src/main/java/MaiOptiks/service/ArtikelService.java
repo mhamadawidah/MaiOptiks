@@ -37,7 +37,7 @@ public class ArtikelService {
     }
 
     public List<ArtikelDTO> findAll() {
-        return artikelRepository.findAll(Sort.by("artikelNr"))
+        return artikelRepository.findAll(Sort.by("artikelnr"))
                 .stream()
                 .map(artikel -> mapToDTO(artikel, new ArtikelDTO()))
                 .collect(Collectors.toList());
@@ -52,7 +52,7 @@ public class ArtikelService {
     public Integer create(final ArtikelDTO artikelDTO) {
         final Artikel artikel = new Artikel();
         mapToEntity(artikelDTO, artikel);
-        return artikelRepository.save(artikel).getArtikelNr();
+        return artikelRepository.save(artikel).getArtikelnr();
     }
 
     public void update(final Integer artikelNr, final ArtikelDTO artikelDTO) {
@@ -67,13 +67,13 @@ public class ArtikelService {
     }
 
     private ArtikelDTO mapToDTO(final Artikel artikel, final ArtikelDTO artikelDTO) {
-        artikelDTO.setArtikelNr(artikel.getArtikelNr());
+        artikelDTO.setArtikelNr(artikel.getArtikelnr());
         artikelDTO.setBezeichnung(artikel.getBezeichnung());
         artikelDTO.setArtikelart(artikel.getArtikelart());
         artikelDTO.setEinkaufspreis(artikel.getEinkaufspreis());
         artikelDTO.setVerkaufspreis(artikel.getVerkaufspreis());
         artikelDTO.setMaterial(artikel.getMaterial() == null ? null : artikel.getMaterial().getMaterialid());
-        artikelDTO.setFarbe(artikel.getFarbe() == null ? null : artikel.getFarbe().getFarbeId());
+        artikelDTO.setFarbe(artikel.getFarbe() == null ? null : artikel.getFarbe().getFarbeid());
         artikelDTO.setLieferant(artikel.getLieferant() == null ? null : artikel.getLieferant().getLieferantid());
         return artikelDTO;
     }

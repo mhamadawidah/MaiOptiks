@@ -33,7 +33,7 @@ public class FassungenService {
     }
 
     public List<FassungenDTO> findAll() {
-        return fassungenRepository.findAll(Sort.by("artikelNr"))
+        return fassungenRepository.findAll(Sort.by("artikelnr"))
                 .stream()
                 .map(fassungen -> mapToDTO(fassungen, new FassungenDTO()))
                 .collect(Collectors.toList());
@@ -48,7 +48,7 @@ public class FassungenService {
     public Integer create(final FassungenDTO fassungenDTO) {
         final Fassungen fassungen = new Fassungen();
         mapToEntity(fassungenDTO, fassungen);
-        return fassungenRepository.save(fassungen).getArtikelNr();
+        return fassungenRepository.save(fassungen).getArtikelnr();
     }
 
     public void update(final Integer artikelNr, final FassungenDTO fassungenDTO) {
@@ -63,12 +63,12 @@ public class FassungenService {
     }
 
     private FassungenDTO mapToDTO(final Fassungen fassungen, final FassungenDTO fassungenDTO) {
-        fassungenDTO.setArtikelNr(fassungen.getArtikelNr());
+        fassungenDTO.setArtikelNr(fassungen.getArtikelnr());
         fassungenDTO.setEinkaufspreis(fassungen.getEinkaufspreis());
         fassungenDTO.setVerkaufspreis(fassungen.getVerkaufspreis());
-        fassungenDTO.setArt(fassungen.getArt() == null ? null : fassungen.getArt().getArtId());
+        fassungenDTO.setArt(fassungen.getArt() == null ? null : fassungen.getArt().getArtid());
         fassungenDTO.setMaterial(fassungen.getMaterial() == null ? null : fassungen.getMaterial().getMaterialid());
-        fassungenDTO.setFarbe(fassungen.getFarbe() == null ? null : fassungen.getFarbe().getFarbeId());
+        fassungenDTO.setFarbe(fassungen.getFarbe() == null ? null : fassungen.getFarbe().getFarbeid());
         fassungenDTO.setLieferant(fassungen.getLieferant() == null ? null : fassungen.getLieferant().getLieferantid());
         return fassungenDTO;
     }

@@ -31,7 +31,7 @@ public class AuftragsartikelService {
     }
 
     public List<AuftragsartikelDTO> findAll() {
-        return auftragsartikelRepository.findAll(Sort.by("auftragsArtikelId"))
+        return auftragsartikelRepository.findAll(Sort.by("auftragsartikelid"))
                 .stream()
                 .map(auftragsartikel -> mapToDTO(auftragsartikel, new AuftragsartikelDTO()))
                 .collect(Collectors.toList());
@@ -46,7 +46,7 @@ public class AuftragsartikelService {
     public Integer create(final AuftragsartikelDTO auftragsartikelDTO) {
         final Auftragsartikel auftragsartikel = new Auftragsartikel();
         mapToEntity(auftragsartikelDTO, auftragsartikel);
-        return auftragsartikelRepository.save(auftragsartikel).getAuftragsArtikelId();
+        return auftragsartikelRepository.save(auftragsartikel).getAuftragsartikelid();
     }
 
     public void update(final Integer auftragsArtikelId,
@@ -63,16 +63,16 @@ public class AuftragsartikelService {
 
     private AuftragsartikelDTO mapToDTO(final Auftragsartikel auftragsartikel,
             final AuftragsartikelDTO auftragsartikelDTO) {
-        auftragsartikelDTO.setAuftragsArtikelId(auftragsartikel.getAuftragsArtikelId());
-        auftragsartikelDTO.setSehhilfenArt(auftragsartikel.getSehhilfenArt());
+        auftragsartikelDTO.setAuftragsArtikelId(auftragsartikel.getAuftragsartikelid());
+        auftragsartikelDTO.setSehhilfenArt(auftragsartikel.getSehhilfenart());
         auftragsartikelDTO.setAuftragsNr(auftragsartikel.getAuftragsNr() == null ? null : auftragsartikel.getAuftragsNr().getAuftragsnummer());
-        auftragsartikelDTO.setSehhilfe(auftragsartikel.getSehhilfe() == null ? null : auftragsartikel.getSehhilfe().getBrillenId());
+        auftragsartikelDTO.setSehhilfe(auftragsartikel.getSehhilfe() == null ? null : auftragsartikel.getSehhilfe().getBrillenid());
         return auftragsartikelDTO;
     }
 
     private Auftragsartikel mapToEntity(final AuftragsartikelDTO auftragsartikelDTO,
             final Auftragsartikel auftragsartikel) {
-        auftragsartikel.setSehhilfenArt(auftragsartikelDTO.getSehhilfenArt());
+        auftragsartikel.setSehhilfenart(auftragsartikelDTO.getSehhilfenArt());
         final Auftrag auftragsNr = auftragsartikelDTO.getAuftragsNr() == null ? null : auftragRepository.findById(auftragsartikelDTO.getAuftragsNr())
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "auftragsNr not found"));
         auftragsartikel.setAuftragsNr(auftragsNr);

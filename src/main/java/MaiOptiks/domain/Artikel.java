@@ -29,7 +29,7 @@ public class Artikel {
             strategy = GenerationType.SEQUENCE,
             generator = "primary_sequence"
     )
-    private Integer artikelNr;
+    private Integer artikelnr;
 
     @Column(length = 254)
     private String bezeichnung;
@@ -44,15 +44,15 @@ public class Artikel {
     private Double verkaufspreis;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "material_id")
+    @JoinColumn(name = "material")
     private Material material;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "farbe_id")
+    @JoinColumn(name = "farbe")
     private Farbe farbe;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "lieferant_id")
+    @JoinColumn(name = "lieferant")
     private Lieferant lieferant;
 
     @OneToMany(mappedBy = "glasArtikelIdlinks")
@@ -63,13 +63,5 @@ public class Artikel {
 
     @OneToMany(mappedBy = "fassungsArtikel")
     private Set<Brille> fassungsArtikelBrilles;
-
-    @CreatedDate
-    @Column(nullable = false, updatable = false)
-    private OffsetDateTime dateCreated;
-
-    @LastModifiedDate
-    @Column(nullable = false)
-    private OffsetDateTime lastUpdated;
 
 }

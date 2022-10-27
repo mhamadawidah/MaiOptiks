@@ -28,7 +28,7 @@ public class BrilleService {
     }
 
     public List<BrilleDTO> findAll() {
-        return brilleRepository.findAll(Sort.by("brillenId"))
+        return brilleRepository.findAll(Sort.by("brillenid"))
                 .stream()
                 .map(brille -> mapToDTO(brille, new BrilleDTO()))
                 .collect(Collectors.toList());
@@ -43,7 +43,7 @@ public class BrilleService {
     public Integer create(final BrilleDTO brilleDTO) {
         final Brille brille = new Brille();
         mapToEntity(brilleDTO, brille);
-        return brilleRepository.save(brille).getBrillenId();
+        return brilleRepository.save(brille).getBrillenid();
     }
 
     public void update(final Integer brillenId, final BrilleDTO brilleDTO) {
@@ -58,10 +58,10 @@ public class BrilleService {
     }
 
     private BrilleDTO mapToDTO(final Brille brille, final BrilleDTO brilleDTO) {
-        brilleDTO.setBrillenId(brille.getBrillenId());
-        brilleDTO.setGlasArtikelIdlinks(brille.getGlasArtikelIdlinks() == null ? null : brille.getGlasArtikelIdlinks().getArtikelNr());
-        brilleDTO.setGlasArtikelIdrechts(brille.getGlasArtikelIdrechts() == null ? null : brille.getGlasArtikelIdrechts().getArtikelNr());
-        brilleDTO.setFassungsArtikel(brille.getFassungsArtikel() == null ? null : brille.getFassungsArtikel().getArtikelNr());
+        brilleDTO.setBrillenId(brille.getBrillenid());
+        brilleDTO.setGlasArtikelIdlinks(brille.getGlasArtikelIdlinks() == null ? null : brille.getGlasArtikelIdlinks().getArtikelnr());
+        brilleDTO.setGlasArtikelIdrechts(brille.getGlasArtikelIdrechts() == null ? null : brille.getGlasArtikelIdrechts().getArtikelnr());
+        brilleDTO.setFassungsArtikel(brille.getFassungsArtikel() == null ? null : brille.getFassungsArtikel().getArtikelnr());
         return brilleDTO;
     }
 

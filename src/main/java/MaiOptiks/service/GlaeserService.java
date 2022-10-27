@@ -36,7 +36,7 @@ public class GlaeserService {
     }
 
     public List<GlaeserDTO> findAll() {
-        return glaeserRepository.findAll(Sort.by("artikelNr"))
+        return glaeserRepository.findAll(Sort.by("artikelnr"))
                 .stream()
                 .map(glaeser -> mapToDTO(glaeser, new GlaeserDTO()))
                 .collect(Collectors.toList());
@@ -51,7 +51,7 @@ public class GlaeserService {
     public Integer create(final GlaeserDTO glaeserDTO) {
         final Glaeser glaeser = new Glaeser();
         mapToEntity(glaeserDTO, glaeser);
-        return glaeserRepository.save(glaeser).getArtikelNr();
+        return glaeserRepository.save(glaeser).getArtikelnr();
     }
 
     public void update(final Integer artikelNr, final GlaeserDTO glaeserDTO) {
@@ -66,13 +66,13 @@ public class GlaeserService {
     }
 
     private GlaeserDTO mapToDTO(final Glaeser glaeser, final GlaeserDTO glaeserDTO) {
-        glaeserDTO.setArtikelNr(glaeser.getArtikelNr());
+        glaeserDTO.setArtikelNr(glaeser.getArtikelnr());
         glaeserDTO.setEinkaufspreis(glaeser.getEinkaufspreis());
         glaeserDTO.setVerkaufspreis(glaeser.getVerkaufspreis());
-        glaeserDTO.setArt(glaeser.getArt() == null ? null : glaeser.getArt().getArtId());
+        glaeserDTO.setArt(glaeser.getArt() == null ? null : glaeser.getArt().getArtid());
         glaeserDTO.setWerte(glaeser.getWerte() == null ? null : glaeser.getWerte().getRefraktionid());
         glaeserDTO.setMaterial(glaeser.getMaterial() == null ? null : glaeser.getMaterial().getMaterialid());
-        glaeserDTO.setFarbe(glaeser.getFarbe() == null ? null : glaeser.getFarbe().getFarbeId());
+        glaeserDTO.setFarbe(glaeser.getFarbe() == null ? null : glaeser.getFarbe().getFarbeid());
         glaeserDTO.setLieferant(glaeser.getLieferant() == null ? null : glaeser.getLieferant().getLieferantid());
         return glaeserDTO;
     }

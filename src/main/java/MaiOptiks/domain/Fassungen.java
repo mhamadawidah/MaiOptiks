@@ -28,7 +28,7 @@ public class Fassungen {
             strategy = GenerationType.SEQUENCE,
             generator = "primary_sequence"
     )
-    private Integer artikelNr;
+    private Integer artikelnr;
 
     @Column
     private Double einkaufspreis;
@@ -37,27 +37,19 @@ public class Fassungen {
     private Double verkaufspreis;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "art_id", nullable = false)
+    @JoinColumn(name = "art", nullable = false)
     private Artikelart art;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "material_id")
+    @JoinColumn(name = "material")
     private Material material;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "farbe_id")
+    @JoinColumn(name = "farbe")
     private Farbe farbe;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "lieferant_id")
+    @JoinColumn(name = "lieferant")
     private Lieferant lieferant;
-
-    @CreatedDate
-    @Column(nullable = false, updatable = false)
-    private OffsetDateTime dateCreated;
-
-    @LastModifiedDate
-    @Column(nullable = false)
-    private OffsetDateTime lastUpdated;
 
 }
