@@ -9,8 +9,6 @@ function doRequest(method, endpoint, key, json_data, func) {
 
     if (key !== undefined && key !== "") {
         url += key;
-    } else {
-        alert('\nBitte machen sie eine Eingabe');
     }
 
     fetch(url, {
