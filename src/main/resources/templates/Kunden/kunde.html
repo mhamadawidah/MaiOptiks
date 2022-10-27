@@ -22,9 +22,9 @@
     </div>
 
     <div class="search-fields">
-        <input class="input" id="name" placeholder="Name" type="text"/><br>
-        <input class="input" id="lastname" placeholder="Vorname" type="text"/><br>
-        <button class="button submit-button" onclick="createTable()">Suchen</button>
+        <input class="input" id="lastname" placeholder="Name" type="text" required/><br>
+        <input class="input" id="name" placeholder="Vorname" type="text" required/><br>
+        <button class="button submit-button" onclick="searchCustomer()">Suchen</button>
     </div>
 </div>
 
@@ -43,18 +43,17 @@
         let name = document.getElementById('name').value;
         let lastname = document.getElementById('lastname').value;
 
-        doRequest(
-            'GET',
+        doGetRequest(
             '/api/kundes/',
-            name,
-            (jsonString) => {   // func
-                let data = JSON.parse(jsonString);
+            (lastname + '/' + name),
+            (data) => {   // func
+                //let data = JSON.parse(data);
                 // alert(data.exception);
                 createTable(data);
             });
     }
 
-    function createTable() {
+    function createTable(data) {
         if (document.getElementsByClassName('table-container')[0].firstElementChild !== null) {
             return false;
         } else {
