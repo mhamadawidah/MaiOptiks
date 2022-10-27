@@ -22,8 +22,8 @@
     </div>
 
     <div class="search-fields">
-        <input class="input" type="text" placeholder="Auftrags-Nr." id="auftragsNr"><br>
-        <button class="button submit-button" type="submit" onclick="createTable()">Suchen</button>
+        <input class="input" id="auftragsNr" placeholder="Auftrags-Nr." required type="text"><br>
+        <button class="button submit-button" onclick="searchOrder()" type="submit">Suchen</button>
     </div>
 </div>
 
@@ -41,18 +41,26 @@
     function searchOrder() {
         let auftragsNr = document.getElementById('auftragsNr').value;
 
-        doRequest(
-            'GET',
+        if (auftragsNr === '') {
+            document.getElementById('auftragsNr').style.border = '3px solid red';
+
+            return false;
+        } else {
+            document.getElementById('auftragsNr').style.border = '1px solid black';
+        }
+
+        doGetRequest(
             '/api/auftrags/',
             auftragsNr,
-            (jsonString) => {   // func
-                let data = JSON.parse(jsonString);
+            (data) => {   // func
+                console.log(data);
+                //let data = JSON.parse(jsonString);
                 // alert(data.exception);
                 createTable(data);
             });
     }
 
-    function createTable() {
+    function createTable(data) {
         if (document.getElementsByClassName('table-container')[0].firstElementChild !== null) {
             return false;
         } else {

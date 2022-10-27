@@ -2,12 +2,9 @@ package MaiOptiks.domain;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
-import java.time.OffsetDateTime;
 
 
 @Entity
@@ -28,25 +25,17 @@ public class Auftragsartikel {
             strategy = GenerationType.SEQUENCE,
             generator = "primary_sequence"
     )
-    private Integer auftragsArtikelId;
+    private Integer auftragsartikelid;
 
     @Column
-    private Integer sehhilfenArt;
+    private Integer sehhilfenart;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "auftrags_nr_id")
+    @JoinColumn(name = "auftragsnr")
     private Auftrag auftragsNr;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "sehhilfe_id")
+    @JoinColumn(name = "sehhilfeid")
     private Brille sehhilfe;
-
-    @CreatedDate
-    @Column(nullable = false, updatable = false)
-    private OffsetDateTime dateCreated;
-
-    @LastModifiedDate
-    @Column(nullable = false)
-    private OffsetDateTime lastUpdated;
 
 }

@@ -29,7 +29,7 @@ public class Arzt {
             strategy = GenerationType.SEQUENCE,
             generator = "primary_sequence"
     )
-    private Integer arztNr;
+    private Integer arztnr;
 
     @Column(length = 254)
     private String name;
@@ -41,10 +41,10 @@ public class Arzt {
     private String strasse;
 
     @Column(length = 254)
-    private String hausNr;
+    private String hausnr;
 
     @Column(length = 254)
-    private String telefonNr;
+    private String telefonnr;
 
     @Column(length = 254)
     private String handy;
@@ -53,18 +53,10 @@ public class Arzt {
     private String email;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "plz_id")
+    @JoinColumn(name = "plz")
     private Stadt plz;
 
-    @OneToMany(mappedBy = "arztNr")
+    @OneToMany(mappedBy = "arztnr")
     private Set<RefraktionDurchgefuert> arztNrRefraktionDurchgefuerts;
-
-    @CreatedDate
-    @Column(nullable = false, updatable = false)
-    private OffsetDateTime dateCreated;
-
-    @LastModifiedDate
-    @Column(nullable = false)
-    private OffsetDateTime lastUpdated;
 
 }

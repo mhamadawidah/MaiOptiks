@@ -30,11 +30,11 @@ public class BrilleController {
     @ModelAttribute
     public void prepareContext(final Model model) {
         model.addAttribute("glasArtikelIdlinksValues", artikelRepository.findAll().stream().collect(
-                Collectors.toMap(Artikel::getArtikelNr, Artikel::getBezeichnung)));
+                Collectors.toMap(Artikel::getArtikelnr, Artikel::getBezeichnung)));
         model.addAttribute("glasArtikelIdrechtsValues", artikelRepository.findAll().stream().collect(
-                Collectors.toMap(Artikel::getArtikelNr, Artikel::getBezeichnung)));
+                Collectors.toMap(Artikel::getArtikelnr, Artikel::getBezeichnung)));
         model.addAttribute("fassungsArtikelValues", artikelRepository.findAll().stream().collect(
-                Collectors.toMap(Artikel::getArtikelNr, Artikel::getBezeichnung)));
+                Collectors.toMap(Artikel::getArtikelnr, Artikel::getBezeichnung)));
     }
 
     @GetMapping

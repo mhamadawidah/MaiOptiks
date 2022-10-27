@@ -23,7 +23,7 @@ public class FarbeService {
     }
 
     public List<FarbeDTO> findAll() {
-        return farbeRepository.findAll(Sort.by("farbeId"))
+        return farbeRepository.findAll(Sort.by("farbeid"))
                 .stream()
                 .map(farbe -> mapToDTO(farbe, new FarbeDTO()))
                 .collect(Collectors.toList());
@@ -38,7 +38,7 @@ public class FarbeService {
     public Integer create(final FarbeDTO farbeDTO) {
         final Farbe farbe = new Farbe();
         mapToEntity(farbeDTO, farbe);
-        return farbeRepository.save(farbe).getFarbeId();
+        return farbeRepository.save(farbe).getFarbeid();
     }
 
     public void update(final Integer farbeId, final FarbeDTO farbeDTO) {
@@ -53,7 +53,7 @@ public class FarbeService {
     }
 
     private FarbeDTO mapToDTO(final Farbe farbe, final FarbeDTO farbeDTO) {
-        farbeDTO.setFarbeId(farbe.getFarbeId());
+        farbeDTO.setFarbeId(farbe.getFarbeid());
         farbeDTO.setBezeichnung(farbe.getBezeichnung());
         farbeDTO.setInfo(farbe.getInfo());
         return farbeDTO;
