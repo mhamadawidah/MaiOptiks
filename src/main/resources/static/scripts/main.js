@@ -4,49 +4,51 @@ function openLink(link) {
 }
 
 // Datenbank Abfrage
-function doRequest(method, url, key, data, func) {
-    let request = new XMLHttpRequest();
-
-    url = 'http://localhost:8080' + url;
+function doRequest(method, endpoint, key, json_data, func) {
+    let url = 'http://localhost:8080' + endpoint;
 
     if (key !== undefined && key !== "") {
         url += key;
+    } else {
+        alert('\nBitte machen sie eine Eingabe');
     }
 
-    request.open(method, url, true);
+    fetch(url, {
+        method: method,
+    })
+        .then(async (response) => {
+            if (response.status >= 200 && response.status < 300) {
+                return response.json();
+            } else if (response.status >= 500) {
+                alert('\nServerfehler!\n\nBitte den Systemadministrator kontaktieren.');
+            } else {
+                alert('\nError: ' + response.status + '\n\n' + (JSON.parse(await response.text())).exception);
 
-    request.setRequestHeader("Accept", "application/json");
-    request.setRequestHeader("Content-Type", "application/json");
-
-    data !== undefined && data !== "" ? request.send(data) : request.send();
-
-    request.onload = () => {
-        if (request.status !== 200 || request.status !== 201 || request.status !== 202) {
-            alert('\nError: ' + request.status + '\n\n' + JSON.parse(request.response).exception);
-        }
-
-        if (func !== undefined && func !== null) {
-            func(request.response);
-        }
-    };
-
-    request.onerror = () => {
-        alert('\nNetzwerkfehler!\n\nBitte den Systemadministrator kontaktieren.');
-    };
+                return response.text()
+            }
+        })
+        .then(async (data) => {
+            if (func !== undefined && data !== undefined) {
+                if (func === typeof 'function') {
+                    func(data);
+                }
+            }
+        })
+        .catch(error => console.error(error));
 }
 
-function doGetRequest(url, key, func) {
-    doRequest('GET', url, key, undefined, func)
+function doGetRequest(endpoint, key, func) {
+    doRequest('GET', endpoint, key, undefined, func)
 }
 
-function doPutRequest(url, key, data, func) {
-    doRequest('PUT', url, key, data, func)
+function doPutRequest(endpoint, key, data, func) {
+    doRequest('PUT', endpoint, key, data, func)
 }
 
-function doPostRequest(url, data, func) {
-    doRequest('POST', url, undefined, data, func)
+function doPostRequest(endpoint, data, func) {
+    doRequest('POST', endpoint, undefined, data, func)
 }
 
-function doDeleteRequest(url, key, func) {
-    doRequest('DELETE', url, key, undefined, func)
+function doDeleteRequest(endpoint, key, func) {
+    doRequest('DELETE', endpoint, key, undefined, func)
 }

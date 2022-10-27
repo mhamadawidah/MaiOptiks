@@ -22,7 +22,7 @@
     </div>
 
     <div class="search-fields">
-        <input class="input" type="text" placeholder="Auftrags-Nr." id="auftragsNr"><br>
+        <input class="input" type="text" placeholder="Auftrags-Nr." id="auftragsNr" required><br>
         <button class="button submit-button" type="submit" onclick="searchOrder()">Suchen</button>
     </div>
 </div>
@@ -44,14 +44,15 @@
         doGetRequest(
             '/api/auftrags/',
             auftragsNr,
-            (jsonString) => {   // func
-                let data = JSON.parse(jsonString);
+            (data) => {   // func
+                console.log(data);
+                //let data = JSON.parse(jsonString);
                 // alert(data.exception);
                 createTable(data);
             });
     }
 
-    function createTable() {
+    function createTable(data) {
         if (document.getElementsByClassName('table-container')[0].firstElementChild !== null) {
             return false;
         } else {

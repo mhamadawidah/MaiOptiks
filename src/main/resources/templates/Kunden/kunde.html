@@ -46,14 +46,14 @@
         doGetRequest(
             '/api/kundes/',
             (lastname + '/' + name),
-            (jsonString) => {   // func
-                let data = JSON.parse(jsonString);
+            (data) => {   // func
+                //let data = JSON.parse(data);
                 // alert(data.exception);
                 createTable(data);
             });
     }
 
-    function createTable() {
+    function createTable(data) {
         if (document.getElementsByClassName('table-container')[0].firstElementChild !== null) {
             return false;
         } else {
