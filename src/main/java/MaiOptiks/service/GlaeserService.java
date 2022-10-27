@@ -71,9 +71,9 @@ public class GlaeserService {
         glaeserDTO.setVerkaufspreis(glaeser.getVerkaufspreis());
         glaeserDTO.setArt(glaeser.getArt() == null ? null : glaeser.getArt().getArtId());
         glaeserDTO.setWerte(glaeser.getWerte() == null ? null : glaeser.getWerte().getRefraktionid());
-        glaeserDTO.setMaterial(glaeser.getMaterial() == null ? null : glaeser.getMaterial().getMaterialId());
+        glaeserDTO.setMaterial(glaeser.getMaterial() == null ? null : glaeser.getMaterial().getMaterialid());
         glaeserDTO.setFarbe(glaeser.getFarbe() == null ? null : glaeser.getFarbe().getFarbeId());
-        glaeserDTO.setLieferant(glaeser.getLieferant() == null ? null : glaeser.getLieferant().getLieferantId());
+        glaeserDTO.setLieferant(glaeser.getLieferant() == null ? null : glaeser.getLieferant().getLieferantid());
         return glaeserDTO;
     }
 

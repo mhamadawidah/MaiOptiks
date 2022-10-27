@@ -72,9 +72,9 @@ public class ArtikelService {
         artikelDTO.setArtikelart(artikel.getArtikelart());
         artikelDTO.setEinkaufspreis(artikel.getEinkaufspreis());
         artikelDTO.setVerkaufspreis(artikel.getVerkaufspreis());
-        artikelDTO.setMaterial(artikel.getMaterial() == null ? null : artikel.getMaterial().getMaterialId());
+        artikelDTO.setMaterial(artikel.getMaterial() == null ? null : artikel.getMaterial().getMaterialid());
         artikelDTO.setFarbe(artikel.getFarbe() == null ? null : artikel.getFarbe().getFarbeId());
-        artikelDTO.setLieferant(artikel.getLieferant() == null ? null : artikel.getLieferant().getLieferantId());
+        artikelDTO.setLieferant(artikel.getLieferant() == null ? null : artikel.getLieferant().getLieferantid());
         return artikelDTO;
     }
 

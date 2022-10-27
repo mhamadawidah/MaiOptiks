@@ -36,7 +36,7 @@ public class RefraktionDurchgefuertController {
     @ModelAttribute
     public void prepareContext(final Model model) {
         model.addAttribute("mitarbeiterNrValues", mitarbeiterRepository.findAll().stream().collect(
-                Collectors.toMap(Mitarbeiter::getMitarbeiterNr, Mitarbeiter::getName)));
+                Collectors.toMap(Mitarbeiter::getMitarbeiternr, Mitarbeiter::getName)));
         model.addAttribute("arztNrValues", arztRepository.findAll().stream().collect(
                 Collectors.toMap(Arzt::getArztNr, Arzt::getName)));
     }

@@ -67,9 +67,9 @@ public class FassungenService {
         fassungenDTO.setEinkaufspreis(fassungen.getEinkaufspreis());
         fassungenDTO.setVerkaufspreis(fassungen.getVerkaufspreis());
         fassungenDTO.setArt(fassungen.getArt() == null ? null : fassungen.getArt().getArtId());
-        fassungenDTO.setMaterial(fassungen.getMaterial() == null ? null : fassungen.getMaterial().getMaterialId());
+        fassungenDTO.setMaterial(fassungen.getMaterial() == null ? null : fassungen.getMaterial().getMaterialid());
         fassungenDTO.setFarbe(fassungen.getFarbe() == null ? null : fassungen.getFarbe().getFarbeId());
-        fassungenDTO.setLieferant(fassungen.getLieferant() == null ? null : fassungen.getLieferant().getLieferantId());
+        fassungenDTO.setLieferant(fassungen.getLieferant() == null ? null : fassungen.getLieferant().getLieferantid());
         return fassungenDTO;
     }
 

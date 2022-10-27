@@ -45,11 +45,11 @@ public class GlaeserController {
         model.addAttribute("werteValues", refraktionRepository.findAll().stream().collect(
                 Collectors.toMap(Refraktion::getRefraktionid, Refraktion::getRefraktionid)));
         model.addAttribute("materialValues", materialRepository.findAll().stream().collect(
-                Collectors.toMap(Material::getMaterialId, Material::getBezeichung)));
+                Collectors.toMap(Material::getMaterialid, Material::getBezeichung)));
         model.addAttribute("farbeValues", farbeRepository.findAll().stream().collect(
                 Collectors.toMap(Farbe::getFarbeId, Farbe::getBezeichnung)));
         model.addAttribute("lieferantValues", lieferantRepository.findAll().stream().collect(
-                Collectors.toMap(Lieferant::getLieferantId, Lieferant::getName)));
+                Collectors.toMap(Lieferant::getLieferantid, Lieferant::getName)));
     }
 
     @GetMapping

@@ -67,7 +67,7 @@ public class RefraktionDurchgefuertService {
     private RefraktionDurchgefuertDTO mapToDTO(final RefraktionDurchgefuert refraktionDurchgefuert,
             final RefraktionDurchgefuertDTO refraktionDurchgefuertDTO) {
         refraktionDurchgefuertDTO.setRefraktionsNr(refraktionDurchgefuert.getRefraktionsnr());
-        refraktionDurchgefuertDTO.setMitarbeiterNr(refraktionDurchgefuert.getMitarbeiterNr() == null ? null : refraktionDurchgefuert.getMitarbeiterNr().getMitarbeiterNr());
+        refraktionDurchgefuertDTO.setMitarbeiterNr(refraktionDurchgefuert.getMitarbeiternr() == null ? null : refraktionDurchgefuert.getMitarbeiternr().getMitarbeiternr());
         refraktionDurchgefuertDTO.setArztNr(refraktionDurchgefuert.getArztNr() == null ? null : refraktionDurchgefuert.getArztNr().getArztNr());
         return refraktionDurchgefuertDTO;
     }
@@ -77,7 +77,7 @@ public class RefraktionDurchgefuertService {
             final RefraktionDurchgefuert refraktionDurchgefuert) {
         final Mitarbeiter mitarbeiterNr = refraktionDurchgefuertDTO.getMitarbeiterNr() == null ? null : mitarbeiterRepository.findById(refraktionDurchgefuertDTO.getMitarbeiterNr())
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "mitarbeiterNr not found"));
-        refraktionDurchgefuert.setMitarbeiterNr(mitarbeiterNr);
+        refraktionDurchgefuert.setMitarbeiternr(mitarbeiterNr);
         final Arzt arztNr = refraktionDurchgefuertDTO.getArztNr() == null ? null : arztRepository.findById(refraktionDurchgefuertDTO.getArztNr())
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "arztNr not found"));
         refraktionDurchgefuert.setArztNr(arztNr);

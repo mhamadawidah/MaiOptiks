@@ -29,8 +29,8 @@ public class RefraktionDurchgefuert {
     private Integer refraktionsnr;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "mitarbeiter_nr")
-    private Mitarbeiter mitarbeiterNr;
+    @JoinColumn(name = "mitarbeiternr")
+    private Mitarbeiter mitarbeiternr;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "arzt_nr_id")

@@ -68,9 +68,9 @@ public class KontaktlinsenService {
         kontaktlinsenDTO.setEinkaufspreis(kontaktlinsen.getEinkaufspreis());
         kontaktlinsenDTO.setVerkaufspreis(kontaktlinsen.getVerkaufspreis());
         kontaktlinsenDTO.setArt(kontaktlinsen.getArt() == null ? null : kontaktlinsen.getArt().getArtId());
-        kontaktlinsenDTO.setMaterial(kontaktlinsen.getMaterial() == null ? null : kontaktlinsen.getMaterial().getMaterialId());
+        kontaktlinsenDTO.setMaterial(kontaktlinsen.getMaterial() == null ? null : kontaktlinsen.getMaterial().getMaterialid());
         kontaktlinsenDTO.setFarbe(kontaktlinsen.getFarbe() == null ? null : kontaktlinsen.getFarbe().getFarbeId());
-        kontaktlinsenDTO.setLieferant(kontaktlinsen.getLieferant() == null ? null : kontaktlinsen.getLieferant().getLieferantId());
+        kontaktlinsenDTO.setLieferant(kontaktlinsen.getLieferant() == null ? null : kontaktlinsen.getLieferant().getLieferantid());
         return kontaktlinsenDTO;
     }
 
