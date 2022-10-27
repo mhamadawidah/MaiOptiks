@@ -4,45 +4,49 @@ function openLink(link) {
 }
 
 // Datenbank Abfrage
-function doRequest(method, url, url_extend, data, func) {
-    debugger;
-    let request = new XMLHttpRequest();
+function doRequest(method, endpoint, key, json_data, func) {
+    let url = 'http://localhost:8080' + endpoint;
 
-    url = 'http://localhost:8080' + url;
-
-    if (url_extend !== undefined && url_extend !== "") {
-        url += url_extend;
+    if (key !== undefined && key !== "") {
+        url += key;
     }
 
-    request.open(method, url, true);
+    fetch(url, {
+        method: method,
+    })
+        .then(async (response) => {
+            if (response.status >= 200 && response.status < 300) {
+                return response.json();
+            } else if (response.status >= 500) {
+                alert('\nServerfehler!\n\nBitte den Systemadministrator kontaktieren.');
+            } else {
+                alert('\nError: ' + response.status + '\n\n' + (JSON.parse(await response.text())).exception);
 
-    request.setRequestHeader("Accept", "application/json");
-    request.setRequestHeader("Content-Type", "application/json");
-
-    data !== undefined && data !== "" ? request.send(data) : request.send();
-
-    request.onload = () => {
-        if (request.status !== 200 || request.status !== 201 || request.status !== 202) {
-            alert('\nError: ' + request.status + '\n\n' + JSON.parse(request.response).exception);
-        }
-
-        func(request.response);
-    };
-
-    request.onerror = () => {
-        alert('\nNetzwerkfehler!\n\nBitte den Systemadministrator kontaktieren.');
-    };
+                return response.text()
+            }
+        })
+        .then(async (data) => {
+            if (func !== undefined && data !== undefined) {
+                if (func === typeof 'function') {
+                    func(data);
+                }
+            }
+        })
+        .catch(error => console.error(error));
 }
 
-function doGetRequest(url, key, func){
-    doRequest('GET', url, key, undefined, func)
+function doGetRequest(endpoint, key, func) {
+    doRequest('GET', endpoint, key, undefined, func)
 }
-function doPutRequest(url, data, func){
-    doRequest('PUT', url, undefined, data, func)
+
+function doPutRequest(endpoint, key, data, func) {
+    doRequest('PUT', endpoint, key, data, func)
 }
-function doPostRequest(url, key, data, func){
-    doRequest('POST', url, key, data, func)
+
+function doPostRequest(endpoint, data, func) {
+    doRequest('POST', endpoint, undefined, data, func)
 }
-function doDeleteRequest(url, key, func){
-    doRequest('DELETE', url, key, undefined, func)
+
+function doDeleteRequest(endpoint, key, func) {
+    doRequest('DELETE', endpoint, key, undefined, func)
 }
