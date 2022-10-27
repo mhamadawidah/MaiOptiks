@@ -24,58 +24,34 @@
 </div>
 
 <div>
-    <aside style="width:60%">
-        <input class="input-rechts" type="text" placeholder="Artikelnummer"><br><br>
-        <input class="input-rechts" type="text" placeholder="Faktor"><br><br>
-        <input class="input-rechts" type="text" placeholder="VK">
-        <button class="button button-rechts"><a>VK-Manuell</a></button><br><br>
-        <input class="input-rechts" type="text" placeholder="Fassungscode"><br><br>
-        <input class="input-rechts" type="text" placeholder="Datum"><br><br>
-        <input class="input-rechts" type="checkbox" placeholder="Komission">
-        <label>Komission</label><br>
-        <button class="button" onclick="fillTable()"><a>Speichern</a></button>
-        <button class="button"><a>Neu</a></button>
-    </aside>
+    <input class="input" type="text" placeholder="Artikelnummer">
+    <input class="input" type="text" placeholder="Bezeichnung"><br><br>
 </div>
 
 <div>
-    <aside style="width:20%">
-        <input class="input" type="text" placeholder="Modell"><br><br>
-        <select class="select">
-            <option>Farbe</option>
-        </select><br><br>
-        <select class="select">
-            <option>Größe</option>
-        </select><br><br>
-        <select class="select">
-           <option>Bügel</option>
-        </select><br><br>
-        <input class="input" type="text" placeholder="EK o. Mwst Rabatt"><br><br>
-        <select class="select">
-            <option>Bemerkung</option>
-        </select><br><br>
-    </aside>
-</div>
+<select class="select">
+    <option>Gattung</option>
+</select>
+<select class="select">
+    <option>Material</option>
+</select>
+<select class="select">
+    <option>Farbe</option>
+</select>
+<select class="select">
+    <option>Lieferant</option>
+</select><br><br>
 
-<div>
-    <select class="select">
-      <option>Lieferanten</option>
-    </select><br><br>
-    <select class="select">
-     <option>Verwendung</option>
-    </select><br><br>
-    <select class="select">
-      <option>Gattung</option>
-    </select><br><br>
-    <select class="select">
-      <option>Material</option>
-    </select><br><br>
-    <input class="input" type="text" placeholder="Anzahl"><br><br><br><br>
+<input class="input" type="text" placeholder="Einkaufspreis">
+<input class="input" type="text" placeholder="Verkaufspreis"><br><br>
 </div>
 
 <div>
     <input class="input" type="text" placeholder="Suchen">
     <button class="button" type="submit" onclick="createTable()">Alles anzeigen</button>
+
+    <button class="button" onclick="fillTable()"><a>Speichern</a></button>
+    <button class="button"><a>Neu</a></button>
 </div>
 
 <div class="table">
@@ -88,12 +64,12 @@
     }
 
     function searchOrder() {
-        let auftragsNr = document.getElementById('auftragsNr').value;
+        let artikelNr = document.getElementById('artikelNr').value;
 
         doRequest(
             'GET',
-            '/api/auftrags/',
-            auftragsNr,
+            '/api/artikels',
+            artikelNr,
             (jsonString) => {   // func
                 let data = JSON.parse(jsonString);
                 // alert(data.exception);
@@ -111,21 +87,13 @@
             let tableBody = document.createElement('TBODY');
             const headings = [
                 'ArtNr.',
-                'Lieferant.',
-                'Verwendung',
-                'Gattung',
+                'Bezeichnung',
+                'Artikelart',
                 'Material',
-                'Model',
                 'Farbe',
-                'Größe',
-                'Bügel',
-                'EK',
-                'Bemerkung',
-                'Faktor',
-                'VK',
-                'Fa-Code',
-                'Datum',
-                'Kom',
+                'Einkaufspreis',
+                'Verkaufspreis',
+                'Lieferant',
             ];
 
             table.appendChild(tableHead);
