@@ -2,13 +2,10 @@ package MaiOptiks.domain;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.time.OffsetDateTime;
 import java.util.Set;
 
 
@@ -30,7 +27,7 @@ public class Kunde {
             strategy = GenerationType.SEQUENCE,
             generator = "primary_sequence"
     )
-    private Integer kundenNr;
+    private Integer kundennr;
 
     @Column(length = 254)
     private String anrede;
@@ -45,13 +42,13 @@ public class Kunde {
     private String strasse;
 
     @Column(length = 254)
-    private String hausNr;
+    private String hausnr;
 
     @Column
     private LocalDate geburtsdatum;
 
     @Column(length = 254)
-    private String telefonNr;
+    private String telefonnr;
 
     @Column(length = 254)
     private String handy;
@@ -60,7 +57,7 @@ public class Kunde {
     private String email;
 
     @Column(length = 254)
-    private String versicherungsNr;
+    private String versicherungsnr;
 
     @Column
     private LocalDate gueltigkeit;
@@ -69,22 +66,13 @@ public class Kunde {
     private String bemerkung;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "plz_id")
+    @JoinColumn(name = "plz")
     private Stadt plz;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "krankenkassen_nr_id")
+    @JoinColumn(name = "krankenkassennr")
     private Krankenkasse krankenkassenNr;
 
     @OneToMany(mappedBy = "kundenNr")
     private Set<Auftrag> kundenNrAuftrags;
-
-    @CreatedDate
-    @Column(nullable = false, updatable = false)
-    private OffsetDateTime dateCreated;
-
-    @LastModifiedDate
-    @Column(nullable = false)
-    private OffsetDateTime lastUpdated;
-
 }
