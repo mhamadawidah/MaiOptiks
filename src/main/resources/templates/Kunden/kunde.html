@@ -22,9 +22,9 @@
     </div>
 
     <div class="search-fields">
-        <input class="input" id="name" placeholder="Name" type="text"/><br>
-        <input class="input" id="lastname" placeholder="Vorname" type="text"/><br>
-        <button class="button submit-button" onclick="createTable()">Suchen</button>
+        <input class="input" id="lastname" placeholder="Name" required type="text"/><br>
+        <input class="input" id="name" placeholder="Vorname" required type="text"/><br>
+        <button class="button submit-button" onclick="searchCustomer()">Suchen</button>
     </div>
 </div>
 
@@ -35,6 +35,7 @@
     <button class="button direction-button" onclick="openLink('/neuer-kunde')">Neuer Kunde</button>
     <button class="button direction-button" onclick="openLink('/organisation')">Organisation</button>
     <button class="button direction-button" onclick="openLink('/führerscheinsehtest')">Führerschein-Sehtest</button>
+    <button class="button direction-button" onclick="insertCustomer()">Kunde einfügen</button>
 </div>
 
 </body>
@@ -43,18 +44,37 @@
         let name = document.getElementById('name').value;
         let lastname = document.getElementById('lastname').value;
 
-        doRequest(
-            'GET',
+        if (name === '' && lastname === '') {
+            document.getElementById('name').style.border = '3px solid red';
+            document.getElementById('lastname').style.border = '3px solid red';
+
+            return false;
+        } else if (name === '' && lastname !== '') {
+            document.getElementById('name').style.border = '3px solid red';
+            document.getElementById('lastname').style.border = '1px solid black';
+
+            return false;
+        } else if (lastname === '' && name !== '') {
+            document.getElementById('name').style.border = '1px solid black';
+            document.getElementById('lastname').style.border = '3px solid red';
+
+            return false;
+        } else {
+            document.getElementById('name').style.border = '1px solid black';
+            document.getElementById('lastname').style.border = '1px solid black';
+        }
+
+        doGetRequest(
             '/api/kundes/',
-            name,
-            (jsonString) => {   // func
-                let data = JSON.parse(jsonString);
+            (lastname + '/' + name),
+            (data) => {   // func
+                //let data = JSON.parse(data);
                 // alert(data.exception);
                 createTable(data);
             });
     }
 
-    function createTable() {
+    function createTable(data) {
         if (document.getElementsByClassName('table-container')[0].firstElementChild !== null) {
             return false;
         } else {
@@ -109,6 +129,14 @@
 
             tableContainer.appendChild(table);
         }
+    }
+</script>
+<script>
+    function insertCustomer() {
+        let json = '{"anrede": "Herr", "bemerkung": "", "email": "mustermannmax@examle.com", "geburtsdatum": "2022-10-27", "gueltigkeit": "2024-05-18", "handy": "0172 567891234", "hausNr": "3", "krankenkassenNr": "55", "kundenNr": 1, "name": "Mustermann", "plz": 49477, "strasse": "Wilhelmstr.", "telefonNr": "123456789", "versicherungsNr": "123123", "vorname": "Max"}';
+        doPostRequest('/api/kundes', json, (data) => {
+            console.log(data.response)
+        });
     }
 </script>
 </html>
