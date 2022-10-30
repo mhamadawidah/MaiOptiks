@@ -8716,3 +8716,52 @@ MERGE INTO Kunde(KundenNr, Anrede, Name, Vorname, Strasse, HausNr, PLZ, Geburtsd
 MERGE INTO Kunde(KundenNr, Anrede, Name, Vorname, Strasse, HausNr, PLZ, Geburtsdatum, TelefonNr, Handy, EMail, KrankenkassenNr, VersicherungsNr, Gueltigkeit, Bemerkung) VALUES('97','Frau','Berger','Marie','An Den Wiesen','61','49086','2007-02-16','44272 739818','1070 9391809','Marie.Berger@gmail.com','54','759949','2022-10-27','');
 MERGE INTO Kunde(KundenNr, Anrede, Name, Vorname, Strasse, HausNr, PLZ, Geburtsdatum, TelefonNr, Handy, EMail, KrankenkassenNr, VersicherungsNr, Gueltigkeit, Bemerkung) VALUES('98','Frau','Schortemeyer','Lily','Glosemeyersgasse','103','49082','2012-10-27','93600 241949','5815 7788725','Lily.Schortemeyer@gmail.com','36','359473','2022-10-27','');
 MERGE INTO Kunde(KundenNr, Anrede, Name, Vorname, Strasse, HausNr, PLZ, Geburtsdatum, TelefonNr, Handy, EMail, KrankenkassenNr, VersicherungsNr, Gueltigkeit, Bemerkung) VALUES('99','Frau','Merschmeyer','Christine','Schierloher Mühlenweg','41','49078','1980-10-26','36225 624871','4107 3638150','Christine.Merschmeyer@gmail.com','27','135234','2022-10-27','');
+
+MERGE INTO Mitarbeiter(MitarbeiterNr, Name, Vorname, Starsse, HausNr, PLZ, TelefonNr, Handy, Email, Geburtsdatum) VALUES('1','Hauenhorst','Heike','Glosemeyersgasse','81','49076','57617 730458','5577 1245287','Heike.Hauenhorst@gmail.com','2019-05-10');
+MERGE INTO Mitarbeiter(MitarbeiterNr, Name, Vorname, Starsse, HausNr, PLZ, TelefonNr, Handy, Email, Geburtsdatum) VALUES('2','Mai','Marten','Scholmeyersgasse','46','49497','93628 341692','8151 6189898','Marten.Mai@gmail.com','1963-10-21');
+MERGE INTO Mitarbeiter(MitarbeiterNr, Name, Vorname, Starsse, HausNr, PLZ, TelefonNr, Handy, Email, Geburtsdatum) VALUES('3','Schmidt','Melina','Scholmeyersgasse','125','49076','31287 754406','2012 9695020','Melina.Schmidt@gmail.com','1995-12-19');
+MERGE INTO Mitarbeiter(MitarbeiterNr, Name, Vorname, Starsse, HausNr, PLZ, TelefonNr, Handy, Email, Geburtsdatum) VALUES('4','Schortemeyer','Laura','Alstedde','21','49078','83066 760159','5004 8450927','Laura.Schortemeyer@gmail.com','1996-04-26');
+MERGE INTO Mitarbeiter(MitarbeiterNr, Name, Vorname, Starsse, HausNr, PLZ, TelefonNr, Handy, Email, Geburtsdatum) VALUES('0','Vollmer','Nadine','Schierloher Mühlenweg','50','49504','65894 117400','2253 4447012','Nadine.Vollmer@gmail.com','1949-11-10');
+MERGE INTO Mitarbeiter(MitarbeiterNr, Name, Vorname, Starsse, HausNr, PLZ, TelefonNr, Handy, Email, Geburtsdatum) VALUES('5','Müller','Sabine','Perkinsstraße','123','49088','76612 750075','2340 4037013','Sabine.Müller@gmail.com','1988-08-04');
+MERGE INTO Mitarbeiter(MitarbeiterNr, Name, Vorname, Starsse, HausNr, PLZ, TelefonNr, Handy, Email, Geburtsdatum) VALUES('6','Mai','Alex','Alstedde','47','49074','80589 897661','2281 5593253','Alex.Mai@gmail.com','1961-07-06');
+MERGE INTO Mitarbeiter(MitarbeiterNr, Name, Vorname, Starsse, HausNr, PLZ, TelefonNr, Handy, Email, Geburtsdatum) VALUES('7','Schortemeyer','Nils','Hauereck','118','49504','57013 793378','5259 4523882','Nils.Schortemeyer@gmail.com','1976-03-24');
+MERGE INTO Mitarbeiter(MitarbeiterNr, Name, Vorname, Starsse, HausNr, PLZ, TelefonNr, Handy, Email, Geburtsdatum) VALUES('8','Wenzel','Nils','Walnußweg','91','49090','21706 627935','6860 6435045','Nils.Wenzel@gmail.com','1949-08-25');
+MERGE INTO Mitarbeiter(MitarbeiterNr, Name, Vorname, Starsse, HausNr, PLZ, TelefonNr, Handy, Email, Geburtsdatum) VALUES('9','Meier','Sabine','An Den Wiesen','129','49078','88523 325701','5575 6821425','Sabine.Meier@gmail.com','1943-07-03');
+
+MERGE INTO Arzt(ArztNr, Name, Vorname, Strasse, HausNr, PLZ, TelefonNr, Handy, Email) VALUES('0','Hauenhorst','Peter','Zur Alten Wache','45','49082','34950 390885','6668 7713150','Peter.Hauenhorst@gmail.com');
+MERGE INTO Arzt(ArztNr, Name, Vorname, Strasse, HausNr, PLZ, TelefonNr, Handy, Email) VALUES('1','Schmied','Phillip','Walnußweg','116','49090','18909 747478','1715 7793956','Phillip.Schmied@gmail.com');
+MERGE INTO Arzt(ArztNr, Name, Vorname, Strasse, HausNr, PLZ, TelefonNr, Handy, Email) VALUES('2','Schmied','Lara','Josefstiftgasse','110','49509','57838 161046','3740 1472988','Lara.Schmied@gmail.com');
+MERGE INTO Arzt(ArztNr, Name, Vorname, Strasse, HausNr, PLZ, TelefonNr, Handy, Email) VALUES('3','Wenzel','Marie','Schierloher Mühlenweg','64','49082','21924 614106','2855 5438290','Marie.Wenzel@gmail.com');
+MERGE INTO Arzt(ArztNr, Name, Vorname, Strasse, HausNr, PLZ, TelefonNr, Handy, Email) VALUES('4','Holthaus','Nicole','Schierloh','108','49086','22165 958784','7067 3445404','Nicole.Holthaus@gmail.com');
+MERGE INTO Arzt(ArztNr, Name, Vorname, Strasse, HausNr, PLZ, TelefonNr, Handy, Email) VALUES('5','Haus','Sabine','Aaseewinkel','65','49082','15088 940507','3616 8297823','Sabine.Haus@gmail.com');
+MERGE INTO Arzt(ArztNr, Name, Vorname, Strasse, HausNr, PLZ, TelefonNr, Handy, Email) VALUES('6','Schmied','Jan','Perkinsstraße','90','49504','16165 838891','4921 7390925','Jan.Schmied@gmail.com');
+MERGE INTO Arzt(ArztNr, Name, Vorname, Strasse, HausNr, PLZ, TelefonNr, Handy, Email) VALUES('7','Schmidt','Claudia','Scholmeyersgasse','114','49492','39263 112326','2907 5263417','Claudia.Schmidt@gmail.com');
+MERGE INTO Arzt(ArztNr, Name, Vorname, Strasse, HausNr, PLZ, TelefonNr, Handy, Email) VALUES('8','Mai','Frederick','Glosemeyersgasse','31','49497','63523 920327','3527 2757898','Frederick.Mai@gmail.com');
+MERGE INTO Arzt(ArztNr, Name, Vorname, Strasse, HausNr, PLZ, TelefonNr, Handy, Email) VALUES('9','Neuer','Leon','Hanfweg','107','49504','33406 189927','8443 6801978','Leon.Neuer@gmail.com');
+
+MERGE INTO Lieferant(LieferantID, Name, Strasse, PLZ , TelefonNr) VALUES('0', 'Siewert & Kau', 'Hanfweg','49504','33406 189927');
+MERGE INTO Lieferant(LieferantID, Name, Strasse, PLZ , TelefonNr) VALUES('1', 'ADN', 'Josefstiftgasse','49477','33406 189927');
+MERGE INTO Lieferant(LieferantID, Name, Strasse, PLZ , TelefonNr) VALUES('2', 'Wortmann', 'HanfSchierlohweg','49078','33406 189927');
+MERGE INTO Lieferant(LieferantID, Name, Strasse, PLZ , TelefonNr) VALUES('3', 'Watchguard', 'Scholmeyersgasse','49504','33406 189927');
+MERGE INTO Lieferant(LieferantID, Name, Strasse, PLZ , TelefonNr) VALUES('4', 'API Deutschland', 'Glosemeyersgasse','49479','33406 189927');
+
+MERGE INTO Artikelart(ArtID, Bezeichnung) VALUES('0', 'Gläser');
+MERGE INTO Artikelart(ArtID, Bezeichnung) VALUES('1', 'Fassung');
+MERGE INTO Artikelart(ArtID, Bezeichnung) VALUES('2', 'Kontaktlinsen');
+
+MERGE INTO Material(MaterialID, Bezeichung, Info) VALUES('0', 'Kunststoff', '');
+MERGE INTO Material(MaterialID, Bezeichung, Info) VALUES('1', 'Acetat', '');
+MERGE INTO Material(MaterialID, Bezeichung, Info) VALUES('2', 'Metall', '');
+MERGE INTO Material(MaterialID, Bezeichung, Info) VALUES('3', 'Titan', '');
+MERGE INTO Material(MaterialID, Bezeichung, Info) VALUES('4', 'Holz', '');
+MERGE INTO Material(MaterialID, Bezeichung, Info) VALUES('5', 'Horn', '');
+MERGE INTO Material(MaterialID, Bezeichung, Info) VALUES('6', 'MaterialMix', '');
+MERGE INTO Material(MaterialID, Bezeichung, Info) VALUES('7', 'Ocufilcon ', '');
+MERGE INTO Material(MaterialID, Bezeichung, Info) VALUES('8', 'Omafilcon', '');
+MERGE INTO Material(MaterialID, Bezeichung, Info) VALUES('9', 'Polycarbonat', '');
+MERGE INTO Material(MaterialID, Bezeichung, Info) VALUES('10', 'Glas', '');
+
+MERGE INTO Auftrag(Auftragsnummer, AbrechnungsID, Rezepturvorhanden, Womit, Wann, Fertig, Abgeholt, Bezahlt, Auftragsbestaetigung, Rechnung, ErsteMahnung, ZweiteMahnung, DritteMahnung, KundenNr, Datum, Werkstatt, Berater, Refraktion) VALUES('0', '2', '1', '1', '1', '1', '0', '0', '?', '201,99', 0, 0, 0, '5', '2022/03/14', '4', '1', '4');
+
+
+
