@@ -34,11 +34,11 @@ CREATE TABLE IF NOT EXISTS Artikelart (ArtID int NOT NULL, Bezeichnung varchar(2
 
 CREATE TABLE IF NOT EXISTS Artikel (ArtikelNr int NOT NULL, Bezeichnung varchar(254), Artikelart varchar(254), Material int, Farbe int, Einkaufspreis float, Verkaufspreis float, Lieferant int, PRIMARY KEY (ArtikelNr), FOREIGN KEY (Material) REFERENCES Material(MaterialID), FOREIGN KEY (Farbe) REFERENCES Farbe(FarbeID), FOREIGN KEY (Lieferant) REFERENCES Lieferant(LieferantID));
 
-CREATE TABLE IF NOT EXISTS Glaeser (ArtikelNr int NOT NULL, Art int NOT NULL, Werte varchar(254), Material int, Farbe int, Einkaufspreis float, Verkaufspreis float, Lieferant int, PRIMARY KEY (ArtikelNr,Art), FOREIGN KEY (Art) REFERENCES Artikelart(ArtID),  FOREIGN KEY (Werte) REFERENCES Refraktion(RefraktionID), FOREIGN KEY (Material) REFERENCES Material(MaterialID), FOREIGN KEY (Farbe) REFERENCES Farbe(FarbeID), FOREIGN KEY (Lieferant) REFERENCES Lieferant(LieferantID));
+CREATE TABLE IF NOT EXISTS Glaeser (ArtikelNr int NOT NULL, Werte varchar(254), PRIMARY KEY (ArtikelNr,Art), FOREIGN KEY (Werte) REFERENCES Refraktion(RefraktionID));
 
-CREATE TABLE IF NOT EXISTS Fassungen (ArtikelNr int NOT NULL, Art int NOT NULL, Material int, Farbe int, Einkaufspreis float, Verkaufspreis float, Lieferant int, PRIMARY KEY (ArtikelNr,Art), FOREIGN KEY (Art) REFERENCES Artikelart (ArtID), FOREIGN KEY (Material) REFERENCES Material(MaterialID), FOREIGN KEY (Farbe) REFERENCES Farbe(FarbeID), FOREIGN KEY (Lieferant) REFERENCES Lieferant(LieferantID));
+CREATE TABLE IF NOT EXISTS Fassungen (ArtikelNr int NOT NULL, PRIMARY KEY (ArtikelNr,Art));
 
-CREATE TABLE IF NOT EXISTS Kontaktlinsen (ArtikelNr int NOT NULL, Art varchar(254) NOT NULL, Material int, Farbe int, Einkaufspreis float, Verkaufspreis float, Lieferant int, PRIMARY KEY (ArtikelNr,Art), FOREIGN KEY (Art) REFERENCES Artikelart(ArtID), FOREIGN KEY (Material) REFERENCES Material(MaterialID), FOREIGN KEY (Farbe) REFERENCES Farbe(FarbeID), FOREIGN KEY (Lieferant) REFERENCES Lieferant(LieferantID));
+CREATE TABLE IF NOT EXISTS Kontaktlinsen (ArtikelNr int NOT NULL, PRIMARY KEY (ArtikelNr,Art));
 
 CREATE TABLE IF NOT EXISTS Brille (BrillenID int NOT NULL, GlasArtikelIDLinks int, GlasArtikelIDRechts int, FassungsArtikelID int, PRIMARY KEY (BrillenID), FOREIGN KEY (GlasArtikelIDLinks) REFERENCES Artikel (ArtikelNr), FOREIGN KEY (GlasArtikelIDRechts) REFERENCES Artikel(ArtikelNr), FOREIGN KEY (FassungsArtikelID) REFERENCES Artikel(ArtikelNr));
 
