@@ -1,13 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <body>
-<th:block th:fragment="auftrag">
-   <label>table to search for "kunden" here</label>
-    <script>
-        document
-            .getElementsByName("kunden_id")
-            .forEach(input => input.value = 1 /*selected value here*/)
-    </script>
+<th:block th:fragment="kunden">
+
+    <div class="firstInput">
+        <label for="customerNo">Kundennummer</label><input type="number" id="customerNo"/>
+        <select>
+            <option value="herr">Herr</option>
+            <option value="frau">Frau</option>
+            <option value="divers">Divers</option>
+        </select>
+        <label for="name">Vorname</label><input type="text" id="name"/>
+        <label for="lastname">Nachname</label><input type="text" id="lastname"/>
+    </div>
+
+    <!--    <hr>-->
+
+    <!--    <form>-->
+    <!--        <label>Straße & Hausnr.</label><input type="text"/><input type="number"/>-->
+    <!--        <br>-->
+    <!--        <label>Ort</label><input type="text"/>-->
+    <!--        <br>-->
+    <!--        <label>Geburtsdatum</label><input type="date"/>-->
+    <!--        <br>-->
+    <!--        <label>Telefonnr.</label><input type="number"/>-->
+    <!--        <br>-->
+    <!--        <label>Handy</label><input type="number"/>-->
+    <!--        <br>-->
+    <!--        <label>E-Mail</label><input type="email"/>-->
+    <!--    </form>-->
+
+    <!--    <form>-->
+    <!--        <label>Krankenkassennr.</label><input type="number"/>-->
+    <!--        <br>-->
+    <!--        <label>Versicherungsnr.</label><input type="number"/>-->
+    <!--        <br>-->
+    <!--        <label>Gültigkeit</label><input type="datetime-local"/>-->
+    <!--        <br>-->
+    <!--        <label>Bemerkung</label><input type="text"/>-->
+    <!--    </form>-->
+    <!--    <label>table to search for "kunden" here</label>-->
+
 </th:block>
 </body>
+<script>
+    document
+        .getElementsByName("kunden_id")
+        .forEach(input => input.value = 1 /*selected value here*/)
+</script>
 </html>

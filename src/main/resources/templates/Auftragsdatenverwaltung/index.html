@@ -4,26 +4,39 @@
     <meta charset="UTF-8">
     <title th:text="${title}"></title>
     <link rel="stylesheet" th:href="@{/css/main.css}"/>
+    <link rel="stylesheet" th:href="@{/css/auftragsdatenverwaltung-style.css}"/>
+    <script th:src="@{/scripts/main.js}" type="text/javascript"></script>
 </head>
 <body>
-<label>Auftragsdatenverwaltung</label>
-<div class="head">
-    <form action="" method="GET">
-        <input type="hidden" name="selection" value="1">
-        <input type="hidden" name="kunden_id">
-        <input type="submit" value="Kunden"/>
-    </form>
-    <form action="" method="GET">
-        <input type="hidden" name="selection" value="2">
-        <input type="hidden" name="kunden_id">
-        <input type="submit" value="Auftrag"/>
-    </form>
-    <form action="" method="GET">
-        <input type="hidden" name="selection" value="3">
-        <input type="hidden" name="kunden_id">
-        <input type="submit" value="Augendaten"/>
-    </form>
+<div class="title-bar">
+    <h1 class="heading">Auftragsdatenverwaltung</h1>
 </div>
+
+<div class="vertical-bar">
+    <p></p>
+</div>
+
+<!--<label>Auftragsdatenverwaltung</label>-->
+<div class="head">
+    <div class="tab-buttons">
+        <form action="" method="GET">
+            <input type="hidden" name="selection" value="1">
+            <input type="hidden" name="kunden_id">
+            <input type="submit" value="Kunden"/>
+        </form>
+        <form action="" method="GET">
+            <input type="hidden" name="selection" value="2">
+            <input type="hidden" name="kunden_id">
+            <input type="submit" value="Auftrag"/>
+        </form>
+        <form action="" method="GET">
+            <input type="hidden" name="selection" value="3">
+            <input type="hidden" name="kunden_id">
+            <input type="submit" value="Augendaten"/>
+        </form>
+    </div>
+</div>
+
 <div class="body">
     <th:block th:if="${selection == 1}">
         <div th:replace="fragments/Auftragsdatenverwaltung/kunden.html"/>
@@ -32,19 +45,18 @@
         <div th:replace="fragments/Auftragsdatenverwaltung/auftrag.html"/>
     </th:block>
     <th:block th:if="${selection >= 3}">
-     <div th:replace="fragments/Auftragsdatenverwaltung/augendaten.html"/>
+        <div th:replace="fragments/Auftragsdatenverwaltung/augendaten.html"/>
     </th:block>
 </div>
-<div>
-    <form>
-        <input type="submit" value="Speichern" name="Save">
-        <input type="submit" value="Löschen" name="Delete">
-        <input type="submit" value="Drucken" name="Print">
-        <input type="submit" value="Neu"  name="New">
-        <input type="submit" value="Zurück" name="Back">
-    </form>
-</div>
 
+<div class="action-buttons">
+    <button type="button" name="Save" class="button action-button">Speichern</button>
+    <button type="button" name="Delete" class="button action-button">Löschen</button>
+    <button type="button" name="Print" class="button action-button">Drucken</button>
+    <button type="button" name="New" class="button action-button">Neu</button>
+    <button type="button" name="Back" class="button action-button">Zurück</button>
+</div>
+</body>
 <script>
     var URL = new URL(window.location.href);
     var getParam = URL.searchParams.get('kunden_id');
@@ -52,6 +64,4 @@
         .getElementsByName("kunden_id")
         .forEach(input => input.value = getParam);
 </script>
-
-</body>
 </html>

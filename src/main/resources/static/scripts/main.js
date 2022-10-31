@@ -17,6 +17,8 @@ function doRequest(method, endpoint, key, json_data, func) {
         .then(async (response) => {
             if (response.status >= 200 && response.status < 300) {
                 return response.json();
+            } else if (response.status === 404) {
+                alert('\nEintrag nicht vorhanden.');
             } else if (response.status >= 500) {
                 alert('\nServerfehler!\n\nBitte den Systemadministrator kontaktieren.');
             } else {
