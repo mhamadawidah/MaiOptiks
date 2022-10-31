@@ -35,8 +35,7 @@
         <br> 
     </div>
     <div>
-        <form oninput = anzAuftrag>
-        <output></output>
+        <h4 id = AnzAuf></h4>
     </div> 
 </div> 
 
@@ -47,6 +46,7 @@
     }
 
     function anzAuftrag(){
+        document.getElementById("AnzAuf").innerHTML = "Have a nice day!";
        doGetRequest(
             '/api/stadts/',
             48477,
