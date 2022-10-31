@@ -1,7 +1,12 @@
+
+
 function getInputData() {
     console.log("Hole Daten...")
 
-    const anrede = document.getElementById("anrede").value
+    if (document.getElementById('anrede1').checked) {
+      rate_value = document.getElementById('anrede1').value;
+    }
+    const anrede = document.querySelector('input[name="anrede"]:checked').value
     const name = document.getElementById("name").value
     const vorname = document.getElementById("vorname").value
     const strasse = document.getElementById("strasse").value
@@ -11,10 +16,11 @@ function getInputData() {
     const handy = document.getElementById("mobil").value
     const email = document.getElementById("mail").value
     const versicherungsNr = document.getElementById("versicherungs").value
-    const gueltigkeit = document.getElementById("gueltigkeit").value
-    const bemerkung = document.getElementById("").value
+    const gueltigkeit = document.getElementById("gueltig").value
     const plz = document.getElementById("plz").value
     const krankenkassenNr = document.getElementById("krankenkassen").value
+
+    console.log("kaka", typeof geburtsdatum)
 
     //Json zusammenbauen
     let jsonObject = {
@@ -33,5 +39,10 @@ function getInputData() {
         "krankenkassenNr": krankenkassenNr
     }
 
+    console.log("Jason", jsonObject)
+
+    doPostRequest('/api/kundes',  jsonObject, (response) => {
+        console.log("Hier bin ich", response)
+    })
     return jsonObject
 }

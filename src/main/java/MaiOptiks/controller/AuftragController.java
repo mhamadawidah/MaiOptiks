@@ -47,9 +47,9 @@ public class AuftragController {
         model.addAttribute("kundenNrValues", kundeRepository.findAll().stream().collect(
                 Collectors.toMap(Kunde::getKundennr, Kunde::getAnrede)));
         model.addAttribute("beraterValues", mitarbeiterRepository.findAll().stream().collect(
-                Collectors.toMap(Mitarbeiter::getMitarbeiterNr, Mitarbeiter::getName)));
+                Collectors.toMap(Mitarbeiter::getMitarbeiternr, Mitarbeiter::getName)));
         model.addAttribute("werkstattValues", mitarbeiterRepository.findAll().stream().collect(
-                Collectors.toMap(Mitarbeiter::getMitarbeiterNr, Mitarbeiter::getName)));
+                Collectors.toMap(Mitarbeiter::getMitarbeiternr, Mitarbeiter::getName)));
         model.addAttribute("refraktionValues", refraktionDurchgefuertRepository.findAll().stream().collect(
                 Collectors.toMap(RefraktionDurchgefuert::getRefraktionsnr, RefraktionDurchgefuert::getRefraktionsnr)));
         model.addAttribute("abrechnungsValues", abrechnungsartRepository.findAll().stream().collect(

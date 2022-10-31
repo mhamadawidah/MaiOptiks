@@ -33,7 +33,7 @@ public class KontaktlinsenService {
     }
 
     public List<KontaktlinsenDTO> findAll() {
-        return kontaktlinsenRepository.findAll(Sort.by("artikelNr"))
+        return kontaktlinsenRepository.findAll(Sort.by("artikelnr"))
                 .stream()
                 .map(kontaktlinsen -> mapToDTO(kontaktlinsen, new KontaktlinsenDTO()))
                 .collect(Collectors.toList());
@@ -48,7 +48,7 @@ public class KontaktlinsenService {
     public Integer create(final KontaktlinsenDTO kontaktlinsenDTO) {
         final Kontaktlinsen kontaktlinsen = new Kontaktlinsen();
         mapToEntity(kontaktlinsenDTO, kontaktlinsen);
-        return kontaktlinsenRepository.save(kontaktlinsen).getArtikelNr();
+        return kontaktlinsenRepository.save(kontaktlinsen).getArtikelnr();
     }
 
     public void update(final Integer artikelNr, final KontaktlinsenDTO kontaktlinsenDTO) {
@@ -64,13 +64,13 @@ public class KontaktlinsenService {
 
     private KontaktlinsenDTO mapToDTO(final Kontaktlinsen kontaktlinsen,
             final KontaktlinsenDTO kontaktlinsenDTO) {
-        kontaktlinsenDTO.setArtikelNr(kontaktlinsen.getArtikelNr());
+        kontaktlinsenDTO.setArtikelNr(kontaktlinsen.getArtikelnr());
         kontaktlinsenDTO.setEinkaufspreis(kontaktlinsen.getEinkaufspreis());
         kontaktlinsenDTO.setVerkaufspreis(kontaktlinsen.getVerkaufspreis());
-        kontaktlinsenDTO.setArt(kontaktlinsen.getArt() == null ? null : kontaktlinsen.getArt().getArtId());
-        kontaktlinsenDTO.setMaterial(kontaktlinsen.getMaterial() == null ? null : kontaktlinsen.getMaterial().getMaterialId());
-        kontaktlinsenDTO.setFarbe(kontaktlinsen.getFarbe() == null ? null : kontaktlinsen.getFarbe().getFarbeId());
-        kontaktlinsenDTO.setLieferant(kontaktlinsen.getLieferant() == null ? null : kontaktlinsen.getLieferant().getLieferantId());
+        kontaktlinsenDTO.setArt(kontaktlinsen.getArt() == null ? null : kontaktlinsen.getArt().getArtid());
+        kontaktlinsenDTO.setMaterial(kontaktlinsen.getMaterial() == null ? null : kontaktlinsen.getMaterial().getMaterialid());
+        kontaktlinsenDTO.setFarbe(kontaktlinsen.getFarbe() == null ? null : kontaktlinsen.getFarbe().getFarbeid());
+        kontaktlinsenDTO.setLieferant(kontaktlinsen.getLieferant() == null ? null : kontaktlinsen.getLieferant().getLieferantid());
         return kontaktlinsenDTO;
     }
 

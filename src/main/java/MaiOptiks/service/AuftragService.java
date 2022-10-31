@@ -79,8 +79,8 @@ public class AuftragService {
         auftragDTO.setDritteMahnung(auftrag.getDrittemahnung());
         auftragDTO.setDatum(auftrag.getDatum());
         auftragDTO.setKundenNr(auftrag.getKundenNr() == null ? null : auftrag.getKundenNr().getKundennr());
-        auftragDTO.setBerater(auftrag.getBerater() == null ? null : auftrag.getBerater().getMitarbeiterNr());
-        auftragDTO.setWerkstatt(auftrag.getWerkstatt() == null ? null : auftrag.getWerkstatt().getMitarbeiterNr());
+        auftragDTO.setBerater(auftrag.getBerater() == null ? null : auftrag.getBerater().getMitarbeiternr());
+        auftragDTO.setWerkstatt(auftrag.getWerkstatt() == null ? null : auftrag.getWerkstatt().getMitarbeiternr());
         auftragDTO.setRefraktion(auftrag.getRefraktion() == null ? null : auftrag.getRefraktion().getRefraktionsnr());
         auftragDTO.setAbrechnungs(auftrag.getAbrechnungs() == null ? null : auftrag.getAbrechnungs().getId());
         return auftragDTO;
