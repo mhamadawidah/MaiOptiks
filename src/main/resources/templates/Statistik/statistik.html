@@ -20,7 +20,6 @@
 <div class="header-button">
     <button class=" button button-startseite" onclick="openLink('/')">Startseite</button>
     <button class=" button button-startseite" onclick="Laden()">Laden</button>
-    <button class=" button button-startseite" onclick="print()">Drucken</button>
     <hr class="linetop">
 </div>
 
@@ -36,6 +35,10 @@
     </div>
     <div>
         <h4 id = AnzAuf></h4>
+        <br>
+        <h4 id = AnzMit></h4>
+        <br>
+        <h4 id = AnzKund></h4>
     </div> 
 </div> 
 
@@ -43,20 +46,36 @@
 <script>
     function Laden(){
         anzAuftrag();
+        anzMitarbeiter();
+        anzKunden();
     }
 
     function anzAuftrag(){
-        document.getElementById("AnzAuf").innerHTML = "Have a nice day!";
-       doGetRequest(
-            '/api/stadts/',
-            48477,
+        debugger;
+        document.getElementById("AnzAuf").innerHTML = doGetRequest(
+            '/api/auftrags',
+            '',
             (jsonString) => {   // func
                 let data = JSON.parse(jsonString);
-                alert(data)
-            });
-            alert('ENDE')
-            
+            }); 
     }
+    function anzMitarbeiter(){
+        document.getElementById("AnzMit").innerHTML = doGetRequest(
+            '/api/mitarbeiters',
+            '',
+            (jsonString) => {   // func
+                let data = JSON.parse(jsonString);
+            }); 
+    }
+    function anzKunden(){
+        document.getElementById("AnzKund").innerHTML = doGetRequest(
+            '/api/kundes',
+            '',
+            (jsonString) => {   // func
+                let data = JSON.parse(jsonString);
+            }); 
+    }
+    
     
 </script>
 
