@@ -29,12 +29,12 @@ public class RefraktionDurchgefuert {
     private Integer refraktionsnr;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "mitarbeiter_nr")
-    private Mitarbeiter mitarbeiterNr;
+    @JoinColumn(name = "mitarbeiternr")
+    private Mitarbeiter mitarbeiternr;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "arzt_nr_id")
-    private Arzt arztNr;
+    @JoinColumn(name = "arztnr")
+    private Arzt arztnr;
 
     @OneToMany(mappedBy = "refraktion")
     private Set<Auftrag> refraktionAuftrags;

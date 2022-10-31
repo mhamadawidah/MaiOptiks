@@ -44,13 +44,13 @@ public class KontaktlinsenController {
     @ModelAttribute
     public void prepareContext(final Model model) {
         model.addAttribute("artValues", artikelartRepository.findAll().stream().collect(
-                Collectors.toMap(Artikelart::getArtId, Artikelart::getBezeichnung)));
+                Collectors.toMap(Artikelart::getArtid, Artikelart::getBezeichnung)));
         model.addAttribute("materialValues", materialRepository.findAll().stream().collect(
-                Collectors.toMap(Material::getMaterialId, Material::getBezeichung)));
+                Collectors.toMap(Material::getMaterialid, Material::getBezeichung)));
         model.addAttribute("farbeValues", farbeRepository.findAll().stream().collect(
-                Collectors.toMap(Farbe::getFarbeId, Farbe::getBezeichnung)));
+                Collectors.toMap(Farbe::getFarbeid, Farbe::getBezeichnung)));
         model.addAttribute("lieferantValues", lieferantRepository.findAll().stream().collect(
-                Collectors.toMap(Lieferant::getLieferantId, Lieferant::getName)));
+                Collectors.toMap(Lieferant::getLieferantid, Lieferant::getName)));
     }
 
     @GetMapping

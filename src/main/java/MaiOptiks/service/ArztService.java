@@ -27,7 +27,7 @@ public class ArztService {
     }
 
     public List<ArztDTO> findAll() {
-        return arztRepository.findAll(Sort.by("arztNr"))
+        return arztRepository.findAll(Sort.by("arztnr"))
                 .stream()
                 .map(arzt -> mapToDTO(arzt, new ArztDTO()))
                 .collect(Collectors.toList());
@@ -42,7 +42,7 @@ public class ArztService {
     public Integer create(final ArztDTO arztDTO) {
         final Arzt arzt = new Arzt();
         mapToEntity(arztDTO, arzt);
-        return arztRepository.save(arzt).getArztNr();
+        return arztRepository.save(arzt).getArztnr();
     }
 
     public void update(final Integer arztNr, final ArztDTO arztDTO) {
@@ -57,12 +57,12 @@ public class ArztService {
     }
 
     private ArztDTO mapToDTO(final Arzt arzt, final ArztDTO arztDTO) {
-        arztDTO.setArztNr(arzt.getArztNr());
+        arztDTO.setArztNr(arzt.getArztnr());
         arztDTO.setName(arzt.getName());
         arztDTO.setVorname(arzt.getVorname());
         arztDTO.setStrasse(arzt.getStrasse());
-        arztDTO.setHausNr(arzt.getHausNr());
-        arztDTO.setTelefonNr(arzt.getTelefonNr());
+        arztDTO.setHausNr(arzt.getHausnr());
+        arztDTO.setTelefonNr(arzt.getTelefonnr());
         arztDTO.setHandy(arzt.getHandy());
         arztDTO.setEmail(arzt.getEmail());
         arztDTO.setPlz(arzt.getPlz() == null ? null : arzt.getPlz().getPlz());
@@ -73,8 +73,8 @@ public class ArztService {
         arzt.setName(arztDTO.getName());
         arzt.setVorname(arztDTO.getVorname());
         arzt.setStrasse(arztDTO.getStrasse());
-        arzt.setHausNr(arztDTO.getHausNr());
-        arzt.setTelefonNr(arztDTO.getTelefonNr());
+        arzt.setHausnr(arztDTO.getHausNr());
+        arzt.setTelefonnr(arztDTO.getTelefonNr());
         arzt.setHandy(arztDTO.getHandy());
         arzt.setEmail(arztDTO.getEmail());
         final Stadt plz = arztDTO.getPlz() == null ? null : stadtRepository.findById(arztDTO.getPlz())

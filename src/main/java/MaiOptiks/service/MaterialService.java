@@ -23,7 +23,7 @@ public class MaterialService {
     }
 
     public List<MaterialDTO> findAll() {
-        return materialRepository.findAll(Sort.by("materialId"))
+        return materialRepository.findAll(Sort.by("materialid"))
                 .stream()
                 .map(material -> mapToDTO(material, new MaterialDTO()))
                 .collect(Collectors.toList());
@@ -38,7 +38,7 @@ public class MaterialService {
     public Integer create(final MaterialDTO materialDTO) {
         final Material material = new Material();
         mapToEntity(materialDTO, material);
-        return materialRepository.save(material).getMaterialId();
+        return materialRepository.save(material).getMaterialid();
     }
 
     public void update(final Integer materialId, final MaterialDTO materialDTO) {
@@ -53,7 +53,7 @@ public class MaterialService {
     }
 
     private MaterialDTO mapToDTO(final Material material, final MaterialDTO materialDTO) {
-        materialDTO.setMaterialId(material.getMaterialId());
+        materialDTO.setMaterialId(material.getMaterialid());
         materialDTO.setBezeichung(material.getBezeichung());
         materialDTO.setInfo(material.getInfo());
         return materialDTO;

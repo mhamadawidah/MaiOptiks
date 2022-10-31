@@ -29,29 +29,21 @@ public class Brille {
             strategy = GenerationType.SEQUENCE,
             generator = "primary_sequence"
     )
-    private Integer brillenId;
+    private Integer brillenid;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "glas_artikel_idlinks_id")
+    @JoinColumn(name = "glasartikelidlinks")
     private Artikel glasArtikelIdlinks;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "glas_artikel_idrechts_id")
+    @JoinColumn(name = "glasartikelidrechts")
     private Artikel glasArtikelIdrechts;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "fassungs_artikel_id")
+    @JoinColumn(name = "fassungsartikelid")
     private Artikel fassungsArtikel;
 
     @OneToMany(mappedBy = "sehhilfe")
     private Set<Auftragsartikel> sehhilfeAuftragsartikels;
-
-    @CreatedDate
-    @Column(nullable = false, updatable = false)
-    private OffsetDateTime dateCreated;
-
-    @LastModifiedDate
-    @Column(nullable = false)
-    private OffsetDateTime lastUpdated;
 
 }

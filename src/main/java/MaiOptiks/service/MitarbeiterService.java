@@ -28,7 +28,7 @@ public class MitarbeiterService {
     }
 
     public List<MitarbeiterDTO> findAll() {
-        return mitarbeiterRepository.findAll(Sort.by("mitarbeiterNr"))
+        return mitarbeiterRepository.findAll(Sort.by("mitarbeiternr"))
                 .stream()
                 .map(mitarbeiter -> mapToDTO(mitarbeiter, new MitarbeiterDTO()))
                 .collect(Collectors.toList());
@@ -43,7 +43,7 @@ public class MitarbeiterService {
     public Integer create(final MitarbeiterDTO mitarbeiterDTO) {
         final Mitarbeiter mitarbeiter = new Mitarbeiter();
         mapToEntity(mitarbeiterDTO, mitarbeiter);
-        return mitarbeiterRepository.save(mitarbeiter).getMitarbeiterNr();
+        return mitarbeiterRepository.save(mitarbeiter).getMitarbeiternr();
     }
 
     public void update(final Integer mitarbeiterNr, final MitarbeiterDTO mitarbeiterDTO) {
@@ -59,12 +59,12 @@ public class MitarbeiterService {
 
     private MitarbeiterDTO mapToDTO(final Mitarbeiter mitarbeiter,
             final MitarbeiterDTO mitarbeiterDTO) {
-        mitarbeiterDTO.setMitarbeiterNr(mitarbeiter.getMitarbeiterNr());
+        mitarbeiterDTO.setMitarbeiterNr(mitarbeiter.getMitarbeiternr());
         mitarbeiterDTO.setName(mitarbeiter.getName());
         mitarbeiterDTO.setVorname(mitarbeiter.getVorname());
         mitarbeiterDTO.setStrasse(mitarbeiter.getStrasse());
-        mitarbeiterDTO.setHausNr(mitarbeiter.getHausNr());
-        mitarbeiterDTO.setTelefonNr(mitarbeiter.getTelefonNr());
+        mitarbeiterDTO.setHausNr(mitarbeiter.getHausnr());
+        mitarbeiterDTO.setTelefonNr(mitarbeiter.getTelefonnr());
         mitarbeiterDTO.setHandy(mitarbeiter.getHandy());
         mitarbeiterDTO.setEmail(mitarbeiter.getEmail());
         mitarbeiterDTO.setGeburtsdatum(mitarbeiter.getGeburtsdatum());
@@ -77,8 +77,8 @@ public class MitarbeiterService {
         mitarbeiter.setName(mitarbeiterDTO.getName());
         mitarbeiter.setVorname(mitarbeiterDTO.getVorname());
         mitarbeiter.setStrasse(mitarbeiterDTO.getStrasse());
-        mitarbeiter.setHausNr(mitarbeiterDTO.getHausNr());
-        mitarbeiter.setTelefonNr(mitarbeiterDTO.getTelefonNr());
+        mitarbeiter.setHausnr(mitarbeiterDTO.getHausNr());
+        mitarbeiter.setTelefonnr(mitarbeiterDTO.getTelefonNr());
         mitarbeiter.setHandy(mitarbeiterDTO.getHandy());
         mitarbeiter.setEmail(mitarbeiterDTO.getEmail());
         mitarbeiter.setGeburtsdatum(mitarbeiterDTO.getGeburtsdatum());
