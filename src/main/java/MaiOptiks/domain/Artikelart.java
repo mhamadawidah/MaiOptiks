@@ -29,7 +29,7 @@ public class Artikelart {
             strategy = GenerationType.SEQUENCE,
             generator = "primary_sequence"
     )
-    private Integer artId;
+    private Integer artid;
 
     @Column(length = 254)
     private String bezeichnung;
@@ -42,13 +42,5 @@ public class Artikelart {
 
     @OneToMany(mappedBy = "art")
     private Set<Kontaktlinsen> artKontaktlinsens;
-
-    @CreatedDate
-    @Column(nullable = false, updatable = false)
-    private OffsetDateTime dateCreated;
-
-    @LastModifiedDate
-    @Column(nullable = false)
-    private OffsetDateTime lastUpdated;
 
 }

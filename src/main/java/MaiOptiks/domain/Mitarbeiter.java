@@ -2,13 +2,10 @@ package MaiOptiks.domain;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.time.OffsetDateTime;
 import java.util.Set;
 
 
@@ -30,7 +27,7 @@ public class Mitarbeiter {
             strategy = GenerationType.SEQUENCE,
             generator = "primary_sequence"
     )
-    private Integer mitarbeiterNr;
+    private Integer mitarbeiternr;
 
     @Column(length = 254)
     private String name;
@@ -42,10 +39,10 @@ public class Mitarbeiter {
     private String strasse;
 
     @Column(length = 254)
-    private String hausNr;
+    private String hausnr;
 
     @Column(length = 254)
-    private String telefonNr;
+    private String telefonnr;
 
     @Column(length = 254)
     private String handy;
@@ -57,10 +54,10 @@ public class Mitarbeiter {
     private LocalDate geburtsdatum;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "plz_id")
+    @JoinColumn(name = "plz")
     private Stadt plz;
 
-    @OneToMany(mappedBy = "mitarbeiterNr")
+    @OneToMany(mappedBy = "mitarbeiternr")
     private Set<RefraktionDurchgefuert> mitarbeiterNrRefraktionDurchgefuerts;
 
     @OneToMany(mappedBy = "berater")
@@ -68,13 +65,5 @@ public class Mitarbeiter {
 
     @OneToMany(mappedBy = "werkstatt")
     private Set<Auftrag> werkstattAuftrags;
-
-    @CreatedDate
-    @Column(nullable = false, updatable = false)
-    private OffsetDateTime dateCreated;
-
-    @LastModifiedDate
-    @Column(nullable = false)
-    private OffsetDateTime lastUpdated;
 
 }

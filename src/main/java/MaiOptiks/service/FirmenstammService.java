@@ -64,8 +64,8 @@ public class FirmenstammService {
         firmenstammDTO.setGeschaeftsname(firmenstamm.getGeschaeftsname());
         firmenstammDTO.setBankverbindung(firmenstamm.getBankverbindung());
         firmenstammDTO.setStrasse(firmenstamm.getStrasse());
-        firmenstammDTO.setHausNr(firmenstamm.getHausNr());
-        firmenstammDTO.setTelefonNr(firmenstamm.getTelefonNr());
+        firmenstammDTO.setHausNr(firmenstamm.getHausnr());
+        firmenstammDTO.setTelefonNr(firmenstamm.getTelefonnr());
         firmenstammDTO.setInhabername(firmenstamm.getInhabername());
         firmenstammDTO.setInhabervorname(firmenstamm.getInhabervorname());
         firmenstammDTO.setPlz(firmenstamm.getPlz() == null ? null : firmenstamm.getPlz().getPlz());
@@ -78,8 +78,8 @@ public class FirmenstammService {
         firmenstamm.setGeschaeftsname(firmenstammDTO.getGeschaeftsname());
         firmenstamm.setBankverbindung(firmenstammDTO.getBankverbindung());
         firmenstamm.setStrasse(firmenstammDTO.getStrasse());
-        firmenstamm.setHausNr(firmenstammDTO.getHausNr());
-        firmenstamm.setTelefonNr(firmenstammDTO.getTelefonNr());
+        firmenstamm.setHausnr(firmenstammDTO.getHausNr());
+        firmenstamm.setTelefonnr(firmenstammDTO.getTelefonNr());
         firmenstamm.setInhabername(firmenstammDTO.getInhabername());
         firmenstamm.setInhabervorname(firmenstammDTO.getInhabervorname());
         final Stadt plz = firmenstammDTO.getPlz() == null ? null : stadtRepository.findById(firmenstammDTO.getPlz())

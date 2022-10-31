@@ -29,7 +29,7 @@ public class Material {
             strategy = GenerationType.SEQUENCE,
             generator = "primary_sequence"
     )
-    private Integer materialId;
+    private Integer materialid;
 
     @Column(length = 254)
     private String bezeichung;
@@ -48,13 +48,5 @@ public class Material {
 
     @OneToMany(mappedBy = "material")
     private Set<Kontaktlinsen> materialKontaktlinsens;
-
-    @CreatedDate
-    @Column(nullable = false, updatable = false)
-    private OffsetDateTime dateCreated;
-
-    @LastModifiedDate
-    @Column(nullable = false)
-    private OffsetDateTime lastUpdated;
 
 }
