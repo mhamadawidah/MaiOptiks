@@ -127,12 +127,6 @@
         }
     }
 
-    function NeuAnlegen(){
-        doPostRequest(
-            '/api/artikels',
-            data);
-    }
-
     function insertLagerartikel() {
         let json = '{"artnr": "1", "bezeichnung": "", "artikelart": "", "material": "", "farbe": "", "einkaufspreis": "", "verkaufspreis": "", "lieferant": ""}';
         doPostRequest('/api/artikels', json, (data) => {
