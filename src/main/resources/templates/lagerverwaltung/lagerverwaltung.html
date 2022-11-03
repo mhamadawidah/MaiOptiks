@@ -2,145 +2,136 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org/">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title class="heading">Lagerverwaltung</title>
+
     <link rel="stylesheet" th:href="@{/css/main.css}"/>
-    <style>
-        aside
-        {
-            float: right;
-        }
-        table, th, td
-        {
-        border: 1px solid black;
-        border-collapse: collapse;
-        }
-
-        th
-        {
-            background-color: lightgrey;
-        }
-
-        select
-        {
-            width: 13%;
-            border: none;
-            border-radius: 4px;
-            background-color: #f1f1f1;
-        }
-    </style>
-    <title>Lagerverwaltung</title>
+    <link rel="stylesheet" th:href="@{/css/lagerverwaltung-style.css}">
 </head>
 <body>
-    <h1>Lagerverwaltung</h1>
+<div class="title-bar">
+    <h1 class="heading">Lagerverwaltung</h1>
+</div>
 
-    <aside style="width:60%">
-        <input type="text" id="fArtikelNr" name="fArtikelNr" value="Artikelnummer"><br><br>
-        <input type="text" id="fFaktor" name="fFaktor" value="Faktor"><br><br>
-        <input type="text" id="fVK" name="fVK" value="VK">
-        <input type="button" id ="fVK-Manuell" name="fVK-Manuell" value="VK-Manuell"><br><br>
-        <input type="text" id="fFassungscode" name="fFassungscode" value="Fassungscode"><br><br>
-        <input type="text" id="fDatum" name="fDatum" value="Datum"><br><br>
-        <input type="checkbox" id="fKomission" name="fKomission" value="Komission">
-        <label>Komission</label><br>
-        <input type="button" id="fSpeichern" name="fSpeichern" value="Speichern">
-        <input type="button" id="fNeu" name="fNeu" value="Neu"><br>
-    </aside>
+<div class="vertical-bar">
+    <p></p>
+</div>
 
-    <aside style="width:20%">
-        <input type="text" id="fModell" name="fModell" value="Modell"><br><br>
-        <select style="width:65%" name="fFarbe" id="fFarbe">
-            <option value="farbe">Farbe</option>
-        </select><br><br>
-        <select style="width:65%" name="fGroeße" id="fGroeße">
-            <option value="groeße">Größe</option>
-        </select><br><br>
-        <select style="width:65%" name="fBuegel" id="fBuegel">
-           <option value="buegel">Bügel</option>
-        </select><br><br>
-        <input type="text" id="fRabatt" name="fRabatt" value="EK o. Mwst Rabatt"><br><br>
-        <select style="width:65%" name="fBemerkung" id="fBemerkung">
-            <option value="bemerkung">Bemerkung</option>
-        </select><br><br>
-    </aside>
+<div class="header">
+    <button class="button button-startseite" onclick="openLink('/organisation')"><a>Zurück</a></button>
+    <hr class="linetop">
+</div>
 
+<div>
+    <input class="input" type="text" placeholder="Artikelnummer">
+    <input class="input" type="text" placeholder="Bezeichnung"><br><br>
+</div>
 
-    <select name="fLiefranten" id="fLiefranten">
-      <option value="lieferanten">Lieferanten</option>
-    </select><br><br>
-    <select name="fVerwendung" id="fVerwendung">
-     <option value="verwendung">Verwendung</option>
-    </select><br><br>
-    <select name="fGattung" id="fGattung">
-      <option value="gattung">Gattung</option>
-    </select><br><br>
-    <select name="fMaterial" id="fMaterial">
-      <option value="material">Material</option>
-    </select><br><br>
-    <input type="text" id="fAnzahl" name="fAnzahl" value="Anzahl"><br><br><br><br>
+<div>
+<select class="select">
+    <option>Gattung</option>
+</select>
+<select class="select">
+    <option>Material</option>
+</select>
+<select class="select">
+    <option>Farbe</option>
+</select>
+<select class="select">
+    <option>Lieferant</option>
+</select><br><br>
 
-    <input type="text" id="fSuche" name="fSuche" value="Suchen">
-    <aside style="width:100%">
-        <input type="button" id="fAllesAnzeigen" name="fAllesAnzeigen" value="Alles anzeigen">
-    </aside>
+<input class="input" type="text" placeholder="Einkaufspreis">
+<input class="input" type="text" placeholder="Verkaufspreis"><br><br>
+</div>
 
-    <table style="width:100%">
-        <thead style="text-align:left">
-        <tr>
-            <th>ArtNr</th>
-            <th>Lieferant</th>
-            <th>Verwendung</th>
-            <th>Gattung</th>
-            <th>Material</th>
-            <th>Model</th>
-            <th>Farbe</th>
-            <th>Größe</th>
-            <th>Bügel</th>
-            <th>EK</th>
-            <th>Bemerkung</th>
-            <th>Faktor</th>
-            <th>VK</th>
-            <th>Fa-Code</th>
-            <th>Datum</th>
-            <th>Kom</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td>1</td>
-            <td>Lieferando</td>
-            <td>Tragen</td>
-            <td>Brille</td>
-            <td>Plastik</td>
-            <td>Gucci</td>
-            <td>Schwarz</td>
-            <td>10</td>
-            <td>B200</td>
-            <td>EK</td>
-            <td>Keine</td>
-            <td>x3.5</td>
-            <td>VK</td>
-            <td>#001</td>
-            <td>01.09.2022</td>
-            <td>Ja</td>
-        </tr>
-        <tr>
-            <td>2</td>
-            <td>Lieferheld</td>
-            <td>Ins Regal stellen</td>
-            <td>Brille</td>
-            <td>Plastik</td>
-            <td>Supreme</td>
-            <td>Weiß</td>
-            <td>10000</td>
-            <td>D99</td>
-            <td>EK</td>
-            <td>Keine</td>
-            <td>x4.20</td>
-            <td>VK</td>
-            <td>#69</td>
-            <td>01.09.2022</td>
-            <td>Nein</td>
-        </tr>
-        </tbody>
-    </table>
+<div>
+    <input class="input" type="text" placeholder="Suchen">
+    <button class="button" type="submit" onclick="createTable()">Alles anzeigen</button>
+
+    <button class="button" style="margin-left: 20px" onclick="fillTable()">Speichern</button>
+    <button class="button" onclick="neuAnlegen()">Neu</button>
+</div>
+
+<div class="table">
+</div>
+
 </body>
+<script>
+    function openLink(link) {
+        window.location.href = link;
+    }
+
+    function searchOrder() {
+        let artikelNr = document.getElementById('artikelNr').value;
+
+        doRequest(
+            'GET',
+            '/api/artikels',
+            artikelNr,
+            (jsonString) => {   // func
+                let data = JSON.parse(jsonString);
+                // alert(data.exception);
+                createTable(data);
+            });
+    }
+
+    function createTable() {
+        if (document.getElementsByClassName('table')[0].firstElementChild !== null) {
+            return false;
+        } else {
+            let tableContainer = document.getElementsByClassName('table')[0];
+            let table = document.createElement('TABLE');
+            let tableHead = document.createElement('THEAD');
+            let tableBody = document.createElement('TBODY');
+            const headings = [
+                'ArtNr.',
+                'Bezeichnung',
+                'Artikelart',
+                'Material',
+                'Farbe',
+                'Einkaufspreis',
+                'Verkaufspreis',
+                'Lieferant',
+            ];
+
+            table.appendChild(tableHead);
+            table.appendChild(tableBody);
+
+            // Table Head
+            let row1 = document.createElement('TR');
+
+            headings
+                .map((item) => {
+                    let th = document.createElement('TH');
+                    th.innerHTML = item.valueOf();
+                    row1.appendChild(th);
+                });
+
+            tableHead.appendChild(row1);
+
+            // Table Data
+            let row2 = document.createElement('TR');
+
+            for (let i = 1; i <= headings.length; i++) {
+                let data = document.createElement('TD');
+                data.innerHTML = 'test';
+
+                row2.appendChild(data);
+            }
+
+            tableBody.appendChild(row2);
+
+            tableContainer.appendChild(table);
+        }
+    }
+
+    function insertLagerartikel() {
+        let json = '{"artnr": "1", "bezeichnung": "", "artikelart": "", "material": "", "farbe": "", "einkaufspreis": "", "verkaufspreis": "", "lieferant": ""}';
+        doPostRequest('/api/artikels', json, (data) => {
+            console.log(data.response)
+        });
+    }
+</script>
 </html>
