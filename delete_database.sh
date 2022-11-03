@@ -1,1 +1,1 @@
-rm /home/$USER/MaiOptiks/*
+rm ~/MaiOptiks/*
