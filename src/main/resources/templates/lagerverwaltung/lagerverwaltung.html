@@ -31,7 +31,7 @@
 
 <div>
 <select class="select">
-    <option>Gattung</option>
+    <option>Artikelart</option>
 </select>
 <select class="select">
     <option>Material</option>
@@ -49,9 +49,9 @@
 
 <div>
     <input class="input" type="text" placeholder="Suchen">
-    <button class="button" type="submit" onclick="createTable()">Alles anzeigen</button>
+    <button class="button" type="submit" onclick="TabelleAnzeigen()">Alles anzeigen</button>
 
-    <button class="button" style="margin-left: 20px" onclick="fillTable()">Speichern</button>
+    <button class="button" style="margin-left: 20px">Speichern</button>
     <button class="button" onclick="insertLagerartikel()">Neu</button>
 </div>
 
@@ -78,7 +78,7 @@
             });
     }
 
-    function createTable() {
+    function createTableö() {
         if (document.getElementsByClassName('table')[0].firstElementChild !== null) {
             return false;
         } else {
@@ -123,6 +123,61 @@
             }
 
             tableBody.appendChild(row2);
+
+            tableContainer.appendChild(table);
+        }
+    }
+
+    function TabelleAnzeigen() {
+    doGetRequest(
+            '/api/artikels/',
+            (data) => {   // func
+                createTable(data);
+            });
+    }
+
+    function createTable(data) {
+        if (document.getElementsByClassName('table')[0].firstElementChild !== null) {
+            debugger;
+            const entries = document.getElementsByTagName('TD');
+
+            for (let i = 0; i <= entries.length; i++) {
+                const values = Object.values(data);
+
+                entries[i].innerHTML = values[i];
+            }
+        } else {
+            let tableContainer = document.getElementsByClassName('table')[0];
+            let table = document.createElement('TABLE');
+            let tableHead = document.createElement('THEAD');
+            let tableBody = document.createElement('TBODY');
+
+            table.appendChild(tableHead);
+            table.appendChild(tableBody);
+
+            let row1 = document.createElement('TR');
+            let row2 = document.createElement('TR');
+
+            const keys = Object.keys(data);
+            const values = Object.values(data);
+
+            keys
+                .map((item) => {
+                    let th = document.createElement('TH');
+                    let caps = item.charAt(0).toUpperCase() + item.slice(1);
+                    th.innerHTML = caps.valueOf();
+                    row1.appendChild(th);
+                });
+
+            values
+                .map((item) => {
+                    let td = document.createElement('TD');
+                    td.innerHTML = item.valueOf();
+                    row2.appendChild(td);
+                });
+
+            tableHead.appendChild(row1);
+            tableBody.appendChild(row2)
 
             tableContainer.appendChild(table);
         }
