@@ -14,6 +14,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 
@@ -25,8 +26,8 @@ public class KundeService {
     private final KrankenkasseRepository krankenkasseRepository;
 
     public KundeService(final KundeRepository kundeRepository,
-            final StadtRepository stadtRepository,
-            final KrankenkasseRepository krankenkasseRepository) {
+                        final StadtRepository stadtRepository,
+                        final KrankenkasseRepository krankenkasseRepository) {
         this.kundeRepository = kundeRepository;
         this.stadtRepository = stadtRepository;
         this.krankenkasseRepository = krankenkasseRepository;
@@ -35,7 +36,12 @@ public class KundeService {
     public List<KundeDTO> findAll() {
         return kundeRepository.findAll(Sort.by("kundennr"))
                 .stream()
-                .map(kunde -> mapToDTO(kunde, new KundeDTO()))
+                .map(new Function<Kunde, KundeDTO>() {
+                    @Override
+                    public KundeDTO apply(Kunde kunde) {
+                        return KundeService.this.mapToDTO(kunde, new KundeDTO());
+                    }
+                })
                 .collect(Collectors.toList());
     }
 
@@ -45,9 +51,11 @@ public class KundeService {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
-    public KundeDTO get(final String name, final String vorname) {
-        return kundeRepository.findByNameAndVorname(name, vorname).map(kunde -> mapToDTO(kunde, new KundeDTO()))
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+    public List<KundeDTO> get(final String name, final String vorname) {
+        return kundeRepository.findAllByNameAndVorname(name, vorname)
+                .stream()
+                .map(kunde -> KundeService.this.mapToDTO(kunde, new KundeDTO()))
+                .collect(Collectors.toList());
     }
 
     public Integer create(final KundeDTO kundeDTO) {
