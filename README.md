@@ -102,6 +102,6 @@ Sobald die Seite einen eigenen Controller hat, kann sie wie folgt verlinkt werde
 [ISO-3166 ALPHA2](https://de.wikipedia.org/wiki/ISO-3166-1-Kodierliste)
 <br>
 
-## Vorgehens Weise Bestellvorgang
+## Vorgehensweise Bestellvorgang
 Stärke (Spähre, Zylinder, Achse, Addition, Wisus(Monokular), Wisus(Binokular), PD(Augenabstand), Höhe, HSA(Hornhautscheitelabstand)--> Hersteller auswahl(Zeiss etc. 
 --> Glasart(Gleitsicht, Bifokal oder Einstärken Glas) --> Material(Mineral oder Kunststoff)
