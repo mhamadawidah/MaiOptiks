@@ -27,7 +27,7 @@ public class FirmenstammService {
     }
 
     public List<FirmenstammDTO> findAll() {
-        return firmenstammRepository.findAll(Sort.by("augenoptikerIknr"))
+        return firmenstammRepository.findAll(Sort.by("augenoptikeriknr"))
                 .stream()
                 .map(firmenstamm -> mapToDTO(firmenstamm, new FirmenstammDTO()))
                 .collect(Collectors.toList());
@@ -42,8 +42,8 @@ public class FirmenstammService {
     public String create(final FirmenstammDTO firmenstammDTO) {
         final Firmenstamm firmenstamm = new Firmenstamm();
         mapToEntity(firmenstammDTO, firmenstamm);
-        firmenstamm.setAugenoptikerIknr(firmenstammDTO.getAugenoptikerIknr());
-        return firmenstammRepository.save(firmenstamm).getAugenoptikerIknr();
+        firmenstamm.setAugenoptikeriknr(firmenstammDTO.getAugenoptikerIknr());
+        return firmenstammRepository.save(firmenstamm).getAugenoptikeriknr();
     }
 
     public void update(final String augenoptikerIknr, final FirmenstammDTO firmenstammDTO) {
@@ -59,7 +59,7 @@ public class FirmenstammService {
 
     private FirmenstammDTO mapToDTO(final Firmenstamm firmenstamm,
             final FirmenstammDTO firmenstammDTO) {
-        firmenstammDTO.setAugenoptikerIknr(firmenstamm.getAugenoptikerIknr());
+        firmenstammDTO.setAugenoptikerIknr(firmenstamm.getAugenoptikeriknr());
         firmenstammDTO.setSteuernummer(firmenstamm.getSteuernummer());
         firmenstammDTO.setGeschaeftsname(firmenstamm.getGeschaeftsname());
         firmenstammDTO.setBankverbindung(firmenstamm.getBankverbindung());
@@ -89,7 +89,7 @@ public class FirmenstammService {
     }
 
     public boolean augenoptikerIknrExists(final String augenoptikerIknr) {
-        return firmenstammRepository.existsByAugenoptikerIknrIgnoreCase(augenoptikerIknr);
+        return firmenstammRepository.existsByAugenoptikeriknrIgnoreCase(augenoptikerIknr);
     }
 
 }

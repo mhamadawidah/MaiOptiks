@@ -28,7 +28,7 @@ public class KrankenkasseService {
     }
 
     public List<KrankenkasseDTO> findAll() {
-        return krankenkasseRepository.findAll(Sort.by("krankenkassenNr"))
+        return krankenkasseRepository.findAll(Sort.by("krankenkassennr"))
                 .stream()
                 .map(krankenkasse -> mapToDTO(krankenkasse, new KrankenkasseDTO()))
                 .collect(Collectors.toList());
@@ -43,8 +43,8 @@ public class KrankenkasseService {
     public String create(final KrankenkasseDTO krankenkasseDTO) {
         final Krankenkasse krankenkasse = new Krankenkasse();
         mapToEntity(krankenkasseDTO, krankenkasse);
-        krankenkasse.setKrankenkassenNr(krankenkasseDTO.getKrankenkassenNr());
-        return krankenkasseRepository.save(krankenkasse).getKrankenkassenNr();
+        krankenkasse.setKrankenkassennr(krankenkasseDTO.getKrankenkassennr());
+        return krankenkasseRepository.save(krankenkasse).getKrankenkassennr();
     }
 
     public void update(final String krankenkassenNr, final KrankenkasseDTO krankenkasseDTO) {
@@ -60,10 +60,10 @@ public class KrankenkasseService {
 
     private KrankenkasseDTO mapToDTO(final Krankenkasse krankenkasse,
             final KrankenkasseDTO krankenkasseDTO) {
-        krankenkasseDTO.setKrankenkassenNr(krankenkasse.getKrankenkassenNr());
+        krankenkasseDTO.setKrankenkassennr(krankenkasse.getKrankenkassennr());
         krankenkasseDTO.setName(krankenkasse.getName());
-        krankenkasseDTO.setStarsse(krankenkasse.getStarsse());
-        krankenkasseDTO.setTelefonNr(krankenkasse.getTelefonNr());
+        krankenkasseDTO.setStrasse(krankenkasse.getStrasse());
+        krankenkasseDTO.setTelefonnr(krankenkasse.getTelefonnr());
         krankenkasseDTO.setEmail(krankenkasse.getEmail());
         krankenkasseDTO.setPlz(krankenkasse.getPlz() == null ? null : krankenkasse.getPlz().getPlz());
         return krankenkasseDTO;
@@ -72,8 +72,8 @@ public class KrankenkasseService {
     private Krankenkasse mapToEntity(final KrankenkasseDTO krankenkasseDTO,
             final Krankenkasse krankenkasse) {
         krankenkasse.setName(krankenkasseDTO.getName());
-        krankenkasse.setStarsse(krankenkasseDTO.getStarsse());
-        krankenkasse.setTelefonNr(krankenkasseDTO.getTelefonNr());
+        krankenkasse.setStrasse(krankenkasseDTO.getStrasse());
+        krankenkasse.setTelefonnr(krankenkasseDTO.getTelefonnr());
         krankenkasse.setEmail(krankenkasseDTO.getEmail());
         final Stadt plz = krankenkasseDTO.getPlz() == null ? null : stadtRepository.findById(krankenkasseDTO.getPlz())
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "plz not found"));
@@ -82,7 +82,7 @@ public class KrankenkasseService {
     }
 
     public boolean krankenkassenNrExists(final String krankenkassenNr) {
-        return krankenkasseRepository.existsByKrankenkassenNrIgnoreCase(krankenkassenNr);
+        return krankenkasseRepository.existsByKrankenkassennrIgnoreCase(krankenkassenNr);
     }
 
     @Transactional
