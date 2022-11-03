@@ -28,7 +28,7 @@ public class LieferantService {
     }
 
     public List<LieferantDTO> findAll() {
-        return lieferantRepository.findAll(Sort.by("lieferantId"))
+        return lieferantRepository.findAll(Sort.by("lieferantid"))
                 .stream()
                 .map(lieferant -> mapToDTO(lieferant, new LieferantDTO()))
                 .collect(Collectors.toList());
@@ -43,7 +43,7 @@ public class LieferantService {
     public Integer create(final LieferantDTO lieferantDTO) {
         final Lieferant lieferant = new Lieferant();
         mapToEntity(lieferantDTO, lieferant);
-        return lieferantRepository.save(lieferant).getLieferantId();
+        return lieferantRepository.save(lieferant).getLieferantid();
     }
 
     public void update(final Integer lieferantId, final LieferantDTO lieferantDTO) {
@@ -58,10 +58,10 @@ public class LieferantService {
     }
 
     private LieferantDTO mapToDTO(final Lieferant lieferant, final LieferantDTO lieferantDTO) {
-        lieferantDTO.setLieferantId(lieferant.getLieferantId());
+        lieferantDTO.setLieferantId(lieferant.getLieferantid());
         lieferantDTO.setName(lieferant.getName());
         lieferantDTO.setStrasse(lieferant.getStrasse());
-        lieferantDTO.setTelefonNr(lieferant.getTelefonNr());
+        lieferantDTO.setTelefonNr(lieferant.getTelefonnr());
         lieferantDTO.setPlz(lieferant.getPlz() == null ? null : lieferant.getPlz().getPlz());
         return lieferantDTO;
     }
@@ -69,7 +69,7 @@ public class LieferantService {
     private Lieferant mapToEntity(final LieferantDTO lieferantDTO, final Lieferant lieferant) {
         lieferant.setName(lieferantDTO.getName());
         lieferant.setStrasse(lieferantDTO.getStrasse());
-        lieferant.setTelefonNr(lieferantDTO.getTelefonNr());
+        lieferant.setTelefonnr(lieferantDTO.getTelefonNr());
         final Stadt plz = lieferantDTO.getPlz() == null ? null : stadtRepository.findById(lieferantDTO.getPlz())
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "plz not found"));
         lieferant.setPlz(plz);

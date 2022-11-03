@@ -27,7 +27,7 @@ public class HornhautService {
     }
 
     public List<HornhautDTO> findAll() {
-        return hornhautRepository.findAll(Sort.by("hornhautId"))
+        return hornhautRepository.findAll(Sort.by("hornhautid"))
                 .stream()
                 .map(hornhaut -> mapToDTO(hornhaut, new HornhautDTO()))
                 .collect(Collectors.toList());
@@ -42,7 +42,7 @@ public class HornhautService {
     public Integer create(final HornhautDTO hornhautDTO) {
         final Hornhaut hornhaut = new Hornhaut();
         mapToEntity(hornhautDTO, hornhaut);
-        return hornhautRepository.save(hornhaut).getHornhautId();
+        return hornhautRepository.save(hornhaut).getHornhautid();
     }
 
     public void update(final Integer hornhautId, final HornhautDTO hornhautDTO) {
@@ -57,7 +57,7 @@ public class HornhautService {
     }
 
     private HornhautDTO mapToDTO(final Hornhaut hornhaut, final HornhautDTO hornhautDTO) {
-        hornhautDTO.setHornhautId(hornhaut.getHornhautId());
+        hornhautDTO.setHornhautId(hornhaut.getHornhautid());
         hornhautDTO.setHsir(hornhaut.getHsir());
         hornhautDTO.setA0R(hornhaut.getA0R());
         hornhautDTO.setH2Shr(hornhaut.getH2Shr());
@@ -74,7 +74,7 @@ public class HornhautService {
         hornhautDTO.setTempL(hornhaut.getTempL());
         hornhautDTO.setSupL(hornhaut.getSupL());
         hornhautDTO.setIntL(hornhaut.getIntL());
-        hornhautDTO.setRefraktion(hornhaut.getRefraktion() == null ? null : hornhaut.getRefraktion().getRefraktionId());
+        hornhautDTO.setRefraktion(hornhaut.getRefraktion() == null ? null : hornhaut.getRefraktion().getRefraktionid());
         return hornhautDTO;
     }
 

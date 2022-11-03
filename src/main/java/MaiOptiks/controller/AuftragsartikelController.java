@@ -36,7 +36,7 @@ public class AuftragsartikelController {
         model.addAttribute("auftragsNrValues", auftragRepository.findAll().stream().collect(
                 Collectors.toMap(Auftrag::getAuftragsnummer, Auftrag::getWomit)));
         model.addAttribute("sehhilfeValues", brilleRepository.findAll().stream().collect(
-                Collectors.toMap(Brille::getBrillenId, Brille::getBrillenId)));
+                Collectors.toMap(Brille::getBrillenid, Brille::getBrillenid)));
     }
 
     @GetMapping

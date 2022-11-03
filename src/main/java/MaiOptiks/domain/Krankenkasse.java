@@ -2,12 +2,9 @@ package MaiOptiks.domain;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
-import java.time.OffsetDateTime;
 import java.util.Set;
 
 
@@ -19,33 +16,25 @@ public class Krankenkasse {
 
     @Id
     @Column(nullable = false, updatable = false, length = 254)
-    private String krankenkassenNr;
+    private String krankenkassennr;
 
     @Column(length = 254)
     private String name;
 
     @Column(length = 254)
-    private String starsse;
+    private String strasse;
 
     @Column(length = 254)
-    private String telefonNr;
+    private String telefonnr;
 
     @Column(length = 254)
     private String email;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "plz_id")
+    @JoinColumn(name = "plz")
     private Stadt plz;
 
     @OneToMany(mappedBy = "krankenkassenNr")
     private Set<Kunde> krankenkassenNrKundes;
-
-    @CreatedDate
-    @Column(nullable = false, updatable = false)
-    private OffsetDateTime dateCreated;
-
-    @LastModifiedDate
-    @Column(nullable = false)
-    private OffsetDateTime lastUpdated;
 
 }

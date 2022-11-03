@@ -2,13 +2,10 @@ package MaiOptiks.domain;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.time.OffsetDateTime;
 import java.util.Set;
 
 
@@ -57,46 +54,37 @@ public class Auftrag {
     private String rechnung;
 
     @Column
-    private Boolean ersteMahnung;
+    private Boolean erstemahnung;
 
     @Column
-    private Boolean zweiteMahnung;
+    private Boolean zweitemahnung;
 
     @Column
-    private Boolean dritteMahnung;
+    private Boolean drittemahnung;
 
     @Column
     private LocalDate datum;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "kunden_nr_id")
+    @JoinColumn(name = "kundennr")
     private Kunde kundenNr;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "berater_id")
+    @JoinColumn(name = "Berater")
     private Mitarbeiter berater;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "werkstatt_id")
+    @JoinColumn(name = "werkstatt")
     private Mitarbeiter werkstatt;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "refraktion_id")
+    @JoinColumn(name = "refraktion")
     private RefraktionDurchgefuert refraktion;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "abrechnungs_id")
+    @JoinColumn(name = "AbrechnungsID")
     private Abrechnungsart abrechnungs;
 
     @OneToMany(mappedBy = "auftragsNr")
     private Set<Auftragsartikel> auftragsNrAuftragsartikels;
-
-    @CreatedDate
-    @Column(nullable = false, updatable = false)
-    private OffsetDateTime dateCreated;
-
-    @LastModifiedDate
-    @Column(nullable = false)
-    private OffsetDateTime lastUpdated;
-
 }

@@ -22,9 +22,9 @@
     </div>
 
     <div class="search-fields">
-        <input class="input" id="name" placeholder="Name" type="text"/><br>
-        <input class="input" id="lastname" placeholder="Vorname" type="text"/><br>
-        <button class="button submit-button" onclick="createTable()">Suchen</button>
+        <input class="input" id="lastname" placeholder="Name" required type="text"/><br>
+        <input class="input" id="name" placeholder="Vorname" required type="text"/><br>
+        <button class="button submit-button" onclick="searchCustomer()">Suchen</button>
     </div>
 </div>
 
@@ -43,69 +43,80 @@
         let name = document.getElementById('name').value;
         let lastname = document.getElementById('lastname').value;
 
-        doRequest(
-            'GET',
+        if (name === '' && lastname === '') {
+            document.getElementById('name').style.border = '3px solid red';
+            document.getElementById('lastname').style.border = '3px solid red';
+
+            return false;
+        } else if (name === '' && lastname !== '') {
+            document.getElementById('name').style.border = '3px solid red';
+            document.getElementById('lastname').style.border = '1px solid black';
+
+            return false;
+        } else if (lastname === '' && name !== '') {
+            document.getElementById('name').style.border = '1px solid black';
+            document.getElementById('lastname').style.border = '3px solid red';
+
+            return false;
+        } else {
+            document.getElementById('name').style.border = '1px solid black';
+            document.getElementById('lastname').style.border = '1px solid black';
+        }
+
+        doGetRequest(
             '/api/kundes/',
-            name,
-            (jsonString) => {   // func
-                let data = JSON.parse(jsonString);
-                // alert(data.exception);
-                createTable(data);
+            (lastname + '/' + name),
+            (data) => {   // func
+                createTable(data, lastname, name);
             });
     }
 
-    function createTable() {
+    function createTable(data, lastname, name) {
         if (document.getElementsByClassName('table-container')[0].firstElementChild !== null) {
-            return false;
+            debugger;
+            const entries = document.getElementsByTagName('TD');
+
+            if (entries[2].innerHtml === lastname && entries[3].innerHTML === name) {
+                return false;
+            }
+
+            for (let i = 0; i <= entries.length; i++) {
+                const values = Object.values(data);
+
+                entries[i].innerHTML = values[i];
+            }
         } else {
             let tableContainer = document.getElementsByClassName('table-container')[0];
             let table = document.createElement('TABLE');
             let tableHead = document.createElement('THEAD');
             let tableBody = document.createElement('TBODY');
-            const headings = [
-                'Kunden-Nr.',
-                'Anrede',
-                'Name',
-                'Vorname',
-                'Straße',
-                'HausNr.',
-                'PLZ',
-                'Geburtsdatum',
-                'TelefonNr.',
-                'Handy',
-                'E-Mail',
-                'KrankenkassenNr.',
-                'VersicherungsNr.',
-                'Gültigkeit',
-                'Bemerkung',
-            ];
 
             table.appendChild(tableHead);
             table.appendChild(tableBody);
 
-            // Table Head
             let row1 = document.createElement('TR');
+            let row2 = document.createElement('TR');
 
-            headings
+            const keys = Object.keys(data);
+            const values = Object.values(data);
+
+            keys
                 .map((item) => {
                     let th = document.createElement('TH');
-                    th.innerHTML = item.valueOf();
+                    let caps = item.charAt(0).toUpperCase() + item.slice(1);
+                    th.innerHTML = caps.valueOf();
                     row1.appendChild(th);
                 });
 
+            values
+                .map((item) => {
+                    let td = document.createElement('TD');
+                    td.innerHTML = item.valueOf();
+                    row2.appendChild(td);
+                });
+
             tableHead.appendChild(row1);
-
-            // Table Data
-            let row2 = document.createElement('TR');
-
-            for (let i = 1; i <= headings.length; i++) {
-                let data = document.createElement('TD');
-                data.innerHTML = 'test';
-
-                row2.appendChild(data);
-            }
-
-            tableBody.appendChild(row2);
+            tableBody.appendChild(row2)
 
             tableContainer.appendChild(table);
         }

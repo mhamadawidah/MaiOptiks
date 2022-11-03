@@ -43,11 +43,11 @@ public class FirmenstammResource {
     public ResponseEntity<Void> createFirmenstamm(
             @RequestBody @Valid final FirmenstammDTO firmenstammDTO,
             final BindingResult bindingResult) throws MethodArgumentNotValidException {
-        if (!bindingResult.hasFieldErrors("augenoptikerIknr") && firmenstammDTO.getAugenoptikerIknr() == null) {
-            bindingResult.rejectValue("augenoptikerIknr", "NotNull");
+        if (!bindingResult.hasFieldErrors("augenoptikeriknr") && firmenstammDTO.getAugenoptikerIknr() == null) {
+            bindingResult.rejectValue("augenoptikeriknr", "NotNull");
         }
-        if (!bindingResult.hasFieldErrors("augenoptikerIknr") && firmenstammService.augenoptikerIknrExists(firmenstammDTO.getAugenoptikerIknr())) {
-            bindingResult.rejectValue("augenoptikerIknr", "Exists.firmenstamm.augenoptikerIknr");
+        if (!bindingResult.hasFieldErrors("augenoptikeriknr") && firmenstammService.augenoptikerIknrExists(firmenstammDTO.getAugenoptikerIknr())) {
+            bindingResult.rejectValue("augenoptikeriknr", "Exists.firmenstamm.augenoptikeriknr");
         }
         if (bindingResult.hasErrors()) {
             throw new MethodArgumentNotValidException(new MethodParameter(

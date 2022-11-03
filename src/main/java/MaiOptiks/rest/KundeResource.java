@@ -34,6 +34,11 @@ public class KundeResource {
         return ResponseEntity.ok(kundeService.get(kundenNr));
     }
 
+    @GetMapping("/{name}/{vorname}")
+    public ResponseEntity<KundeDTO> getKunde(@PathVariable final String name, @PathVariable final String vorname) {
+        return ResponseEntity.ok(kundeService.get(name, vorname));
+    }
+
     @PostMapping
     @ApiResponse(responseCode = "201")
     public ResponseEntity<Integer> createKunde(@RequestBody @Valid final KundeDTO kundeDTO) {

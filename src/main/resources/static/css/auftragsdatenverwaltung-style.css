@@ -1,0 +1,43 @@
+label {
+    float: left;
+    clear: left;
+    width: 10%;
+    text-align: right;
+    font-weight: bold;
+}
+
+/* Container */
+.head {
+    position: relative;
+    background: aquamarine;
+}
+
+.body {
+    position: relative;
+    width: 92%;
+    height: 100%;
+    left: 2%;
+    background: orange;
+}
+
+.body .tab-buttons{
+    display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
+    display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+    display: -ms-flexbox;      /* TWEENER - IE 10 */
+    display: -webkit-flex;     /* NEW - Chrome */
+    justify-content: space-evenly;
+}
+
+
+.body .tab-buttons form{
+    background: orangered;
+    width: 12.5%;
+    flex: 1 1 auto;
+}
+
+.body .tab-buttons form:nth-child(even){
+    background: deeppink;
+}
+.body .tab-buttons form input[type="submit"]{
+    width: 100%;
+}

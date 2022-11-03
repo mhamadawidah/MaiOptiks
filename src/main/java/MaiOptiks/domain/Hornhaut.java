@@ -2,12 +2,9 @@ package MaiOptiks.domain;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
-import java.time.OffsetDateTime;
 
 
 @Entity
@@ -28,7 +25,7 @@ public class Hornhaut {
             strategy = GenerationType.SEQUENCE,
             generator = "primary_sequence"
     )
-    private Integer hornhautId;
+    private Integer hornhautid;
 
     @Column
     private Double hsir;
@@ -79,15 +76,7 @@ public class Hornhaut {
     private Double intL;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "refraktion_id", nullable = false)
+    @JoinColumn(name = "refraktionid", nullable = false)
     private Refraktion refraktion;
-
-    @CreatedDate
-    @Column(nullable = false, updatable = false)
-    private OffsetDateTime dateCreated;
-
-    @LastModifiedDate
-    @Column(nullable = false)
-    private OffsetDateTime lastUpdated;
 
 }

@@ -8,58 +8,78 @@
     <link rel="stylesheet" th:href="@{/css/main.css}"/>
     <link rel="stylesheet" th:href="@{/css/neuer-kunde-style.css}">
     <script type="text/javascript" th:src="@{/scripts/main.js}"></script>
+    <script type="text/javascript" th:src="@{/scripts/neuer-kunde.js}"></script>
 </head>
 <body>
-<div class="title-bar">
-  <h1 class="heading">Neuer Kunde</h1>
-</div>
+    <div class="title-bar">
+      <h1 class="heading">Neuer Kunde</h1>
+    </div>
 
-<div class="vertical-bar">
-  <p></p>
-</div>
+    <div class="vertical-bar">
+      <p></p>
+    </div>
     <div class="inner-window">
         <div class="header">
           <button class="button button-startseite" onclick="openLink('/')">Startseite</button>
           <hr class="linetop">
         </div>
-        <div class="main">
-            <div class="inputs person">
-                <h4>Person</h4>
-                <div class="input-person">
-                    <input class="input" type="text" placeholder="Anrede*" required><br>
-                    <input class="input" type="text" placeholder="Name*" required><br>
-                    <input class="input" type="text" placeholder="Geburtsdatum*" required><br>
-                    <input class="input" type="text" placeholder="Vorname*" required><br>
+        <form>
+            <div class="main">
+                <div class="inputs person">
+                    <h4>Person</h4>
+                    <div class="input-person">
+                        <fieldset>
+                            <legend>Anrede<span aria-label="required">*</span></legend>
+                            <input type="radio" id="anrede1" value="frau" required><label for="anrede1">Frau</label>
+                            <input type="radio" id="anrede2" value="herr" required><label for="anrede2">Herr</label>
+                        </fieldset>
+
+                        <input class="input" id="name" type="text" placeholder="Name*" required pattern="^[a-zA-Z]*$">
+                        <br>
+                        <input class="input" id="vorname" type="text" placeholder="Vorname*" required pattern="^[a-zA-Z]*$">
+                        <br>
+
+                        <div class="inputdate">
+                            <label for="geburtsdatum">Geburtsdatum*</label>
+                            <input class="input date" type="date" id="geburtsdatum" value="2022-01-01">
+                        </div>
+                    </div>
+                </div>
+                <div class="inputs country">
+                    <h4>Adresse</h4>
+                    <div class="input-country">
+                        <input class="input" id="plz" type="text" placeholder="PLZ*" required pattern="^\b\d{5}\b"><br>
+                        <input class="input" id="strasse" type="text" placeholder="Straße*" required pattern="^[a-zA-Z]*$"><br>
+                        <input class="input" id="hausnummer" type="text" placeholder="Hausnummer*" required pattern="^[0-9]*$"><br>
+                    </div>
+                </div>
+                <div class="inputs tel">
+                    <h4>Telefon</h4>
+                    <div class="input-tel">
+                      <input class="input" id="mail" type="email" placeholder="E-Mail"><br>
+                      <input class="input" id="telefon" type="tel" placeholder="Telefon"><br>
+                      <input class="input" id="mobil" type="tel" placeholder="Mobil"><br>
+                    </div>
+                </div>
+                <div class="inputs insurance">
+                    <h4>Versicherung</h4>
+                    <div class="input-insurance">
+                        <input class="input" id="krankenkassen" type="text" placeholder="Krankenkassen-Nr." pattern="^[a-zA-Z0-9]*$">
+                        <br>
+                        <input class="input" id="versicherungs" type="text" placeholder="Versicherungs-Nr." pattern="^[a-zA-Z0-9]*$">
+                        <br>
+                        <div class="inputgueltigkeit">
+                            <label for="gueltig">Gültigkeit*</label>
+                            <input class="input gueltigkeit" type="date" id="gueltig" name="gueltigkeit" value="2022-01-01">
+                        </div>
+                        <br>
+                    </div>
                 </div>
             </div>
-            <div class="inputs country">
-                <h4>Adresse</h4>
-                <div class="input-country">
-                    <input class="input" type="text" placeholder="PLZ*" required><br>
-                    <input class="input" type="text" placeholder="Straße*" required><br>
-                    <input class="input" type="text" placeholder="Hausnummer*" required><br>
-                </div>
+            <div class="footer">
+                <button class="button submit" onclick="getInputData()">Kunde Anlegen</button>
             </div>
-            <div class="inputs tel">
-                <h4>Telefon</h4>
-                <div class="input-tel">
-                  <input class="input" type="text" placeholder="E-Mail"><br>
-                  <input class="input" type="text" placeholder="Telefon"><br>
-                  <input class="input" type="text" placeholder="Mobil"><br>
-                </div>
-            </div>
-            <div class="inputs insurance">
-                <h4>Versicherung</h4>
-                <div class="input-insurance">
-                    <input class="input" type="text" placeholder="Krankenkassen-Nr."><br>
-                    <input class="input" type="text" placeholder="Versicherungs-Nr."><br>
-                    <input class="input" type="text" placeholder="Gueltigkeit"><br>
-                </div>
-            </div>
-        </div>
-        <div class="footer">
-            <button class="button submit">Kunde Anlegen</button>
-        </div>
+        </form>
     </div>
 </body>
 </html>

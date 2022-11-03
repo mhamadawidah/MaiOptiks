@@ -23,7 +23,7 @@ public class ArtikelartService {
     }
 
     public List<ArtikelartDTO> findAll() {
-        return artikelartRepository.findAll(Sort.by("artId"))
+        return artikelartRepository.findAll(Sort.by("artid"))
                 .stream()
                 .map(artikelart -> mapToDTO(artikelart, new ArtikelartDTO()))
                 .collect(Collectors.toList());
@@ -38,7 +38,7 @@ public class ArtikelartService {
     public Integer create(final ArtikelartDTO artikelartDTO) {
         final Artikelart artikelart = new Artikelart();
         mapToEntity(artikelartDTO, artikelart);
-        return artikelartRepository.save(artikelart).getArtId();
+        return artikelartRepository.save(artikelart).getArtid();
     }
 
     public void update(final Integer artId, final ArtikelartDTO artikelartDTO) {
@@ -53,7 +53,7 @@ public class ArtikelartService {
     }
 
     private ArtikelartDTO mapToDTO(final Artikelart artikelart, final ArtikelartDTO artikelartDTO) {
-        artikelartDTO.setArtId(artikelart.getArtId());
+        artikelartDTO.setArtId(artikelart.getArtid());
         artikelartDTO.setBezeichnung(artikelart.getBezeichnung());
         return artikelartDTO;
     }

@@ -37,13 +37,4 @@ public class Mail {
 
     @Column
     private Boolean smtpauthentifizierung;
-
-    @CreatedDate
-    @Column(nullable = false, updatable = false)
-    private OffsetDateTime dateCreated;
-
-    @LastModifiedDate
-    @Column(nullable = false)
-    private OffsetDateTime lastUpdated;
-
 }
