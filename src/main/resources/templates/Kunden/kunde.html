@@ -24,7 +24,9 @@
     <div class="search-fields">
         <input class="input" id="lastname" placeholder="Name" required type="text"/><br>
         <input class="input" id="name" placeholder="Vorname" required type="text"/><br>
-        <button class="button submit-button" onclick="searchCustomer()">Suchen</button>
+        <button class="button submit-button" onclick="searchCustomer()" onkeypress="enterPressed(e)" type="submit">
+            Suchen
+        </button>
     </div>
 </div>
 
@@ -39,6 +41,16 @@
 
 </body>
 <script>
+    function enterPressed(e) {
+        document.getElementById("name").addEventListener("keydown", function (e) {
+            let keyCode = e.code;
+            if (keyCode === 13) {
+                // enter pressed
+                searchCustomer();
+            }
+        }, false);
+    }
+
     function searchCustomer() {
         let name = document.getElementById('name').value;
         let lastname = document.getElementById('lastname').value;
@@ -94,29 +106,57 @@
             table.appendChild(tableHead);
             table.appendChild(tableBody);
 
-            let row1 = document.createElement('TR');
-            let row2 = document.createElement('TR');
+            let headerRow = document.createElement('TR');
 
-            const keys = Object.keys(data);
-            const values = Object.values(data);
+            if (Array.isArray(data)) {
+                for (let i = 0; i <= data.length; i++) {
+                    let dataRow = document.createElement('TR');
 
-            keys
-                .map((item) => {
-                    let th = document.createElement('TH');
-                    let caps = item.charAt(0).toUpperCase() + item.slice(1);
-                    th.innerHTML = caps.valueOf();
-                    row1.appendChild(th);
-                });
+                    const keys = Object.keys(data[i]);
+                    const values = Object.values(data[i]);
 
-            values
-                .map((item) => {
-                    let td = document.createElement('TD');
-                    td.innerHTML = item.valueOf();
-                    row2.appendChild(td);
-                });
+                    keys
+                        .map((item) => {
+                            let th = document.createElement('TH');
+                            let caps = item.charAt(0).toUpperCase() + item.slice(1);
+                            th.innerHTML = caps.valueOf();
+                            headerRow.appendChild(th);
+                        });
 
-            tableHead.appendChild(row1);
-            tableBody.appendChild(row2)
+                    values
+                        .map((item) => {
+                            let td = document.createElement('TD');
+                            td.innerHTML = item.valueOf();
+                            dataRow.appendChild(td);
+                        });
+
+                    tableHead.appendChild(headerRow);
+                    tableBody.appendChild(dataRow)
+                }
+            } else {
+                let dataRow = document.createElement('TR');
+
+                const keys = Object.keys(data);
+                const values = Object.values(data);
+
+                keys
+                    .map((item) => {
+                        let th = document.createElement('TH');
+                        let caps = item.charAt(0).toUpperCase() + item.slice(1);
+                        th.innerHTML = caps.valueOf();
+                        headerRow.appendChild(th);
+                    });
+
+                values
+                    .map((item) => {
+                        let td = document.createElement('TD');
+                        td.innerHTML = item.valueOf();
+                        dataRow.appendChild(td);
+                    });
+
+                tableHead.appendChild(headerRow);
+                tableBody.appendChild(dataRow)
+            }
 
             tableContainer.appendChild(table);
         }
