@@ -62,9 +62,7 @@
         document.getElementById("AnzMit").innerHTML = doGetRequest(
             '/api/mitarbeiters',
             '',
-            (jsonString) => {   // func
-                let data = JSON.parse(jsonString);
-            }); 
+            (jsonString)); 
     }
     function anzKunden(){
         document.getElementById("AnzKund").innerHTML = doGetRequest(
