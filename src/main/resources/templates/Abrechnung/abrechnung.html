@@ -2,9 +2,10 @@
 <html lang="de" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Abrechnung</title>
+    <title th:text="${title}"></title>
     <link rel="stylesheet" th:href="@{/css/main.css}"/>
     <link rel="stylesheet" th:href="@{/css/abrechnung-style.css}"/>
+    <script th:src="@{/scripts/main.js}" type="text/javascript"></script>
 </head>
 <body>
 <div class="title-bar">
@@ -13,101 +14,17 @@
 <div class="vertical-bar">
     <p></p>
 </div>
-<table>
-    <tr>
-        <th>Auftragsnummer</th>
-        <th>Artikelnummer</th>
-        <th>Beschreibung</th>
-        <th>Betrag</th>
-    </tr>
-    <tr>
-        <td> </td>
-        <td> </td>
-        <td> <select name="Beschr1" id="Beschr1" class="tabledd" >
-            <option value="0"> </option>
-            <option value="1"> </option>
-            <option value="2"> </option>
-            <option value="3"> </option>
-        </select> </td>
-        <td> </td>
-    </tr>
-    <tr>
-        <td> </td>
-        <td> </td>
-        <td> <select name="Beschr2" id="Beschr2" class="tabledd" >
-            <option value="0"> </option>
-            <option value="1"> </option>
-            <option value="2"> </option>
-            <option value="3"> </option>
-        </select> </td>
-        <td> </td>
-    </tr>
-    <tr>
-        <td> </td>
-        <td> </td>
-        <td> <select name="Beschr3" id="Beschr3" class="tabledd" >
-            <option value="0"> </option>
-            <option value="1"> </option>
-            <option value="2"> </option>
-            <option value="3"> </option>
-        </select> </td>
-        <td> </td>
-    </tr>
-    <tr>
-        <td> </td>
-        <td> </td>
-        <td> <select name="Beschr4" id="Beschr4" class="tabledd" >
-            <option value="0"> </option>
-            <option value="1"> </option>
-            <option value="2"> </option>
-            <option value="3"> </option>
-        </select> </td>
-        <td> </td>
-    </tr>
-    <tr>
-        <td> </td>
-        <td> </td>
-        <td> <select name="Beschr5" id="Beschr5" class="tabledd" >
-            <option value="0"> </option>
-            <option value="1"> </option>
-            <option value="2"> </option>
-            <option value="3"> </option>
-        </select> </td>
-        <td> </td>
-    </tr>
-    <tr>
-        <td> </td>
-        <td> </td>
-        <td> <select name="Beschr6" id="Beschr6" class="tabledd" >
-            <option value="0"> </option>
-            <option value="1"> </option>
-            <option value="2"> </option>
-            <option value="3"> </option>
-        </select> </td>
-        <td> </td>
-    </tr>
-    <tr>
-        <td> </td>
-        <td> </td>
-        <td> <select name="Beschr7" id="Beschr7" class="tabledd" >
-            <option value="0"> </option>
-            <option value="1"> </option>
-            <option value="2"> </option>
-            <option value="3"> </option>
-        </select> </td>
-        <td> </td>
-    </tr>
-</table>
+
+<div class="table-container"></div>
+
 <hr>
 <br><br>
 <div class="bar">Bareinzahlung</div>
 <div class="summe">Summe</div>
-<label for="Mitarbeiter">Verkäufer:</label>
-<select name="Mitarbeiter" id="Mitarbeiter" class="combobox" >
-    <option value="0"> </option>
-    <option value="1"> </option>
-    <option value="2"> </option>
-    <option value="3"> </option>
+<label for="mitarbeiter">Verkäufer:</label>
+<select name="mitarbeiter" id="mitarbeiter" class="combobox">
+    <option> </option>
+    <option> </option>
 </select>
 <div class="rueckgeld">Rückgeld</div>
 <br>
@@ -120,8 +37,71 @@
 <button type="button" class="button">Bar-Bezahlt</button>
 </body>
 <script>
-    function openLink(link) {
-        window.location.href = link;
+    createTable();
+    function createTable() {
+        if (document.getElementsByClassName('table-container')[0].firstElementChild !== null) {
+            return false;
+        } else {
+        let tableContainer = document.getElementsByClassName('table-container')[0];
+        let table = document.createElement('TABLE');
+        let tableHead = document.createElement('THEAD');
+        let tableBody = document.createElement('TBODY');
+        const headings = [
+            'Auftragsnummer',
+            'Artikelnummer',
+            'Beschreibung',
+            'Betrag',
+        ];
+
+        table.appendChild(tableHead);
+        table.appendChild(tableBody);
+
+        // Table Head
+        let row1 = document.createElement('TR');
+
+        headings
+        .map((item) => {
+            let th = document.createElement('TH');
+            th.innerHTML = item.valueOf();
+            row1.appendChild(th);
+            });
+
+            tableHead.appendChild(row1);
+            let t = 1;
+            while(t <= 7) {
+                // Table Data
+                let row2 = document.createElement('TR');
+
+                for (let i = 1; i <= headings.length; i++) {
+                    let data = document.createElement('TD');
+                    if (i == 1) {
+                        if (t % 2 == 0) {
+                        data.innerHTML = "<input type='text' name='" + "aufn".concat(t) + "' class='textbox' style='background-color:#e1e1e1'>";}
+                        else {
+                        data.innerHTML = "<input type='text' name='" + "aufn".concat(t) + "' class='textbox' style='background-color:#f5f5f5'>";}
+                     }
+                    else if (i == 2) {
+                        if (t % 2 == 0) {
+                        data.innerHTML = "<input type='text' name='" + "aufn".concat(t) + "' class='textbox' style='background-color:#e1e1e1'>";}
+                        else {
+                        data.innerHTML = "<input type='text' name='" + "aufn".concat(t) + "' class='textbox' style='background-color:#f5f5f5'>";}
+                    }
+                    else if (i == 3) {
+                    data.innerHTML = ' ';
+                    }
+                    else if (i == 4) {
+                        if (t % 2 == 0) {
+                        data.innerHTML = "<input type='text' name='" + "aufn".concat(t) + "' class='textbox' style='background-color:#e1e1e1'>";}
+                        else {
+                        data.innerHTML = "<input type='text' name='" + "aufn".concat(t) + "' class='textbox' style='background-color:#f5f5f5'>";}
+                    }
+                    row2.appendChild(data);
+                }
+            t++;
+            tableBody.appendChild(row2);
+        }
+        tableContainer.appendChild(table);
+      }
     }
 </script>
 </html>
