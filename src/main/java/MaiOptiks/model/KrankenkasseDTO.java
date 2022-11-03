@@ -11,16 +11,16 @@ import javax.validation.constraints.Size;
 public class KrankenkasseDTO {
 
     @Size(max = 254)
-    private String krankenkassenNr;
+    private String krankenkassennr;
 
     @Size(max = 254)
     private String name;
 
     @Size(max = 254)
-    private String starsse;
+    private String strasse;
 
     @Size(max = 254)
-    private String telefonNr;
+    private String telefonnr;
 
     @Size(max = 254)
     private String email;

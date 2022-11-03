@@ -36,7 +36,7 @@ public class KundeController {
         model.addAttribute("plzValues", stadtRepository.findAll().stream().collect(
                 Collectors.toMap(Stadt::getPlz, Stadt::getOrt)));
         model.addAttribute("krankenkassenNrValues", krankenkasseRepository.findAll().stream().collect(
-                Collectors.toMap(Krankenkasse::getKrankenkassenNr, Krankenkasse::getKrankenkassenNr)));
+                Collectors.toMap(Krankenkasse::getKrankenkassennr, Krankenkasse::getKrankenkassennr)));
     }
 
     @GetMapping

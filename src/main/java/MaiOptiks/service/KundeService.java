@@ -82,7 +82,7 @@ public class KundeService {
         kundeDTO.setGueltigkeit(kunde.getGueltigkeit());
         kundeDTO.setBemerkung(kunde.getBemerkung());
         kundeDTO.setPlz(kunde.getPlz() == null ? null : kunde.getPlz().getPlz());
-        kundeDTO.setKrankenkassenNr(kunde.getKrankenkassenNr() == null ? null : kunde.getKrankenkassenNr().getKrankenkassenNr());
+        kundeDTO.setKrankenkassenNr(kunde.getKrankenkassenNr() == null ? null : kunde.getKrankenkassenNr().getKrankenkassennr());
         return kundeDTO;
     }
 
