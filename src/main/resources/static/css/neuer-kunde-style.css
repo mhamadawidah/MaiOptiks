@@ -20,11 +20,17 @@
     flex-wrap: wrap;
 }
 
+input {
+    border: 1px solid gray;
+    border-radius: 5px;
+}
+
 .input-tel {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 1em;
 }
 
 .input-person {
@@ -32,18 +38,21 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 1em;
 }
 .input-insurance {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 1em;
 }
 .input-country {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 1em;
 }
 
 .input-tel > input {
@@ -72,4 +81,18 @@
 
 .footer {
     text-align: center;
+}
+
+.date {
+    width: 15em;
+    height: 2.5em;
+    display: block;
+    margin-top: 0.2em;
+    padding-left: 0.2em;
+    border-radius: 5px;
+}
+
+fieldset {
+    width: 11em;
+    border-radius: 5px;
 }
