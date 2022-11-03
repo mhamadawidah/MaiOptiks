@@ -35,7 +35,6 @@
     <button class="button direction-button" onclick="openLink('/neuer-kunde')">Neuer Kunde</button>
     <button class="button direction-button" onclick="openLink('/organisation')">Organisation</button>
     <button class="button direction-button" onclick="openLink('/führerscheinsehtest')">Führerschein-Sehtest</button>
-    <button class="button direction-button" onclick="insertCustomer()">Kunde einfügen</button>
 </div>
 
 </body>
@@ -68,75 +67,59 @@
             '/api/kundes/',
             (lastname + '/' + name),
             (data) => {   // func
-                //let data = JSON.parse(data);
-                // alert(data.exception);
-                createTable(data);
+                createTable(data, lastname, name);
             });
     }
 
-    function createTable(data) {
+    function createTable(data, lastname, name) {
         if (document.getElementsByClassName('table-container')[0].firstElementChild !== null) {
-            return false;
+            debugger;
+            const entries = document.getElementsByTagName('TD');
+
+            if (entries[2].innerHtml === lastname && entries[3].innerHTML === name) {
+                return false;
+            }
+
+            for (let i = 0; i <= entries.length; i++) {
+                const values = Object.values(data);
+
+                entries[i].innerHTML = values[i];
+            }
         } else {
             let tableContainer = document.getElementsByClassName('table-container')[0];
             let table = document.createElement('TABLE');
             let tableHead = document.createElement('THEAD');
             let tableBody = document.createElement('TBODY');
-            const headings = [
-                'Kunden-Nr.',
-                'Anrede',
-                'Name',
-                'Vorname',
-                'Straße',
-                'HausNr.',
-                'PLZ',
-                'Geburtsdatum',
-                'TelefonNr.',
-                'Handy',
-                'E-Mail',
-                'KrankenkassenNr.',
-                'VersicherungsNr.',
-                'Gültigkeit',
-                'Bemerkung',
-            ];
 
             table.appendChild(tableHead);
             table.appendChild(tableBody);
 
-            // Table Head
             let row1 = document.createElement('TR');
+            let row2 = document.createElement('TR');
 
-            headings
+            const keys = Object.keys(data);
+            const values = Object.values(data);
+
+            keys
                 .map((item) => {
                     let th = document.createElement('TH');
-                    th.innerHTML = item.valueOf();
+                    let caps = item.charAt(0).toUpperCase() + item.slice(1);
+                    th.innerHTML = caps.valueOf();
                     row1.appendChild(th);
                 });
 
+            values
+                .map((item) => {
+                    let td = document.createElement('TD');
+                    td.innerHTML = item.valueOf();
+                    row2.appendChild(td);
+                });
+
             tableHead.appendChild(row1);
-
-            // Table Data
-            let row2 = document.createElement('TR');
-
-            for (let i = 1; i <= headings.length; i++) {
-                let data = document.createElement('TD');
-                data.innerHTML = 'test';
-
-                row2.appendChild(data);
-            }
-
-            tableBody.appendChild(row2);
+            tableBody.appendChild(row2)
 
             tableContainer.appendChild(table);
         }
-    }
-</script>
-<script>
-    function insertCustomer() {
-        let json = '{"anrede": "Herr", "bemerkung": "", "email": "mustermannmax@examle.com", "geburtsdatum": "2022-10-27", "gueltigkeit": "2024-05-18", "handy": "0172 567891234", "hausNr": "3", "krankenkassenNr": "55", "kundenNr": 1, "name": "Mustermann", "plz": 49477, "strasse": "Wilhelmstr.", "telefonNr": "123456789", "versicherungsNr": "123123", "vorname": "Max"}';
-        doPostRequest('/api/kundes', json, (data) => {
-            console.log(data.response)
-        });
     }
 </script>
 </html>

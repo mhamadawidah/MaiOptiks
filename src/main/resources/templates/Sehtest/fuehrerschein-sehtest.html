@@ -5,6 +5,7 @@
     <title th:text="${title}"></title>
     <link rel="stylesheet" th:href="@{/css/main.css}"/>
     <link rel="stylesheet" th:href="@{/css/sehtest-style.css}"/>
+    <script th:src="@{/scripts/main.js}" type="text/javascript"></script>
 </head>
 <body>
 <div class="title-bar">
@@ -31,12 +32,10 @@
         <input type="text" id="name" name="name" class="textbox"><br>
         <label for="vorname">Vorname:</label>
         <input type="text" id="vorname" name="vorname" class="textbox"><br>
-        <label for="geburtstag"> geboren am:</label>
-        <input type="text" id="geburtstag" name="geburtstag" class="textbox">
+        <label for="geburtstag"> Geburtstag:</label>  &emsp; &emsp;
+        <input type="date" id="geburtstag" name="geburtstag" class="textbox">
     </div>
-
     <hr>
-
     <div>
         &nbsp; Der Sehtest wurde durchgeführt   &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;
         <input type="checkbox" id="Identitaet" name="Identitaet" value="Indent" class="ausweis">
@@ -49,16 +48,12 @@
         &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
         <label for="nr" class="ausweis">Nr.:</label> <input type="text" id="nr" name="nr" class="textbox">
     </div>
-
     <hr>
-
     <label for="ergebnis">Ergebnis des Sehtests:</label>
     <input type="text" id="ergebnis" name="ergebnis" class="textbox">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
     <input type="checkbox" id="drucken" name="drucken" value="drucken">
     <label for="drucken"> Blatt1: für die Auswertstelle drucken </label>
-
     <hr>
-
     <div class="schärfe">Die entsprechende zentrale Tagessehschärfe beträgt: &nbsp; &nbsp; &nbsp; &nbsp;
         &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Der Sehtest ist<br> <br>
         0,7 oder mehr: &nbsp;
@@ -79,15 +74,12 @@
         <label for="nichtbest"> nicht bestanden </label>
     </div>
     <hr>
-
     <input type="checkbox" id="zweifel" name="zweifel" value="zweifel">
     <label for="zweifel"> Sonstige Zweifel an ausreichenden Sehvermögen <br> &nbsp; &nbsp; &nbsp; gemäß Anlage 6 der Fahrerlaubnis-Verordnung </label>
     <br><br>
     <label for="zweifeltb">Art der Zweifel:</label>
     <input type="text" id="zweifeltb" name="zweifeltb" class="textbox breit">
-
     <hr>
-
     <div>Ist der Sehtest bestanden, so fügen Sie bitte diese Bescheinigung dem Antrag auf Erteilung der Fahrerlaubnis bei,
         die Bescheinigung bleibt zwei Jahre gültig. Ist der Sehtest nicht bestanden oder bestehen sonstige Zweifel am
         ausreichenden Sehvermögen, so müssen Sie eine augenärztliche Untersuchung durchführen lassen
@@ -105,4 +97,8 @@
     <button type="button" class="button drucken">Drucken</button>
 </div>
 </body>
+<script>
+    document.getElementById('datum').value = new Date().toISOString().slice(0, 10);
+    document.getElementById('ort').value = 'Westerkappeln';
+</script>
 </html>

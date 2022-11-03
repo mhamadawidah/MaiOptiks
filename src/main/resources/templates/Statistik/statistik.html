@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="de" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${title}"></title>
+    <link rel="stylesheet" th:href="@{/css/main.css}"/>
+    <link rel="stylesheet" th:href="@{/css/statistik-style.css}"/>
+    <script th:src="@{/scripts/main.js}" type="text/javascript"></script>
+</head>
+
+<body>
+<div class="title-bar">
+    <h1 class="heading">Statistik</h1>
+</div>
+
+<div class="vertical-bar">
+    <p></p>
+</div>
+
+<div class="header-button">
+    <button class=" button button-startseite" onclick="openLink('/')">Startseite</button>
+    <button class=" button button-startseite" onclick="Laden()">Laden</button>
+    <hr class="linetop">
+</div>
+
+
+<div class = "statistik"> 
+    <div>
+        <h4>Anzahl Aufträge:</h4>
+        <br> 
+        <h4>Anzahl Mitarbeiter:</h4>
+        <br> 
+        <h4>Anzahl Kunden:</h4>
+        <br> 
+    </div>
+    <div>
+        <h4 id = AnzAuf></h4>
+        <br>
+        <h4 id = AnzMit></h4>
+        <br>
+        <h4 id = AnzKund></h4>
+    </div> 
+</div> 
+
+</body>
+<script>
+    function Laden(){
+        anzAuftrag();
+        anzMitarbeiter();
+        anzKunden();
+    }
+
+    function anzAuftrag(){
+        document.getElementById("AnzAuf").innerHTML = doGetRequest(
+            '/api/auftrags',
+            '',
+            (jsonString) => {   // func
+                let data = JSON.parse(jsonString);
+            }); 
+    }
+    function anzMitarbeiter(){
+        debugger;
+        doGetRequest(
+            '/api/mitarbeiters',
+            '',
+            (jsonString) => {// func
+                let data = JSON.parse(jsonString);
+                anzMitarbeiterZeig(data);
+            }); 
+    }
+    function anzMitarbeiterZeig(data){
+        if (data == null){
+            document.getElementById("AnzMit").innerHTML = "0";
+        }
+    }
+    function anzKunden(){
+        document.getElementById("AnzKund").innerHTML = doGetRequest(
+            '/api/kundes',
+            '',
+            (jsonString) => {   // func
+                let data = JSON.parse(jsonString);
+            }); 
+    }
+    
+    
+</script>
+
+</html>
