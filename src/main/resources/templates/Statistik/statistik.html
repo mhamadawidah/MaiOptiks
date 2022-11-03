@@ -59,10 +59,19 @@
             }); 
     }
     function anzMitarbeiter(){
-        document.getElementById("AnzMit").innerHTML = doGetRequest(
+        debugger;
+        doGetRequest(
             '/api/mitarbeiters',
             '',
-            (jsonString)); 
+            (jsonString) => {// func
+                let data = JSON.parse(jsonString);
+                anzMitarbeiterZeig(data);
+            }); 
+    }
+    function anzMitarbeiterZeig(data){
+        if (data == null){
+            document.getElementById("AnzMit").innerHTML = "0";
+        }
     }
     function anzKunden(){
         document.getElementById("AnzKund").innerHTML = doGetRequest(
