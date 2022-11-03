@@ -13,6 +13,10 @@ function doRequest(method, endpoint, key, json_data, func) {
 
     fetch(url, {
         method: method,
+        headers: {
+            'Content-Type': 'application/json;charset=utf-8'
+        },
+        body: JSON.stringify(json_data),
     })
         .then(async (response) => {
             if (response.status >= 200 && response.status < 300) {
