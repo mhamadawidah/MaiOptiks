@@ -8,6 +8,7 @@
 
     <link rel="stylesheet" th:href="@{/css/main.css}"/>
     <link rel="stylesheet" th:href="@{/css/lagerverwaltung-style.css}">
+    <script type="text/javascript" th:src="@{/scripts/main.js}"></script>
 </head>
 <body>
 <div class="title-bar">
@@ -24,8 +25,8 @@
 </div>
 
 <div>
-    <input class="input" type="text" placeholder="Artikelnummer">
-    <input class="input" type="text" placeholder="Bezeichnung"><br><br>
+    <input class="input" id="Artikelnummer" type="text" placeholder="Artikelnummer">
+    <input class="input" id="Bezeichnung" type="text" placeholder="Bezeichnung"><br><br>
 </div>
 
 <div>
@@ -42,8 +43,8 @@
     <option>Lieferant</option>
 </select><br><br>
 
-<input class="input" type="text" placeholder="Einkaufspreis">
-<input class="input" type="text" placeholder="Verkaufspreis"><br><br>
+<input class="input" id="Einkaufspreis" type="text" placeholder="Einkaufspreis">
+<input class="input" id="Verkaufspreis" type="text" placeholder="Verkaufspreis"><br><br>
 </div>
 
 <div>
@@ -51,7 +52,7 @@
     <button class="button" type="submit" onclick="createTable()">Alles anzeigen</button>
 
     <button class="button" style="margin-left: 20px" onclick="fillTable()">Speichern</button>
-    <button class="button" onclick="neuAnlegen()">Neu</button>
+    <button class="button" onclick="insertLagerartikel()">Neu</button>
 </div>
 
 <div class="table">
@@ -128,10 +129,32 @@
     }
 
     function insertLagerartikel() {
-        let json = '{"artnr": "1", "bezeichnung": "", "artikelart": "", "material": "", "farbe": "", "einkaufspreis": "", "verkaufspreis": "", "lieferant": ""}';
-        doPostRequest('/api/artikels', json, (data) => {
-            console.log(data.response)
-        });
+        console.log("Hole Daten...")
+        debugger
+        const Artikelnummer = document.getElementById("Artikelnummer").value
+        const Bezeichnung = document.getElementById("Bezeichnung").value
+        const Einkaufspreis = document.getElementById("Einkaufspreis").value
+        const Verkaufspreis = document.getElementById("Verkaufspreis").value
+
+
+        //Json zusammenbauen
+        let jsonObject = {
+            "artikelNr": Artikelnummer,
+            "bezeichnung": Bezeichnung,
+            "artikelart": null,
+            "einkaufspreis": Einkaufspreis,
+            "verkaufspreis": Verkaufspreis,
+            "material": null,
+            "farbe": null,
+            "lieferant": null,
+        }
+
+        console.log("Jason", jsonObject)
+
+        doPostRequest('/api/artikels',  jsonObject, (response) => {
+            console.log("Hier bin ich", response)
+        })
+        return jsonObject
     }
 </script>
 </html>
