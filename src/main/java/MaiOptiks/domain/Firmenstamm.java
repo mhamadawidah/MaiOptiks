@@ -15,7 +15,7 @@ public class Firmenstamm {
 
     @Id
     @Column(nullable = false, updatable = false, length = 254)
-    private String augenoptikerIknr;
+    private String augenoptikeriknr;
 
     @Column(length = 254)
     private String steuernummer;
