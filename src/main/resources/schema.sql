@@ -14,11 +14,11 @@ CREATE TABLE IF NOT EXISTS Abrechnungsart (AbrechnungsartID int NOT NULL, Art va
 
 CREATE TABLE IF NOT EXISTS Gattung (GattungID int NOT NULL, Bezeichnung varchar(254) NOT NULL, PRIMARY KEY (GattungID));
 
-CREATE TABLE IF NOT EXISTS Refraktion (RefraktionID int NOT NULL, MitarbeiterID int, ArztID int, Sph float, Cyl float, Ach float, Adds float, Pris float, Bas float, Visus float, PRIMARY KEY (RefraktionID), FOREIGN KEY (MitarbeiterID) REFERENCES Mitarbeiter(MitarbeiterID), FOREIGN KEY (ArztID) REFERENCES Arzt(ArztID));
-
 CREATE TABLE IF NOT EXISTS Mitarbeiter (MitarbeiterID int NOT NULL, Name varchar(254), Vorname varchar(254), Strasse varchar(254), HausID varchar(254), PLZ int, TelefonID varchar(254), Handy varchar(254), Email varchar(254), Geburtsdatum date, PRIMARY KEY (MitarbeiterID), FOREIGN KEY (PLZ) REFERENCES Stadt(PLZ));
 
 CREATE TABLE IF NOT EXISTS Arzt (ArztID int NOT NULL, Name varchar(254), Vorname varchar(254), Strasse varchar(254), HausID varchar(254), PLZ int, TelefonID varchar(254), Handy varchar(254), Email varchar(254), PRIMARY KEY (ArztID), FOREIGN KEY (PLZ) REFERENCES Stadt(PLZ));
+
+CREATE TABLE IF NOT EXISTS Refraktion (RefraktionID int NOT NULL, MitarbeiterID int, ArztID int, Sph float, Cyl float, Ach float, Adds float, Pris float, Bas float, Visus float, PRIMARY KEY (RefraktionID), FOREIGN KEY (MitarbeiterID) REFERENCES Mitarbeiter(MitarbeiterID), FOREIGN KEY (ArztID) REFERENCES Arzt(ArztID));
 
 CREATE TABLE IF NOT EXISTS Auftrag (AuftragID int NOT NULL, AbrechnungsartID varchar(254), Rezepturvorhanden bit, Womit varchar(254), Wann varchar(254), Fertig bit, Abgeholt bit, Bezahlt bit, Auftragsbestaetigung varchar(254), Rechnung varchar(254), Mahnung int, KundenID int, Datum date, Werkstatt int, Berater int, Refraktion int, Geschlossen bit, PRIMARY KEY (AuftragID), FOREIGN KEY (KundenID) REFERENCES Kunde(KundenID), FOREIGN KEY (Berater) REFERENCES Mitarbeiter(MitarbeiterID), FOREIGN KEY (Werkstatt) REFERENCES Mitarbeiter(MitarbeiterID), FOREIGN KEY (Refraktion) REFERENCES Refraktion(RefraktionID),FOREIGN KEY (AbrechnungsartID) REFERENCES Abrechnungsart(AbrechnungsartID));
 
