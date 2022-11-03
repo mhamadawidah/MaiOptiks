@@ -53,66 +53,56 @@
             '/api/auftrags/',
             auftragsNr,
             (data) => {   // func
-                console.log(data);
-                //let data = JSON.parse(jsonString);
-                // alert(data.exception);
-                createTable(data);
+                createTable(data, auftragsNr);
             });
     }
 
-    function createTable(data) {
+    function createTable(data, auftragsNr) {
         if (document.getElementsByClassName('table-container')[0].firstElementChild !== null) {
-            return false;
+            debugger;
+            const entries = document.getElementsByTagName('TD');
+
+            if (entries[0].innerHtml === auftragsNr) {
+                return false;
+            }
+
+            for (let i = 0; i <= entries.length; i++) {
+                const values = Object.values(data);
+
+                entries[i].innerHTML = values[i];
+            }
         } else {
             let tableContainer = document.getElementsByClassName('table-container')[0];
             let table = document.createElement('TABLE');
             let tableHead = document.createElement('THEAD');
             let tableBody = document.createElement('TBODY');
-            const headings = [
-                'Kunden-Nr.',
-                'Auftrags-Nr.',
-                'Abrechnungsart',
-                'Rezept vorhanden',
-                'Womit',
-                'Wann',
-                'Fertig',
-                'Abgeholt',
-                'Bezahlt',
-                'Auftragsbestätigung',
-                'Rechnung',
-                'Mahnung',
-                'Datum',
-                'Werkstatt',
-                'Berater',
-                'Refraktion',
-            ];
 
             table.appendChild(tableHead);
             table.appendChild(tableBody);
 
-            // Table Head
-            let row1 = document.createElement('TR');
+            let headerRow = document.createElement('TR');
+            let dataRow = document.createElement('TR');
 
-            headings
+            const keys = Object.keys(data);
+            const values = Object.values(data);
+
+            keys
                 .map((item) => {
                     let th = document.createElement('TH');
-                    th.innerHTML = item.valueOf();
-                    row1.appendChild(th);
+                    let caps = item.charAt(0).toUpperCase() + item.slice(1);
+                    th.innerHTML = caps.valueOf();
+                    headerRow.appendChild(th);
                 });
 
-            tableHead.appendChild(row1);
+            values
+                .map((item) => {
+                    let td = document.createElement('TD');
+                    td.innerHTML = item.valueOf();
+                    dataRow.appendChild(td);
+                });
 
-            // Table Data
-            let row2 = document.createElement('TR');
-
-            for (let i = 1; i <= headings.length; i++) {
-                let data = document.createElement('TD');
-                data.innerHTML = 'test';
-
-                row2.appendChild(data);
-            }
-
-            tableBody.appendChild(row2);
+            tableHead.appendChild(headerRow);
+            tableBody.appendChild(dataRow)
 
             tableContainer.appendChild(table);
         }
