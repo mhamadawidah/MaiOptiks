@@ -28,16 +28,7 @@ label {
     justify-content: space-evenly;
 }
 
-
-.body .tab-buttons form{
-    background: orangered;
-    width: 12.5%;
+.body .tab-buttons input[type="button"]{
     flex: 1 1 auto;
-}
-
-.body .tab-buttons form:nth-child(even){
-    background: deeppink;
-}
-.body .tab-buttons form input[type="submit"]{
-    width: 100%;
+    width: 12.5%;
 }
