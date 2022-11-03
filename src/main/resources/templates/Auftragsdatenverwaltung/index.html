@@ -17,36 +17,80 @@
 </div>
 
 <!--<label>Auftragsdatenverwaltung</label>-->
+<div class="logic">
+    <form id="hidden_logic">
+        <input type="hidden" name="mode">
+        <input type="hidden" name="tab">
+    </form>
+</div>
+
 <div class="head">
-    <div class="tab-buttons">
-        <form action="" method="GET">
-            <input type="hidden" name="selection" value="1">
-            <input type="hidden" name="kunden_id">
-            <input type="submit" value="Kunden"/>
-        </form>
-        <form action="" method="GET">
-            <input type="hidden" name="selection" value="2">
-            <input type="hidden" name="kunden_id">
-            <input type="submit" value="Auftrag"/>
-        </form>
-        <form action="" method="GET">
-            <input type="hidden" name="selection" value="3">
-            <input type="hidden" name="kunden_id">
-            <input type="submit" value="Augendaten"/>
-        </form>
-    </div>
+ <form>
+
+ </form>
 </div>
 
 <div class="body">
-    <th:block th:if="${selection == 1}">
-        <div th:replace="fragments/Auftragsdatenverwaltung/kunden.html"/>
-    </th:block>
-    <th:block th:if="${selection == 2}">
-        <div th:replace="fragments/Auftragsdatenverwaltung/auftrag.html"/>
-    </th:block>
-    <th:block th:if="${selection >= 3}">
-        <div th:replace="fragments/Auftragsdatenverwaltung/augendaten.html"/>
-    </th:block>
+    <div class="tab-buttons">
+        <form action="" method="GET">
+            <input type="hidden" name="tab" value="1">
+            <input type="button" value="Auftrag"/>
+        </form>
+        <form action="" method="GET">
+            <input type="hidden" name="tab" value="2">
+            <input type="submit" value="Augendaten"/>
+        </form>
+        <form action="" method="GET">
+            <input type="hidden" name="tab" value="4">
+            <input type="submit" value="Brillenfassung"/>
+        </form>
+        <form action="" method="GET">
+            <input type="hidden" name="tab" value="5">
+            <input type="submit" value="Brillenglas"/>
+        </form>
+        <form action="" method="GET">
+            <input type="hidden" name="tab" value="6">
+            <input type="submit" value="Refraktion"/>
+        </form>
+        <form action="" method="GET">
+            <input type="hidden" name="tab" value="7">
+            <input type="submit" value="Veredelung"/>
+        </form>
+        <form action="" method="GET">
+            <input type="hidden" name="tab" value="8">
+            <input type="submit" value="Zuschläge"/>
+        </form>
+        <form action="" method="GET">
+            <input type="hidden" name="tab" value="3">
+            <input type="submit" value="Bemerkung"/>
+        </form>
+    </div>
+    <div class="tab-body">
+        <th:block th:if="${tab == 1}">
+            <div th:replace="fragments/Auftragsdatenverwaltung/kunden.html"/>
+        </th:block>
+        <th:block th:if="${tab == 2}">
+            <div th:replace="fragments/Auftragsdatenverwaltung/augendaten.html"/>
+        </th:block>
+        <th:block th:if="${tab >= 3}">
+            <div th:replace="fragments/Auftragsdatenverwaltung/Bemerkung.html"/>
+        </th:block>
+        <th:block th:if="${tab == 4}">
+            <div th:replace="fragments/Auftragsdatenverwaltung/Brillenfassung.html"/>
+        </th:block>
+        <th:block th:if="${tab == 5}">
+            <div th:replace="fragments/Auftragsdatenverwaltung/Brillenglas.html"/>
+        </th:block>
+        <th:block th:if="${tab >= 6}">
+            <div th:replace="fragments/Auftragsdatenverwaltung/Refraktion.html"/>
+        </th:block>
+        <th:block th:if="${tab == 7}">
+            <div th:replace="fragments/Auftragsdatenverwaltung/Veredelungen.html"/>
+        </th:block>
+        <th:block th:if="${tab >= 8}">
+            <div th:replace="fragments/Auftragsdatenverwaltung/Zuschlaege.html"/>
+        </th:block>
+    </div>
 </div>
 
 <div class="action-buttons">
@@ -58,10 +102,18 @@
 </div>
 </body>
 <script>
+    // get hidden form to contain data
     var URL = new URL(window.location.href);
-    var getParam = URL.searchParams.get('kunden_id');
-    document
-        .getElementsByName("kunden_id")
-        .forEach(input => input.value = getParam);
+    var items = document
+        .getElementById("hidden_logic").children;
+
+    for (let i = 0; i < items.length; i++){
+        debugger;
+        var input = items.item(i);
+        var param = URL.searchParams.get(input.name);
+        if (param != undefined && param != null){
+            input.value = param;
+        }
+    }
 </script>
 </html>

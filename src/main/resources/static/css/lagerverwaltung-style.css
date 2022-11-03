@@ -1,0 +1,64 @@
+aside {
+    float: right;
+}
+
+.header {
+    width: 96%;
+    text-align: left
+    font-size: 25px;
+}
+.header .button-startseite {
+    width: 10em;
+    height: 2.5em;
+    margin: 0.5%;
+}
+
+table {
+    width: 90%;
+    position: relative;
+    text-align: center;
+    font-family: "Roboto Light", sans-serif;
+	font-size: 17px;
+	margin: 20px;
+}
+
+th {
+      border-bottom-width: medium;
+      background-color: var(--primary);
+      color: white;
+      padding: 0.5em 1em 0.5em 1em;
+  }
+
+.select {
+    width: 175px;
+    height: 2em;
+    border: none;
+    border-radius: 4px;
+    margin-left: 20px;
+}
+
+.input {
+    width: 350px;
+    height: 1.5em;
+    border-radius: 5px;
+    border: 1px solid black;
+    margin-left: 20px;
+}
+
+.input::placeholder {
+    font-family: "Roboto Thin", sans-serif;
+    font-size: 17px;
+}
+
+.button {
+    height: 2em;
+    border-radius: 3px;
+    border: 1px solid black;
+    font-family: "Roboto Light", sans-serif;
+    font-size: 17px;
+    font-weight: bold;
+    background-color: var(--button);
+    color: black;
+
+    cursor: pointer;
+}

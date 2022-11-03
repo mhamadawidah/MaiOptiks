@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<th:block th:fragment="crud">
+    <form>
+        <input type="hidden" name="mode" value="create">
+        <input type="submit" value="C">
+    </form>
+
+    <form>
+        <input type="hidden" name="mode" value="read">
+        <input type="submit" value="R">
+    </form>
+
+    <form>
+        <input type="hidden" name="mode" value="update">
+        <input type="submit" value="U">
+    </form>
+
+    <form>
+        <input type="hidden" name="mode" value="delete">
+        <input type="submit" value="D">
+    </form>
+</th:block>
+</body>
+</html>
