@@ -85,7 +85,6 @@
 
     function createTable(data, lastname, name) {
         if (document.getElementsByClassName('table-container')[0].firstElementChild !== null) {
-            debugger;
             const entries = document.getElementsByTagName('TD');
 
             if (entries[2].innerHtml === lastname && entries[3].innerHTML === name) {
@@ -108,20 +107,23 @@
 
             let headerRow = document.createElement('TR');
 
-            if (Array.isArray(data)) {
-                for (let i = 0; i <= data.length; i++) {
+            if (data.length > 1) {
+                const keys = Object.keys(data[0]);
+
+                keys
+                    .map((item) => {
+                        let th = document.createElement('TH');
+                        let caps = item.charAt(0).toUpperCase() + item.slice(1);
+                        th.innerHTML = caps.valueOf();
+                        headerRow.appendChild(th);
+                    });
+
+                tableHead.appendChild(headerRow);
+
+                for (let i = 0; i < data.length; i++) {
                     let dataRow = document.createElement('TR');
 
-                    const keys = Object.keys(data[i]);
                     const values = Object.values(data[i]);
-
-                    keys
-                        .map((item) => {
-                            let th = document.createElement('TH');
-                            let caps = item.charAt(0).toUpperCase() + item.slice(1);
-                            th.innerHTML = caps.valueOf();
-                            headerRow.appendChild(th);
-                        });
 
                     values
                         .map((item) => {
@@ -130,14 +132,13 @@
                             dataRow.appendChild(td);
                         });
 
-                    tableHead.appendChild(headerRow);
                     tableBody.appendChild(dataRow)
                 }
             } else {
                 let dataRow = document.createElement('TR');
 
-                const keys = Object.keys(data);
-                const values = Object.values(data);
+                const keys = Object.keys(data[0]);
+                const values = Object.values(data[0]);
 
                 keys
                     .map((item) => {
