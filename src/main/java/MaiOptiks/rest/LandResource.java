@@ -41,11 +41,11 @@ public class LandResource {
     @ApiResponse(responseCode = "201")
     public ResponseEntity<Void> createLand(@RequestBody @Valid final LandDTO landDTO,
             final BindingResult bindingResult) throws MethodArgumentNotValidException {
-        if (!bindingResult.hasFieldErrors("landId") && landDTO.getLandId() == null) {
-            bindingResult.rejectValue("landId", "NotNull");
+        if (!bindingResult.hasFieldErrors("landid") && landDTO.getLandId() == null) {
+            bindingResult.rejectValue("landid", "NotNull");
         }
-        if (!bindingResult.hasFieldErrors("landId") && landService.landIdExists(landDTO.getLandId())) {
-            bindingResult.rejectValue("landId", "Exists.land.landId");
+        if (!bindingResult.hasFieldErrors("landid") && landService.landIdExists(landDTO.getLandId())) {
+            bindingResult.rejectValue("landid", "Exists.land.landid");
         }
         if (bindingResult.hasErrors()) {
             throw new MethodArgumentNotValidException(new MethodParameter(

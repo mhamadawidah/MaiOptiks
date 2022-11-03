@@ -29,7 +29,7 @@ public class StadtController {
     @ModelAttribute
     public void prepareContext(final Model model) {
         model.addAttribute("landValues", landRepository.findAll().stream().collect(
-                Collectors.toMap(Land::getLandId, Land::getLandId)));
+                Collectors.toMap(Land::getLandid, Land::getLandid)));
     }
 
     @GetMapping
