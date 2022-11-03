@@ -47,11 +47,11 @@ public class FirmenstammController {
     @PostMapping("/add")
     public String add(@ModelAttribute("firmenstamm") @Valid final FirmenstammDTO firmenstammDTO,
             final BindingResult bindingResult, final RedirectAttributes redirectAttributes) {
-        if (!bindingResult.hasFieldErrors("augenoptikerIknr") && firmenstammDTO.getAugenoptikerIknr() == null) {
-            bindingResult.rejectValue("augenoptikerIknr", "NotNull");
+        if (!bindingResult.hasFieldErrors("augenoptikeriknr") && firmenstammDTO.getAugenoptikerIknr() == null) {
+            bindingResult.rejectValue("augenoptikeriknr", "NotNull");
         }
-        if (!bindingResult.hasFieldErrors("augenoptikerIknr") && firmenstammService.augenoptikerIknrExists(firmenstammDTO.getAugenoptikerIknr())) {
-            bindingResult.rejectValue("augenoptikerIknr", "Exists.firmenstamm.augenoptikerIknr");
+        if (!bindingResult.hasFieldErrors("augenoptikeriknr") && firmenstammService.augenoptikerIknrExists(firmenstammDTO.getAugenoptikerIknr())) {
+            bindingResult.rejectValue("augenoptikeriknr", "Exists.firmenstamm.augenoptikeriknr");
         }
         if (bindingResult.hasErrors()) {
             return "firmenstamm/add";

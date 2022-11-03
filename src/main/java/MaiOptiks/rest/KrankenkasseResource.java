@@ -43,11 +43,11 @@ public class KrankenkasseResource {
     public ResponseEntity<Void> createKrankenkasse(
             @RequestBody @Valid final KrankenkasseDTO krankenkasseDTO,
             final BindingResult bindingResult) throws MethodArgumentNotValidException {
-        if (!bindingResult.hasFieldErrors("krankenkassenNr") && krankenkasseDTO.getKrankenkassenNr() == null) {
-            bindingResult.rejectValue("krankenkassenNr", "NotNull");
+        if (!bindingResult.hasFieldErrors("krankenkassennr") && krankenkasseDTO.getKrankenkassennr() == null) {
+            bindingResult.rejectValue("krankenkassennr", "NotNull");
         }
-        if (!bindingResult.hasFieldErrors("krankenkassenNr") && krankenkasseService.krankenkassenNrExists(krankenkasseDTO.getKrankenkassenNr())) {
-            bindingResult.rejectValue("krankenkassenNr", "Exists.krankenkasse.krankenkassenNr");
+        if (!bindingResult.hasFieldErrors("krankenkassennr") && krankenkasseService.krankenkassenNrExists(krankenkasseDTO.getKrankenkassennr())) {
+            bindingResult.rejectValue("krankenkassennr", "Exists.krankenkasse.krankenkassennr");
         }
         if (bindingResult.hasErrors()) {
             throw new MethodArgumentNotValidException(new MethodParameter(
