@@ -50,8 +50,8 @@
     <input class="input" type="text" placeholder="Suchen">
     <button class="button" type="submit" onclick="createTable()">Alles anzeigen</button>
 
-    <button class="button" style="margin-left: 20px" onclick="fillTable()"><a>Speichern</a></button>
-    <button class="button"><a>Neu</a></button>
+    <button class="button" style="margin-left: 20px" onclick="fillTable()">Speichern</button>
+    <button class="button" onclick="neuAnlegen()">Neu</button>
 </div>
 
 <div class="table">
@@ -125,6 +125,19 @@
 
             tableContainer.appendChild(table);
         }
+    }
+
+    function NeuAnlegen(){
+        doPostRequest(
+            '/api/artikels',
+            data);
+    }
+
+    function insertLagerartikel() {
+        let json = '{"artnr": "1", "bezeichnung": "", "artikelart": "", "material": "", "farbe": "", "einkaufspreis": "", "verkaufspreis": "", "lieferant": ""}';
+        doPostRequest('/api/artikels', json, (data) => {
+            console.log(data.response)
+        });
     }
 </script>
 </html>
