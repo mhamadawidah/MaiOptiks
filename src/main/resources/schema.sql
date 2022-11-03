@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS Mail (EMail varchar(254) NOT NULL, Benutzername varch
 
 CREATE TABLE IF NOT EXISTS Abrechnungsart (AbrechnungsartID int NOT NULL, Art varchar(254), PRIMARY KEY (AbrechnungsartID));
 
-CREATE TABLE IF NOT EXISTS Gattung (GattungID int NOT NULL, Beschreibung varchar(254) NOT NULL, PRIMARY KEY (GattungID));
+CREATE TABLE IF NOT EXISTS Gattung (GattungID int NOT NULL, Bezeichnung varchar(254) NOT NULL, PRIMARY KEY (GattungID));
 
 CREATE TABLE IF NOT EXISTS Refraktion (RefraktionID int NOT NULL, MitarbeiterID int, ArztID int, Sph float, Cyl float, Ach float, Adds float, Pris float, Bas float, Visus float, PRIMARY KEY (RefraktionID), FOREIGN KEY (MitarbeiterNr) REFERENCES Mitarbeiter(MitarbeiterNr), FOREIGN KEY (ArztNr) REFERENCES Arzt(ArztNr));
 

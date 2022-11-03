@@ -8749,6 +8749,10 @@ MERGE INTO Artikelart(ArtID, Bezeichnung) VALUES('0', 'Gläser');
 MERGE INTO Artikelart(ArtID, Bezeichnung) VALUES('1', 'Fassung');
 MERGE INTO Artikelart(ArtID, Bezeichnung) VALUES('2', 'Kontaktlinsen');
 
+MERGE INTO Gattung(GattungID, Bezeichnung) VALUES('0', 'Herren');
+MERGE INTO Gattung(GattungID, Bezeichnung) VALUES('1', 'Damen');
+MERGE INTO Gattung(GattungID, Bezeichnung) VALUES('2', 'Unisex');
+
 MERGE INTO Material(MaterialID, Bezeichung, Info) VALUES('0', 'Kunststoff', '');
 MERGE INTO Material(MaterialID, Bezeichung, Info) VALUES('1', 'Acetat', '');
 MERGE INTO Material(MaterialID, Bezeichung, Info) VALUES('2', 'Metall', '');
