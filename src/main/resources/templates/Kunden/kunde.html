@@ -1,166 +1,176 @@
 <!DOCTYPE html>
 <html lang="de" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org/">
 <head>
-    <meta charset="UTF-8">
-    <title th:text="${title}"></title>
-    <link rel="stylesheet" th:href="@{/css/main.css}"/>
-    <link rel="stylesheet" th:href="@{/css/startseite-style.css}"/>
-    <script th:src="@{/scripts/main.js}" type="text/javascript"></script>
+	<meta charset="UTF-8">
+	<title th:text="${title}"></title>
+	<link rel="stylesheet" th:href="@{/css/main.css}"/>
+	<link rel="stylesheet" th:href="@{/css/startseite-style.css}"/>
+	<script th:src="@{/scripts/main.js}" type="text/javascript"></script>
 </head>
 <body>
 <div class="title-bar">
-    <h1 class="heading">Kunde</h1>
+	<h1 class="heading">Kunde</h1>
 </div>
 
 <div class="vertical-bar">
-    <p></p>
+	<p></p>
 </div>
 
 <div class="customerButton-searchField">
-    <div class="customers">
-        <button class="button customer-button" onclick="openLink('/auftrag')" type="button">Auftrag</button>
-    </div>
+	<div class="customers">
+		<button class="button customer-button" onclick="openLink('/auftrag')" type="button">Auftrag</button>
+	</div>
 
-    <div class="search-fields">
-        <input class="input" id="lastname" placeholder="Name" required type="text"/><br>
-        <input class="input" id="name" placeholder="Vorname" required type="text"/><br>
-        <button class="button submit-button" onclick="searchCustomer()" onkeypress="enterPressed(e)" type="submit">
-            Suchen
-        </button>
-    </div>
+	<div class="search-fields">
+		<input class="input" id="lastname" placeholder="Name" required type="text"></input><br>
+		<input class="input" id="name" placeholder="Vorname" required type="text"></input><br>
+		<button class="button submit-button" onclick="searchCustomer()">Suchen</button>
+	</div>
 </div>
 
 <div class="table-container"></div>
 
 <div class="direction-buttons">
-    <button class="button direction-button" onclick="openLink('./')">Startseite</button>
-    <button class="button direction-button" onclick="openLink('/neuer-kunde')">Neuer Kunde</button>
-    <button class="button direction-button" onclick="openLink('/organisation')">Organisation</button>
-    <button class="button direction-button" onclick="openLink('/führerscheinsehtest')">Führerschein-Sehtest</button>
+	<button class="button direction-button" onclick="openLink('./')">Startseite</button>
+	<button class="button direction-button" onclick="openLink('/neuer-kunde')">Neuer Kunde</button>
+	<button class="button direction-button" onclick="openLink('/organisation')">Organisation</button>
+	<button class="button direction-button" onclick="openLink('/führerscheinsehtest')">Führerschein-Sehtest</button>
 </div>
 
 </body>
 <script>
-    function enterPressed(e) {
-        document.getElementById("name").addEventListener("keydown", function (e) {
-            let keyCode = e.code;
-            if (keyCode === 13) {
-                // enter pressed
-                searchCustomer();
-            }
-        }, false);
-    }
+	function enterPressed(e) {
+		document.getElementById("name").addEventListener("keydown", function (e) {
+			let keyCode = e.code;
+			if (keyCode === 13) {
+				// enter pressed
+				searchCustomer();
+			}
+		}, false);
+	}
 
-    function searchCustomer() {
-        let name = document.getElementById('name').value;
-        let lastname = document.getElementById('lastname').value;
+	function searchCustomer() {
+		let name = document.getElementById('name').value;
+		let lastname = document.getElementById('lastname').value;
 
-        if (name === '' && lastname === '') {
-            document.getElementById('name').style.border = '3px solid red';
-            document.getElementById('lastname').style.border = '3px solid red';
+		switch (true) {
+			default:
+				document.getElementById('name').style.border = '1px solid black';
+				document.getElementById('lastname').style.border = '1px solid black';
+				name = name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
+				lastname = lastname.charAt(0).toUpperCase() + lastname.slice(1).toLowerCase();
+				break;
+			case (!name && !lastname) :
+				document.getElementById('name').style.border = '3px solid red';
+				document.getElementById('lastname').style.border = '3px solid red';
+				break;
+			case (!name && lastname) :
+				document.getElementById('name').style.border = '3px solid red';
+				document.getElementById('lastname').style.border = '1px solid black';
+				break;
+			case (!lastname && name) :
+				document.getElementById('lastname').style.border = '3px solid red';
+				document.getElementById('name').style.border = '1px solid black';
+				break;
+		}
 
-            return false;
-        } else if (name === '' && lastname !== '') {
-            document.getElementById('name').style.border = '3px solid red';
-            document.getElementById('lastname').style.border = '1px solid black';
+		doGetRequest(
+			'/api/kundes/',
+			(lastname && name) ? (lastname + '/' + name) : undefined,
+			(data) => {   // func
+				createTable(data, lastname, name);
+			});
+	}
 
-            return false;
-        } else if (lastname === '' && name !== '') {
-            document.getElementById('name').style.border = '1px solid black';
-            document.getElementById('lastname').style.border = '3px solid red';
+	function createTable(data, lastname, name) {
+		if (document.getElementsByClassName('table-container')[0].firstElementChild !== null) { // Bereits eine Tabelle vorhanden?
+			const entries = document.getElementsByTagName('TD');
+			const existingRows = document.getElementsByTagName('TR');
+			// Tabellen Daten identisch mit Eingabe?
+			if (entries[2].innerHTML === lastname && entries[3].innerHTML === name) {
+				return;
+			}
+			// Überflüssige Zeilen löschen
+			if (data.length < (existingRows.length - 1) && existingRows.length > 2) {
+				for (let r = (data.length + 1); r < existingRows.length; r++) {
+					document.getElementsByTagName('TR')[r].remove();
+				}
+			}
+			// Benötigte neue Zeilen hinzufügen
+			if (data.length > (existingRows.length - 1)) {
+				document.getElementsByTagName('TABLE'); // TODO: Nach Löschung neue Tabelle erstellen
+			}
+			// Vorhandene Zeile durch neue Daten ersetzen
+			for (let j = 0; j < data.length; j++) {
+				for (let i = 0; i < entries.length; i++) {
+					const values = Object.values(data[j]);
 
-            return false;
-        } else {
-            document.getElementById('name').style.border = '1px solid black';
-            document.getElementById('lastname').style.border = '1px solid black';
-        }
+					entries[i].innerHTML = values[i];
+				}
+			}
+		} else {
+			const tableContainer = document.getElementsByClassName('table-container')[0];
+			const table = document.createElement('TABLE');
+			const tableHead = document.createElement('THEAD');
+			const tableBody = document.createElement('TBODY');
 
-        doGetRequest(
-            '/api/kundes/',
-            (lastname + '/' + name),
-            (data) => {   // func
-                createTable(data, lastname, name);
-            });
-    }
+			table.appendChild(tableHead);
+			table.appendChild(tableBody);
 
-    function createTable(data, lastname, name) {
-        if (document.getElementsByClassName('table-container')[0].firstElementChild !== null) {
-            const entries = document.getElementsByTagName('TD');
+			const headerRow = document.createElement('TR');
+			// Mehrere Objekte?
+			if (data.length > 1) {
+				const keys = Object.keys(data[0]);
 
-            if (entries[2].innerHtml === lastname && entries[3].innerHTML === name) {
-                return false;
-            }
+				keys
+					.map((item) => {
+						const th = document.createElement('TH');
+						const caps = item.charAt(0).toUpperCase() + item.slice(1);
+						th.innerHTML = caps.valueOf();
+						headerRow.appendChild(th);
+					});
+				// Für jedes Objekt neue Zeile erstellen
+				for (let i = 0; i < data.length; i++) {
+					const dataRow = document.createElement('TR');
+					const values = Object.values(data[i]);
 
-            for (let i = 0; i <= entries.length; i++) {
-                const values = Object.values(data);
+					values
+						.map((item) => {
+							const td = document.createElement('TD');
+							td.innerHTML = item.valueOf();
+							dataRow.appendChild(td);
+						});
 
-                entries[i].innerHTML = values[i];
-            }
-        } else {
-            let tableContainer = document.getElementsByClassName('table-container')[0];
-            let table = document.createElement('TABLE');
-            let tableHead = document.createElement('THEAD');
-            let tableBody = document.createElement('TBODY');
+					tableHead.appendChild(headerRow);
+					tableBody.appendChild(dataRow)
+				}
+			} else {
+				const dataRow = document.createElement('TR');
 
-            table.appendChild(tableHead);
-            table.appendChild(tableBody);
+				const keys = Object.keys(data[0]);
+				const values = Object.values(data[0]);
 
-            let headerRow = document.createElement('TR');
+				keys
+					.map((item) => {
+						const th = document.createElement('TH');
+						const caps = item.charAt(0).toUpperCase() + item.slice(1);
+						th.innerHTML = caps.valueOf();
+						headerRow.appendChild(th);
+					});
 
-            if (data.length > 1) {
-                const keys = Object.keys(data[0]);
+				values
+					.map((item) => {
+						const td = document.createElement('TD');
+						td.innerHTML = item.valueOf();
+						dataRow.appendChild(td);
+					});
 
-                keys
-                    .map((item) => {
-                        let th = document.createElement('TH');
-                        let caps = item.charAt(0).toUpperCase() + item.slice(1);
-                        th.innerHTML = caps.valueOf();
-                        headerRow.appendChild(th);
-                    });
+				tableHead.appendChild(headerRow);
+				tableBody.appendChild(dataRow)
+			}
 
-                tableHead.appendChild(headerRow);
-
-                for (let i = 0; i < data.length; i++) {
-                    let dataRow = document.createElement('TR');
-
-                    const values = Object.values(data[i]);
-
-                    values
-                        .map((item) => {
-                            let td = document.createElement('TD');
-                            td.innerHTML = item.valueOf();
-                            dataRow.appendChild(td);
-                        });
-
-                    tableBody.appendChild(dataRow)
-                }
-            } else {
-                let dataRow = document.createElement('TR');
-
-                const keys = Object.keys(data[0]);
-                const values = Object.values(data[0]);
-
-                keys
-                    .map((item) => {
-                        let th = document.createElement('TH');
-                        let caps = item.charAt(0).toUpperCase() + item.slice(1);
-                        th.innerHTML = caps.valueOf();
-                        headerRow.appendChild(th);
-                    });
-
-                values
-                    .map((item) => {
-                        let td = document.createElement('TD');
-                        td.innerHTML = item.valueOf();
-                        dataRow.appendChild(td);
-                    });
-
-                tableHead.appendChild(headerRow);
-                tableBody.appendChild(dataRow)
-            }
-
-            tableContainer.appendChild(table);
-        }
-    }
+			tableContainer.appendChild(table);
+		}
+	}
 </script>
 </html>

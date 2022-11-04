@@ -58,52 +58,53 @@
     }
 
     function createTable(data, auftragsNr) {
-        if (document.getElementsByClassName('table-container')[0].firstElementChild !== null) {
-            debugger;
+        if (document.getElementsByClassName('table-container')[0].firstElementChild !== null) { // Bereits eine Tabelle vorhanden?
+            // debugger;
             const entries = document.getElementsByTagName('TD');
-
-            if (entries[0].innerHtml === auftragsNr) {
-                return false;
+            const existingRows = document.getElementsByTagName('TR');
+            // Tabellen Daten identisch mit Eingabe?
+            if (entries[0].innerHTML === auftragsNr) {
+                return;
             }
+            // Vorhandene Zeile durch neue Daten ersetzen
+            const values = Object.values(data[0]);
 
-            for (let i = 0; i <= entries.length; i++) {
-                const values = Object.values(data);
-
+            for (let i = 0; i < entries.length; i++) {
                 entries[i].innerHTML = values[i];
             }
+
         } else {
-            let tableContainer = document.getElementsByClassName('table-container')[0];
-            let table = document.createElement('TABLE');
-            let tableHead = document.createElement('THEAD');
-            let tableBody = document.createElement('TBODY');
+            const tableContainer = document.getElementsByClassName('table-container')[0];
+            const table = document.createElement('TABLE');
+            const tableHead = document.createElement('THEAD');
+            const tableBody = document.createElement('TBODY');
 
             table.appendChild(tableHead);
             table.appendChild(tableBody);
 
-            let headerRow = document.createElement('TR');
-            let dataRow = document.createElement('TR');
+            const headerRow = document.createElement('TR');
+            const dataRow = document.createElement('TR');
 
-            const keys = Object.keys(data);
-            const values = Object.values(data);
+            const keys = Object.keys(data[0]);
+            const values = Object.values(data[0]);
 
             keys
                 .map((item) => {
-                    let th = document.createElement('TH');
-                    let caps = item.charAt(0).toUpperCase() + item.slice(1);
+                    const th = document.createElement('TH');
+                    const caps = item.charAt(0).toUpperCase() + item.slice(1);
                     th.innerHTML = caps.valueOf();
                     headerRow.appendChild(th);
                 });
 
             values
                 .map((item) => {
-                    let td = document.createElement('TD');
+                    const td = document.createElement('TD');
                     td.innerHTML = item.valueOf();
                     dataRow.appendChild(td);
                 });
 
             tableHead.appendChild(headerRow);
             tableBody.appendChild(dataRow)
-
             tableContainer.appendChild(table);
         }
     }
