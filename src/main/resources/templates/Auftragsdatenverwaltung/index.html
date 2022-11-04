@@ -6,52 +6,11 @@
     <link rel="stylesheet" th:href="@{/css/main.css}"/>
     <link rel="stylesheet" th:href="@{/css/auftragsdatenverwaltung-style.css}"/>
     <script th:src="@{/scripts/main.js}" type="text/javascript"></script>
+    <link rel="stylesheet" href="../../static/css/auftragsdatenverwaltung-style.css">
 </head>
 <body>
-<script>
+<script th:src="@{/scripts/auftragsdatenverwaltung.js}" type="text/javascript"></script>
 
-    // var items = document
-    //     .getElementsByClassName("data");
-    // const array = [];
-    //
-    // for (let i = 0; i > items.length; i++) {
-    //     var item = items.item(i);
-    //     let n = item.getAttribute("name");
-    //     let v = item.getAttribute("value");
-    //     array.push({name:n, value:v});
-    // }
-    //
-    // alert(JSON.parse(array));
-
-
-    // get hidden form to contain data
-    function get_hidden_logic_by_url(URL) {
-        let items = document
-            .getElementById("hidden_logic").children;
-
-        for (let i = 0; i < items.length; i++) {
-            let input = items.item(i);
-            try {
-                let param = URL.searchParams.get(input.name);
-                if (param != undefined && param != null) {
-                    input.value = param;
-                }
-            } catch {
-
-            }
-        }
-    }
-
-    function site_load_tab(tab) {
-        let form = document.getElementById("hidden_logic");
-        for (let i = 0; i < form.children.length; i++) {
-            let child = form.children.item(i);
-            if (child.name == 'tab') {
-                child.value = tab;
-            }
-        }
-        form.submit();
-    }
 </script>
 <div class="title-bar">
     <h1 class="heading">Auftragsdatenverwaltung</h1>
@@ -62,70 +21,68 @@
 </div>
 
 <!--<label>Auftragsdatenverwaltung</label>-->
-<div class="logic">
-    <form id="hidden_logic" action="">
-        <input name="mode" type="hidden">
-        <input name="tab" type="hidden">
-    </form>
+
 </div>
 
-<div class="head">
-    <form>
-        <input class="data" name="id" type="number" value="1">
-        (CRUD)
-    </form>
+<div class="data-control">
+    <input type="button" value="Öffnen" onclick="set_form_mode('s')"/>
+    <input type="button" value="Neu Hinzufügen" onclick="set_form_mode('a')"/>
 </div>
-
-<div class="body">
-    <div class="tab-buttons">
-        <input type="button" value="Auftrag" onclick="site_load_tab(1)"/>
-        <input type="button" value="Augendaten" onclick="site_load_tab(2)"/>
-        <input type="button" value="Brillenfassung" onclick="site_load_tab(4)"/>
-        <input type="button" value="Brillenglas" onclick="site_load_tab(5)"/>
-        <input type="button" value="Refraktion" onclick="site_load_tab(6)"/>
-        <input type="button" value="Veredelung" onclick="site_load_tab(7)"/>
-        <input type="button" value="Zuschläge" onclick="site_load_tab(8)"/>
-        <input type="button" value="Bemerkung" onclick="site_load_tab(3)"/>
+<form>
+    <input name="current_tab" type="hidden" id="tab-index">
+    <div class="head">
+        <input class="lockable lock-mode-a lock-mode-u" id="Auftragsnummer" type="number">
     </div>
-    <div class="tab-body">
-        <th:block th:if="${#request.getParameter('tab')} == 1">
-            <div th:replace="fragments/Auftragsdatenverwaltung/kunden.html"/>
-        </th:block>
-        <th:block th:if="${#request.getParameter('tab')} == 2">
-            <div th:replace="fragments/Auftragsdatenverwaltung/augendaten.html"/>
-        </th:block>
-        <th:block th:if="${#request.getParameter('tab')} == 3">
-            <a>BEMERKUGNAÄPNFÜÄIODFngrvä</a>
-            <div th:replace="fragments/Auftragsdatenverwaltung/Bemerkung.html"/>
-        </th:block>
-        <th:block th:if="${#request.getParameter('tab')} == 4">
-            <div th:replace="fragments/Auftragsdatenverwaltung/Brillenfassung.html"/>
-        </th:block>
-        <th:block th:if="${#request.getParameter('tab')} == 5">
-            <div th:replace="fragments/Auftragsdatenverwaltung/Brillenglas.html"/>
-        </th:block>
-        <th:block th:if="${#request.getParameter('tab')} == 6">
-            <div th:replace="fragments/Auftragsdatenverwaltung/Refraktion.html"/>
-        </th:block>
-        <th:block th:if="${#request.getParameter('tab')} == 7">
-            <div th:replace="fragments/Auftragsdatenverwaltung/Veredelungen.html"/>
-        </th:block>
-        <th:block th:if="${#request.getParameter('tab')} == 8">
-            <div th:replace="fragments/Auftragsdatenverwaltung/Zuschlaege.html"/>
-        </th:block>
-    </div>
-</div>
 
-<div class="action-buttons">
-    <button class="button action-button" name="Save" type="button">Speichern</button>
-    <button class="button action-button" name="Delete" type="button">Löschen</button>
-    <button class="button action-button" name="Print" type="button">Drucken</button>
-    <button class="button action-button" name="New" type="button">Neu</button>
-    <button class="button action-button" name="Back" type="button">Zurück</button>
-</div>
+    <div class="body">
+        <div class="tab-buttons">
+            <input type="button" value="Auftrag" onclick="set_tab(1)"/>
+            <input type="button" value="Augendaten" onclick="set_tab(2)"/>
+            <input type="button" value="Brillenfassung" onclick="set_tab(4)"/>
+            <input type="button" value="Brillenglas" onclick="set_tab(5)"/>
+            <input type="button" value="Refraktion" onclick="set_tab(6)"/>
+            <input type="button" value="Veredelung" onclick="set_tab(7)"/>
+            <input type="button" value="Zuschläge" onclick="set_tab(8)"/>
+            <input type="button" value="Bemerkung" onclick="set_tab(3)"/>
+        </div>
+        <div class="tab-body">
+
+            <div class="tab" id="tab-1">
+                <div th:replace="fragments/Auftragsdatenverwaltung/kunden.html"/>
+            </div>
+            <div class="tab" id="tab-2">
+                <div th:replace="fragments/Auftragsdatenverwaltung/augendaten.html"/>
+            </div>
+            <div class="tab" id="tab-3">
+                <div th:replace="fragments/Auftragsdatenverwaltung/Bemerkung.html"/>
+            </div>
+            <div class="tab" id="tab-4">
+                <div th:replace="fragments/Auftragsdatenverwaltung/Brillenfassung.html"/>
+            </div>
+            <div class="tab" id="tab-5">
+                <div th:replace="fragments/Auftragsdatenverwaltung/Brillenglas.html"/>
+            </div>
+            <div class="tab" id="tab-6">
+                <div th:replace="fragments/Auftragsdatenverwaltung/Refraktion.html"/>
+            </div>
+            <div class="tab" id="tab-7">
+                <div th:replace="fragments/Auftragsdatenverwaltung/Veredelungen.html"/>
+            </div>
+            <div class="tab" id="tab-8">
+                <div th:replace="fragments/Auftragsdatenverwaltung/Zuschlaege.html"/>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="save-cancel">
+        <input type="button" class="action-button" id='save-cancel-1' value="Speichern"></input>
+        <input type="button" class="action-button" id='save-cancel-2' value="Zurück/Abbrechen"></input>
+    </div>
+</form>
 </body>
 <script>
     //execute on load
-    get_hidden_logic_by_url(new URL(window.location.href));
+    preload();
 </script>
 </html>

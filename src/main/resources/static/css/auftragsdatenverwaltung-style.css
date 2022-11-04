@@ -34,8 +34,43 @@ label {
 }
 
 .body{
-    background: blueviolet;
+    position: relative;
+    background: darkslategray;
+    min-height: unset;
+    max-height: unset;
+    height: 100%;
+    bottom: 2%;
 }
 .body .tab-body{
     bottom:2%;
+}
+
+.save-cancel{
+    background: crimson;
+    display:flex;
+    justify-content: space-evenly;
+    position: absolute;
+    width: 34%;
+    bottom: 0%;
+
+}
+
+.save-cancel input[name='save']{
+    flex: 1 1 auto;
+    with: calc(32% / 2);
+}
+
+.save-cancel input[name='cancel']{
+    flex: 1 1 auto;
+    with: calc(32% / 2);
+}
+
+.F{
+    background: mediumvioletred;
+    position: static;
+    bottom: 0%;
+}
+
+.hidden{
+    display:none;
 }
