@@ -163,6 +163,14 @@
 
 			tableContainer.appendChild(table);
 		}
+
+		let allRows = document.getElementsByTagName('TR');
+
+		for (let i = 0; i < allRows.length; i++) {
+			allRows[i].addEventListener('click', () => {
+				window.location.href = '/auftrag'; // TODO: Link zu Kundenseite
+			});
+		}
 	}
 </script>
 </html>
