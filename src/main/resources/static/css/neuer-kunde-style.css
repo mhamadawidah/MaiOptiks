@@ -3,7 +3,8 @@
     text-align: left;
     font-size: 25px;
 }
-.header .button-startseite {
+
+.button-startseite {
     width: 10em;
     height: 2.5em;
     margin: 0.5%;
@@ -20,9 +21,16 @@
     flex-wrap: wrap;
 }
 
-input {
+.footer {
+    text-align: center;
+}
+
+.input {
     border: 1px solid gray;
     border-radius: 5px;
+    width: 15em;
+    height: 2.5em;
+    display: block;
 }
 
 .input-tel {
@@ -55,32 +63,31 @@ input {
     gap: 1em;
 }
 
-.input-tel > input {
-    width: 15em;
-    height: 2.5em;
+.input-anrede {
+    width: 100%;
+    text-align: left;
 }
 
-.input-person > input {
-    width: 15em;
-    height: 2.5em;
-}
-.input-insurance > input {
-    width: 15em;
-    height: 2.5em;
-}
-.input-country > input {
-    width: 15em;
-    height: 2.5em;
+.input-radios {
+    border: 1px solid gray;
+    border-radius: 5px;
+    text-align: center;
+    padding-top: 0.6em;
+    height: 1.8em;
 }
 
-.submit {
+small {
+    display: block;
+    color: #e74c3c;
+    font-weight: bold;
+    font-size: 11px;
+    padding-top: 3px;
+    visibility: hidden;
+}
+
+.submit-button {
     width: 10em;
     height: 2em;
-    margin: 0.5%;
-}
-
-.footer {
-    text-align: center;
 }
 
 .date {
@@ -90,9 +97,15 @@ input {
     margin-top: 0.2em;
     padding-left: 0.2em;
     border-radius: 5px;
+    border: 1px solid gray;
 }
 
-fieldset {
-    width: 11em;
-    border-radius: 5px;
+.inputs.success input {
+    border: 2px solid #2ecc71;
+}
+.inputs.error input {
+    border: 2px solid #e74c3c;
+}
+.inputs.error small {
+    visibility: visible;
 }

@@ -14,7 +14,6 @@
     <div class="title-bar">
       <h1 class="heading">Neuer Kunde</h1>
     </div>
-
     <div class="vertical-bar">
       <p></p>
     </div>
@@ -23,61 +22,88 @@
           <button class="button button-startseite" onclick="openLink('/')">Startseite</button>
           <hr class="linetop">
         </div>
-        <form>
+        <form onsubmit="return false" id="form">
             <div class="main">
-                <div class="inputs person">
+                <div class="inputset">
                     <h4>Person</h4>
                     <div class="input-person">
-                        <fieldset>
-                            <legend>Anrede<span aria-label="required">*</span></legend>
-                            <input type="radio" id="anrede1" value="frau" required><label for="anrede1">Frau</label>
-                            <input type="radio" id="anrede2" value="herr" required><label for="anrede2">Herr</label>
-                        </fieldset>
-
-                        <input class="input" id="name" type="text" placeholder="Name*" required pattern="^[a-zA-Z]*$">
-                        <br>
-                        <input class="input" id="vorname" type="text" placeholder="Vorname*" required pattern="^[a-zA-Z]*$">
-                        <br>
-
-                        <div class="inputdate">
+                        <div class="input-anrede">
+                            <div class="input-radios">
+                                <input type="radio" id="anrede1" value="frau" required><label for="anrede1">Frau</label>
+                                <input type="radio" id="anrede2" value="herr" required><label for="anrede2">Herr</label>
+                            </div>
+                            <small>Error message</small>
+                        </div>
+                        <div class="input-name">
+                            <input class="input" id="name" type="text" placeholder="Name*">
+                            <small>Error message</small>
+                        </div>
+                        <div class="input-vorname">
+                            <input class="input" id="vorname" type="text" placeholder="Vorname*">
+                            <small>Error message</small>
+                        </div>
+                        <div class="input-date">
                             <label for="geburtsdatum">Geburtsdatum*</label>
-                            <input class="input date" type="date" id="geburtsdatum" value="2022-01-01">
+                            <input class="date" type="date" id="geburtsdatum" value="2022-01-01">
+                            <small>Error message</small>
                         </div>
                     </div>
                 </div>
-                <div class="inputs country">
+                <div class="inputset">
                     <h4>Adresse</h4>
                     <div class="input-country">
-                        <input class="input" id="plz" type="text" placeholder="PLZ*" required pattern="^\b\d{5}\b"><br>
-                        <input class="input" id="strasse" type="text" placeholder="Straße*" required pattern="^[a-zA-Z]*$"><br>
-                        <input class="input" id="hausnummer" type="text" placeholder="Hausnummer*" required pattern="^[0-9]*$"><br>
+                        <div class="input-plz">
+                            <input class="input" id="plz" type="text" placeholder="PLZ*">
+                            <small>Error message</small>
+                        </div>
+                        <div class="input-strasse">
+                            <input class="input" id="strasse" type="text" placeholder="Straße*">
+                            <small>Error message</small>
+                        </div>
+                        <div class="input-hausnummer">
+                            <input class="input" id="hausnummer" type="text" placeholder="Hausnummer*">
+                            <small>Error message</small>
+                        </div>
                     </div>
                 </div>
-                <div class="inputs tel">
+                <div class="inputset">
                     <h4>Telefon</h4>
                     <div class="input-tel">
-                      <input class="input" id="mail" type="email" placeholder="E-Mail"><br>
-                      <input class="input" id="telefon" type="tel" placeholder="Telefon"><br>
-                      <input class="input" id="mobil" type="tel" placeholder="Mobil"><br>
+                        <div class="input-email">
+                            <input class="input" id="mail" type="email" placeholder="E-Mail*">
+                            <small>Error message</small>
+                        </div>
+                        <div class="input-telefon">
+                            <input class="input" id="telefon" type="tel" placeholder="Telefon*">
+                            <small>Error message</small>
+                        </div>
+                        <div class="input-mobil">
+                            <input class="input" id="mobil" type="tel" placeholder="Mobil*">
+                            <small>Error message</small>
+                        </div>
                     </div>
                 </div>
-                <div class="inputs insurance">
+                <div class="inputset">
                     <h4>Versicherung</h4>
                     <div class="input-insurance">
-                        <input class="input" id="krankenkassen" type="text" placeholder="Krankenkassen-Nr." pattern="^[a-zA-Z0-9]*$">
-                        <br>
-                        <input class="input" id="versicherungs" type="text" placeholder="Versicherungs-Nr." pattern="^[a-zA-Z0-9]*$">
-                        <br>
-                        <div class="inputgueltigkeit">
-                            <label for="gueltig">Gültigkeit*</label>
-                            <input class="input gueltigkeit" type="date" id="gueltig" name="gueltigkeit" value="2022-01-01">
+                        <div class="input-krankenkasse">
+                            <input class="input" id="krankenkasse" type="text" placeholder="Krankenkassen-Nr.*">
+                            <small>Error message</small>
                         </div>
-                        <br>
+                        <div class="input-versicherung">
+                            <input class="input" id="versicherung" type="text" placeholder="Versicherungs-Nr.*">
+                            <small>Error message</small>
+                        </div>
+                        <div class="input-gueltigkeit">
+                            <label for="gueltigkeit">Gültigkeit*</label>
+                            <input class="date" type="date" id="gueltigkeit" name="gueltigkeit" value="2022-01-01">
+                            <small>Error message</small>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="footer">
-                <button class="button submit" onclick="getInputData()">Kunde Anlegen</button>
+                <button class="button submit-button" onclick="getInputData()">Kunde Anlegen</button>
             </div>
         </form>
     </div>
