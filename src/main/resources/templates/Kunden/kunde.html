@@ -39,16 +39,6 @@
 
 </body>
 <script>
-	function enterPressed(e) {
-		document.getElementById("name").addEventListener("keydown", function (e) {
-			let keyCode = e.code;
-			if (keyCode === 13) {
-				// enter pressed
-				searchCustomer();
-			}
-		}, false);
-	}
-
 	function searchCustomer() {
 		let name = document.getElementById('name').value;
 		let lastname = document.getElementById('lastname').value;
