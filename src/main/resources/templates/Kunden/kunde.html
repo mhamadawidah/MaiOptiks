@@ -39,6 +39,18 @@
 
 </body>
 <script>
+	document.getElementById('lastname').addEventListener('keyup', (e) => {
+		if (e.key === 'Enter') {
+			searchCustomer();
+		}
+	});
+
+	document.getElementById('name').addEventListener('keyup', (e) => {
+		if (e.key === 'Enter') {
+			searchCustomer();
+		}
+	});
+
 	function searchCustomer() {
 		let name = document.getElementById('name').value;
 		let lastname = document.getElementById('lastname').value;
@@ -73,7 +85,8 @@
 	}
 
 	function createTable(data, lastname, name) {
-		if (document.getElementsByClassName('table-container')[0].firstElementChild !== null) { // Bereits eine Tabelle vorhanden?
+		// Bereits eine Tabelle vorhanden?
+		if (document.getElementsByClassName('table-container')[0].firstElementChild !== null) {
 			const entries = document.getElementsByTagName('TD');
 			const existingRows = document.getElementsByTagName('TR');
 			// Tabellen Daten identisch mit Eingabe?
@@ -110,45 +123,19 @@
 			table.appendChild(tableBody);
 
 			const headerRow = document.createElement('TR');
-			// Mehrere Objekte?
-			if (data.length > 1) {
-				const keys = Object.keys(data[0]);
+			const keys = Object.keys(data[0]);
 
-				keys
-					.map((item) => {
-						const th = document.createElement('TH');
-						const caps = item.charAt(0).toUpperCase() + item.slice(1);
-						th.innerHTML = caps.valueOf();
-						headerRow.appendChild(th);
-					});
-				// Für jedes Objekt neue Zeile erstellen
-				for (let i = 0; i < data.length; i++) {
-					const dataRow = document.createElement('TR');
-					const values = Object.values(data[i]);
-
-					values
-						.map((item) => {
-							const td = document.createElement('TD');
-							td.innerHTML = item.valueOf();
-							dataRow.appendChild(td);
-						});
-
-					tableHead.appendChild(headerRow);
-					tableBody.appendChild(dataRow)
-				}
-			} else {
+			keys
+				.map((item) => {
+					const th = document.createElement('TH');
+					const caps = item.charAt(0).toUpperCase() + item.slice(1);
+					th.innerHTML = caps.valueOf();
+					headerRow.appendChild(th);
+				});
+			// Für jeden Kunden neue Zeile erstellen
+			for (let i = 0; i < data.length; i++) {
 				const dataRow = document.createElement('TR');
-
-				const keys = Object.keys(data[0]);
-				const values = Object.values(data[0]);
-
-				keys
-					.map((item) => {
-						const th = document.createElement('TH');
-						const caps = item.charAt(0).toUpperCase() + item.slice(1);
-						th.innerHTML = caps.valueOf();
-						headerRow.appendChild(th);
-					});
+				const values = Object.values(data[i]);
 
 				values
 					.map((item) => {
