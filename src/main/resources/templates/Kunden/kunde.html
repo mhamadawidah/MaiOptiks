@@ -1,163 +1,163 @@
 <!DOCTYPE html>
 <html lang="de" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org/">
 <head>
-	<meta charset="UTF-8">
-	<title th:text="${title}"></title>
-	<link rel="stylesheet" th:href="@{/css/main.css}"></link>
-	<link rel="stylesheet" th:href="@{/css/startseite-style.css}"></link>
-	<script th:src="@{/scripts/main.js}" type="text/javascript"></script>
+    <meta charset="UTF-8">
+    <title th:text="${title}"></title>
+    <link rel="stylesheet" th:href="@{/css/main.css}"></link>
+    <link rel="stylesheet" th:href="@{/css/startseite-style.css}"></link>
+    <script th:src="@{/scripts/main.js}" type="text/javascript"></script>
 </head>
 <body>
 <div class="title-bar">
-	<h1 class="heading">Kunde</h1>
+    <h1 class="heading">Kunde</h1>
 </div>
 
 <div class="vertical-bar">
-	<p></p>
+    <p></p>
 </div>
 
 <div class="customerButton-searchField">
-	<div class="customers">
-		<button class="button customer-button" onclick="openLink('/auftrag')" type="button">Auftrag</button>
-	</div>
+    <div class="customers">
+        <button class="button customer-button" onclick="openLink('/auftrag')" type="button">Auftrag</button>
+    </div>
 
-	<div class="search-fields">
-		<input class="input" id="lastname" placeholder="Name" required type="text"></input><br>
-		<input class="input" id="name" placeholder="Vorname" required type="text"></input><br>
-		<button class="button submit-button" onclick="searchCustomer()">Suchen</button>
-	</div>
+    <div class="search-fields">
+        <input class="input" id="lastname" placeholder="Name" required type="text"></input><br>
+        <input class="input" id="name" placeholder="Vorname" required type="text"></input><br>
+        <button class="button submit-button" onclick="searchCustomer()">Suchen</button>
+    </div>
 </div>
 
 <div class="table-container"></div>
 
 <div class="direction-buttons">
-	<button class="button direction-button" onclick="openLink('./')">Startseite</button>
-	<button class="button direction-button" onclick="openLink('/neuer-kunde')">Neuer Kunde</button>
-	<button class="button direction-button" onclick="openLink('/organisation')">Organisation</button>
-	<button class="button direction-button" onclick="openLink('/führerscheinsehtest')">Führerschein-Sehtest</button>
+    <button class="button direction-button" onclick="openLink('./')">Startseite</button>
+    <button class="button direction-button" onclick="openLink('/neuer-kunde')">Neuer Kunde</button>
+    <button class="button direction-button" onclick="openLink('/organisation')">Organisation</button>
+    <button class="button direction-button" onclick="openLink('/führerscheinsehtest')">Führerschein-Sehtest</button>
 </div>
 
 </body>
 <script>
-	document.getElementById('lastname').addEventListener('keyup', (e) => {
-		if (e.key === 'Enter') {
-			searchCustomer();
-		}
-	});
+    document.getElementById('lastname').addEventListener('keyup', (e) => {
+        if (e.key === 'Enter') {
+            searchCustomer();
+        }
+    });
 
-	document.getElementById('name').addEventListener('keyup', (e) => {
-		if (e.key === 'Enter') {
-			searchCustomer();
-		}
-	});
+    document.getElementById('name').addEventListener('keyup', (e) => {
+        if (e.key === 'Enter') {
+            searchCustomer();
+        }
+    });
 
-	function searchCustomer() {
-		let name = document.getElementById('name').value;
-		let lastname = document.getElementById('lastname').value;
+    function searchCustomer() {
+        let name = document.getElementById('name').value;
+        let lastname = document.getElementById('lastname').value;
 
-		switch (true) {
-			default:
-				document.getElementById('name').style.border = '1px solid black';
-				document.getElementById('lastname').style.border = '1px solid black';
-				name = name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
-				lastname = lastname.charAt(0).toUpperCase() + lastname.slice(1).toLowerCase();
-				break;
-			case (!name && !lastname) :
-				document.getElementById('name').style.border = '3px solid red';
-				document.getElementById('lastname').style.border = '3px solid red';
-				break;
-			case (!name && lastname) :
-				document.getElementById('name').style.border = '3px solid red';
-				document.getElementById('lastname').style.border = '1px solid black';
-				break;
-			case (!lastname && name) :
-				document.getElementById('lastname').style.border = '3px solid red';
-				document.getElementById('name').style.border = '1px solid black';
-				break;
-		}
-
-		doGetRequest(
-			'/api/kundes/',
-			(lastname && name) ? (lastname + '/' + name) : undefined,
-			(data) => {   // func
-				createTable(data, lastname, name);
-			});
-	}
-
-	function createTable(data, lastname, name) {
-		// Bereits eine Tabelle vorhanden?
-		if (document.getElementsByClassName('table-container')[0].firstElementChild !== null) {
-			const entries = document.getElementsByTagName('TD');
-			const existingRows = document.getElementsByTagName('TR');
-			// Tabellen Daten identisch mit Eingabe?
-			if (entries[2].innerHTML === lastname && entries[3].innerHTML === name) {
+        switch (true) {
+            case (name === '' && lastname === '') :
+                document.getElementById('name').style.border = '2px solid red';
+                document.getElementById('lastname').style.border = '2px solid red';
+                return;
+            case (name === '' && lastname !== '') :
+                document.getElementById('name').style.border = '2px solid red';
+                document.getElementById('lastname').style.border = '1px solid black';
+                return;
+            case (lastname === '' && name !== '') :
+                document.getElementById('lastname').style.border = '2px solid red';
+                document.getElementById('name').style.border = '1px solid black';
 				return;
-			}
-			// Überflüssige Zeilen löschen
-			if (data.length < (existingRows.length - 1) && existingRows.length > 2) {
-				for (let r = (data.length + 1); r < existingRows.length; r++) {
-					document.getElementsByTagName('TR')[r].remove();
-				}
-			}
-			// Wenn zu wenig Zeilen vorhanden, Tabelle löschen und neu erstellen
-			if (data.length > (existingRows.length - 1)) {
-				document.getElementsByTagName('TABLE')[0].remove();
-				createTable(data, lastname, name);
-				return;
-			}
-			// Vorhandene Zeile durch neue Daten ersetzen
-			for (let j = 0; j < data.length; j++) {
-				for (let i = 0; i < entries.length; i++) {
-					const values = Object.values(data[j]);
+            case (lastname !== '' && name !== '') :
+                document.getElementById('name').style.border = '1px solid black';
+                document.getElementById('lastname').style.border = '1px solid black';
+                name = name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
+                lastname = lastname.charAt(0).toUpperCase() + lastname.slice(1).toLowerCase();
+                break;
+        }
 
-					entries[i].innerHTML = values[i];
-				}
-			}
-		} else {
-			const tableContainer = document.getElementsByClassName('table-container')[0];
-			const table = document.createElement('TABLE');
-			const tableHead = document.createElement('THEAD');
-			const tableBody = document.createElement('TBODY');
+        doGetRequest(
+            '/api/kundes/',
+            (lastname !== '' && name !== '') ? (lastname + '/' + name) : undefined,
+            (data) => {   // func
+                createTable(data, lastname, name);
+            });
+    }
 
-			table.appendChild(tableHead);
-			table.appendChild(tableBody);
+    function createTable(data, lastname, name) {
+        // Bereits eine Tabelle vorhanden?
+        if (document.getElementsByClassName('table-container')[0].firstElementChild !== null) {
+            const entries = document.getElementsByTagName('TD');
+            const existingRows = document.getElementsByTagName('TR');
+            // Tabellen Daten identisch mit Eingabe?
+            if (entries[2].innerHTML === lastname && entries[3].innerHTML === name) {
+                return;
+            }
+            // Überflüssige Zeilen löschen
+            if (data.length < (existingRows.length - 1) && existingRows.length > 2) {
+                for (let r = (data.length + 1); r < existingRows.length; r++) {
+                    document.getElementsByTagName('TR')[r].remove();
+                }
+            }
+            // Wenn zu wenig Zeilen vorhanden Tabelle löschen und neu erstellen
+            if (data.length > (existingRows.length - 1)) {
+                document.getElementsByTagName('TABLE')[0].remove();
+                createTable(data, lastname, name);
+                return;
+            }
+            // Vorhandene Zeile durch neue Daten ersetzen
+            for (let j = 0; j < data.length; j++) {
+                for (let i = 0; i < entries.length; i++) {
+                    const values = Object.values(data[j]);
 
-			const headerRow = document.createElement('TR');
-			const keys = Object.keys(data[0]);
+                    entries[i].innerHTML = values[i];
+                }
+            }
+        } else {
+            const tableContainer = document.getElementsByClassName('table-container')[0];
+            const table = document.createElement('TABLE');
+            const tableHead = document.createElement('THEAD');
+            const tableBody = document.createElement('TBODY');
 
-			keys
-				.map((item) => {
-					const th = document.createElement('TH');
-					const caps = item.charAt(0).toUpperCase() + item.slice(1);
-					th.innerHTML = caps.valueOf();
-					headerRow.appendChild(th);
-				});
-			// Für jeden Kunden neue Zeile erstellen
-			for (let i = 0; i < data.length; i++) {
-				const dataRow = document.createElement('TR');
-				const values = Object.values(data[i]);
+            table.appendChild(tableHead);
+            table.appendChild(tableBody);
 
-				values
-					.map((item) => {
-						const td = document.createElement('TD');
-						td.innerHTML = item.valueOf();
-						dataRow.appendChild(td);
-					});
+            const headerRow = document.createElement('TR');
+            const keys = Object.keys(data[0]);
 
-				tableHead.appendChild(headerRow);
-				tableBody.appendChild(dataRow)
-			}
+            keys
+                .map((item) => {
+                    const th = document.createElement('TH');
+                    const caps = item.charAt(0).toUpperCase() + item.slice(1);
+                    th.innerHTML = caps.valueOf();
+                    headerRow.appendChild(th);
+                });
+            // Für jeden Kunden neue Zeile erstellen
+            for (let i = 0; i < data.length; i++) {
+                const dataRow = document.createElement('TR');
+                const values = Object.values(data[i]);
 
-			tableContainer.appendChild(table);
-		}
+                values
+                    .map((item) => {
+                        const td = document.createElement('TD');
+                        td.innerHTML = item.valueOf();
+                        dataRow.appendChild(td);
+                    });
 
-		let allRows = document.getElementsByTagName('TR');
+                tableHead.appendChild(headerRow);
+                tableBody.appendChild(dataRow)
+            }
 
-		for (let i = 0; i < allRows.length; i++) {
-			allRows[i].addEventListener('click', () => {
-				window.location.href = '/auftrag'; // TODO: Link zu Kundenseite
-			});
-		}
-	}
+            tableContainer.appendChild(table);
+        }
+
+        let allRows = document.getElementsByTagName('TR');
+
+        for (let i = 0; i < allRows.length; i++) {
+            allRows[i].addEventListener('click', () => {
+                window.location.href = '/auftrag'; // TODO: Link zu Kundenseite
+            });
+        }
+    }
 </script>
 </html>
