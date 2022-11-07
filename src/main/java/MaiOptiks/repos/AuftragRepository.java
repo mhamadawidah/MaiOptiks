@@ -9,6 +9,6 @@ import java.math.BigDecimal;
 
 public interface AuftragRepository extends JpaRepository<Auftrag, Integer> {
 
-    @Query(value = "select nextval('primary_sequence')", nativeQuery = true)
-    public BigDecimal getNextId();
+    @Query(value = "SELECT MAX(auftragsnummer) FROM auftrag", nativeQuery = true)
+    BigDecimal getMaxId();
 }
