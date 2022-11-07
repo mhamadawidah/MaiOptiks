@@ -42,4 +42,4 @@ CREATE TABLE IF NOT EXISTS Kontaktlinsen (ArtikelID int NOT NULL, Werte int, PRI
 
 CREATE TABLE IF NOT EXISTS Brille (BrillenID int NOT NULL, GlasArtikelIDLinks int, GlasArtikelIDRechts int, FassungsArtikelID int, PRIMARY KEY (BrillenID), FOREIGN KEY (GlasArtikelIDLinks) REFERENCES Artikel (ArtikelID), FOREIGN KEY (GlasArtikelIDRechts) REFERENCES Artikel(ArtikelID), FOREIGN KEY (FassungsArtikelID) REFERENCES Artikel(ArtikelID));
 
-CREATE TABLE IF NOT EXISTS Auftragsartikel (AuftragsArtikelID int NOT NULL,AuftragsID int, SehhilfeID int, SehhilfenArt int, PRIMARY KEY (AuftragsArtikelID), FOREIGN KEY (AuftragsID) REFERENCES Auftrag(AuftragID),FOREIGN KEY (SehhilfeID) REFERENCES Brille(BrillenID));
+CREATE TABLE IF NOT EXISTS Auftragsartikel (AuftragsArtikelID int NOT NULL,AuftragID int, SehhilfeID int, SehhilfenArt int, PRIMARY KEY (AuftragsArtikelID), FOREIGN KEY (AuftragID) REFERENCES Auftrag(AuftragID),FOREIGN KEY (SehhilfeID) REFERENCES Brille(BrillenID));
