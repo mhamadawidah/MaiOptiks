@@ -21,17 +21,17 @@ function getInputData() {
     let checkedRadio = checkRadios(radios)
 
     if (!checkRequired([name, vorname, strasse, hausNr, geburtsdatum, telefonNr, handy, email, versicherungsNr, plz, gueltigkeit, krankenkassenNr])) {return}
-    if (checkedRadio == -1) {error = true;}
-    if (!checkEmail(email)) {error = true;}
-    if (!checkInput(name, /^[a-zA-Z]+$/) ) {error = true;}
-    if (!checkInput(vorname, /^[a-zA-Z]+$/)) {error = true;}
-    if (!checkInput(strasse, /^[a-zA-Z]+$/)) {error = true;}
-    if (!checkInput(hausNr, /^[0-9]+$/)) {error = true;}
-    if (!checkInput(telefonNr, /^[0-9]+$/)) {error = true;}
-    if (!checkInput(handy, /^[0-9]+$/)) {error = true;}
-    if (!checkInput(plz, /^\b\d{5}\b/)) {error = true;}
-    if (!checkInput(versicherungsNr, /[a-zA-Z0-9]+$/)) {error = true;}
-    if (!checkInput(krankenkassenNr, /[a-zA-Z0-9]+$/)) {error = true;}
+    if (checkedRadio == -1) {console.log("Fehler Anrede"); error = true;}
+    if (!checkEmail(email)) {console.log("Fehler Anrede"); error = true;}
+    if (!checkInput(name, /^[a-zA-Z]+$/) ) {console.log("Fehler Anrede"); error = true;}
+    if (!checkInput(vorname, /^[a-zA-Z]+$/)) {console.log("Fehler Anrede"); error = true;}
+    if (!checkInput(strasse, /^[a-zA-Z]+$/)) {console.log("Fehler Anrede"); error = true;}
+    if (!checkInput(hausNr, /^[0-9]+$/)) {console.log("Fehler Anrede"); error = true;}
+    if (!checkInput(telefonNr, /^[0-9]+$/)) {console.log("Fehler Anrede"); error = true;}
+    if (!checkInput(handy, /^[0-9]+$/)) {console.log("Fehler Anrede"); error = true;}
+    if (!checkInput(plz, /^\b\d{5}\b/)) {console.log("Fehler Anrede"); error = true;}
+    if (!checkInput(versicherungsNr, /[a-zA-Z0-9]+$/)) {console.log("Fehler Anrede"); error = true;}
+    if (!checkInput(krankenkassenNr, /[a-zA-Z0-9]+$/)) {console.log("Fehler Anrede"); error = true;}
     
     if (error) {
         console.log("Irgendwo Error")
@@ -59,7 +59,10 @@ function getInputData() {
 
     doPostRequest('/api/kundes',  jsonObject, (response) => {
         console.log("RequestResponse: ", response)
+        alert('\nKunde angelegt.');
     })
+
+
 
     /*name.value = ""
     vorname.value = ""
@@ -146,9 +149,7 @@ function checkInput(input, expression) {
 function checkRadios(inputArr) {
 
     for(let i = 0; i < inputArr.length; i++) {
-        console.log("isses", inputArr[i].checked)
         if (inputArr[i].checked) {
-        console.log("radio success", i)
             showSuccess(inputArr[i]);
             return i;
         }

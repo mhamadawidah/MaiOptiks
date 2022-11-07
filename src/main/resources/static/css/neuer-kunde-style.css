@@ -100,7 +100,7 @@ small {
 }
 
 .inputs.success input {
-    border: 2px solid #2ecc71;
+    /*border: 2px solid #2ecc71;*/
 }
 .inputs.error input {
     border: 2px solid #e74c3c;
