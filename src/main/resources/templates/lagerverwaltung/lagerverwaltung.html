@@ -130,7 +130,8 @@
 
     function TabelleAnzeigen() {
     doGetRequest(
-            '/api/artikels/',
+            '/api/artikels',
+            undefined,
             (data) => {   // func
                 createTable(data);
             });
@@ -185,7 +186,6 @@
 
     function insertLagerartikel() {
         console.log("Hole Daten...")
-        debugger
         const Artikelnummer = document.getElementById("Artikelnummer").value
         const Bezeichnung = document.getElementById("Bezeichnung").value
         const Einkaufspreis = document.getElementById("Einkaufspreis").value
