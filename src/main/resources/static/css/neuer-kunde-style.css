@@ -69,9 +69,8 @@
 }
 
 .input-radios {
-    border: 1px solid gray;
-    border-radius: 5px;
-    text-align: center;
+
+
     padding-top: 0.6em;
     height: 1.8em;
 }
@@ -109,3 +108,4 @@ small {
 .inputs.error small {
     visibility: visible;
 }
+

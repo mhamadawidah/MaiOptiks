@@ -3,12 +3,7 @@ function getInputData() {
 
     const form = document.getElementById("form");
 
-    let anrede = ""
-    if (document.getElementById('anrede1').checked) {
-      anrede = document.getElementById('anrede1')
-    } else {
-        anrede = document.getElementById('anrede2')
-    }
+    const radios = [document.getElementById("anrede1"), document.getElementById("anrede2"), document.getElementById("anrede3")]
     const name = document.getElementById("name")
     const vorname = document.getElementById("vorname")
     const strasse = document.getElementById("strasse")
@@ -23,8 +18,10 @@ function getInputData() {
     const krankenkassenNr = document.getElementById("krankenkasse")
 
     let error = false
+    let checkedRadio = checkRadios(radios)
 
     if (!checkRequired([name, vorname, strasse, hausNr, geburtsdatum, telefonNr, handy, email, versicherungsNr, plz, gueltigkeit, krankenkassenNr])) {return}
+    if (checkedRadio == -1) {error = true;}
     if (!checkEmail(email)) {error = true;}
     if (!checkInput(name, /^[a-zA-Z]+$/) ) {error = true;}
     if (!checkInput(vorname, /^[a-zA-Z]+$/)) {error = true;}
@@ -43,7 +40,7 @@ function getInputData() {
 
     let jsonObject = {
         "kundenNr": 1, // Placeholder
-        "anrede": anrede.value,
+        "anrede": radios[checkedRadio].value,
         "name": name.value,
         "vorname": vorname.value,
         "strasse": strasse.value,
@@ -58,24 +55,24 @@ function getInputData() {
         "krankenkassenNr": krankenkassenNr.value
     }
 
-    console.log("JSONObject", jsonObject)
+    console.log("JSONObject: ", jsonObject)
 
     doPostRequest('/api/kundes',  jsonObject, (response) => {
-        console.log("Hier bin ich", response)
+        console.log("RequestResponse: ", response)
     })
 
-    name.value = ""
-    vorname.reset()
-    strasse.reset()
-    hausNr.reset()
-    geburtsdatum.reset()
-    telefonNr.reset()
-    handy.reset()
-    email.reset()
-    versicherungsNr.reset()
-    gueltigkeit.reset()
-    plz.reset()
-    krankenkassenNr.reset()
+    /*name.value = ""
+    vorname.value = ""
+    strasse.value = ""
+    hausNr.value = ""
+    geburtsdatum.value = ""
+    telefonNr.value = ""
+    handy.value = ""
+    email.value = ""
+    versicherungsNr.value = ""
+    gueltigkeit.value = ""
+    plz.value = ""
+    krankenkassenNr.value = ""*/
 }
 
 // Show Error Msg
@@ -119,37 +116,44 @@ function checkLength(input, min, max) {
     } else if (input.value.length > max) {
         showError(input, `${getFieldName(input)} must be less than ${max} characters`);
         return false;
-    } else {
-        showSuccess(input);
     }
 
+    showSuccess(input);
     return true;
 }
-
-
-//.toLowerCase()
 
 function checkEmail(input) {
 
     const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     if (re.test(input.value.trim())) {
         showSuccess(input);
-    } else {
-        showError(input, "E-mail is not Valid");
-        return false;
+        return true;
     }
-
-    return true;
+    showError(input, "E-mail is not Valid");
+    return false;
 }
 
 function checkInput(input, expression) {
-    console.log("aaa", expression, "a", input.value, "qqq" ,expression.test(input.value.trim()))
     if (expression.test(input.value.trim())) {
         showSuccess(input);
-    } else {
-        showError(input, `${getFieldName(input)} is not Valid`);
-        return false
+        return true;
     }
 
-    return true;
+    showError(input, `${getFieldName(input)} is not Valid`);
+    return false;
+}
+
+function checkRadios(inputArr) {
+
+    for(let i = 0; i < inputArr.length; i++) {
+        console.log("isses", inputArr[i].checked)
+        if (inputArr[i].checked) {
+        console.log("radio success", i)
+            showSuccess(inputArr[i]);
+            return i;
+        }
+    }
+
+    showError(inputArr[0], `Anrede is not Valid`);
+    return -1;
 }
