@@ -129,6 +129,7 @@
     }
 
     function TabelleAnzeigen() {
+        debugger;
     doGetRequest(
             '/api/artikels',
             undefined,
@@ -139,7 +140,7 @@
 
     function createTable(data) {
         if (document.getElementsByClassName('table')[0].firstElementChild !== null) {
-            debugger;
+            // debugger;
             const entries = document.getElementsByTagName('TD');
 
             for (let i = 0; i <= entries.length; i++) {

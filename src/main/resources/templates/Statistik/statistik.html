@@ -24,65 +24,162 @@
 </div>
 
 
-<div class = "statistik"> 
+<div class = "statistik">
     <div>
-        <h4>Anzahl Aufträge:</h4>
-        <br> 
-        <h4>Anzahl Mitarbeiter:</h4>
-        <br> 
-        <h4>Anzahl Kunden:</h4>
-        <br> 
+        <h4>Kunden-Statistk</h4>
+        <br>
+        <h4 id = AnzKund>Anzahl Kunden:</h4>
+        <h4 id = AnzKund20>Anzahl Kunden (0-20 Jahren):</h4>
     </div>
     <div>
-        <h4 id = AnzAuf></h4>
+        <h4>.</h4>
         <br>
-        <h4 id = AnzMit></h4>
+        <h4 id = Alter>Durchschnittsalter:</h4>
+        <h4 id = AnzKund40>Anzahl Kunden (21-40 Jahren):</h4>
+    </div>
+    <div>
+        <h4>.</h4>
         <br>
-        <h4 id = AnzKund></h4>
-    </div> 
+        <h4>.</h4>
+        <h4 id = AnzKund60>Anzahl Kunden (41-60 Jahren):</h4>
+    </div>
+    <div>
+        <h4>.</h4>
+        <br>
+        <h4>.</h4>
+        <h4 id = AnzKund80>Anzahl Kunden (61-80 Jahren):</h4>
+    </div>
+    <div>    
+        <h4>.</h4>
+        <br>
+        <h4>.</h4>
+        <h4 id = AnzKund99>Anzahl Kunden (81+ Jahren):</h4>
+    </div>
 </div> 
+<hr class="linebottom">
+<div class = "statistik">
+    <div>
+        <h4>Auftrags-Statistik</h4>
+        <br>
+        <h4 id = anzAuftrag>Anzahl Aufträge:</h4>
+    </div>
+    <div>
+        <h4>.</h4>
+        <br>
+        <h4 id = anzAuftragKund>Anzahl Aufträge pro Kunde:</h4>
+    </div>
+</div>
 
 </body>
 <script>
-    function Laden(){
-        anzAuftrag();
-        anzMitarbeiter();
-        anzKunden();
-    }
 
-    function anzAuftrag(){
-        document.getElementById("AnzAuf").innerHTML = doGetRequest(
-            '/api/auftrags',
-            '',
-            (jsonString) => {   // func
-                let data = JSON.parse(jsonString);
-            }); 
+    function Laden(){
+        Kunden();
+        Auftrag();
     }
-    function anzMitarbeiter(){
-        debugger;
+    //Kunden Statistik
+    function Kunden(){
         doGetRequest(
-            '/api/mitarbeiters',
-            '',
-            (jsonString) => {// func
-                let data = JSON.parse(jsonString);
-                anzMitarbeiterZeig(data);
-            }); 
-    }
-    function anzMitarbeiterZeig(data){
-        if (data == null){
-            document.getElementById("AnzMit").innerHTML = "0";
-        }
-    }
-    function anzKunden(){
-        document.getElementById("AnzKund").innerHTML = doGetRequest(
             '/api/kundes',
-            '',
-            (jsonString) => {   // func
-                let data = JSON.parse(jsonString);
+            "",
+            (data) => {   // func
+                anzKundenZeig(data);
+                Altersdurschschnitt(data);
             }); 
     }
-    
-    
+    function anzKundenZeig(data){
+        document.getElementById("AnzKund").innerHTML = "Anzahl Kunden: " + data.length + " Kunden";
+        let kund20 = 0;
+        let kund40 = 0;
+        let kund60 = 0;
+        let kund80 = 0;
+        let kund99 = 0;
+        let jahr = new Date().getFullYear();
+        let monat = (new Date().getMonth()) + 1;
+        let tag = new Date().getDate();
+        for (let i = 0; i < data.length; i++) {
+            geb = data[i].geburtsdatum;
+            gebjahr = JSON.stringify(geb);
+            gebjahr = gebjahr.substring(1, 5);
+            gebjahr = parseInt(gebjahr)
+            gebmonat = JSON.stringify(geb)
+            gebmonat = geb.substring(6, 8);
+            gebmonat = parseInt(gebmonat);
+            gebtag = JSON.stringify(geb)
+            gebtag = gebtag.substring(9, 11);
+            gebtag = parseInt(gebtag);
+            if(monat <= gebmonat && tag <= gebtag ){
+                jahr = jahr - 1;
+            };
+            alt = jahr - gebjahr;
+            if (alt < 21){
+                kund20 = kund20 + 1;
+            }else if (alt < 41 && alt > 20){
+                kund40 = kund40 + 1;
+            }else if (alt < 61 && alt > 40){
+                kund60 = kund60 + 1;
+            }else if (alt < 81 && alt > 60){
+                kund80 = kund80 + 1;
+            }else if (alt > 80){
+                kund99 = kund99 + 1;
+            }
+        }
+        document.getElementById("AnzKund20").innerHTML = "Anzahl Kunden (0-20 Jahren): " + kund20 + " Kunden";
+        document.getElementById("AnzKund40").innerHTML = "Anzahl Kunden (21-40 Jahren): " + kund40 + " Kunden";
+        document.getElementById("AnzKund60").innerHTML = "Anzahl Kunden (41-60 Jahren): " + kund60 + " Kunden";
+        document.getElementById("AnzKund80").innerHTML = "Anzahl Kunden (61-80 Jahren): " + kund80 + " Kunden";
+        document.getElementById("AnzKund99").innerHTML = "Anzahl Kunden (80+ Jahren): " + kund99 + " Kunden";
+    }
+    function Altersdurschschnitt(data){
+        let jahr = new Date().getFullYear();
+        let monat = (new Date().getMonth()) + 1;
+        let tag = new Date().getDate();
+        let alter = 0;
+        for (let i = 0; i < data.length; i++) {
+            geb = data[i].geburtsdatum;
+            gebjahr = JSON.stringify(geb);
+            gebjahr = gebjahr.substring(1, 5);
+            gebjahr = parseInt(gebjahr)
+            gebmonat = JSON.stringify(geb)
+            gebmonat = geb.substring(6, 8);
+            gebmonat = parseInt(gebmonat);
+            gebtag = JSON.stringify(geb)
+            gebtag = gebtag.substring(9, 11);
+            gebtag = parseInt(gebtag);
+            if(monat <= gebmonat && tag <= gebtag ){
+                jahr = jahr - 1;
+            };
+            alt = jahr - gebjahr;
+            alter = alter + alt;
+        };
+        document.getElementById("Alter").innerHTML = "Durchschnittsalter: "+ (alter/data.length) + " Jahre";
+    }
+    //Auftrag Statistik
+    function Auftrag(){
+        doGetRequest(
+            '/api/auftrags',
+            "",
+            (data) => {   // func
+                anzAuftragZeig(data);
+                AufKun(data);
+            }); 
+    }
+    function anzAuftragZeig(data){
+        debugger;
+        document.getElementById("anzAuftrag").innerHTML = "Anzahl Aufträge: " + data.length +" Aufträge";
+    }
+    function AufKun(data){
+        let Auftrag = data.length;
+        doGetRequest(
+            '/api/kundes',
+            "",
+            (data) => {   // func
+                AufKunZeig(Auftrag,data);
+            }); 
+    }
+    function AufKunZeig(Auftrag,data){
+        document.getElementById("anzAuftragKund").innerHTML = "Anzahl Aufträge pro Kunde: " + (Auftrag/data.length) +" Aufträge";
+    }
 </script>
 
 </html>
