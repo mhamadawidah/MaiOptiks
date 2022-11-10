@@ -49,7 +49,13 @@ public class AuftragService {
     }
 
     public BigDecimal getNextId() {
-        return auftragRepository.getNextId();
+        BigDecimal maxId = auftragRepository.getMaxId();
+        if (maxId == null)
+        {
+            // Auftrag sequence starts with 10000
+            return new BigDecimal(10000);
+        }
+        return maxId.add(new BigDecimal(1));
     }
 
     public Integer create(final AuftragDTO auftragDTO) {

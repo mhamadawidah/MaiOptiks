@@ -63,7 +63,7 @@ public class KundeController {
 
     @GetMapping("/edit/{kundenNr}")
     public String edit(@PathVariable final Integer kundenNr, final Model model) {
-        model.addAttribute("kunde", kundeService.get(kundenNr));
+        model.addAttribute("kunde", kundeService.getById(kundenNr));
         return "kunde/edit";
     }
 

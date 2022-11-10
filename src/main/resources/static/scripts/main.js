@@ -11,6 +11,7 @@ function doRequest(method, endpoint, key, json_data, func) {
         url += key;
     }
 
+    json_data = JSON.stringify(json_data);
     fetch(url, {
         method: method,
         headers: {
