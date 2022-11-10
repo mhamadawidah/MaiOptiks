@@ -64,75 +64,40 @@
         window.location.href = link;
     }
 
-    function searchOrder() {
-        let artikelNr = document.getElementById('artikelNr').value;
-
-        doRequest(
-            'GET',
+    function TabelleAnzeigen() {
+    doGetRequest(
             '/api/artikels',
-            artikelNr,
-            (jsonString) => {   // func
-                let data = JSON.parse(jsonString);
-                // alert(data.exception);
+            undefined,
+            (data) => {   // func
                 createTable(data);
             });
     }
 
-    function createTableö() {
-        if (document.getElementsByClassName('table')[0].firstElementChild !== null) {
-            return false;
-        } else {
-            let tableContainer = document.getElementsByClassName('table')[0];
-            let table = document.createElement('TABLE');
-            let tableHead = document.createElement('THEAD');
-            let tableBody = document.createElement('TBODY');
-            const headings = [
-                'ArtNr.',
-                'Bezeichnung',
-                'Artikelart',
-                'Material',
-                'Farbe',
-                'Einkaufspreis',
-                'Verkaufspreis',
-                'Lieferant',
-            ];
-
-            table.appendChild(tableHead);
-            table.appendChild(tableBody);
-
-            // Table Head
-            let row1 = document.createElement('TR');
-
-            headings
-                .map((item) => {
-                    let th = document.createElement('TH');
-                    th.innerHTML = item.valueOf();
-                    row1.appendChild(th);
-                });
-
-            tableHead.appendChild(row1);
-
-            // Table Data
-            let row2 = document.createElement('TR');
-
-            for (let i = 1; i <= headings.length; i++) {
-                let data = document.createElement('TD');
-                data.innerHTML = 'test';
-
-                row2.appendChild(data);
-            }
-
-            tableBody.appendChild(row2);
-
-            tableContainer.appendChild(table);
-        }
+    function ArtikelartFuellen() {
+    doGetRequest(
+            '/api/artikelarts',
+            undefined;
+            });
     }
 
-    function TabelleAnzeigen() {
+    function MaterialFuellen() {
     doGetRequest(
-            '/api/artikels/',
-            (data) => {   // func
-                createTable(data);
+            '/api/materials',
+            undefined;
+            });
+    }
+
+    function FarbeFuellen() {
+    doGetRequest(
+            '/api/farbes',
+            undefined;
+            });
+    }
+
+    function LieferantFuellen() {
+    doGetRequest(
+            '/api/lieferants',
+            undefined;
             });
     }
 
@@ -190,18 +155,22 @@
         const Bezeichnung = document.getElementById("Bezeichnung").value
         const Einkaufspreis = document.getElementById("Einkaufspreis").value
         const Verkaufspreis = document.getElementById("Verkaufspreis").value
+        const Artikelart = document.getElementById("Verkaufspreis").value
+        const Material = document.getElementById("Material").value
+        const Farbe = document.getElementById("Farbe").value
+        const Lieferant = document.getElementById("Lieferant").value
 
 
         //Json zusammenbauen
         let jsonObject = {
-            "artikelNr": 1,
+            "artikelNr": Artikelnummer,
             "bezeichnung": Bezeichnung,
-            "artikelart": "10003",
-            "einkaufspreis": 10,
-            "verkaufspreis": 20,
-            "material": 10002,
-            "farbe": 10001,
-            "lieferant": 10004
+            "artikelart": Artikelart,
+            "einkaufspreis": Einkaufspreis,
+            "verkaufspreis": Verkaufspreis,
+            "material": Material,
+            "farbe": Farbe,
+            "lieferant": Lieferant
         }
 
         console.log("Jason", jsonObject)
