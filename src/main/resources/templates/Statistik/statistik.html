@@ -74,6 +74,7 @@
 <script>
 
     function Laden(){
+        debugger;
         Kunden();
         Auftrag();
     }
@@ -81,7 +82,7 @@
     function Kunden(){
         doGetRequest(
             '/api/kundes',
-            "",
+            undefined,
             (data) => {   // func
                 anzKundenZeig(data);
                 Altersdurschschnitt(data);
@@ -158,7 +159,7 @@
     function Auftrag(){
         doGetRequest(
             '/api/auftrags',
-            "",
+            undefined,
             (data) => {   // func
                 anzAuftragZeig(data);
                 AufKun(data);
@@ -172,7 +173,7 @@
         let Auftrag = data.length;
         doGetRequest(
             '/api/kundes',
-            "",
+            undefined,
             (data) => {   // func
                 AufKunZeig(Auftrag,data);
             }); 
