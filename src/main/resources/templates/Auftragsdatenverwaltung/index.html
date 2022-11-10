@@ -37,7 +37,6 @@
     <div class="body">
         <div class="tab-buttons">
             <input type="button" value="Auftrag" onclick="set_tab(1)"/>
-            <input type="button" value="Augendaten" onclick="set_tab(2)"/>
             <input type="button" value="Brillenfassung" onclick="set_tab(4)"/>
             <input type="button" value="Brillenglas" onclick="set_tab(5)"/>
             <input type="button" value="Refraktion" onclick="set_tab(6)"/>
@@ -48,7 +47,7 @@
         <div class="tab-body">
 
             <div class="tab" id="tab-1">
-                <div th:replace="fragments/Auftragsdatenverwaltung/kunden.html"/>
+                <div th:replace="fragments/Auftragsdatenverwaltung/auftrag.html"/>
             </div>
             <div class="tab" id="tab-2">
                 <div th:replace="fragments/Auftragsdatenverwaltung/augendaten.html"/>
