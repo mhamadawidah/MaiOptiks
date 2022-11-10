@@ -1,0 +1,78 @@
+// changes the form mode to the given form mode
+function set_form_mode(mode, action_button_id, key_field_id) {
+    form_mode_lock(mode);
+    let actionButton = document.getElementById(action_button_id);
+    clear();
+    let recall = 'set_form_mode(\'u\',\'' + action_button_id + '\',\'' + key_field_id + '\');'
+    switch (mode) {
+        case 'a': // add
+            actionButton.value = 'Hinzufügen';
+            actionButton.setAttribute('onclick','add(); ' + recall);
+            let key = get_newest_key();
+            document.getElementById(key_field_id).value = key;
+            break;
+        default:
+        case 's': // search
+            actionButton.value = 'Öffnen';
+            actionButton.setAttribute('onclick'
+                ,'let code = search();'+
+                'switch(code) {'+
+                'case 0:'+
+                recall +
+                'return;'+
+                'case 1:'+
+                'return;'+
+                'case 2:'+
+                '    alert(\'no data found\');'+
+                'return;'+
+                '  }');
+            document.getElementById(key_field_id).value = '';
+            break;
+        case 'u': // update
+            read();
+            actionButton.value = 'Aktualisieren';
+            actionButton.setAttribute('onclick','update(); ' + recall);
+            break;
+    }
+}
+
+
+// set all 'lockable' objects (classname) to locked if object has class 'lock-mode-[param]'; [param] === 'mode' parameter
+function form_mode_lock(mode) {
+    let inputs = document.getElementsByClassName('lockable');
+    for (let i = 0; i < inputs.length; i++) {
+        let input = inputs.item(i);
+        input.disabled = false;
+        if (input.classList.contains('lock-mode-' + mode)) input.disabled = true;
+    }
+}
+
+// call this at the end of the file. action_id = button to activate action. Returns id which has been given in the url
+function load(action_id, key_field_id) {
+    let url = new URL(window.location.href)
+    let mode = url.searchParams.get('v');
+    let id = url.searchParams.get('id');
+    let key_field = document.getElementById(key_field_id);
+    switch (mode) {
+        case 'a':
+            let key = get_newest_key();
+            key_field.value = key;
+            set_form_mode(mode, action_id, key_field_id);
+            break;
+        case 'u':
+            if (id === undefined || id == null || id.trim() === '') {
+                key_field.value = '';
+                set_form_mode('s', action_id, key_field_id);
+            } else {
+                key_field.value = id;
+                set_form_mode('u', action_id, key_field_id);
+            }
+            break;
+        default:
+            key_field.value = '';
+            set_form_mode('s', action_id);
+            break;
+    }
+
+    fill_selections(); // set selection options with data
+}

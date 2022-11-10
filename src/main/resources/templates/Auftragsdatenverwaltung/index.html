@@ -6,10 +6,11 @@
     <link rel="stylesheet" th:href="@{/css/main.css}"/>
     <link rel="stylesheet" th:href="@{/css/auftragsdatenverwaltung-style.css}"/>
     <script th:src="@{/scripts/main.js}" type="text/javascript"></script>
-    <link rel="stylesheet" href="../../static/css/auftragsdatenverwaltung-style.css">
+    <link href="../../static/css/auftragsdatenverwaltung-style.css" rel="stylesheet">
 </head>
 <body>
 <script th:src="@{/scripts/auftragsdatenverwaltung.js}" type="text/javascript"></script>
+<script th:src="@{/scripts/crud-logic.js}" type="text/javascript"></script>
 
 </script>
 <div class="title-bar">
@@ -25,25 +26,25 @@
 </div>
 
 <div class="data-control">
-    <input type="button" value="Öffnen" onclick="set_form_mode('s')"/>
-    <input type="button" value="Neu Hinzufügen" onclick="set_form_mode('a')"/>
+    <input onclick="set_form_mode('s','exit-logic-1', 'Auftragsnummer')" type="button" value="Öffnen"/>
+    <input onclick="set_form_mode('a','exit-logic-1', 'Auftragsnummer')" type="button" value="Neu Hinzufügen"/>
 </div>
-<form>
-    <input name="current_tab" type="hidden" id="tab-index">
+<form onsubmit="document.getElementById('exit-logic-1').click(); return false;">
+    <input id="tab-index" name="current_tab" type="hidden">
     <div class="head">
         <input class="lockable lock-mode-a lock-mode-u" id="Auftragsnummer" type="number">
     </div>
 
     <div class="body">
         <div class="tab-buttons">
-            <input type="button" value="Auftrag" onclick="set_tab(1)"/>
-            <input type="button" value="Augendaten" onclick="set_tab(2)"/>
-            <input type="button" value="Brillenfassung" onclick="set_tab(4)"/>
-            <input type="button" value="Brillenglas" onclick="set_tab(5)"/>
-            <input type="button" value="Refraktion" onclick="set_tab(6)"/>
-            <input type="button" value="Veredelung" onclick="set_tab(7)"/>
-            <input type="button" value="Zuschläge" onclick="set_tab(8)"/>
-            <input type="button" value="Bemerkung" onclick="set_tab(3)"/>
+            <input onclick="set_tab(1)" type="button" value="Auftrag"/>
+            <input onclick="set_tab(2)" type="button" value="Augendaten"/>
+            <input onclick="set_tab(4)" type="button" value="Brillenfassung"/>
+            <input onclick="set_tab(5)" type="button" value="Brillenglas"/>
+            <input onclick="set_tab(6)" type="button" value="Refraktion"/>
+            <input onclick="set_tab(7)" type="button" value="Veredelung"/>
+            <input onclick="set_tab(8)" type="button" value="Zuschläge"/>
+            <input onclick="set_tab(3)" type="button" value="Bemerkung"/>
         </div>
         <div class="tab-body">
 
@@ -75,14 +76,15 @@
         </div>
     </div>
 
-    <div class="save-cancel">
-        <input type="button" class="action-button" id='save-cancel-1' value="Speichern"></input>
-        <input type="button" class="action-button" id='save-cancel-2' value="Zurück/Abbrechen"></input>
+    <div class="exit-logic">
+        <input class="action-button" type="button" id='exit-logic-1' value="Speichern" onclick="alert('oufvrea');"></input>
+        <input class="action-button" type="button" id='exit-logic-2' value="Zurück/Abbrechen"></input>
     </div>
 </form>
 </body>
 <script>
     //execute on load
-    preload();
+    set_tab(4);
+    load('exit-logic-1', 'Auftragsnummer');
 </script>
 </html>

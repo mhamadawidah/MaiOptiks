@@ -109,7 +109,7 @@ h3 {
     bottom:2%;
 }
 
-.save-cancel{
+.exit-logic{
     background: indigo;
     display:flex;
     justify-content: space-evenly;
@@ -119,12 +119,12 @@ h3 {
 
 }
 
-.save-cancel input[name='save']{
+.exit-logic input[name='save']{
     flex: 1 1 auto;
     with: calc(32% / 2);
 }
 
-.save-cancel input[name='cancel']{
+.exit-logic input[name='cancel']{
     flex: 1 1 auto;
     with: calc(32% / 2);
 }

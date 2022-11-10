@@ -21,73 +21,25 @@ function set_tab(tab_id) {
     }
 }
 
-function set_form_mode(mode) {
-    form_mode_lock(mode);
-    let actionButton = document.getElementById('save-cancel-1');
-    switch (mode) {
-        default: // add
-            let key = get_newest_key();
-            document.getElementById('Auftragsnummer').value = key;
-
-            actionButton.value = 'Hinzufügen';
-            actionButton.onclick = 'add()';
-            break;
-        case 's': // search
-            document.getElementById('Auftragsnummer').value = '';
-            actionButton.value = 'Öffnen';
-            actionButton.onclick = 'read()';
-            break;
-        case 'u': // update
-
-            actionButton.value = 'Aktuallisieren';
-            actionButton.onclick = 'update()';
-            break;
-    }
-}
+//
+// LOADING DATA LOGIC
+//
 
 function get_newest_key() {
-    return 1;
+    return 1; //return the key you have got from somewhere (api)
 }
-
-function form_mode_lock(mode) {
-    let inputs = document.getElementsByClassName('lockable');
-    for (let i = 0; i < inputs.length; i++) {
-        let input = inputs.item(i);
-        input.disabled = false;
-        if (input.classList.contains('lock-mode-' + mode))
-            input.disabled = true;
-    }
-}
-
-//
-// LOADING SITE LOGIC
-//
 
 function fill_selections() {
 
 }
 
-function preload() {
-    let url = new URL(window.location.href)
-    let mode = url.searchParams.get('v');
-    let id = url.searchParams.get('id');
-    if (id === undefined || id == null || id === '')
-        id = '';
-    else mode = 'v';
+function clear(){
 
-    set_tab(1);
-    fill_selections(); // set selection options with data
-
-    if (!(mode === undefined || mode === '')) {
-    } else {
-        mode = 's';
-    }
-    set_form_mode(mode); // sets button to mode equivalent text (e.g. Suchen, Speichern, Hinzufügen)
 }
 
-//
-// LOADING DATA LOGIC
-//
+function search() {
+    return 2;
+}
 
 // add all data to database
 function add() {
@@ -99,12 +51,9 @@ function update() {
     set_form_mode('s');
 }
 
-
-
 // read data from database
 function read() {
     let key = document.getElementById('Auftragsnummer').value;
-    set_form_mode('u');
     doGetRequest('/api/auftrags/', key, (data) => {
         let auftrag = data.item(0);
         let dataObjects = document.getElementsByClassName('data-auftrag');
@@ -163,5 +112,4 @@ function read() {
         }
         alert(auftrag);
     });
-
 }
