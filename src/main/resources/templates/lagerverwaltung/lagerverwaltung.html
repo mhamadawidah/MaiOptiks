@@ -65,6 +65,7 @@
     }
 
     function TabelleAnzeigen() {
+    debugger;
     doGetRequest(
             '/api/artikels',
             undefined,
@@ -73,35 +74,36 @@
             });
     }
 
-    function ArtikelartFuellen() {
-    doGetRequest(
-            '/api/artikelarts',
-            undefined;
-            });
-    }
+  //  function ArtikelartFuellen() {
+  //  doGetRequest(
+ //           '/api/artikelarts',
+ //           undefined;
+//            });
+ //   }
 
-    function MaterialFuellen() {
-    doGetRequest(
-            '/api/materials',
-            undefined;
-            });
-    }
+ //   function MaterialFuellen() {
+ //   doGetRequest(
+//            '/api/materials',
+//            undefined;
+//            });
+ //   }
 
-    function FarbeFuellen() {
-    doGetRequest(
-            '/api/farbes',
-            undefined;
-            });
-    }
+ //   function FarbeFuellen() {
+ //   doGetRequest(
+ //           '/api/farbes',
+ //           undefined;
+//            });
+//    }
 
-    function LieferantFuellen() {
-    doGetRequest(
-            '/api/lieferants',
-            undefined;
-            });
-    }
+//    function LieferantFuellen() {
+//    doGetRequest(
+//            '/api/lieferants',
+//            undefined;
+//            });
+//    }
 
     function createTable(data) {
+    debugger;
         if (document.getElementsByClassName('table')[0].firstElementChild !== null) {
             debugger;
             const entries = document.getElementsByTagName('TD');
