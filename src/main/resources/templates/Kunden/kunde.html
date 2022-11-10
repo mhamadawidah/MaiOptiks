@@ -22,8 +22,8 @@
     </div>
 
     <div class="search-fields">
-        <input class="input" id="lastname" placeholder="Name" required type="text"></input><br>
-        <input class="input" id="name" placeholder="Vorname" required type="text"></input><br>
+        <input class="input" id="lastname" placeholder="Name" type="text"></input><br>
+        <input class="input" id="name" placeholder="Vorname" type="text"></input><br>
         <button class="button submit-button" onclick="searchCustomer()">Suchen</button>
     </div>
 </div>
@@ -56,29 +56,23 @@
         let lastname = document.getElementById('lastname').value;
 
         switch (true) {
-            case (name === '' && lastname === '') :
-                document.getElementById('name').style.border = '2px solid red';
-                document.getElementById('lastname').style.border = '2px solid red';
-                return;
-            case (name === '' && lastname !== '') :
-                document.getElementById('name').style.border = '2px solid red';
-                document.getElementById('lastname').style.border = '1px solid black';
-                return;
-            case (lastname === '' && name !== '') :
-                document.getElementById('lastname').style.border = '2px solid red';
-                document.getElementById('name').style.border = '1px solid black';
-				return;
-            case (lastname !== '' && name !== '') :
-                document.getElementById('name').style.border = '1px solid black';
-                document.getElementById('lastname').style.border = '1px solid black';
-                name = name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
-                lastname = lastname.charAt(0).toUpperCase() + lastname.slice(1).toLowerCase();
+            case (lastname === '' && name === ''):
+                lastname = '*';
+                name = '*';
+                break;
+            case (lastname === '' && name !== ''):
+                lastname = '*';
+                break;
+            case (lastname !== '' && name === ''):
+                name = '*';
                 break;
         }
 
+        let key = `?name=${lastname}&vorname=${name}`;
+
         doGetRequest(
-            '/api/kundes/',
-            (lastname !== '' && name !== '') ? (lastname + '/' + name) : undefined,
+            '/api/kundes',
+            key,
             (data) => {   // func
                 createTable(data, lastname, name);
             });
@@ -128,8 +122,7 @@
             keys
                 .map((item) => {
                     const th = document.createElement('TH');
-                    const caps = item.charAt(0).toUpperCase() + item.slice(1);
-                    th.innerHTML = caps.valueOf();
+                    th.innerHTML = item.valueOf();
                     headerRow.appendChild(th);
                 });
             // Für jeden Kunden neue Zeile erstellen
