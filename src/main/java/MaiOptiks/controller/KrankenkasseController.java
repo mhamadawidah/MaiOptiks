@@ -47,11 +47,11 @@ public class KrankenkasseController {
     @PostMapping("/add")
     public String add(@ModelAttribute("krankenkasse") @Valid final KrankenkasseDTO krankenkasseDTO,
             final BindingResult bindingResult, final RedirectAttributes redirectAttributes) {
-        if (!bindingResult.hasFieldErrors("krankenkassennr") && krankenkasseDTO.getKrankenkassennr() == null) {
-            bindingResult.rejectValue("krankenkassennr", "NotNull");
+        if (!bindingResult.hasFieldErrors("krankenkassenID") && krankenkasseDTO.getKrankenkassenID() == null) {
+            bindingResult.rejectValue("krankenkassenID", "NotNull");
         }
-        if (!bindingResult.hasFieldErrors("krankenkassennr") && krankenkasseService.krankenkassenNrExists(krankenkasseDTO.getKrankenkassennr())) {
-            bindingResult.rejectValue("krankenkassennr", "Exists.krankenkasse.krankenkassennr");
+        if (!bindingResult.hasFieldErrors("krankenkassenID") && krankenkasseService.krankenkassenIDExists(krankenkasseDTO.getKrankenkassenID())) {
+            bindingResult.rejectValue("krankenkassenID", "Exists.krankenkasse.krankenkassenID");
         }
         if (bindingResult.hasErrors()) {
             return "krankenkasse/add";
@@ -61,32 +61,32 @@ public class KrankenkasseController {
         return "redirect:/krankenkasses";
     }
 
-    @GetMapping("/edit/{krankenkassenNr}")
-    public String edit(@PathVariable final String krankenkassenNr, final Model model) {
-        model.addAttribute("krankenkasse", krankenkasseService.get(krankenkassenNr));
+    @GetMapping("/edit/{krankenkassenID}")
+    public String edit(@PathVariable final String krankenkassenID, final Model model) {
+        model.addAttribute("krankenkasse", krankenkasseService.get(krankenkassenID));
         return "krankenkasse/edit";
     }
 
-    @PostMapping("/edit/{krankenkassenNr}")
-    public String edit(@PathVariable final String krankenkassenNr,
+    @PostMapping("/edit/{krankenkassenID}")
+    public String edit(@PathVariable final String krankenkassenID,
             @ModelAttribute("krankenkasse") @Valid final KrankenkasseDTO krankenkasseDTO,
             final BindingResult bindingResult, final RedirectAttributes redirectAttributes) {
         if (bindingResult.hasErrors()) {
             return "krankenkasse/edit";
         }
-        krankenkasseService.update(krankenkassenNr, krankenkasseDTO);
+        krankenkasseService.update(krankenkassenID, krankenkasseDTO);
         redirectAttributes.addFlashAttribute("");
         return "redirect:/krankenkasses";
     }
 
-    @PostMapping("/delete/{krankenkassenNr}")
-    public String delete(@PathVariable final String krankenkassenNr,
+    @PostMapping("/delete/{krankenkassenID}")
+    public String delete(@PathVariable final String krankenkassenID,
             final RedirectAttributes redirectAttributes) {
-        final String referencedWarning = krankenkasseService.getReferencedWarning(krankenkassenNr);
+        final String referencedWarning = krankenkasseService.getReferencedWarning(krankenkassenID);
         if (referencedWarning != null) {
             redirectAttributes.addFlashAttribute("");
         } else {
-            krankenkasseService.delete(krankenkassenNr);
+            krankenkasseService.delete(krankenkassenID);
             redirectAttributes.addFlashAttribute("");
         }
         return "redirect:/krankenkasses";

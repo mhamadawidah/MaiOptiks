@@ -53,6 +53,6 @@ public class KundeDTO {
     private Integer plz;
 
     @Size(max = 254)
-    private String krankenkassenNr;
+    private String krankenkassenID;
 
 }
