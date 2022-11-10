@@ -1,20 +1,58 @@
+// Seiten mit Buttons öffnen
 function openLink(link) {
     window.location.href = link;
 }
 
-function doRequest(method, url, data) {
-    let request = new XMLHttpRequest();
-    let baseUrl = 'http://localhost:8080';
+// Datenbank Abfrage
+function doRequest(method, endpoint, key, json_data, func) {
+    let url = 'http://localhost:8080' + endpoint;
 
-    url = baseUrl + url;
-
-    if (data !== undefined && data !== null) {
-        url += JSON.stringify(data);
+    if (key !== undefined && key !== '') {
+        url += key;
     }
-    request.open(method, url, true)
-    request.send();
 
-    request.onload = () => {
-        console.log(JSON.parse(request.response));
-    }
+    fetch(url, {
+        method: method,
+        headers: {
+            'Content-Type': 'application/json;charset=utf-8'
+        },
+        body: JSON.stringify(json_data),
+    })
+        .then(async (response) => {
+            if (response.status >= 200 && response.status < 300) {
+                return response.json();
+            } else if (response.status === 404 && key) {
+                alert('\nEintrag nicht vorhanden.');
+            } else if (response.status >= 500) {
+                alert('\nServerfehler!\n\nBitte den Systemadministrator kontaktieren.');
+            } else {
+                alert('\nError: ' + response.status + '\n\n' + (JSON.parse(await response.text())).exception);
+
+                return response.text()
+            }
+        })
+        .then(async (data) => {
+            if (func !== undefined && data !== undefined && key !== undefined) {
+                if (typeof func === 'function') {
+                    func(data);
+                }
+            }
+        })
+        .catch(error => console.error(error));
+}
+
+function doGetRequest(endpoint, key, func) {
+    doRequest('GET', endpoint, key, undefined, func)
+}
+
+function doPutRequest(endpoint, key, data, func) {
+    doRequest('PUT', endpoint, key, data, func)
+}
+
+function doPostRequest(endpoint, data, func) {
+    doRequest('POST', endpoint, undefined, data, func)
+}
+
+function doDeleteRequest(endpoint, key, func) {
+    doRequest('DELETE', endpoint, key, undefined, func)
 }

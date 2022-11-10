@@ -60,7 +60,7 @@ public class StadtService {
     private StadtDTO mapToDTO(final Stadt stadt, final StadtDTO stadtDTO) {
         stadtDTO.setPlz(stadt.getPlz());
         stadtDTO.setOrt(stadt.getOrt());
-        stadtDTO.setLand(stadt.getLand() == null ? null : stadt.getLand().getLandId());
+        stadtDTO.setLand(stadt.getLand() == null ? null : stadt.getLand().getLandid());
         return stadtDTO;
     }
 

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.transaction.Transactional;
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -47,6 +48,10 @@ public class AuftragService {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
+    public BigDecimal getNextId() {
+        return auftragRepository.getNextId();
+    }
+
     public Integer create(final AuftragDTO auftragDTO) {
         final Auftrag auftrag = new Auftrag();
         mapToEntity(auftragDTO, auftrag);
@@ -74,14 +79,14 @@ public class AuftragService {
         auftragDTO.setBezahlt(auftrag.getBezahlt());
         auftragDTO.setAuftragsbestaetigung(auftrag.getAuftragsbestaetigung());
         auftragDTO.setRechnung(auftrag.getRechnung());
-        auftragDTO.setErsteMahnung(auftrag.getErsteMahnung());
-        auftragDTO.setZweiteMahnung(auftrag.getZweiteMahnung());
-        auftragDTO.setDritteMahnung(auftrag.getDritteMahnung());
+        auftragDTO.setErsteMahnung(auftrag.getErstemahnung());
+        auftragDTO.setZweiteMahnung(auftrag.getZweitemahnung());
+        auftragDTO.setDritteMahnung(auftrag.getDrittemahnung());
         auftragDTO.setDatum(auftrag.getDatum());
-        auftragDTO.setKundenNr(auftrag.getKundenNr() == null ? null : auftrag.getKundenNr().getKundenNr());
-        auftragDTO.setBerater(auftrag.getBerater() == null ? null : auftrag.getBerater().getMitarbeiterNr());
-        auftragDTO.setWerkstatt(auftrag.getWerkstatt() == null ? null : auftrag.getWerkstatt().getMitarbeiterNr());
-        auftragDTO.setRefraktion(auftrag.getRefraktion() == null ? null : auftrag.getRefraktion().getRefraktionsNr());
+        auftragDTO.setKundenNr(auftrag.getKundenNr() == null ? null : auftrag.getKundenNr().getKundennr());
+        auftragDTO.setBerater(auftrag.getBerater() == null ? null : auftrag.getBerater().getMitarbeiternr());
+        auftragDTO.setWerkstatt(auftrag.getWerkstatt() == null ? null : auftrag.getWerkstatt().getMitarbeiternr());
+        auftragDTO.setRefraktion(auftrag.getRefraktion() == null ? null : auftrag.getRefraktion().getRefraktionsnr());
         auftragDTO.setAbrechnungs(auftrag.getAbrechnungs() == null ? null : auftrag.getAbrechnungs().getId());
         return auftragDTO;
     }
@@ -95,9 +100,9 @@ public class AuftragService {
         auftrag.setBezahlt(auftragDTO.getBezahlt());
         auftrag.setAuftragsbestaetigung(auftragDTO.getAuftragsbestaetigung());
         auftrag.setRechnung(auftragDTO.getRechnung());
-        auftrag.setErsteMahnung(auftragDTO.getErsteMahnung());
-        auftrag.setZweiteMahnung(auftragDTO.getZweiteMahnung());
-        auftrag.setDritteMahnung(auftragDTO.getDritteMahnung());
+        auftrag.setErstemahnung(auftragDTO.getErsteMahnung());
+        auftrag.setZweitemahnung(auftragDTO.getZweiteMahnung());
+        auftrag.setDrittemahnung(auftragDTO.getDritteMahnung());
         auftrag.setDatum(auftragDTO.getDatum());
         final Kunde kundenNr = auftragDTO.getKundenNr() == null ? null : kundeRepository.findById(auftragDTO.getKundenNr())
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "kundenNr not found"));

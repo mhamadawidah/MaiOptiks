@@ -2,12 +2,9 @@ package MaiOptiks.domain;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
-import java.time.OffsetDateTime;
 import java.util.Set;
 
 
@@ -29,7 +26,7 @@ public class Refraktion {
             strategy = GenerationType.SEQUENCE,
             generator = "primary_sequence"
     )
-    private Integer refraktionId;
+    private Integer refraktionid;
 
     @Column
     private Double sph;
@@ -57,13 +54,5 @@ public class Refraktion {
 
     @OneToMany(mappedBy = "werte")
     private Set<Glaeser> werteGlaesers;
-
-    @CreatedDate
-    @Column(nullable = false, updatable = false)
-    private OffsetDateTime dateCreated;
-
-    @LastModifiedDate
-    @Column(nullable = false)
-    private OffsetDateTime lastUpdated;
 
 }

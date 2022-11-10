@@ -23,7 +23,7 @@ public class LandService {
     }
 
     public List<LandDTO> findAll() {
-        return landRepository.findAll(Sort.by("landId"))
+        return landRepository.findAll(Sort.by("landid"))
                 .stream()
                 .map(land -> mapToDTO(land, new LandDTO()))
                 .collect(Collectors.toList());
@@ -38,8 +38,8 @@ public class LandService {
     public String create(final LandDTO landDTO) {
         final Land land = new Land();
         mapToEntity(landDTO, land);
-        land.setLandId(landDTO.getLandId());
-        return landRepository.save(land).getLandId();
+        land.setLandid(landDTO.getLandId());
+        return landRepository.save(land).getLandid();
     }
 
     public void update(final String landId, final LandDTO landDTO) {
@@ -54,7 +54,7 @@ public class LandService {
     }
 
     private LandDTO mapToDTO(final Land land, final LandDTO landDTO) {
-        landDTO.setLandId(land.getLandId());
+        landDTO.setLandId(land.getLandid());
         landDTO.setName(land.getName());
         return landDTO;
     }
@@ -65,7 +65,7 @@ public class LandService {
     }
 
     public boolean landIdExists(final String landId) {
-        return landRepository.existsByLandIdIgnoreCase(landId);
+        return landRepository.existsByLandidIgnoreCase(landId);
     }
 
     @Transactional

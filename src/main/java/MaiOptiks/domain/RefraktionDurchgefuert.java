@@ -2,12 +2,9 @@ package MaiOptiks.domain;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
-import java.time.OffsetDateTime;
 import java.util.Set;
 
 
@@ -29,25 +26,17 @@ public class RefraktionDurchgefuert {
             strategy = GenerationType.SEQUENCE,
             generator = "primary_sequence"
     )
-    private Integer refraktionsNr;
+    private Integer refraktionsnr;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "mitarbeiter_nr_id")
-    private Mitarbeiter mitarbeiterNr;
+    @JoinColumn(name = "mitarbeiternr")
+    private Mitarbeiter mitarbeiternr;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "arzt_nr_id")
-    private Arzt arztNr;
+    @JoinColumn(name = "arztnr")
+    private Arzt arztnr;
 
     @OneToMany(mappedBy = "refraktion")
     private Set<Auftrag> refraktionAuftrags;
-
-    @CreatedDate
-    @Column(nullable = false, updatable = false)
-    private OffsetDateTime dateCreated;
-
-    @LastModifiedDate
-    @Column(nullable = false)
-    private OffsetDateTime lastUpdated;
 
 }

@@ -1,0 +1,70 @@
+.startpagebutton
+{
+    height: 10%;
+    width: 50%;
+}
+.calendarcontainer {
+    position: absolute;
+    top: 15%;
+    right: 7%;
+    width: 50%;
+    height: 5%;
+}
+.inner-window
+{
+    display: flex;
+    flex-direction: column;
+    min-height: 70%;
+}
+
+.header
+{
+    width: 96%;
+    text-align: left
+    font-size: 25px;
+}
+.calendar {
+    position: absolute;
+    top: 35%;
+    right: 29%;
+    width: 20%;
+    height: 34%;
+}
+.datumtext {
+    position: absolute;
+    top: 0%;
+    right: 7%;
+    width: 20%;
+    height: 17%;
+}
+.tablecontainer{
+    position: absolute;
+    top: 40%;
+    right: 4%;
+    width: 96%;
+    height: 30%;
+    overflow: auto;
+}
+.tablecontainer table{
+    left: 0%;
+    top: 5%;
+    width: 94%;
+    height: 30%;
+}
+.tablecontainer body{
+    width: auto;
+    height: auto;
+}
+.selectbuttonall{
+    position: absolute;
+    left: 3%;
+    width: 10%;
+    height: 10%;
+}
+.selectbuttonnone{
+    position: absolute;
+    left: 15%;
+    width: 10%;
+    height: 10%;
+}
+

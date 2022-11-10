@@ -29,7 +29,7 @@ public class Farbe {
             strategy = GenerationType.SEQUENCE,
             generator = "primary_sequence"
     )
-    private Integer farbeId;
+    private Integer farbeid;
 
     @Column(length = 254)
     private String bezeichnung;
@@ -48,13 +48,5 @@ public class Farbe {
 
     @OneToMany(mappedBy = "farbe")
     private Set<Kontaktlinsen> farbeKontaktlinsens;
-
-    @CreatedDate
-    @Column(nullable = false, updatable = false)
-    private OffsetDateTime dateCreated;
-
-    @LastModifiedDate
-    @Column(nullable = false)
-    private OffsetDateTime lastUpdated;
 
 }

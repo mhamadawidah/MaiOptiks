@@ -1,93 +1,82 @@
 /*Container*/
 .customers {
-    height: 20%;
-    width: 20%;
-    left: 0.5%;
+	height: 20%;
+	width: 20%;
+	left: 0.5%;
 
-    position: absolute;
+	position: absolute;
 }
 
 .search-fields {
-    height: 40%;
-    width: 40%;
-    left: 20%;
+	height: 40%;
+	width: 40%;
+	left: 20%;
 
-    position: absolute;
+	position: absolute;
 }
 
 .customerButton-searchField {
-    width: 40%;
+	width: 40%;
 }
 
 .table-container {
-    top: 30%;
-    width: 94.4%;
-    height: 60%;
-    position: absolute;
-    overflow: auto;
+	top: 30%;
+	width: 94.4%;
+	height: 60%;
+	position: absolute;
+	overflow: auto;
+}
+
+.table-container tbody {
+	cursor: pointer;
 }
 
 .direction-buttons {
-    position: absolute;
-    height: 5%;
-    width: 75%;
-    left: 0.5%;
-    bottom: 2%;
-}
-
-/*Inputs*/
-.input {
-    height: 7%;
-    width: 49%;
-    border-radius: 5px;
-    border: 1px solid black;
-    padding: 0.5%;
-    margin-top: 0.7%;
-}
-
-.input::placeholder {
-    font-family: "Roboto Thin", sans-serif;
-    font-size: 15px;
+	position: absolute;
+	height: 5%;
+	width: 75%;
+	left: 0.5%;
+	bottom: 2%;
 }
 
 /*Buttons*/
 .submit-button {
-    height: 9%;
-    width: 50%;
-    margin-top: 0.8%;
+	height: 9%;
+	width: 50%;
+	margin-top: 0.8%;
 
-    cursor: pointer;
+	cursor: pointer;
 }
 
 .customer-button {
-    height: 30%;
-    width: 80%;
-    margin-top: 2%;
+	height: 30%;
+	width: 80%;
+	margin-top: 2%;
 
-    text-decoration: none;
-    cursor: pointer;
+	text-decoration: none;
+	cursor: pointer;
 }
 
 .direction-button {
-    height: 100%;
-    width: 24%;
-    margin-top: 0.5%;
-    margin-right: 0.1%;
+	height: 100%;
+	width: 24%;
+	margin-top: 0.5%;
+	margin-right: 0.1%;
 
-    cursor: pointer;
+	cursor: pointer;
 }
 
 /*Tabelle*/
 .table-container table {
-    width: 95%;
-    height: 10%;
-    margin-top: 5%;
+	width: 95%;
+	height: 10%;
+	margin-top: 5%;
 }
 
 .table-container body {
-    width: auto;
+	width: auto;
 }
 
 .table-container tr {
-    white-space: nowrap;
+	white-space: nowrap;
 }
