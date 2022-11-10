@@ -4,7 +4,7 @@ CREATE TABLE IF NOT EXISTS Stadt (PLZ int NOT NULL, Ort varchar(254), Land varch
 
 CREATE TABLE IF NOT EXISTS Krankenkasse (KrankenkassenID int NOT NULL, Name varchar(254), Strasse varchar(254), PLZ int, TelefonNummer varchar(254), Email varchar(254), PRIMARY KEY (KrankenkassenID), FOREIGN KEY (PLZ) REFERENCES Stadt(PLZ));
 
-CREATE TABLE IF NOT EXISTS Kunde (KundenID int NOT NULL, Anrede varchar(254), Name varchar(254), Vorname varchar(254), Strasse varchar(254), HausID varchar(254), PLZ Int, Geburtsdatum date, TelefonNummer varchar(254), Handy varchar(254), EMail varchar(254), KrankenkassenID varchar(254), VersicherungsID varchar(254), Gueltigkeit date, Bemerkung varchar(254),PRIMARY KEY (KundenID), FOREIGN KEY (PLZ) REFERENCES Stadt(PLZ), FOREIGN KEY (KrankenkassenID) REFERENCES Krankenkasse(KrankenkassenID));
+CREATE TABLE IF NOT EXISTS Kunde (KundenID int NOT NULL, Anrede varchar(254), Name varchar(254), Vorname varchar(254), Strasse varchar(254), HausID varchar(254), PLZ Int, Geburtsdatum date, TelefonNummer varchar(254), Handy varchar(254), EMail varchar(254), KrankenkassenID int, VersicherungsID varchar(254), Gueltigkeit date, Bemerkung varchar(254),PRIMARY KEY (KundenID), FOREIGN KEY (PLZ) REFERENCES Stadt(PLZ), FOREIGN KEY (KrankenkassenID) REFERENCES Krankenkasse(KrankenkassenID));
 
 CREATE TABLE IF NOT EXISTS Firmenstamm (AugenoptikerIKID varchar(254) NOT NULL, Steuernummer varchar(254), Geschaeftsname varchar(254), Bankverbindung varchar(254), Strasse varchar(254), HausID varchar(254), PLZ int, TelefonNummer varchar(254), Inhabername varchar(254), Inhabervorname varchar(254), PRIMARY KEY (AugenoptikerIKID), FOREIGN KEY (PLZ) REFERENCES Stadt(PLZ));
 
@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS Hornhaut (HornhautID int NOT NULL, RefraktionID int N
 
 CREATE TABLE IF NOT EXISTS Artikelart (ArtID int NOT NULL, Bezeichnung varchar(254), PRIMARY KEY (ArtID));
 
-CREATE TABLE IF NOT EXISTS Artikel (ArtikelID int NOT NULL, Bezeichnung varchar(254), Artikelart varchar(254), Material int, Farbe int, Einkaufspreis float, Verkaufspreis float, Lieferant int, PRIMARY KEY (ArtikelID), FOREIGN KEY (Material) REFERENCES Material(MaterialID), FOREIGN KEY (Farbe) REFERENCES Farbe(FarbeID), FOREIGN KEY (Lieferant) REFERENCES Lieferant(LieferantID));
+CREATE TABLE IF NOT EXISTS Artikel (ArtikelID int NOT NULL, Bezeichnung varchar(254), Artikelart varchar(254), Material int, Farbe int, Einkaufspreis float, Verkaufspreis float, Lieferant int, LieferantArtikelID varchar(254), PRIMARY KEY (ArtikelID), FOREIGN KEY (Material) REFERENCES Material(MaterialID), FOREIGN KEY (Farbe) REFERENCES Farbe(FarbeID), FOREIGN KEY (Lieferant) REFERENCES Lieferant(LieferantID));
 
 CREATE TABLE IF NOT EXISTS Fassungen (ArtikelID int NOT NULL, GattungID int, Modell varchar(254), Groesse varchar(254), Buegel int, Faktor double, PRIMARY KEY (ArtikelID), FOREIGN KEY (ArtikelID) REFERENCES Artikel(ArtikelID), FOREIGN KEY (GattungID) REFERENCES Gattung(GattungID));
 

@@ -8616,6 +8616,7 @@ MERGE INTO Abrechnungsart(AbrechnungsartID, Art) VALUES (7, 'Nachnahme');
 MERGE INTO Abrechnungsart(AbrechnungsartID, Art) VALUES (8, 'Lastschrift');
 MERGE INTO Abrechnungsart(AbrechnungsartID, Art) VALUES (9, 'PayPal');
 
+MERGE INTO Kunde(KundenID, Anrede, Name, Vorname, Strasse, HausID, PLZ, Geburtsdatum, TelefonNummer, Handy, EMail, KrankenkassenID, VersicherungsID, Gueltigkeit, Bemerkung) VALUES(0,'N/A','N/A','N/A','N/A','N/A',49549,'1900-01-01','N/A','N/A','N/A',1,'253244','2999-01-01','');
 MERGE INTO Kunde(KundenID, Anrede, Name, Vorname, Strasse, HausID, PLZ, Geburtsdatum, TelefonNummer, Handy, EMail, KrankenkassenID, VersicherungsID, Gueltigkeit, Bemerkung) VALUES(1,'Herr','Haus','Alexander','Glosemeyersgasse','66',49549,'1960-07-16','19658 778963','4483 1114979','Alexander.Haus@gmail.com','1','253244','2022-11-06','');
 MERGE INTO Kunde(KundenID, Anrede, Name, Vorname, Strasse, HausID, PLZ, Geburtsdatum, TelefonNummer, Handy, EMail, KrankenkassenID, VersicherungsID, Gueltigkeit, Bemerkung) VALUES(2,'Herr','Schmidt','Alexander','Hanfweg','62',49084,'2004-09-15','36905 329408','8172 6425104','Alexander.Schmidt@gmail.com','7','557954','2022-11-06','');
 MERGE INTO Kunde(KundenID, Anrede, Name, Vorname, Strasse, HausID, PLZ, Geburtsdatum, TelefonNummer, Handy, EMail, KrankenkassenID, VersicherungsID, Gueltigkeit, Bemerkung) VALUES(3,'Frau','Stockreiter','Frauke','Osnabrücker Straße','50',49497,'1977-08-02','85916 766135','5483 5684088','Frauke.Stockreiter@gmail.com','6','834185','2022-11-06','');
