@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.transaction.Transactional;
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -45,6 +46,16 @@ public class AuftragService {
         return auftragRepository.findById(auftragsnummer)
                 .map(auftrag -> mapToDTO(auftrag, new AuftragDTO()))
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+    }
+
+    public BigDecimal getNextId() {
+        BigDecimal maxId = auftragRepository.getMaxId();
+        if (maxId == null)
+        {
+            // Auftrag sequence starts with 10000
+            return new BigDecimal(10000);
+        }
+        return maxId.add(new BigDecimal(1));
     }
 
     public Integer create(final AuftragDTO auftragDTO) {

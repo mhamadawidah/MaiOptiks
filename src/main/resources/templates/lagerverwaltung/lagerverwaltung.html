@@ -64,6 +64,70 @@
         window.location.href = link;
     }
 
+    function searchOrder() {
+        let artikelNr = document.getElementById('artikelNr').value;
+
+        doRequest(
+            'GET',
+            '/api/artikels',
+            artikelNr,
+            (jsonString) => {   // func
+                let data = JSON.parse(jsonString);
+                // alert(data.exception);
+                createTable(data);
+            });
+    }
+
+    function createTableö() {
+        if (document.getElementsByClassName('table')[0].firstElementChild !== null) {
+            return false;
+        } else {
+            let tableContainer = document.getElementsByClassName('table')[0];
+            let table = document.createElement('TABLE');
+            let tableHead = document.createElement('THEAD');
+            let tableBody = document.createElement('TBODY');
+            const headings = [
+                'ArtNr.',
+                'Bezeichnung',
+                'Artikelart',
+                'Material',
+                'Farbe',
+                'Einkaufspreis',
+                'Verkaufspreis',
+                'Lieferant',
+            ];
+
+            table.appendChild(tableHead);
+            table.appendChild(tableBody);
+
+            // Table Head
+            let row1 = document.createElement('TR');
+
+            headings
+                .map((item) => {
+                    let th = document.createElement('TH');
+                    th.innerHTML = item.valueOf();
+                    row1.appendChild(th);
+                });
+
+            tableHead.appendChild(row1);
+
+            // Table Data
+            let row2 = document.createElement('TR');
+
+            for (let i = 1; i <= headings.length; i++) {
+                let data = document.createElement('TD');
+                data.innerHTML = 'test';
+
+                row2.appendChild(data);
+            }
+
+            tableBody.appendChild(row2);
+
+            tableContainer.appendChild(table);
+        }
+    }
+
     function TabelleAnzeigen() {
     debugger;
     doGetRequest(
@@ -105,7 +169,7 @@
     function createTable(data) {
     debugger;
         if (document.getElementsByClassName('table')[0].firstElementChild !== null) {
-            debugger;
+            // debugger;
             const entries = document.getElementsByTagName('TD');
 
             for (let i = 0; i <= entries.length; i++) {
@@ -157,10 +221,6 @@
         const Bezeichnung = document.getElementById("Bezeichnung").value
         const Einkaufspreis = document.getElementById("Einkaufspreis").value
         const Verkaufspreis = document.getElementById("Verkaufspreis").value
-        const Artikelart = document.getElementById("Verkaufspreis").value
-        const Material = document.getElementById("Material").value
-        const Farbe = document.getElementById("Farbe").value
-        const Lieferant = document.getElementById("Lieferant").value
 
 
         //Json zusammenbauen

@@ -1,121 +1,121 @@
 <!DOCTYPE html>
 <html lang="de" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org/">
 <head>
-    <meta charset="UTF-8">
-    <title th:text="${title}"></title>
-    <link rel="stylesheet" th:href="@{/css/main.css}"/>
-    <link rel="stylesheet" th:href="@{/css/startseite-style.css}"/>
-    <script th:src="@{/scripts/main.js}" type="text/javascript"></script>
+	<meta charset="UTF-8">
+	<title th:text="${title}"></title>
+	<link rel="stylesheet" th:href="@{/css/main.css}"/>
+	<link rel="stylesheet" th:href="@{/css/startseite-style.css}"/>
+	<script th:src="@{/scripts/main.js}" type="text/javascript"></script>
 </head>
 <body>
 <div class="title-bar">
-    <h1 class="heading">Auftrag</h1>
+	<h1 class="heading">Auftrag</h1>
 </div>
 
 <div class="vertical-bar">
-    <p></p>
+	<p></p>
 </div>
 
 <div class="customerButton-searchField">
-    <div class="customers">
-        <button class="button customer-button" onclick="openLink('/kunde')">Kunde</button>
-    </div>
+	<div class="customers">
+		<button class="button customer-button" onclick="openLink('/kunde')">Kunde</button>
+	</div>
 
-    <div class="search-fields">
-        <input class="input" id="auftragsNr" placeholder="Auftrags-Nr." required type="text"><br>
-        <button class="button submit-button" onclick="searchOrder()" type="submit">Suchen</button>
-    </div>
+	<div class="search-fields">
+		<input class="input" id="auftragsNr" placeholder="Auftrags-Nr." required type="text"><br>
+		<button class="button submit-button" onclick="searchOrder()" type="submit">Suchen</button>
+	</div>
 </div>
 
 <div class="table-container"></div>
 
 <div class="direction-buttons">
-    <button class="button direction-button" onclick="openLink('./')">Startseite</button>
-    <button class="button direction-button" onclick="openLink('/neuer-kunde')">Neuer Kunde</button>
-    <button class="button direction-button" onclick="openLink('/organisation')">Organisation</button>
-    <button class="button direction-button" onclick="openLink('/führerscheinsehtest')">Führerschein-Sehtest</button>
+	<button class="button direction-button" onclick="openLink('./')">Startseite</button>
+	<button class="button direction-button" onclick="openLink('/neuer-kunde')">Neuer Kunde</button>
+	<button class="button direction-button" onclick="openLink('/organisation')">Organisation</button>
+	<button class="button direction-button" onclick="openLink('/führerscheinsehtest')">Führerschein-Sehtest</button>
 </div>
 
 </body>
 <script>
-    function searchOrder() {
-        let auftragsNr = document.getElementById('auftragsNr').value;
+	document.getElementById('auftragsNr').addEventListener('keyup', (e) => {
+		if (e.key === 'Enter') {
+			searchOrder();
+		}
+	});
 
-        if (auftragsNr === '') {
-            document.getElementById('auftragsNr').style.border = '3px solid red';
+	function searchOrder() {
+		let auftragsNr = document.getElementById('auftragsNr').value;
 
-            return false;
-        } else {
-            document.getElementById('auftragsNr').style.border = '1px solid black';
-        }
+		if (auftragsNr === '') {
+			document.getElementById('auftragsNr').style.border = '3px solid red';
 
-        doGetRequest(
-            '/api/auftrags/',
-            auftragsNr,
-            (data) => {   // func
-                console.log(data);
-                //let data = JSON.parse(jsonString);
-                // alert(data.exception);
-                createTable(data);
-            });
-    }
+			return;
+		} else {
+			document.getElementById('auftragsNr').style.border = '1px solid black';
+		}
 
-    function createTable(data) {
-        if (document.getElementsByClassName('table-container')[0].firstElementChild !== null) {
-            return false;
-        } else {
-            let tableContainer = document.getElementsByClassName('table-container')[0];
-            let table = document.createElement('TABLE');
-            let tableHead = document.createElement('THEAD');
-            let tableBody = document.createElement('TBODY');
-            const headings = [
-                'Kunden-Nr.',
-                'Auftrags-Nr.',
-                'Abrechnungsart',
-                'Rezept vorhanden',
-                'Womit',
-                'Wann',
-                'Fertig',
-                'Abgeholt',
-                'Bezahlt',
-                'Auftragsbestätigung',
-                'Rechnung',
-                'Mahnung',
-                'Datum',
-                'Werkstatt',
-                'Berater',
-                'Refraktion',
-            ];
+		doGetRequest(
+			'/api/auftrags/',
+			auftragsNr,
+			(data) => {   // func
+				createTable(data, auftragsNr);
+			});
+	}
 
-            table.appendChild(tableHead);
-            table.appendChild(tableBody);
+	function createTable(data, auftragsNr) {
+		// Bereits eine Tabelle vorhanden?
+		if (document.getElementsByClassName('table-container')[0].firstElementChild !== null) {
+			const entries = document.getElementsByTagName('TD');
+			// Tabellen Daten identisch mit Eingabe?
+			if (entries[0].innerHTML === auftragsNr) {
+				return;
+			}
+			// Vorhandene Zeile durch neue Daten ersetzen
+			const values = Object.values(data[0]);
 
-            // Table Head
-            let row1 = document.createElement('TR');
+			for (let i = 0; i < entries.length; i++) {
+				entries[i].innerHTML = values[i];
+			}
 
-            headings
-                .map((item) => {
-                    let th = document.createElement('TH');
-                    th.innerHTML = item.valueOf();
-                    row1.appendChild(th);
-                });
+		} else {
+			const tableContainer = document.getElementsByClassName('table-container')[0];
+			const table = document.createElement('TABLE');
+			const tableHead = document.createElement('THEAD');
+			const tableBody = document.createElement('TBODY');
 
-            tableHead.appendChild(row1);
+			table.appendChild(tableHead);
+			table.appendChild(tableBody);
 
-            // Table Data
-            let row2 = document.createElement('TR');
+			const headerRow = document.createElement('TR');
+			const dataRow = document.createElement('TR');
 
-            for (let i = 1; i <= headings.length; i++) {
-                let data = document.createElement('TD');
-                data.innerHTML = 'test';
+			const keys = Object.keys(data[0]);
+			const values = Object.values(data[0]);
 
-                row2.appendChild(data);
-            }
+			keys
+				.map((item) => {
+					const th = document.createElement('TH');
+					const caps = item.charAt(0).toUpperCase() + item.slice(1);
+					th.innerHTML = caps.valueOf();
+					headerRow.appendChild(th);
+				});
 
-            tableBody.appendChild(row2);
+			values
+				.map((item) => {
+					const td = document.createElement('TD');
+					td.innerHTML = item.valueOf();
+					dataRow.appendChild(td);
+				});
 
-            tableContainer.appendChild(table);
-        }
-    }
+			tableHead.appendChild(headerRow);
+			tableBody.appendChild(dataRow)
+			tableContainer.appendChild(table);
+		}
+
+		document.getElementsByTagName('TR')[0].addEventListener('click', () => {
+			window.location.href = '/kunde'; // TODO: Link zu Auftragsseite
+		});
+	}
 </script>
 </html>

@@ -25,18 +25,25 @@ public class KundeResource {
     }
 
     @GetMapping
-    public ResponseEntity<List<KundeDTO>> getAllKundes() {
-        return ResponseEntity.ok(kundeService.findAll());
+    public ResponseEntity<List<KundeDTO>> getAll(@RequestParam(value="name") String name, @RequestParam(value="vorname") String vorname) {
+        if (name.trim().equalsIgnoreCase("*") && vorname.trim().equalsIgnoreCase("*"))
+        {
+            return ResponseEntity.ok(kundeService.findAll());
+        }
+        if (vorname.trim().equalsIgnoreCase("*"))
+        {
+            return ResponseEntity.ok(kundeService.getByName(name));
+        }
+        if (name.trim().equalsIgnoreCase("*"))
+        {
+            return ResponseEntity.ok(kundeService.getByVorname(vorname));
+        }
+        return ResponseEntity.ok(kundeService.getByNameAndVorname(name, vorname));
     }
 
     @GetMapping("/{kundenNr}")
     public ResponseEntity<KundeDTO> getKunde(@PathVariable final Integer kundenNr) {
-        return ResponseEntity.ok(kundeService.get(kundenNr));
-    }
-
-    @GetMapping("/{name}/{vorname}")
-    public ResponseEntity<KundeDTO> getKunde(@PathVariable final String name, @PathVariable final String vorname) {
-        return ResponseEntity.ok(kundeService.get(name, vorname));
+        return ResponseEntity.ok(kundeService.getById(kundenNr));
     }
 
     @PostMapping
