@@ -19,16 +19,16 @@ public class Krankenkasse {
 
     @Id
     @Column(nullable = false, updatable = false, length = 254)
-    private String krankenkassenNr;
+    private String krankenkassenID;
 
     @Column(length = 254)
     private String name;
 
     @Column(length = 254)
-    private String starsse;
+    private String strasse;
 
     @Column(length = 254)
-    private String telefonNr;
+    private String telefonNummer;
 
     @Column(length = 254)
     private String email;
@@ -37,8 +37,8 @@ public class Krankenkasse {
     @JoinColumn(name = "plz_id")
     private Stadt plz;
 
-    @OneToMany(mappedBy = "krankenkassenNr")
-    private Set<Kunde> krankenkassenNrKundes;
+    @OneToMany(mappedBy = "krankenkassenID")
+    private Set<Kunde> krankenkassenIDKunde;
 
     @CreatedDate
     @Column(nullable = false, updatable = false)

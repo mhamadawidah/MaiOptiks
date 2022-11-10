@@ -32,10 +32,10 @@ public class KrankenkasseResource {
         return ResponseEntity.ok(krankenkasseService.findAll());
     }
 
-    @GetMapping("/{krankenkassenNr}")
+    @GetMapping("/{krankenkassenID}")
     public ResponseEntity<KrankenkasseDTO> getKrankenkasse(
-            @PathVariable final String krankenkassenNr) {
-        return ResponseEntity.ok(krankenkasseService.get(krankenkassenNr));
+            @PathVariable final String krankenkassenID) {
+        return ResponseEntity.ok(krankenkasseService.get(krankenkassenID));
     }
 
     @PostMapping
@@ -43,11 +43,11 @@ public class KrankenkasseResource {
     public ResponseEntity<Void> createKrankenkasse(
             @RequestBody @Valid final KrankenkasseDTO krankenkasseDTO,
             final BindingResult bindingResult) throws MethodArgumentNotValidException {
-        if (!bindingResult.hasFieldErrors("krankenkassenNr") && krankenkasseDTO.getKrankenkassenNr() == null) {
-            bindingResult.rejectValue("krankenkassenNr", "NotNull");
+        if (!bindingResult.hasFieldErrors("krankenkassenID") && krankenkasseDTO.getKrankenkassenID() == null) {
+            bindingResult.rejectValue("krankenkassenID", "NotNull");
         }
-        if (!bindingResult.hasFieldErrors("krankenkassenNr") && krankenkasseService.krankenkassenNrExists(krankenkasseDTO.getKrankenkassenNr())) {
-            bindingResult.rejectValue("krankenkassenNr", "Exists.krankenkasse.krankenkassenNr");
+        if (!bindingResult.hasFieldErrors("krankenkassenID") && krankenkasseService.krankenkassenIDExists(krankenkasseDTO.getKrankenkassenID())) {
+            bindingResult.rejectValue("krankenkassenID", "Exists.krankenkasse.krankenkassenID");
         }
         if (bindingResult.hasErrors()) {
             throw new MethodArgumentNotValidException(new MethodParameter(
@@ -57,17 +57,17 @@ public class KrankenkasseResource {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @PutMapping("/{krankenkassenNr}")
-    public ResponseEntity<Void> updateKrankenkasse(@PathVariable final String krankenkassenNr,
+    @PutMapping("/{krankenkassenID}")
+    public ResponseEntity<Void> updateKrankenkasse(@PathVariable final String krankenkassenID,
             @RequestBody @Valid final KrankenkasseDTO krankenkasseDTO) {
-        krankenkasseService.update(krankenkassenNr, krankenkasseDTO);
+        krankenkasseService.update(krankenkassenID, krankenkasseDTO);
         return ResponseEntity.ok().build();
     }
 
-    @DeleteMapping("/{krankenkassenNr}")
+    @DeleteMapping("/{krankenkassenID}")
     @ApiResponse(responseCode = "204")
-    public ResponseEntity<Void> deleteKrankenkasse(@PathVariable final String krankenkassenNr) {
-        krankenkasseService.delete(krankenkassenNr);
+    public ResponseEntity<Void> deleteKrankenkasse(@PathVariable final String krankenkassenID) {
+        krankenkasseService.delete(krankenkassenID);
         return ResponseEntity.noContent().build();
     }
 

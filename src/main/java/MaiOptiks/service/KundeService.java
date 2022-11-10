@@ -77,7 +77,7 @@ public class KundeService {
         kundeDTO.setGueltigkeit(kunde.getGueltigkeit());
         kundeDTO.setBemerkung(kunde.getBemerkung());
         kundeDTO.setPlz(kunde.getPlz() == null ? null : kunde.getPlz().getPlz());
-        kundeDTO.setKrankenkassenNr(kunde.getKrankenkassenNr() == null ? null : kunde.getKrankenkassenNr().getKrankenkassenNr());
+        kundeDTO.setKrankenkassenID(kunde.getKrankenkassenID() == null ? null : kunde.getKrankenkassenID().getKrankenkassenID());
         return kundeDTO;
     }
 
@@ -97,9 +97,9 @@ public class KundeService {
         final Stadt plz = kundeDTO.getPlz() == null ? null : stadtRepository.findById(kundeDTO.getPlz())
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "plz not found"));
         kunde.setPlz(plz);
-        final Krankenkasse krankenkassenNr = kundeDTO.getKrankenkassenNr() == null ? null : krankenkasseRepository.findById(kundeDTO.getKrankenkassenNr())
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "krankenkassenNr not found"));
-        kunde.setKrankenkassenNr(krankenkassenNr);
+        final Krankenkasse krankenkassenID = kundeDTO.getKrankenkassenID() == null ? null : krankenkasseRepository.findById(kundeDTO.getKrankenkassenID())
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "krankenkassenID not found"));
+        kunde.setKrankenkassenID(krankenkassenID);
         return kunde;
     }
 

@@ -73,8 +73,8 @@ public class Kunde {
     private Stadt plz;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "krankenkassen_nr_id")
-    private Krankenkasse krankenkassenNr;
+    @JoinColumn(name = "krankenkassenID")
+    private Krankenkasse krankenkassenID;
 
     @OneToMany(mappedBy = "kundenNr")
     private Set<Auftrag> kundenNrAuftrags;
