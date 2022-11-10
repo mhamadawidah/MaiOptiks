@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title th:text="${title}"></title>
-    <link rel="stylesheet" th:href="@{/css/main.css}"/>
-    <link rel="stylesheet" th:href="@{/css/startseite-style.css}"/>
+    <link rel="stylesheet" th:href="@{/css/main.css}"></link>
+    <link rel="stylesheet" th:href="@{/css/startseite-style.css}"></link>
     <script th:src="@{/scripts/main.js}" type="text/javascript"></script>
 </head>
 <body>
@@ -22,11 +22,9 @@
     </div>
 
     <div class="search-fields">
-        <input class="input" id="lastname" placeholder="Name" required type="text"/><br>
-        <input class="input" id="name" placeholder="Vorname" required type="text"/><br>
-        <button class="button submit-button" onclick="searchCustomer()" onkeypress="enterPressed(e)" type="submit">
-            Suchen
-        </button>
+        <input class="input" id="lastname" placeholder="Name" required type="text"></input><br>
+        <input class="input" id="name" placeholder="Vorname" required type="text"></input><br>
+        <button class="button submit-button" onclick="searchCustomer()">Suchen</button>
     </div>
 </div>
 
@@ -41,115 +39,107 @@
 
 </body>
 <script>
-    function enterPressed(e) {
-        document.getElementById("name").addEventListener("keydown", function (e) {
-            let keyCode = e.code;
-            if (keyCode === 13) {
-                // enter pressed
-                searchCustomer();
-            }
-        }, false);
-    }
+    document.getElementById('lastname').addEventListener('keyup', (e) => {
+        if (e.key === 'Enter') {
+            searchCustomer();
+        }
+    });
+
+    document.getElementById('name').addEventListener('keyup', (e) => {
+        if (e.key === 'Enter') {
+            searchCustomer();
+        }
+    });
 
     function searchCustomer() {
         let name = document.getElementById('name').value;
         let lastname = document.getElementById('lastname').value;
 
-        if (name === '' && lastname === '') {
-            document.getElementById('name').style.border = '3px solid red';
-            document.getElementById('lastname').style.border = '3px solid red';
-
-            return false;
-        } else if (name === '' && lastname !== '') {
-            document.getElementById('name').style.border = '3px solid red';
-            document.getElementById('lastname').style.border = '1px solid black';
-
-            return false;
-        } else if (lastname === '' && name !== '') {
-            document.getElementById('name').style.border = '1px solid black';
-            document.getElementById('lastname').style.border = '3px solid red';
-
-            return false;
-        } else {
-            document.getElementById('name').style.border = '1px solid black';
-            document.getElementById('lastname').style.border = '1px solid black';
+        switch (true) {
+            case (name === '' && lastname === '') :
+                document.getElementById('name').style.border = '2px solid red';
+                document.getElementById('lastname').style.border = '2px solid red';
+                return;
+            case (name === '' && lastname !== '') :
+                document.getElementById('name').style.border = '2px solid red';
+                document.getElementById('lastname').style.border = '1px solid black';
+                return;
+            case (lastname === '' && name !== '') :
+                document.getElementById('lastname').style.border = '2px solid red';
+                document.getElementById('name').style.border = '1px solid black';
+				return;
+            case (lastname !== '' && name !== '') :
+                document.getElementById('name').style.border = '1px solid black';
+                document.getElementById('lastname').style.border = '1px solid black';
+                name = name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
+                lastname = lastname.charAt(0).toUpperCase() + lastname.slice(1).toLowerCase();
+                break;
         }
 
         doGetRequest(
             '/api/kundes/',
-            (lastname + '/' + name),
+            (lastname !== '' && name !== '') ? (lastname + '/' + name) : undefined,
             (data) => {   // func
                 createTable(data, lastname, name);
             });
     }
 
     function createTable(data, lastname, name) {
+        // Bereits eine Tabelle vorhanden?
         if (document.getElementsByClassName('table-container')[0].firstElementChild !== null) {
-            debugger;
             const entries = document.getElementsByTagName('TD');
-
-            if (entries[2].innerHtml === lastname && entries[3].innerHTML === name) {
-                return false;
+            const existingRows = document.getElementsByTagName('TR');
+            // Tabellen Daten identisch mit Eingabe?
+            if (entries[2].innerHTML === lastname && entries[3].innerHTML === name) {
+                return;
             }
+            // Überflüssige Zeilen löschen
+            if (data.length < (existingRows.length - 1) && existingRows.length > 2) {
+                for (let r = (data.length + 1); r < existingRows.length; r++) {
+                    document.getElementsByTagName('TR')[r].remove();
+                }
+            }
+            // Wenn zu wenig Zeilen vorhanden Tabelle löschen und neu erstellen
+            if (data.length > (existingRows.length - 1)) {
+                document.getElementsByTagName('TABLE')[0].remove();
+                createTable(data, lastname, name);
+                return;
+            }
+            // Vorhandene Zeile durch neue Daten ersetzen
+            for (let j = 0; j < data.length; j++) {
+                for (let i = 0; i < entries.length; i++) {
+                    const values = Object.values(data[j]);
 
-            for (let i = 0; i <= entries.length; i++) {
-                const values = Object.values(data);
-
-                entries[i].innerHTML = values[i];
+                    entries[i].innerHTML = values[i];
+                }
             }
         } else {
-            let tableContainer = document.getElementsByClassName('table-container')[0];
-            let table = document.createElement('TABLE');
-            let tableHead = document.createElement('THEAD');
-            let tableBody = document.createElement('TBODY');
+            const tableContainer = document.getElementsByClassName('table-container')[0];
+            const table = document.createElement('TABLE');
+            const tableHead = document.createElement('THEAD');
+            const tableBody = document.createElement('TBODY');
 
             table.appendChild(tableHead);
             table.appendChild(tableBody);
 
-            let headerRow = document.createElement('TR');
+            const headerRow = document.createElement('TR');
+            const keys = Object.keys(data[0]);
 
-            if (Array.isArray(data)) {
-                for (let i = 0; i <= data.length; i++) {
-                    let dataRow = document.createElement('TR');
-
-                    const keys = Object.keys(data[i]);
-                    const values = Object.values(data[i]);
-
-                    keys
-                        .map((item) => {
-                            let th = document.createElement('TH');
-                            let caps = item.charAt(0).toUpperCase() + item.slice(1);
-                            th.innerHTML = caps.valueOf();
-                            headerRow.appendChild(th);
-                        });
-
-                    values
-                        .map((item) => {
-                            let td = document.createElement('TD');
-                            td.innerHTML = item.valueOf();
-                            dataRow.appendChild(td);
-                        });
-
-                    tableHead.appendChild(headerRow);
-                    tableBody.appendChild(dataRow)
-                }
-            } else {
-                let dataRow = document.createElement('TR');
-
-                const keys = Object.keys(data);
-                const values = Object.values(data);
-
-                keys
-                    .map((item) => {
-                        let th = document.createElement('TH');
-                        let caps = item.charAt(0).toUpperCase() + item.slice(1);
-                        th.innerHTML = caps.valueOf();
-                        headerRow.appendChild(th);
-                    });
+            keys
+                .map((item) => {
+                    const th = document.createElement('TH');
+                    const caps = item.charAt(0).toUpperCase() + item.slice(1);
+                    th.innerHTML = caps.valueOf();
+                    headerRow.appendChild(th);
+                });
+            // Für jeden Kunden neue Zeile erstellen
+            for (let i = 0; i < data.length; i++) {
+                const dataRow = document.createElement('TR');
+                const values = Object.values(data[i]);
 
                 values
                     .map((item) => {
-                        let td = document.createElement('TD');
+                        const td = document.createElement('TD');
                         td.innerHTML = item.valueOf();
                         dataRow.appendChild(td);
                     });
@@ -159,6 +149,14 @@
             }
 
             tableContainer.appendChild(table);
+        }
+
+        let allRows = document.getElementsByTagName('TR');
+
+        for (let i = 0; i < allRows.length; i++) {
+            allRows[i].addEventListener('click', () => {
+                window.location.href = '/auftrag'; // TODO: Link zu Kundenseite
+            });
         }
     }
 </script>

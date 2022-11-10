@@ -4,12 +4,14 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import MaiOptiks.model.AuftragDTO;
 import MaiOptiks.service.AuftragService;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.math.BigDecimal;
 import java.util.List;
 
 
@@ -34,9 +36,14 @@ public class AuftragResource {
         return ResponseEntity.ok(auftragService.get(auftragsnummer));
     }
 
-    @GetMapping("/count/all")
+    @GetMapping("/countAll")
     public ResponseEntity<Integer> countAll() {
         return ResponseEntity.ok(auftragService.findAll().size());
+    }
+
+    @GetMapping("/getNextId")
+    public ResponseEntity<BigDecimal> getNextId() {
+        return ResponseEntity.ok(auftragService.getNextId());
     }
 
     @PostMapping

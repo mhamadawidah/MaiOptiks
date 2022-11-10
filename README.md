@@ -97,7 +97,8 @@ Sobald die Seite einen eigenen Controller hat, kann sie wie folgt verlinkt werde
 [SQL Commands](https://kstlinfo-my.sharepoint.com/:w:/g/personal/tom_volmer_campus_kstl_de/EYrUUIaw3alJsl7vVZM0Y0ABsxy7KA6Vl1CtLfj-cNjzYA?e=UhQrtM)
 <br>
 [Gestaltungsprinzipien-GUI](https://kstlinfo-my.sharepoint.com/:w:/g/personal/frederik_niehaus_campus_kstl_de/EcWEIKDGMy1ArE_qtgtFMDMBiosmJyTMwmDV3nzhrczZiQ?e=J3oAxF)
-
+<br>
+[Offene Fragen](https://kstlinfo-my.sharepoint.com/:w:/g/personal/tom_volmer_campus_kstl_de/EUrBypv57p1ErC1QBrgPygkBY4vRZXs8ILlXe7xXHVHI8g?e=I6wIcR)
 ## Links external ressources
 [ISO-3166 ALPHA2](https://de.wikipedia.org/wiki/ISO-3166-1-Kodierliste)
 <br>
