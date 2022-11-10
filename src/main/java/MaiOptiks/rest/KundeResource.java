@@ -35,7 +35,7 @@ public class KundeResource {
     }
 
     @GetMapping("/{name}/{vorname}")
-    public ResponseEntity<KundeDTO> getKunde(@PathVariable final String name, @PathVariable final String vorname) {
+    public ResponseEntity<List<KundeDTO>> getKundeList(@PathVariable final String name, @PathVariable final String vorname) {
         return ResponseEntity.ok(kundeService.get(name, vorname));
     }
 

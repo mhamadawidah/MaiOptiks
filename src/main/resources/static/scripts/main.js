@@ -7,22 +7,22 @@ function openLink(link) {
 function doRequest(method, endpoint, key, json_data, func) {
     let url = 'http://localhost:8080' + endpoint;
 
-    if (key !== undefined && key !== "") {
+    if (key !== undefined && key !== '') {
         url += key;
     }
 
     json_data = JSON.stringify(json_data);
     fetch(url, {
         method: method,
-        headers:{
+        headers: {
             'Content-Type': 'application/json;charset=utf-8'
         },
-        body: json_data,
+        body: JSON.stringify(json_data),
     })
         .then(async (response) => {
             if (response.status >= 200 && response.status < 300) {
                 return response.json();
-            } else if (response.status === 404) {
+            } else if (response.status === 404 && key) {
                 alert('\nEintrag nicht vorhanden.');
             } else if (response.status >= 500) {
                 alert('\nServerfehler!\n\nBitte den Systemadministrator kontaktieren.');
@@ -33,7 +33,7 @@ function doRequest(method, endpoint, key, json_data, func) {
             }
         })
         .then(async (data) => {
-            if (func !== undefined && data !== undefined) {
+            if (func !== undefined && data !== undefined && key !== undefined) {
                 if (typeof func === 'function') {
                     func(data);
                 }
