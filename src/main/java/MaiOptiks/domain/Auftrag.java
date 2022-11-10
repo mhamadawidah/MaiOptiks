@@ -18,14 +18,14 @@ public class Auftrag {
     @Id
     @Column(nullable = false, updatable = false)
     @SequenceGenerator(
-            name = "primary_sequence",
-            sequenceName = "primary_sequence",
+            name = "auftrag_sequence",
+            sequenceName = "auftrag_sequence",
             allocationSize = 1,
             initialValue = 10000
     )
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
-            generator = "primary_sequence"
+            generator = "auftrag_sequence"
     )
     private Integer auftragsnummer;
 
