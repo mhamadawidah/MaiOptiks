@@ -204,7 +204,7 @@
     //Kunden Statistik
     function Kunden(){
         doGetRequest(
-            '/api/kundes',
+            '/api/kundes/all',
             undefined,
             (data) => {   // func
                 anzKundenZeig(data);
@@ -212,6 +212,7 @@
             }); 
     }
     function anzKundenZeig(data){
+        debugger;
         document.getElementById("AnzKund").innerHTML = "Anzahl Kunden: " + data.length + " Kunden";
         let kund20 = 0;
         let kund40 = 0;
@@ -305,7 +306,7 @@
     function AufKun(data){
         let Auftrag = data.length;
         doGetRequest(
-            '/api/kundes',
+            '/api/kundes/all',
             undefined,
             (data) => {   // func
                 AufKunZeig(Auftrag,data);
