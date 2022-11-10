@@ -45,14 +45,28 @@ public class KundeService {
                 .collect(Collectors.toList());
     }
 
-    public KundeDTO get(final Integer kundenNr) {
+    public KundeDTO getById(final Integer kundenNr) {
         return kundeRepository.findById(kundenNr)
                 .map(kunde -> mapToDTO(kunde, new KundeDTO()))
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
-    public List<KundeDTO> get(final String name, final String vorname) {
+    public List<KundeDTO> getByNameAndVorname(final String name, final String vorname) {
         return kundeRepository.findAllByNameAndVorname(name, vorname)
+                .stream()
+                .map(kunde -> KundeService.this.mapToDTO(kunde, new KundeDTO()))
+                .collect(Collectors.toList());
+    }
+
+    public List<KundeDTO> getByName(final String name) {
+        return kundeRepository.findAllByName(name)
+                .stream()
+                .map(kunde -> KundeService.this.mapToDTO(kunde, new KundeDTO()))
+                .collect(Collectors.toList());
+    }
+
+    public List<KundeDTO> getByVorname(final String vorname) {
+        return kundeRepository.findAllByVorname(vorname)
                 .stream()
                 .map(kunde -> KundeService.this.mapToDTO(kunde, new KundeDTO()))
                 .collect(Collectors.toList());
