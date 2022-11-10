@@ -26,15 +26,11 @@
 </div>
 
 <div class="data-control">
-    <input onclick="set_form_mode('s','exit-logic-1', 'Auftragsnummer')" type="button" value="Öffnen"/>
-    <input onclick="set_form_mode('a','exit-logic-1', 'Auftragsnummer')" type="button" value="Neu Hinzufügen"/>
+    <input onclick="set_form_mode('s','exit-logic-1', 'auftragsnr')" type="button" value="Öffnen"/>
+    <input onclick="set_form_mode('a','exit-logic-1', 'auftragsnr')" type="button" value="Neu Hinzufügen"/>
 </div>
 <form onsubmit="document.getElementById('exit-logic-1').click(); return false;">
     <input id="tab-index" name="current_tab" type="hidden">
-    <div class="head">
-        <input class="lockable lock-mode-a lock-mode-u" id="Auftragsnummer" type="number">
-    </div>
-
     <div class="body">
         <div class="tab-buttons">
             <input onclick="set_tab(1)" type="button" value="Auftrag"/>
@@ -77,14 +73,14 @@
     </div>
 
     <div class="exit-logic">
-        <input class="action-button" type="button" id='exit-logic-1' value="Speichern" onclick="alert('oufvrea');"></input>
+        <input class="action-button" type="button" id='exit-logic-1' value="Speichern" onclick=""></input>
         <input class="action-button" type="button" id='exit-logic-2' value="Zurück/Abbrechen"></input>
     </div>
 </form>
 </body>
 <script>
     //execute on load
-    set_tab(4);
-    load('exit-logic-1', 'Auftragsnummer');
+    set_tab(1);
+    load('exit-logic-1', 'auftragsnr');
 </script>
 </html>
