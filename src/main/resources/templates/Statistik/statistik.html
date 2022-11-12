@@ -203,13 +203,19 @@
     }
     //Kunden Statistik
     function Kunden(){
+        debugger;
+        
         doGetRequest(
             '/api/kundes/all',
-            undefined,
+            '',
             (data) => {   // func
                 anzKundenZeig(data);
                 Altersdurschschnitt(data);
             }); 
+    }
+    function createTable(data){
+        debugger;
+        alert(data);
     }
     function anzKundenZeig(data){
         debugger;
@@ -283,7 +289,7 @@
     function LadenAuftrag(){
         doGetRequest(
             '/api/auftrags',
-            undefined,
+            '',
             (data) => {   // func
                 bevJahrAuf(data);
             }); 
@@ -291,7 +297,7 @@
     function Auftrag(){
         doGetRequest(
             '/api/auftrags',
-            undefined,
+            '',
             (data) => {   // func
                 anzAuftragZeig(data);
                 AufKun(data);
@@ -307,7 +313,7 @@
         let Auftrag = data.length;
         doGetRequest(
             '/api/kundes/all',
-            undefined,
+            '',
             (data) => {   // func
                 AufKunZeig(Auftrag,data);
             }); 
