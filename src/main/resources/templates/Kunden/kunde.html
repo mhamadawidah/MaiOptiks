@@ -36,7 +36,6 @@
     <button class="button direction-button" onclick="openLink('/organisation')">Organisation</button>
     <button class="button direction-button" onclick="openLink('/führerscheinsehtest')">Führerschein-Sehtest</button>
 </div>
-<button onclick="">Neuer Kunde</button>
 
 </body>
 <script>
@@ -146,24 +145,16 @@
         }
 
         let allRows = document.getElementsByTagName('TR');
-        let nameb = document.getElementById('name');
-        let lastnameb = document.getElementById('lastname');
 
         for (let i = 0; i < allRows.length; i++) {
             allRows[i].addEventListener('click', () => {
                 document.getElementsByTagName('TABLE')[0].remove();
                 // -1, da Tableheader mitgezaehlt wird
                 console.log("data", data[i-1])
-                lastnameb.value = data[i-1].name
-                nameb.value = data[i-1].vorname
-                addFormFields();
-                //window.location.href = '/auftrag?test=lul'; // TODO: Link zu Kundenseite
+
+                window.location.href = `/neuer-kunde?neu=false&anrede=${data[i-1].anrede}&name=${data[i-1].name}&vorname=${data[i-1].vorname}&geburtsdatum=${data[i-1].geburtsdatum}&plz=${data[i-1].plz}&strasse=${data[i-1].strasse}&hausnr=${data[i-1].hausNr}&mail=${data[i-1].email}&tel=${data[i-1].telefonNr}&handy=${data[i-1].handy}&kknr=${data[i-1].krankenkassenNr}&vsnr=${data[i-1].versicherungsNr}&gueltigkeit=${data[i-1].gueltigkeit}&bemerkung=${data[i-1].bemerkung}`; // TODO: Link zu Kundenseite
             });
         }
-    }
-
-    function addFormFields() {
-
     }
 </script>
 </html>

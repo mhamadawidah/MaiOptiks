@@ -7,8 +7,6 @@
     <title th:text="${title}"></title>
     <link rel="stylesheet" th:href="@{/css/main.css}"/>
     <link rel="stylesheet" th:href="@{/css/neuer-kunde-style.css}">
-    <script type="text/javascript" th:src="@{/scripts/main.js}"></script>
-    <script type="text/javascript" th:src="@{/scripts/neuer-kunde.js}"></script>
 </head>
 <body>
     <div class="title-bar">
@@ -105,9 +103,11 @@
                 </div>
             </div>
             <div class="footer">
-                <button class="button submit-button" onclick="getInputData()">Kunde Anlegen</button>
+                <button class="button submit-button" id="submit-button" onclick="getInputData()">Kunde Anlegen</button>
             </div>
         </form>
     </div>
+    <script type="text/javascript" th:src="@{/scripts/main.js}"></script>
+    <script type="text/javascript" th:src="@{/scripts/neuer-kunde.js}"></script>
 </body>
 </html>

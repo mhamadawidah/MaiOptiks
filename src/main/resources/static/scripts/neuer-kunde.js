@@ -1,21 +1,60 @@
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+console.log("Params", urlParams.get('neu'))
+
+const form = document.getElementById("form");
+
+const radios = [document.getElementById("anrede1"), document.getElementById("anrede2"), document.getElementById("anrede3")]
+const name = document.getElementById("name")
+const vorname = document.getElementById("vorname")
+const strasse = document.getElementById("strasse")
+const hausNr = document.getElementById("hausnummer")
+const geburtsdatum = document.getElementById("geburtsdatum")
+const telefonNr = document.getElementById("telefon")
+const handy = document.getElementById("mobil")
+const email = document.getElementById("mail")
+const versicherungsNr = document.getElementById("versicherung")
+const gueltigkeit = document.getElementById("gueltigkeit")
+const plz = document.getElementById("plz")
+const krankenkassenNr = document.getElementById("krankenkasse")
+
+
+if (urlParams.get('neu') === true || urlParams.get("neu") === null) {
+    console.log("Neu anlegen")
+    document.getElementById("submit-button").style.visibility = "visible";
+} else {
+    let submitButton = document.getElementById("submit-button")
+    submitButton.style.visibility = "hidden";
+    fillTextFields();
+}
+
+function fillTextFields() {
+    if (urlParams.get("anrede") === "Herr") {
+        radios[1].checked = true
+    } else if (urlParams.get("anrede") === "Frau") {
+        radios[0].checked = true
+    } else {
+        radios[3].checked = true
+    }
+
+    name.value = urlParams.get("name")
+    vorname.value = urlParams.get("vorname")
+    strasse.value = urlParams.get("strasse")
+    hausNr.value = urlParams.get("hausnr")
+    geburtsdatum.value = urlParams.get("geburtsdatum")
+    telefonNr.value = urlParams.get("tel")
+    handy.value = urlParams.get("handy")
+    email.value = urlParams.get("mail")
+    versicherungsNr.value = urlParams.get("vsnr")
+    gueltigkeit.value = urlParams.get("gueltigkeit")
+    plz.value = urlParams.get("plz")
+    krankenkassenNr.value = urlParams.get("kknr")
+}
+
 function getInputData() {
     console.log("Hole Daten...")
 
-    const form = document.getElementById("form");
 
-    const radios = [document.getElementById("anrede1"), document.getElementById("anrede2"), document.getElementById("anrede3")]
-    const name = document.getElementById("name")
-    const vorname = document.getElementById("vorname")
-    const strasse = document.getElementById("strasse")
-    const hausNr = document.getElementById("hausnummer")
-    const geburtsdatum = document.getElementById("geburtsdatum")
-    const telefonNr = document.getElementById("telefon")
-    const handy = document.getElementById("mobil")
-    const email = document.getElementById("mail")
-    const versicherungsNr = document.getElementById("versicherung")
-    const gueltigkeit = document.getElementById("gueltigkeit")
-    const plz = document.getElementById("plz")
-    const krankenkassenNr = document.getElementById("krankenkasse")
 
     let error = false
     let checkedRadio = checkRadios(radios)
