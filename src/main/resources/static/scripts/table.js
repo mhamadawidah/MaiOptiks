@@ -1,5 +1,4 @@
-function createTable(data, containerId, link) {
-    debugger;
+function createTable(data, containerId, target) {
     // Bereits eine Tabelle vorhanden?
     if (document.getElementById(containerId).firstElementChild !== null) {
         const table = document.getElementsByTagName('TABLE')[0];
@@ -47,12 +46,17 @@ function createTable(data, containerId, link) {
         tableContainer.appendChild(table);
     }
 
-    if (link !== undefined) {
+    if (target !== undefined) {
         let allRows = document.getElementsByTagName('TR');
 
         for (let i = 0; i < allRows.length; i++) {
             allRows[i].addEventListener('click', () => {
-                window.location.href = link;
+                if (target === "neuer-kunde") {
+                    window.location.href = `/neuer-kunde?neu=false&anrede=${data[i-1].anrede}&name=${data[i-1].name}&vorname=${data[i-1].vorname}&geburtsdatum=${data[i-1].geburtsdatum}&plz=${data[i-1].plz}&strasse=${data[i-1].strasse}&hausnr=${data[i-1].hausNr}&mail=${data[i-1].email}&tel=${data[i-1].telefonNr}&handy=${data[i-1].handy}&kknr=${data[i-1].krankenkassenNr}&vsnr=${data[i-1].versicherungsNr}&gueltigkeit=${data[i-1].gueltigkeit}&bemerkung=${data[i-1].bemerkung}`;;
+                }
+                if (target === "neuer-auftrag") {
+                    window.location.href = "/" // Weiterleiten zu neuer-auftrag
+                }
             });
         }
     }
