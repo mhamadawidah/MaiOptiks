@@ -9,6 +9,7 @@
     <link rel="stylesheet" th:href="@{/css/main.css}"/>
     <link rel="stylesheet" th:href="@{/css/lagerverwaltung-style.css}">
     <script type="text/javascript" th:src="@{/scripts/main.js}"></script>
+    <script th:src="@{/scripts/table.js}" type="text/javascript"></script>
 </head>
 <body>
 <div class="title-bar">
@@ -78,112 +79,19 @@
             });
     }
 
-    function createTableö() {
-        if (document.getElementsByClassName('table')[0].firstElementChild !== null) {
-            return false;
-        } else {
-            let tableContainer = document.getElementsByClassName('table')[0];
-            let table = document.createElement('TABLE');
-            let tableHead = document.createElement('THEAD');
-            let tableBody = document.createElement('TBODY');
-            const headings = [
-                'ArtNr.',
-                'Bezeichnung',
-                'Artikelart',
-                'Material',
-                'Farbe',
-                'Einkaufspreis',
-                'Verkaufspreis',
-                'Lieferant',
-            ];
-
-            table.appendChild(tableHead);
-            table.appendChild(tableBody);
-
-            // Table Head
-            let row1 = document.createElement('TR');
-
-            headings
-                .map((item) => {
-                    let th = document.createElement('TH');
-                    th.innerHTML = item.valueOf();
-                    row1.appendChild(th);
-                });
-
-            tableHead.appendChild(row1);
-
-            // Table Data
-            let row2 = document.createElement('TR');
-
-            for (let i = 1; i <= headings.length; i++) {
-                let data = document.createElement('TD');
-                data.innerHTML = 'test';
-
-                row2.appendChild(data);
-            }
-
-            tableBody.appendChild(row2);
-
-            tableContainer.appendChild(table);
-        }
-    }
 
     function TabelleAnzeigen() {
         debugger;
+        let tableContainer = 'customerTable';
+
     doGetRequest(
             '/api/artikels',
-            undefined,
+            '',
             (data) => {   // func
-                createTable(data);
+                createTable(data, tableContainer, 'tabel');
             });
     }
 
-    function createTable(data) {
-        if (document.getElementsByClassName('table')[0].firstElementChild !== null) {
-            // debugger;
-            const entries = document.getElementsByTagName('TD');
-
-            for (let i = 0; i <= entries.length; i++) {
-                const values = Object.values(data);
-
-                entries[i].innerHTML = values[i];
-            }
-        } else {
-            let tableContainer = document.getElementsByClassName('table')[0];
-            let table = document.createElement('TABLE');
-            let tableHead = document.createElement('THEAD');
-            let tableBody = document.createElement('TBODY');
-
-            table.appendChild(tableHead);
-            table.appendChild(tableBody);
-
-            let row1 = document.createElement('TR');
-            let row2 = document.createElement('TR');
-
-            const keys = Object.keys(data);
-            const values = Object.values(data);
-
-            keys
-                .map((item) => {
-                    let th = document.createElement('TH');
-                    let caps = item.charAt(0).toUpperCase() + item.slice(1);
-                    th.innerHTML = caps.valueOf();
-                    row1.appendChild(th);
-                });
-
-            values
-                .map((item) => {
-                    let td = document.createElement('TD');
-                    td.innerHTML = item.valueOf();
-                    row2.appendChild(td);
-                });
-
-            tableHead.appendChild(row1);
-            tableBody.appendChild(row2)
-
-            tableContainer.appendChild(table);
-        }
-    }
 
     function insertLagerartikel() {
         console.log("Hole Daten...")
@@ -197,12 +105,12 @@
         let jsonObject = {
             "artikelNr": 1,
             "bezeichnung": Bezeichnung,
-            "artikelart": "10003",
-            "einkaufspreis": 10,
-            "verkaufspreis": 20,
-            "material": 10002,
-            "farbe": 10001,
-            "lieferant": 10004
+            "artikelart": null,
+            "einkaufspreis": Einkaufspreis,
+            "verkaufspreis": Verkaufspreis,
+            "material": null,
+            "farbe": null,
+            "lieferant": null
         }
 
         console.log("Jason", jsonObject)

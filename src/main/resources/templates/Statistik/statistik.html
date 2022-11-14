@@ -31,28 +31,35 @@
 
 <div class = "statistik">
     <div>
-        <h4 id = AnzKund>Anzahl Kunden:</h4>
+        <h4>Anzahl Kunden:</h4>
+        <h4 id = AnzKund></h4>
     </div>
     <div>
-        <h4 id = Alter>Durchschnittsalter:</h4>
+        <h4>Durchschnittsalter:</h4>
+        <h4 id = Alter></h4>
     </div>
 </div> 
 
 <div class = "statistik">
     <div>
-        <h4 id = AnzKund20>Anzahl Kunden (0-20 Jahren):</h4>
+        <h4>Anzahl Kunden (0-20 Jahren):</h4>
+        <h4 id = AnzKund20></h4>
     </div>
     <div>
-        <h4 id = AnzKund40>Anzahl Kunden (21-40 Jahren):</h4>
+        <h4>Anzahl Kunden (21-40 Jahren):</h4>
+        <h4 id = AnzKund40></h4>
     </div>
     <div>
-        <h4 id = AnzKund60>Anzahl Kunden (41-60 Jahren):</h4>
+        <h4>Anzahl Kunden (41-60 Jahren):</h4>
+        <h4 id = AnzKund60></h4>
     </div>
     <div>
-        <h4 id = AnzKund80>Anzahl Kunden (61-80 Jahren):</h4>
+        <h4>Anzahl Kunden (61-80 Jahren):</h4>
+        <h4 id = AnzKund80></h4>
     </div>
     <div>    
-        <h4 id = AnzKund99>Anzahl Kunden (81+ Jahren):</h4>
+        <h4>Anzahl Kunden (81+ Jahren):</h4>
+        <h4 id = AnzKund99></h4>
     </div>
 </div>
 
@@ -66,15 +73,18 @@
 
 <div class = "statistik">
     <div>
-        <h4 id = anzAuftrag>Anzahl Aufträge: </h4>
+        <h4>Anzahl Aufträge: </h4>
+        <h4 id = anzAuftrag></h4>
     </div>
     <div>
-        <h4 id = anzAuftragKund>Anzahl Aufträge pro Kunde:</h4>
+        <h4>Anzahl Aufträge pro Kunde:</h4>
+        <h4 id = anzAuftragKund></h4>
     </div>
 </div>
 <div class = "statistik">
     <div>
-        <h4 id = aufaktjahr>Anzahl Aufträge im aktuellen Jahr:</h4>
+        <h4>Anzahl Aufträge im aktuellen Jahr:</h4>
+       <h4 id = aufaktjahr></h4>
     </div>
 </div>
 <div class = "statistik">
@@ -130,12 +140,10 @@
 <div class = "statistik">
     <div>
         <h4>Anzahl Aufträge im Jahr:</h4>
+        <h4 id = aufbevorjahr></h4>
     </div>
     <div>
         <input class="input" id="jahreingabe" placeholder= Jahr required type="int"/>
-    </div>
-    <div>
-        <h4 id = aufbevorjahr></h4>
     </div>
     <div>
         <button class=" button button-startseite" onclick="LadenAuftrag()">Laden</button>
@@ -219,7 +227,7 @@
     }
     function anzKundenZeig(data){
         debugger;
-        document.getElementById("AnzKund").innerHTML = "Anzahl Kunden: " + data.length + " Kunden";
+        document.getElementById("AnzKund").innerHTML =data.length + " Kunden";
         let kund20 = 0;
         let kund40 = 0;
         let kund60 = 0;
@@ -255,11 +263,11 @@
                 kund99 = kund99 + 1;
             }
         }
-        document.getElementById("AnzKund20").innerHTML = "Anzahl Kunden (0-20 Jahren): " + kund20 + " Kunden";
-        document.getElementById("AnzKund40").innerHTML = "Anzahl Kunden (21-40 Jahren): " + kund40 + " Kunden";
-        document.getElementById("AnzKund60").innerHTML = "Anzahl Kunden (41-60 Jahren): " + kund60 + " Kunden";
-        document.getElementById("AnzKund80").innerHTML = "Anzahl Kunden (61-80 Jahren): " + kund80 + " Kunden";
-        document.getElementById("AnzKund99").innerHTML = "Anzahl Kunden (80+ Jahren): " + kund99 + " Kunden";
+        document.getElementById("AnzKund20").innerHTML = kund20 + " Kunden";
+        document.getElementById("AnzKund40").innerHTML = kund40 + " Kunden";
+        document.getElementById("AnzKund60").innerHTML = kund60 + " Kunden";
+        document.getElementById("AnzKund80").innerHTML = kund80 + " Kunden";
+        document.getElementById("AnzKund99").innerHTML = kund99 + " Kunden";
     }
     function Altersdurschschnitt(data){
         let jahr = new Date().getFullYear();
@@ -283,7 +291,7 @@
             alt = jahr - gebjahr;
             alter = alter + alt;
         };
-        document.getElementById("Alter").innerHTML = "Durchschnittsalter: "+ (alter/data.length) + " Jahre";
+        document.getElementById("Alter").innerHTML = (alter/data.length) + " Jahre";
     }
     //Auftrag Statistik
     function LadenAuftrag(){
@@ -307,7 +315,7 @@
     }
     function anzAuftragZeig(data){
         debugger;
-        document.getElementById("anzAuftrag").innerHTML = "Anzahl Aufträge: " + data.length +" Aufträge";
+        document.getElementById("anzAuftrag").innerHTML = data.length +" Aufträge";
     }
     function AufKun(data){
         let Auftrag = data.length;
@@ -319,7 +327,7 @@
             }); 
     }
     function AufKunZeig(Auftrag,data){
-        document.getElementById("anzAuftragKund").innerHTML = "Anzahl Aufträge pro Kunde: " + (Auftrag/data.length) +" Aufträge";
+        document.getElementById("anzAuftragKund").innerHTML = (Auftrag/data.length) +" Aufträge";
     }
     function AufJahrakt(data){
         let jahr = new Date().getFullYear();
@@ -373,7 +381,7 @@
                 }
             }
         };
-        document.getElementById("aufaktjahr").innerHTML = "Aufträge im aktuellen Jahr: " + Auftragjahr + " Aufträge";
+        document.getElementById("aufaktjahr").innerHTML = Auftragjahr + " Aufträge";
         document.getElementById("m1").innerHTML = auf1 + " Aufträge";
         document.getElementById("m2").innerHTML = auf2 + " Aufträge";
         document.getElementById("m3").innerHTML = auf3 + " Aufträge";
