@@ -64,72 +64,7 @@
         window.location.href = link;
     }
 
-    function searchOrder() {
-        let artikelNr = document.getElementById('artikelNr').value;
-
-        doRequest(
-            'GET',
-            '/api/artikels',
-            artikelNr,
-            (jsonString) => {   // func
-                let data = JSON.parse(jsonString);
-                // alert(data.exception);
-                createTable(data);
-            });
-    }
-
-    function createTableö() {
-        if (document.getElementsByClassName('table')[0].firstElementChild !== null) {
-            return false;
-        } else {
-            let tableContainer = document.getElementsByClassName('table')[0];
-            let table = document.createElement('TABLE');
-            let tableHead = document.createElement('THEAD');
-            let tableBody = document.createElement('TBODY');
-            const headings = [
-                'ArtNr.',
-                'Bezeichnung',
-                'Artikelart',
-                'Material',
-                'Farbe',
-                'Einkaufspreis',
-                'Verkaufspreis',
-                'Lieferant',
-            ];
-
-            table.appendChild(tableHead);
-            table.appendChild(tableBody);
-
-            // Table Head
-            let row1 = document.createElement('TR');
-
-            headings
-                .map((item) => {
-                    let th = document.createElement('TH');
-                    th.innerHTML = item.valueOf();
-                    row1.appendChild(th);
-                });
-
-            tableHead.appendChild(row1);
-
-            // Table Data
-            let row2 = document.createElement('TR');
-
-            for (let i = 1; i <= headings.length; i++) {
-                let data = document.createElement('TD');
-                data.innerHTML = 'test';
-
-                row2.appendChild(data);
-            }
-
-            tableBody.appendChild(row2);
-
-            tableContainer.appendChild(table);
-        }
-    }
-
     function TabelleAnzeigen() {
-    debugger;
     doGetRequest(
             '/api/artikels',
             undefined,
@@ -169,11 +104,10 @@
     function createTable(data) {
     debugger;
         if (document.getElementsByClassName('table')[0].firstElementChild !== null) {
-            // debugger;
             const entries = document.getElementsByTagName('TD');
 
             for (let i = 0; i <= entries.length; i++) {
-                const values = Object.values(data);
+                const values = Object.values(data[0]);
 
                 entries[i].innerHTML = values[i];
             }
@@ -189,8 +123,8 @@
             let row1 = document.createElement('TR');
             let row2 = document.createElement('TR');
 
-            const keys = Object.keys(data);
-            const values = Object.values(data);
+            const keys = Object.keys(data[0]);
+            const values = Object.values(data[0]);
 
             keys
                 .map((item) => {
@@ -216,23 +150,26 @@
 
     function insertLagerartikel() {
         console.log("Hole Daten...")
-        debugger
         const Artikelnummer = document.getElementById("Artikelnummer").value
         const Bezeichnung = document.getElementById("Bezeichnung").value
         const Einkaufspreis = document.getElementById("Einkaufspreis").value
         const Verkaufspreis = document.getElementById("Verkaufspreis").value
+       // const Artikelart = document.getElementById("Artikelart").value
+       // const Material = document.getElementById("Material").value
+       // const Farbe = document.getElementById("Farbe").value
+       // const Lieferant = document.getElementById("Lieferant").value
 
 
         //Json zusammenbauen
         let jsonObject = {
-            "artikelNr": Artikelnummer,
+            "artikelNr>": Artikelnummer,
             "bezeichnung": Bezeichnung,
-            "artikelart": Artikelart,
+            "artikelart": "Artikelart",
             "einkaufspreis": Einkaufspreis,
             "verkaufspreis": Verkaufspreis,
-            "material": Material,
-            "farbe": Farbe,
-            "lieferant": Lieferant
+            "material": "Material",
+            "farbe": "Farbe",
+            "lieferant": "Lieferant"
         }
 
         console.log("Jason", jsonObject)
