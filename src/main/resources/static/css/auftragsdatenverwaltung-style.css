@@ -85,6 +85,18 @@ label {
     gap: 1em;
 }
 
+.button {
+    padding: 0,5% 1%;
+}
+
+.table {
+    width: 90%;
+}
+
+th tr{
+    width: 10%;
+}
+
 .one {
     flex: 0 1 20%;
 }
@@ -127,7 +139,7 @@ h3 {
 }
 
 .exit-logic{
-    background: indigo;
+    background: #004f9b;
     display:flex;
     justify-content: space-evenly;
     position: absolute;
@@ -147,7 +159,7 @@ h3 {
 }
 
 .F{
-    background: mediumvioletred;
+    background: #004f9b;
     position: static;
     bottom: 0%;
 }
