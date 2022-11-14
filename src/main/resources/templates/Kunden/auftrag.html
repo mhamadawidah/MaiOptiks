@@ -6,6 +6,7 @@
 	<link rel="stylesheet" th:href="@{/css/main.css}"/>
 	<link rel="stylesheet" th:href="@{/css/startseite-style.css}"/>
 	<script th:src="@{/scripts/main.js}" type="text/javascript"></script>
+	<script th:src="@{/scripts/table.js}" type="text/javascript"></script>
 </head>
 <body>
 <div class="title-bar">
@@ -31,7 +32,7 @@
 
 <div class="direction-buttons">
 	<button class="button direction-button" onclick="openLink('./')">Startseite</button>
-	<button class="button direction-button" onclick="openLink('/')">Neuer Auftrag</button>
+	<button class="button direction-button" onclick="openLink('/auftragsdatenverwaltung')">Neuer Auftrag</button>
 	<button class="button direction-button" onclick="openLink('/organisation')">Organisation</button>
 	<button class="button direction-button" onclick="openLink('/führerscheinsehtest')">Führerschein-Sehtest</button>
 </div>
