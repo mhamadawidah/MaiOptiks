@@ -89,6 +89,8 @@ public class AuftragService {
         auftragDTO.setZweiteMahnung(auftrag.getZweitemahnung());
         auftragDTO.setDritteMahnung(auftrag.getDrittemahnung());
         auftragDTO.setDatum(auftrag.getDatum());
+        auftragDTO.setBemerkung(auftrag.getBemerkung());
+        auftragDTO.setRueckgabe(auftrag.getRueckgabe());
         auftragDTO.setKundenNr(auftrag.getKundenNr() == null ? null : auftrag.getKundenNr().getKundennr());
         auftragDTO.setBerater(auftrag.getBerater() == null ? null : auftrag.getBerater().getMitarbeiternr());
         auftragDTO.setWerkstatt(auftrag.getWerkstatt() == null ? null : auftrag.getWerkstatt().getMitarbeiternr());
@@ -110,6 +112,8 @@ public class AuftragService {
         auftrag.setZweitemahnung(auftragDTO.getZweiteMahnung());
         auftrag.setDrittemahnung(auftragDTO.getDritteMahnung());
         auftrag.setDatum(auftragDTO.getDatum());
+        auftrag.setBemerkung(auftragDTO.getBemerkung());
+        auftrag.setRueckgabe(auftragDTO.getRueckgabe());
         final Kunde kundenNr = auftragDTO.getKundenNr() == null ? null : kundeRepository.findById(auftragDTO.getKundenNr())
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "kundenNr not found"));
         auftrag.setKundenNr(kundenNr);

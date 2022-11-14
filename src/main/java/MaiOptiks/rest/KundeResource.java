@@ -24,6 +24,15 @@ public class KundeResource {
         this.kundeService = kundeService;
     }
 
+    @GetMapping("/countAll")
+    public ResponseEntity<Integer> countAll() {
+        return ResponseEntity.ok(kundeService.findAll().size());
+    }
+    @GetMapping("/all")
+    public ResponseEntity<List<KundeDTO>> getAllKunde() {
+        return ResponseEntity.ok(kundeService.findAll());
+    }
+
     @GetMapping
     public ResponseEntity<List<KundeDTO>> getAll(@RequestParam(value="name") String name, @RequestParam(value="vorname") String vorname) {
         if (name.trim().equalsIgnoreCase("*") && vorname.trim().equalsIgnoreCase("*"))
