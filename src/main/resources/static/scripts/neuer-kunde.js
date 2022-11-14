@@ -65,9 +65,10 @@ function setBearbeiten() {
 }
 
 function speichern() {
-    console.log("gespciehrt")
-
-    //Put request
+    /*doPutRequest('/api/kundes',  getInputData(urlParams.get("kunnr")), (response) => {
+        console.log("RequestResponse PUT: ", response)
+        alert('\nÄnderungen gespeichert.');
+    })*/
 
     radios.forEach((radio) => {radio.disabled = true})
     name.disabled = true
@@ -85,6 +86,8 @@ function speichern() {
 
     document.getElementById("button-bearbeiten").innerText = "Bearbeiten";
     document.getElementById("button-bearbeiten").setAttribute('onclick','setBearbeiten()')
+
+    console.log("gespeichert")
 }
 
 function fillTextFields() {
@@ -110,7 +113,16 @@ function fillTextFields() {
     krankenkassenNr.value = urlParams.get("kknr")
 }
 
-function getInputData() {
+function createKunde() {
+    // 1-> Placeholder für POST
+
+    doPostRequest('/api/kundes',  getInputData(1), (response) => {
+        console.log("RequestResponse POST: ", response)
+        alert('\nKunde angelegt.');
+    })
+}
+
+function getInputData(kundennr) {
     console.log("Hole Daten...")
 
     let error = false
@@ -123,19 +135,20 @@ function getInputData() {
     if (!checkInput(vorname, /^[a-zA-Z]+$/)) {console.log("Fehler Anrede"); error = true;}
     if (!checkInput(strasse, /^[a-zA-Z]+$/)) {console.log("Fehler Anrede"); error = true;}
     if (!checkInput(hausNr, /^[0-9]+$/)) {console.log("Fehler Anrede"); error = true;}
-    if (!checkInput(telefonNr, /^[0-9]+$/)) {console.log("Fehler Anrede"); error = true;}
-    if (!checkInput(handy, /^[0-9]+$/)) {console.log("Fehler Anrede"); error = true;}
+    if (!checkInput(telefonNr, /^[0-9 ]+$/)) {console.log("Fehler Anrede"); error = true;}
+    if (!checkInput(handy, /^[0-9 ]+$/)) {console.log("Fehler Anrede"); error = true;}
     if (!checkInput(plz, /^\b\d{5}\b/)) {console.log("Fehler Anrede"); error = true;}
     if (!checkInput(versicherungsNr, /[a-zA-Z0-9]+$/)) {console.log("Fehler Anrede"); error = true;}
     if (!checkInput(krankenkassenNr, /[a-zA-Z0-9]+$/)) {console.log("Fehler Anrede"); error = true;}
     
     if (error) {
         console.log("Irgendwo Error")
-        return; // Weitere Ausführung stoppen, falls irgendwo error     //Json zusammenbauen
+        return; // Weitere Ausführung stoppen, falls irgendwo error
     }
 
+    //Json zusammenbauen
     let jsonObject = {
-        "kundenNr": 1, // Placeholder
+        "kundenNr": kundennr,
         "anrede": radios[checkedRadio].value,
         "name": name.value,
         "vorname": vorname.value,
@@ -153,25 +166,7 @@ function getInputData() {
 
     console.log("JSONObject: ", jsonObject)
 
-    doPostRequest('/api/kundes',  jsonObject, (response) => {
-        console.log("RequestResponse: ", response)
-        alert('\nKunde angelegt.');
-    })
-
-
-
-    /*name.value = ""
-    vorname.value = ""
-    strasse.value = ""
-    hausNr.value = ""
-    geburtsdatum.value = ""
-    telefonNr.value = ""
-    handy.value = ""
-    email.value = ""
-    versicherungsNr.value = ""
-    gueltigkeit.value = ""
-    plz.value = ""
-    krankenkassenNr.value = ""*/
+    return jsonObject
 }
 
 // Show Error Msg
