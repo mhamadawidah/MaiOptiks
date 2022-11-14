@@ -88,9 +88,6 @@ public class RefraktionDurchgefuertService {
     public String getReferencedWarning(final Integer refraktionsNr) {
         final RefraktionDurchgefuert refraktionDurchgefuert = refraktionDurchgefuertRepository.findById(refraktionsNr)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
-        if (!refraktionDurchgefuert.getRefraktionAuftrags().isEmpty()) {
-            return "";
-        }
         return null;
     }
 
