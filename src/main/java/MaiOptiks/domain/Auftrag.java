@@ -84,10 +84,6 @@ public class Auftrag {
     private Mitarbeiter werkstatt;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "refraktion")
-    private RefraktionDurchgefuert refraktion;
-
-    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "AbrechnungsID")
     private Abrechnungsart abrechnungs;
 
