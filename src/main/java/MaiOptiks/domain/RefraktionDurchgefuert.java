@@ -36,7 +36,4 @@ public class RefraktionDurchgefuert {
     @JoinColumn(name = "arztnr")
     private Arzt arztnr;
 
-    @OneToMany(mappedBy = "refraktion")
-    private Set<Auftrag> refraktionAuftrags;
-
 }
