@@ -1,5 +1,4 @@
 function createTable(data, containerId, link) {
-    debugger;
     // Bereits eine Tabelle vorhanden?
     if (document.getElementById(containerId).firstElementChild !== null) {
         const table = document.getElementsByTagName('TABLE')[0];
