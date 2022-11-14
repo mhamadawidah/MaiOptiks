@@ -22,10 +22,69 @@ const krankenkassenNr = document.getElementById("krankenkasse")
 if (urlParams.get('neu') === true || urlParams.get("neu") === null) {
     console.log("Neu anlegen")
     document.getElementById("submit-button").style.visibility = "visible";
+    document.getElementById("button-bearbeiten").style.visibility = "hidden";
+
 } else {
-    let submitButton = document.getElementById("submit-button")
-    submitButton.style.visibility = "hidden";
+    document.getElementById("submit-button").style.visibility = "hidden";
+    document.getElementById("button-bearbeiten").style.visibility = "visible";
+
+    radios.forEach((radio) => {radio.disabled = true})
+    name.disabled = true
+    vorname.disabled = true
+    strasse.disabled = true
+    hausNr.disabled = true
+    geburtsdatum.disabled = true
+    telefonNr.disabled = true
+    handy.disabled = true
+    email.disabled = true
+    versicherungsNr.disabled = true
+    gueltigkeit.disabled = true
+    plz.disabled = true
+    krankenkassenNr.disabled = true
     fillTextFields();
+}
+
+function setBearbeiten() {
+    console.log("qwertzui")
+    radios.forEach((radio) => {radio.disabled = false})
+    name.disabled = false
+    vorname.disabled = false
+    strasse.disabled = false
+    hausNr.disabled = false
+    geburtsdatum.disabled = false
+    telefonNr.disabled = false
+    handy.disabled = false
+    email.disabled = false
+    versicherungsNr.disabled = false
+    gueltigkeit.disabled = false
+    plz.disabled = false
+    krankenkassenNr.disabled = false
+
+    document.getElementById("button-bearbeiten").innerText = "Speichern";
+    document.getElementById("button-bearbeiten").setAttribute('onclick','speichern()')
+}
+
+function speichern() {
+    console.log("gespciehrt")
+
+    //Put request
+
+    radios.forEach((radio) => {radio.disabled = true})
+    name.disabled = true
+    vorname.disabled = true
+    strasse.disabled = true
+    hausNr.disabled = true
+    geburtsdatum.disabled = true
+    telefonNr.disabled = true
+    handy.disabled = true
+    email.disabled = true
+    versicherungsNr.disabled = true
+    gueltigkeit.disabled = true
+    plz.disabled = true
+    krankenkassenNr.disabled = true
+
+    document.getElementById("button-bearbeiten").innerText = "Bearbeiten";
+    document.getElementById("button-bearbeiten").setAttribute('onclick','setBearbeiten()')
 }
 
 function fillTextFields() {
@@ -53,8 +112,6 @@ function fillTextFields() {
 
 function getInputData() {
     console.log("Hole Daten...")
-
-
 
     let error = false
     let checkedRadio = checkRadios(radios)
