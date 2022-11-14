@@ -1,139 +1,83 @@
 <!DOCTYPE html>
 <html lang="de" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org/">
 <head>
-	<meta charset="UTF-8">
-	<title th:text="${title}"></title>
-	<link rel="stylesheet" th:href="@{/css/main.css}"></link>
-	<link rel="stylesheet" th:href="@{/css/startseite-style.css}"></link>
-	<script th:src="@{/scripts/main.js}" type="text/javascript"></script>
+    <meta charset="UTF-8">
+    <title th:text="${title}"></title>
+    <link rel="stylesheet" th:href="@{/css/main.css}"></link>
+    <link rel="stylesheet" th:href="@{/css/startseite-style.css}"></link>
+    <script th:src="@{/scripts/main.js}" type="text/javascript"></script>
+    <script th:src="@{/scripts/table.js}" type="text/javascript"></script>
 </head>
 <body>
 <div class="title-bar">
-	<h1 class="heading">Kunde</h1>
+    <h1 class="heading">Kunde</h1>
 </div>
 
 <div class="vertical-bar">
-	<p></p>
+    <p></p>
 </div>
 
 <div class="customerButton-searchField">
-	<div class="customers">
-		<button class="button customer-button" onclick="openLink('/auftrag')" type="button">Auftrag</button>
-	</div>
+    <div class="customers">
+        <button class="button customer-button" onclick="openLink('/auftrag')" type="button">Auftrag</button>
+    </div>
 
-	<div class="search-fields">
-		<input class="input" id="lastname" placeholder="Name" type="text"></input><br>
-		<input class="input" id="name" placeholder="Vorname" type="text"></input><br>
-		<button class="button submit-button" onclick="searchCustomer()">Suchen</button>
-	</div>
+    <div class="search-fields">
+        <input class="input" id="lastname" placeholder="Name" type="text"></input><br>
+        <input class="input" id="name" placeholder="Vorname" type="text"></input><br>
+        <button class="button submit-button" onclick="searchCustomer()">Suchen</button>
+    </div>
 </div>
 
-<div class="table-container"></div>
+<div class="table-container" id="customerTable"></div>
 
 <div class="direction-buttons">
-	<button class="button direction-button" onclick="openLink('./')">Startseite</button>
-	<button class="button direction-button" onclick="openLink('/neuer-kunde')">Neuer Kunde</button>
-	<button class="button direction-button" onclick="openLink('/organisation')">Organisation</button>
-	<button class="button direction-button" onclick="openLink('/führerscheinsehtest')">Führerschein-Sehtest</button>
+    <button class="button direction-button" onclick="openLink('./')">Startseite</button>
+    <button class="button direction-button" onclick="openLink('/neuer-kunde')">Neuer Kunde</button>
+    <button class="button direction-button" onclick="openLink('/organisation')">Organisation</button>
+    <button class="button direction-button" onclick="openLink('/führerscheinsehtest')">Führerschein-Sehtest</button>
 </div>
 
 </body>
 <script>
-	document.getElementById('lastname').addEventListener('keyup', (e) => {
-		if (e.key === 'Enter') {
-			searchCustomer();
-		}
-	});
+    document.getElementById('lastname').addEventListener('keyup', (e) => {
+        if (e.key === 'Enter') {
+            searchCustomer();
+        }
+    });
 
-	document.getElementById('name').addEventListener('keyup', (e) => {
-		if (e.key === 'Enter') {
-			searchCustomer();
-		}
-	});
+    document.getElementById('name').addEventListener('keyup', (e) => {
+        if (e.key === 'Enter') {
+            searchCustomer();
+        }
+    });
 
-	function searchCustomer() {
-		let name = document.getElementById('name').value;
-		let lastname = document.getElementById('lastname').value;
+    function searchCustomer() {
+        let name = document.getElementById('name').value;
+        let lastname = document.getElementById('lastname').value;
+        let tableContainer = 'customerTable';
 
-		switch (true) {
-			case (lastname === '' && name === ''):
-				lastname = '*';
-				name = '*';
-				break;
-			case (lastname === '' && name !== ''):
-				lastname = '*';
-				break;
-			case (lastname !== '' && name === ''):
-				name = '*';
-				break;
-		}
+        switch (true) {
+            case (lastname === '' && name === ''):
+                lastname = '*';
+                name = '*';
+                break;
+            case (lastname === '' && name !== ''):
+                lastname = '*';
+                break;
+            case (lastname !== '' && name === ''):
+                name = '*';
+                break;
+        }
 
-		let key = `?name=${lastname}&vorname=${name}`;
+        let key = `?name=${lastname}&vorname=${name}`;
 
-		doGetRequest(
-			'/api/kundes',
-			key,
-			(data) => {   // func
-				createTable(data, lastname, name);
-			});
-	}
-
-	function createTable(data) {
-		debugger;
-		// Bereits eine Tabelle vorhanden?
-		if (document.getElementsByClassName('table-container')[0].firstElementChild !== null) {
-			const table = document.getElementsByTagName('TABLE')[0];
-
-			table.remove();
-			createTable(data);
-
-			return;
-		} else {
-			const tableContainer = document.getElementsByClassName('table-container')[0];
-			const table = document.createElement('TABLE');
-			const tableHead = document.createElement('THEAD');
-			const tableBody = document.createElement('TBODY');
-			const dataCount = data.length;
-
-			table.appendChild(tableHead);
-			table.appendChild(tableBody);
-
-			const headerRow = document.createElement('TR');
-			const keys = Object.keys(data[0]);
-
-			keys
-				.map((item) => {
-					const th = document.createElement('TH');
-					let caps = item.charAt(0).toUpperCase() + item.slice(1);
-					th.innerHTML = caps.valueOf();
-					headerRow.appendChild(th);
-				});
-			// Für jeden Kunden neue Zeile erstellen
-			for (let i = 0; i < dataCount; i++) {
-				const dataRow = document.createElement('TR');
-				const values = Object.values(data[i]);
-
-				values
-					.map((item) => {
-						const td = document.createElement('TD');
-						td.innerHTML = item.valueOf();
-						dataRow.appendChild(td);
-					});
-
-				tableHead.appendChild(headerRow);
-				tableBody.appendChild(dataRow)
-			}
-
-			tableContainer.appendChild(table);
-		}
-
-		let allRows = document.getElementsByTagName('TR');
-
-		for (let i = 0; i < allRows.length; i++) {
-			allRows[i].addEventListener('click', () => {
-				window.location.href = '/auftrag'; // TODO: Link zu Kundenseite
-			});
-		}
-	}
+        doGetRequest(
+            '/api/kundes',
+            key,
+            (data) => {   // func
+                createTable(data, tableContainer, undefined);
+            });
+    }
 </script>
 </html>
