@@ -9,6 +9,7 @@
     <link rel="stylesheet" th:href="@{/css/main.css}"/>
     <link rel="stylesheet" th:href="@{/css/lagerverwaltung-style.css}">
     <script type="text/javascript" th:src="@{/scripts/main.js}"></script>
+    <script th:src="@{/scripts/table.js}" type="text/javascript"></script>
 </head>
 <body>
 <div class="title-bar">
@@ -79,15 +80,22 @@
 
 
     function TabelleAnzeigen() {
+<<<<<<< HEAD
         // debugger;
+=======
+        debugger;
+        let tableContainer = 'customerTable';
+
+>>>>>>> e5bc416707f01491f5425e35dcd95d2f082a785b
     doGetRequest(
             '/api/artikels',
             '',
             (data) => {   // func
-                createTable(data);
+                createTable(data, tableContainer, 'tabel');
             });
     }
 
+<<<<<<< HEAD
     function createTable(data) {
         // Bereits eine Tabelle vorhanden?
         if (document.getElementsByClassName('table-container')[0].firstElementChild !== null) {
@@ -166,6 +174,8 @@
             });
         }
     }
+=======
+>>>>>>> e5bc416707f01491f5425e35dcd95d2f082a785b
 
 
     function insertLagerartikel() {

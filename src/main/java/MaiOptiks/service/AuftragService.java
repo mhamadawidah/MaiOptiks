@@ -20,7 +20,6 @@ public class AuftragService {
     private final AuftragRepository auftragRepository;
     private final KundeRepository kundeRepository;
     private final MitarbeiterRepository mitarbeiterRepository;
-    private final RefraktionDurchgefuertRepository refraktionDurchgefuertRepository;
     private final AbrechnungsartRepository abrechnungsartRepository;
 
     public AuftragService(final AuftragRepository auftragRepository,
@@ -31,7 +30,6 @@ public class AuftragService {
         this.auftragRepository = auftragRepository;
         this.kundeRepository = kundeRepository;
         this.mitarbeiterRepository = mitarbeiterRepository;
-        this.refraktionDurchgefuertRepository = refraktionDurchgefuertRepository;
         this.abrechnungsartRepository = abrechnungsartRepository;
     }
 
@@ -89,10 +87,11 @@ public class AuftragService {
         auftragDTO.setZweiteMahnung(auftrag.getZweitemahnung());
         auftragDTO.setDritteMahnung(auftrag.getDrittemahnung());
         auftragDTO.setDatum(auftrag.getDatum());
+        auftragDTO.setBemerkung(auftrag.getBemerkung());
+        auftragDTO.setRueckgabe(auftrag.getRueckgabe());
         auftragDTO.setKundenNr(auftrag.getKundenNr() == null ? null : auftrag.getKundenNr().getKundennr());
         auftragDTO.setBerater(auftrag.getBerater() == null ? null : auftrag.getBerater().getMitarbeiternr());
         auftragDTO.setWerkstatt(auftrag.getWerkstatt() == null ? null : auftrag.getWerkstatt().getMitarbeiternr());
-        auftragDTO.setRefraktion(auftrag.getRefraktion() == null ? null : auftrag.getRefraktion().getRefraktionsnr());
         auftragDTO.setAbrechnungs(auftrag.getAbrechnungs() == null ? null : auftrag.getAbrechnungs().getId());
         return auftragDTO;
     }
@@ -110,6 +109,8 @@ public class AuftragService {
         auftrag.setZweitemahnung(auftragDTO.getZweiteMahnung());
         auftrag.setDrittemahnung(auftragDTO.getDritteMahnung());
         auftrag.setDatum(auftragDTO.getDatum());
+        auftrag.setBemerkung(auftragDTO.getBemerkung());
+        auftrag.setRueckgabe(auftragDTO.getRueckgabe());
         final Kunde kundenNr = auftragDTO.getKundenNr() == null ? null : kundeRepository.findById(auftragDTO.getKundenNr())
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "kundenNr not found"));
         auftrag.setKundenNr(kundenNr);
@@ -119,9 +120,6 @@ public class AuftragService {
         final Mitarbeiter werkstatt = auftragDTO.getWerkstatt() == null ? null : mitarbeiterRepository.findById(auftragDTO.getWerkstatt())
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "werkstatt not found"));
         auftrag.setWerkstatt(werkstatt);
-        final RefraktionDurchgefuert refraktion = auftragDTO.getRefraktion() == null ? null : refraktionDurchgefuertRepository.findById(auftragDTO.getRefraktion())
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "refraktion not found"));
-        auftrag.setRefraktion(refraktion);
         final Abrechnungsart abrechnungs = auftragDTO.getAbrechnungs() == null ? null : abrechnungsartRepository.findById(auftragDTO.getAbrechnungs())
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "abrechnungs not found"));
         auftrag.setAbrechnungs(abrechnungs);
