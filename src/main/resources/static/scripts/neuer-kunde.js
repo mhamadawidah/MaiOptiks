@@ -65,10 +65,10 @@ function setBearbeiten() {
 }
 
 function speichern() {
-    /*doPutRequest('/api/kundes',  getInputData(urlParams.get("kunnr")), (response) => {
+    doPutRequest(`/api/kundes/${urlParams.get("kunnr")}`, "",  getInputData(urlParams.get("kunnr")), (response) => {
         console.log("RequestResponse PUT: ", response)
         alert('\nÄnderungen gespeichert.');
-    })*/
+    })
 
     radios.forEach((radio) => {radio.disabled = true})
     name.disabled = true
@@ -115,8 +115,8 @@ function fillTextFields() {
 
 function createKunde() {
     // 1-> Placeholder für POST
-
-    doPostRequest('/api/kundes',  getInputData(1), (response) => {
+    let json = getInputData(1);
+    doPostRequest('/api/kundes', json , (response) => {
         console.log("RequestResponse POST: ", response)
         alert('\nKunde angelegt.');
     })
@@ -140,7 +140,7 @@ function getInputData(kundennr) {
     if (!checkInput(plz, /^\b\d{5}\b/)) {console.log("Fehler Anrede"); error = true;}
     if (!checkInput(versicherungsNr, /[a-zA-Z0-9]+$/)) {console.log("Fehler Anrede"); error = true;}
     if (!checkInput(krankenkassenNr, /[a-zA-Z0-9]+$/)) {console.log("Fehler Anrede"); error = true;}
-    
+
     if (error) {
         console.log("Irgendwo Error")
         return; // Weitere Ausführung stoppen, falls irgendwo error
@@ -148,7 +148,7 @@ function getInputData(kundennr) {
 
     //Json zusammenbauen
     let jsonObject = {
-        "kundenNr": kundennr,
+        "kundenNr": parseInt(kundennr),
         "anrede": radios[checkedRadio].value,
         "name": name.value,
         "vorname": vorname.value,
@@ -160,6 +160,7 @@ function getInputData(kundennr) {
         "email": email.value,
         "versicherungsNr": versicherungsNr.value,
         "gueltigkeit": gueltigkeit.value,
+        "bemerkung": "",
         "plz": plz.value,
         "krankenkassenNr": krankenkassenNr.value
     }
