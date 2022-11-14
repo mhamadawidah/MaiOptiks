@@ -1,77 +1,74 @@
 <!DOCTYPE html>
 <html lang="de">
 <body>
+    <h3> Auftrag</h3>
     <th:block th:fragment="auftrag">
-        <form>
-            <div>
-                <input type="text" name="auftrangsnr" placeholder="Auftrags-Nr."/>
+            <div class="main">
+            <div class="block five">
 
-                <label>
-                    Abrechnungsart:
-                    <select name="abrechungsart"></select>
+                <label class="label2">
+                    Abrechnungsart <br>
+                    <select name="abrechungsart" class="select">
+                        <option></option>
+                    </select>
                 </label>
 
-                <label>
-                    rezept vorhanden?
+                <label class="label2">
+                    Rezept vorhanden
                     <input type="checkbox" name="rezept_vorhanden"/>
                 </label>
 
-                <input type="textbox" name="womit" placeholder="womit?"/>
+                <div> <label class="label">Brillenglas bestellt</label>
+                    <input type="text" name="womit" placeholder="Womit und Wann?" class="date"/>
+                    <input type="date" id="wann" name="wann" class="date"/>
+                </div>
 
-                <input type="textbox" name="wann" placeholder="wann?"/>
-
-                <label>
-                    Fertig:
+                <label class="label2">
+                    Fertig
                     <input type="checkbox" name="fertig"/>
                 </label>
 
-                <label>
-                    Abgeholt:
+                <label class="label2">
+                    Abgeholt
                     <input type="checkbox" name="abgeholt"/>
                 </label>
 
-                <label>
-                    Bezahlt:
+                <label class="label2">
+                    Bezahlt
                     <input type="checkbox" name="bezahlt"/>
                 </label>
-
-                <input type="textbox" name="auftragsbestätigung" placeholder="Auftragsbestätigung"/>
-
-                <input type="textbox" name="rechnung" placeholder="rechnung"/>
-
-                <label>
-                    Mahnung 1:
-                    <input type="checkbox" name="mahnung_1"/>
-                </label>
-
-                <label>
-                    Mahnung 2:
-                    <input type="checkbox" name="mahnung_2"/>
-                </label>
-
-                <label>
-                    Mahnung 3:
-                    <input type="checkbox" name="mahnung_3"/>
-                </label>
-
-                <input type="date" name="datum">
-
-                <label>
-                    Werkstatt:
-                    <select name="werkstatt"></select>
-                </label>
-
-                <label>
-                    Berater:
-                    <select name="berater"></select>
-                </label>
-
-                <label>
-                    Geschlossen:
+                <label class="label2">
+                    Geschlossen
                     <input type="checkbox" name="geschlossen">
                 </label>
             </div>
-        </form>
+            <div class="block five">
+                <label class="label2"> Berater
+                    <select name="berater" class="select">
+                        <option></option>
+                    </select>
+                </label>
+                <label class="label2"> Werkstatt
+                    <select name="werkstatt" class="select">
+                        <option></option>
+                    </select>
+                </label>
+                <label class="label2"> Refraktion
+                    <select name="refraktion" class="select">
+                        <option></option>
+                    </select>
+                </label>
+
+                <input type="text" name="auftragsbestätigung" placeholder="Auftragsbestätigung" class="input"/>
+                <input type="text" name="rechnung" id="rechnung" placeholder="Rechnung" class="input"/>
+                <input type="text" name="mahnung" id="mahnung" placeholder="Mahnung" class="input"/>
+
+                <label class="label2">
+                    Datum <input type="date" name="datum" class="date">
+                </label>
+
+            </div>
+            </div>
     </th:block>
 </body>
 </html>
