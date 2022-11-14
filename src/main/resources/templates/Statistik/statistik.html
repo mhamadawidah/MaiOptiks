@@ -25,7 +25,7 @@
 
 <div class = "statistik">
     <div>
-        <h4>Kunden-Statistik</h4>
+        <h4 class = "Zwischentitel">Kunden-Statistik</h4>
     </div>
 </div>
 
@@ -60,7 +60,7 @@
 
 <div class = "statistik">
     <div>
-        <h4>Auftrags-Statistik</h4>
+        <h4 class = "Zwischentitel">Auftrags-Statistik</h4>
     </div>
 </div>
 
@@ -74,12 +74,12 @@
 </div>
 <div class = "statistik">
     <div>
-        <h4 id = aufaktjahr>Aufträge im aktuellen Jahr:</h4>
+        <h4 id = aufaktjahr>Anzahl Aufträge im aktuellen Jahr:</h4>
     </div>
 </div>
 <div class = "statistik">
     <div>
-        <h4>Januar</h4>
+        <h4> Januar</h4>
         <h4 id = m1></h4>
     </div>
     <div>
@@ -129,7 +129,16 @@
 </div>
 <div class = "statistik">
     <div>
-        <h4 id = aufbevorjahr>Aufträge im vorherigen Jahr:</h4>
+        <h4>Anzahl Aufträge im Jahr:</h4>
+    </div>
+    <div>
+        <input class="input" id="jahreingabe" placeholder= Jahr required type="int"/>
+    </div>
+    <div>
+        <h4 id = aufbevorjahr></h4>
+    </div>
+    <div>
+        <button class=" button button-startseite" onclick="LadenAuftrag()">Laden</button>
     </div>
 </div>
 <div class = "statistik">
@@ -194,15 +203,22 @@
     }
     //Kunden Statistik
     function Kunden(){
+        debugger;
+        
         doGetRequest(
-            '/api/kundes',
-            undefined,
+            '/api/kundes/all',
+            '',
             (data) => {   // func
                 anzKundenZeig(data);
                 Altersdurschschnitt(data);
             }); 
     }
+    function createTable(data){
+        debugger;
+        alert(data);
+    }
     function anzKundenZeig(data){
+        debugger;
         document.getElementById("AnzKund").innerHTML = "Anzahl Kunden: " + data.length + " Kunden";
         let kund20 = 0;
         let kund40 = 0;
@@ -270,14 +286,23 @@
         document.getElementById("Alter").innerHTML = "Durchschnittsalter: "+ (alter/data.length) + " Jahre";
     }
     //Auftrag Statistik
+    function LadenAuftrag(){
+        doGetRequest(
+            '/api/auftrags',
+            '',
+            (data) => {   // func
+                bevJahrAuf(data);
+            }); 
+    }
     function Auftrag(){
         doGetRequest(
             '/api/auftrags',
-            undefined,
+            '',
             (data) => {   // func
                 anzAuftragZeig(data);
                 AufKun(data);
                 AufJahrakt(data);
+                bevJahrAuf(data);
             }); 
     }
     function anzAuftragZeig(data){
@@ -287,8 +312,8 @@
     function AufKun(data){
         let Auftrag = data.length;
         doGetRequest(
-            '/api/kundes',
-            undefined,
+            '/api/kundes/all',
+            '',
             (data) => {   // func
                 AufKunZeig(Auftrag,data);
             }); 
@@ -363,7 +388,8 @@
         document.getElementById("m12").innerHTML = auf12 + " Aufträge";
     }
     function bevJahrAuf(data){
-    let jahr = (new Date().getFullYear())-1;
+    if (document.getElementById('jahreingabe').value !== 0 && document.getElementById('jahreingabe').value > 1000 && document.getElementById('jahreingabe').value < 9999){
+    let jahr = document.getElementById('jahreingabe').value;
         let Auftragjahr = 0;
         let auf1 = 0;
         let auf2 = 0;
@@ -414,7 +440,7 @@
                 }
             }
         };
-        document.getElementById("aufbevorjahr").innerHTML = "Aufträge im vorherigen Jahr: " + Auftragjahr + " Aufträge";
+        document.getElementById("aufbevorjahr").innerHTML = Auftragjahr + " Aufträge";
         document.getElementById("bm1").innerHTML = auf1 + " Aufträge";
         document.getElementById("bm2").innerHTML = auf2 + " Aufträge";
         document.getElementById("bm3").innerHTML = auf3 + " Aufträge";
@@ -428,6 +454,7 @@
         document.getElementById("bm11").innerHTML = auf11 + " Aufträge";
         document.getElementById("bm12").innerHTML = auf12 + " Aufträge";
     }
+}
 </script>
 
 </html>
