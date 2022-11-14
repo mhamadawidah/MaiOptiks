@@ -65,6 +65,12 @@ public class Auftrag {
     @Column
     private LocalDate datum;
 
+    @Column
+    private String bemerkung;
+
+    @Column
+    private Boolean rueckgabe;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "kundennr")
     private Kunde kundenNr;
