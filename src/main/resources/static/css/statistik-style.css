@@ -64,4 +64,7 @@ h4 {
     gap: 1%;
     /* margin-left: 5%; */
 }
-
+.Zwischentitel{
+    text-decoration: underline;
+    font-weight: 900;
+}
