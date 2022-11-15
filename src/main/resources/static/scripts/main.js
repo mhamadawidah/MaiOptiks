@@ -11,7 +11,7 @@ function doRequest(method, endpoint, key, json_data, func) {
         url += key;
     }
 
-    json_data = JSON.stringify(json_data);
+    //json_data = JSON.stringify(json_data);
     fetch(url, {
         method: method,
         headers: {
@@ -31,8 +31,9 @@ function doRequest(method, endpoint, key, json_data, func) {
             }
         })
         .then(async (data) => {
-            if (func !== undefined && data !== undefined && key !== undefined) {
+            if (func !== undefined && data !== undefined) {// && key !== undefined) {
                 if (typeof func === 'function') {
+                console.log("wwwww")
                     func(data);
                 }
             }
