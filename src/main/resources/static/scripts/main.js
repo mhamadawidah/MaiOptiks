@@ -31,8 +31,9 @@ function doRequest(method, endpoint, key, json_data, func) {
             }
         })
         .then(async (data) => {
-            if (func !== undefined && data !== undefined && key !== undefined) {
+            if (func !== undefined && data !== undefined) {// && key !== undefined) {
                 if (typeof func === 'function') {
+                console.log("wwwww")
                     func(data);
                 }
             }

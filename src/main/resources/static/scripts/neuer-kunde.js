@@ -64,7 +64,7 @@ function setBearbeiten() {
     document.getElementById("button-bearbeiten").setAttribute('onclick','speichern()')
 }
 
-function speichern() {
+function speichern() { debugger
     doPutRequest(`/api/kundes/${urlParams.get("kunnr")}`, "",  getInputData(urlParams.get("kunnr")), (response) => {
         console.log("RequestResponse PUT: ", response)
         alert('\nÄnderungen gespeichert.');
@@ -120,6 +120,7 @@ function createKunde() {
         console.log("RequestResponse POST: ", response)
         alert('\nKunde angelegt.');
     })
+    console.log("gespeichert")
 }
 
 function getInputData(kundennr) {
