@@ -1,6 +1,8 @@
 // Implement these function in your logic
 function get_newest_key() {
     // if there is an api endpoint for this use that instead!
+    document.getElementById('mitarbeiternr')
+        .value = 10000; // default value
     doGetRequest('/api/mitarbeiters', '', (data) => {
         let len = data.length;
         document.getElementById('mitarbeiternr')
