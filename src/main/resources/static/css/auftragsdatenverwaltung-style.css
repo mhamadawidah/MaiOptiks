@@ -9,7 +9,6 @@
 /* Container */
 .head {
     position: relative;
-    background: aquamarine;
     width: 92%;
     left: 2%;
     display:flex;

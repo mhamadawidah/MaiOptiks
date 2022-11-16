@@ -67,6 +67,7 @@ function fill_selections() {
 }
 
 function build_json(group_class) {
+
     let data = '{';
     let update = document.getElementsByClassName(group_class);
     for (let i = 0; i < update.length; i++) {
