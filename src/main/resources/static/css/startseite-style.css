@@ -34,7 +34,7 @@
 .direction-buttons {
 	position: absolute;
 	height: 5%;
-	width: 75%;
+	width: 90%;
 	left: 0.5%;
 	bottom: 2%;
 }
@@ -59,7 +59,7 @@
 
 .direction-button {
 	height: 100%;
-	width: 24%;
+	width: 19%;
 	margin-top: 0.5%;
 	margin-right: 0.1%;
 

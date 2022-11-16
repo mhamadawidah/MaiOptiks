@@ -1,6 +1,6 @@
 // Implement these function in your logic
 function get_newest_key() {
-    return 1; //return the key you have got from somewhere (api)
+    // set the newest e key you have got from somewhere (api)
 }
 
 function clear() {
@@ -21,12 +21,14 @@ function update() {
 }
 
 function search(){
-    // use all inputs to search for data. set the id field to first found data
-    // return 0 if you found 1 data set
-    // return 1 if you found multiple data sets
-    // return 2 if you found no data set
+    // gets called if user tries to search.
+    // Get all data from none locked files (<input disabled>)
+    // Perform search
+    // Set data id to id field
 
-    return 2;
+    // action = 'Öffnen'- Button
+    // key = id field (z.B. Mitarbeiternr)
+    // set_form_mode('u', 'action_id', 'key_id')
 }
 
 function fill_selections() {

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mitarbeiter</title>
+</head>
+<script th:src="@{/scripts/crud-logic.js}" type="text/javascript"></script>
+<script th:src="@{/scripts/mitarbeiter-crud.js}" type="text/javascript"></script>
+<script th:src="@{/scripts/main.js}" type="text/javascript"></script>
+<body>
+<div class="data-control">
+    <input onclick="set_form_mode('s','crud1', 'mitarbeiternr')" type="button" value="Öffnen" class="button"/>
+    <input onclick="set_form_mode('a','crud1', 'mitarbeiternr')" type="button" value="Neu Hinzufügen" class="button"/>
+</div>
+<label> Mitarbeiternr: <input class="lockable lock-mode-a lock-mode-u" id="mitarbeiternr" type="number"></label>
+<br>
+<label> Name: <input class="data data-clear data-u data-a lockable lock-mode-s" id="name" type="text"></label>
+<br>
+<label> Vorname: <input class="data data-clear data-u data-a lockable lock-mode-s" id="vorname" type="text"></label>
+<br>
+<label> Straße: <input class="data data-clear data-u data-a lockable lock-mode-s" id="strasse" type="text"></label>
+<br>
+<label> Hausnummer: <input class="data data-clear data-u data-a lockable lock-mode-s" id="hausNr" type="number"></label>
+<br>
+<label> Postleitzahl: <input class="data data-clear data-u data-a lockable lock-mode-s" id="plz" type="number"></label>
+<button class="lockable lock-mode-s" onclick="checkplz()">überprüfen</button>
+<br>
+<label> Ort: <input disabled class="data data-clear" id="ort" type="text"></label>
+<br>
+<label> Telefonnummer: <input class="data data-clear data-u data-a lockable lock-mode-s" id="telefonNr" type="text"></label>
+<br>
+<label> Handy: <input class="data data-clear data-u data-a lockable lock-mode-s" id="handy" type="text"></label>
+<br>
+<label> Email: <input class="data data-clear data-u data-a lockable lock-mode-s" id="email" type="text"></label>
+<br>
+<label> Gerburtstag: <input class="data data-clear data-u data-a lockable lock-mode-s" id="geburtsdatum" type="date"></label>
+<br>
+<input id="crud1" type="button">
+<input onclick="openLink('./')" type="button" value="Zurück">
+</body>
+<script>
+    load('crud1', 'mitarbeiternr');
+
+    function checkplz() {
+        let plz = document.getElementById('plz').value;
+        doGetRequest('/api/stadts/', plz, (data) => {
+            document.getElementById('ort').value = data['ort'];
+        });
+    }
+</script>
+</html>
