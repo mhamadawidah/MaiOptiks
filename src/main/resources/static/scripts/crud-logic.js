@@ -3,35 +3,23 @@ function set_form_mode(mode, action_button_id, key_field_id) {
     form_mode_lock(mode);
     let actionButton = document.getElementById(action_button_id);
     clear();
-    let recall = 'set_form_mode(\'u\',\'' + action_button_id + '\',\'' + key_field_id + '\');'
     switch (mode) {
         case 'a': // add
             actionButton.value = 'Hinzufügen';
-            actionButton.setAttribute('onclick','add(); ' + recall);
-            let key = get_newest_key();
-            document.getElementById(key_field_id).value = key;
+            actionButton.setAttribute('onclick','add(); ');
+            get_newest_key();
             break;
         default:
         case 's': // search
             actionButton.value = 'Öffnen';
             actionButton.setAttribute('onclick'
-                ,'let code = search();'+
-                'switch(code) {'+
-                'case 0:'+
-                recall +
-                'return;'+
-                'case 1:'+
-                'return;'+
-                'case 2:'+
-                '    alert(\'no data found\');'+
-                'return;'+
-                '  }');
+                ,'search()');
             document.getElementById(key_field_id).value = '';
             break;
         case 'u': // update
             read();
             actionButton.value = 'Aktualisieren';
-            actionButton.setAttribute('onclick','update(); ' + recall);
+            actionButton.setAttribute('onclick','update();');
             break;
     }
 }
@@ -70,7 +58,7 @@ function load(action_id, key_field_id) {
             break;
         default:
             key_field.value = '';
-            set_form_mode('s', action_id);
+            set_form_mode('s', action_id, key_field_id);
             break;
     }
 

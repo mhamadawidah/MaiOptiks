@@ -1,74 +1,32 @@
 <!DOCTYPE html>
 <html lang="de">
 <body>
-    <h3> Auftrag</h3>
-    <th:block th:fragment="auftrag">
-            <div class="main">
-            <div class="block five">
+<th:block th:fragment="auftrag">
+    <div class="left">
+        <label>
+            Auftragsnummer
+            <input class="date lockable lock-mode-a lock-mode-u" id="auftragsnr" name="auftragsnr"
+                   placeholder="Auftrags-Nr."
+                   type="text"/>
+        </label>
+        <label class="">
+            Abrechnungsart
+            <select class="" name="abrechungsart">
+                <option></option>
+            </select>
+        </label>
+        <label class="label2">
+            Datum <input class="date" name="datum" type="date">
+        </label>
+    </div>
 
-                <label class="label2">
-                    Abrechnungsart <br>
-                    <select name="abrechungsart" class="select">
-                        <option></option>
-                    </select>
-                </label>
-
-                <label class="label2">
-                    Rezept vorhanden
-                    <input type="checkbox" name="rezept_vorhanden"/>
-                </label>
-
-                <div> <label class="label">Brillenglas bestellt</label>
-                    <input type="text" name="womit" placeholder="Womit und Wann?" class="date"/>
-                    <input type="date" id="wann" name="wann" class="date"/>
-                </div>
-
-                <label class="label2">
-                    Fertig
-                    <input type="checkbox" name="fertig"/>
-                </label>
-
-                <label class="label2">
-                    Abgeholt
-                    <input type="checkbox" name="abgeholt"/>
-                </label>
-
-                <label class="label2">
-                    Bezahlt
-                    <input type="checkbox" name="bezahlt"/>
-                </label>
-                <label class="label2">
-                    Geschlossen
-                    <input type="checkbox" name="geschlossen">
-                </label>
-            </div>
-            <div class="block five">
-                <label class="label2"> Berater
-                    <select name="berater" class="select">
-                        <option></option>
-                    </select>
-                </label>
-                <label class="label2"> Werkstatt
-                    <select name="werkstatt" class="select">
-                        <option></option>
-                    </select>
-                </label>
-                <label class="label2"> Refraktion
-                    <select name="refraktion" class="select">
-                        <option></option>
-                    </select>
-                </label>
-
-                <input type="text" name="auftragsbestätigung" placeholder="Auftragsbestätigung" class="input"/>
-                <input type="text" name="rechnung" id="rechnung" placeholder="Rechnung" class="input"/>
-                <input type="text" name="mahnung" id="mahnung" placeholder="Mahnung" class="input"/>
-
-                <label class="label2">
-                    Datum <input type="date" name="datum" class="date">
-                </label>
-
-            </div>
-            </div>
-    </th:block>
+    <div class="right">
+        <label class=""> Kunde
+            <select class="" name="werkstatt">
+                <option></option>
+            </select>
+        </label>
+    </div>
+</th:block>
 </body>
 </html>

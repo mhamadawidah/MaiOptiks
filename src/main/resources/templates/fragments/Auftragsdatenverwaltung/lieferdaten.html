@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="de">
+<body>
+<th:block th:fragment="kunden">
+    <div class="main">
+        <div class="five">
+            <label class="">
+                Rezept vorhanden
+                <input name="rezept_vorhanden" type="checkbox"/>
+            </label>
+            <label class="">
+                Brillenglas bestellt
+                <input name="fertig" type="checkbox"/>
+            </label>
+
+            <label class="">
+                Fertig
+                <input name="fertig" type="checkbox"/>
+            </label>
+
+            <label class="">
+                Abgeholt
+                <input name="abgeholt" type="checkbox"/>
+            </label>
+
+            <label class="">
+                Bezahlt
+                <input name="bezahlt" type="checkbox"/>
+            </label>
+        </div>
+
+        <div class="five">
+            <label class=""> Berater
+                <select class="" name="berater">
+                    <option></option>
+                </select>
+            </label>
+            <label class=""> Werkstatt
+                <select class="" name="werkstatt">
+                    <option></option>
+                </select>
+            </label>
+        </div>
+    </div>
+</th:block>
+</body>
+</html>
