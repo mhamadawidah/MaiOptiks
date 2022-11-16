@@ -61,7 +61,7 @@ function search() {
 }
 
 function fill_selections() {
-    // Fill all selections here (with options from the api f.i.)
+    // There are no selections
 }
 
 function build_json(group_class) {
