@@ -4,7 +4,7 @@ function createTable(data, containerId, target) {
         const table = document.getElementsByTagName('TABLE')[0];
 
         table.remove();
-        createTable(data, containerId, link);
+        createTable(data, containerId, target);
 
         return;
     } else {
@@ -27,7 +27,7 @@ function createTable(data, containerId, target) {
                 th.innerHTML = caps.valueOf();
                 headerRow.appendChild(th);
             });
-        // Für jeden Kunden neue Zeile erstellen
+        // Für jeden Eintrag neue Zeile erstellen
         for (let i = 0; i < dataCount; i++) {
             const dataRow = document.createElement('TR');
             const values = Object.values(data[i]);
