@@ -24,7 +24,6 @@
     width: 92%;
     height: 100%;
     left: 2%;
-    background: orange;
 }
 
 .body .tab-buttons{
@@ -146,7 +145,6 @@
 }
 
 .exit-logic{
-    background: #004f9b;
     display:flex;
     justify-content: space-evenly;
     position: absolute;

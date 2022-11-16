@@ -12,12 +12,12 @@
         </label>
         <label>
             Abrechnungsart
-            <select class="lockable lock-mode-s" name="abrechungsart" id="selection-abrechnungsart">
+            <select class="lockable lock-mode-s data data-auftrag" name="abrechungsart" id="abrechnungs">
             </select>
         </label>
         <label>
             Artikelart
-            <select class="" id="selection-artikelart" onclick="set_tabs_visibility(this);">
+            <select class="lockable lock-mode-u" id="selection-artikelart" onclick="set_tabs_visibility(this);">
                 <option>Brille</option>
                 <option>Kontaktlinse</option>
             </select>
@@ -26,7 +26,7 @@
     <div class="right">
         <label class="">
             Kunde
-            <select class="lockable lock-mode-s" name="kunde" id="selection-kunde">
+            <select class="lockable lock-mode-s data data-auftrag" name="kunde" id="kundenNr">
             </select>
         </label>
     </div>

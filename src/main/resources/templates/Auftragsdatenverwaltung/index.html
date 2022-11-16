@@ -38,14 +38,14 @@
     <div class="body">
         <div class="tab-buttons" id="tab-buttons">
             <input class="type-br type-cl button" onclick="set_tab(1)" type="button" value="Daten"/>
-            <input class="type-cl button" onclick="set_tab(2)" type="button" value="Hornhaut"/>
-            <input class="type-br button" onclick="set_tab(4)" type="button" value="Brillenfassung"/>
-            <input class="type-br type-cl button" onclick="set_tab(6)" type="button" value="Refraktion"/>
+            <input class="type-cl button" onclick="set_tab(2); danke();" type="button" value="Hornhaut"/>
+            <input class="type-br button" onclick="set_tab(4); danke();" type="button" value="Brillenfassung"/>
+            <input class="type-br type-cl button" onclick="set_tab(6); danke();" type="button" value="Refraktion"/>
             <input class="type-br button"
-                   onclick="alert('Diese Funktion ist momentan deaktivert.\n Grund: Fehlende Tabelle in der Datenbank.\n (Gut gemacht datenbank team 👍)');"
+                   onclick="set_tab(7); danke();"
                    type="button" value="Veredelung"/>
             <input class="type-br button"
-                   onclick="alert('Diese Funktion ist momentan deaktivert.\n Grund: Fehlende Tabelle in der Datenbank.\n (Gut gemacht datenbank team 👍)');"
+                   onclick="set_tab(8); danke();"
                    type="button" value="Zuschläge"/>
             <input class="type-br type-cl button" onclick="set_tab(3)" type="button" value="Bemerkung"/>
         </div>

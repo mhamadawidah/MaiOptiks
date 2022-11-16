@@ -26,7 +26,7 @@ function get_newest_key() {
 }
 
 function fill_selections() {
-    let kundeSelection = document.getElementById('selection-kunde');
+    let kundeSelection = document.getElementById('kundenNr');
 
     doGetRequest('/api/kundes?name=%2A&vorname=%2A', '', (data) => {
         for (let i = 0; i < data.length; i++) {
@@ -37,7 +37,7 @@ function fill_selections() {
         }
     });
 
-    let auftragsartenSelection = document.getElementById('selection-abrechnungsart');
+    let auftragsartenSelection = document.getElementById('abrechnungs');
 
     doGetRequest('/api/abrechnungsarts', '', (data) => {
         for (let i = 0; i < data.length; i++) {
@@ -208,3 +208,6 @@ function build_json(group_class) {
     return data;
 }
 
+function danke(){
+    alert('Die Datenspeicherung ist hier momentan deaktivert. 🤷‍');
+}
