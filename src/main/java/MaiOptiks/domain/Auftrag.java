@@ -65,6 +65,12 @@ public class Auftrag {
     @Column
     private LocalDate datum;
 
+    @Column
+    private String bemerkung;
+
+    @Column
+    private Boolean rueckgabe;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "kundennr")
     private Kunde kundenNr;
@@ -76,10 +82,6 @@ public class Auftrag {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "werkstatt")
     private Mitarbeiter werkstatt;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "refraktion")
-    private RefraktionDurchgefuert refraktion;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "AbrechnungsID")

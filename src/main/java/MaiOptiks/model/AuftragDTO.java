@@ -43,6 +43,10 @@ public class AuftragDTO {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate datum;
 
+    private String bemerkung;
+
+    private Boolean rueckgabe;
+
     private Integer kundenNr;
 
     private Integer berater;

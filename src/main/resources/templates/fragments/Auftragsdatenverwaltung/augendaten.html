@@ -2,81 +2,75 @@
 <html lang="de">
 <body>
 <th:block th:fragment="augendaten">
-    <h3> Augendaten</h3>
+    <h3> Hornhaut</h3>
     <div>
-        <div>
-            <form action="" method="GET">
-                <input type="hidden" name="selection" value="4">
-                <input type="submit" value="Refraktion"/>
-            </form>
-            <div class="Refraktion_value">0€</div>
-        </div>
-        <div>
-            <form action="" method="GET">
-                <input type="hidden" name="selection" value="5">
-                <input type="submit" value="Brillenfassung"/>
-            </form>
-            <div class="Brillenfassung_value">0€</div>
-        </div>
-        <div>
-            <form action="" method="GET">
-                <input type="hidden" name="selection" value="6">
-                <input type="submit" value="Brillenglas"/>
-            </form>
-            <div class="Brillenglas_value">0€</div>
-        </div>
-        <div>
-
-            <form action="" method="GET">
-                <input type="hidden" name="selection" value="7">
-                <input type="submit" value="Veredelungen"/>
-            </form>
-            <div class="Veredelungen_value">0€</div>
-        </div>
-        <div>
-            <form action="" method="GET">
-                <input type="hidden" name="selection" value="8">
-                <input type="submit" value="Zuschläge"/>
-            </form>
-            <div class="Zuschaege_value">0€</div>
-        </div>
-        <div>
-            <form action="" method="GET">
-                <input type="hidden" name="selection" value="9">
-                <input type="submit" value="Krankenkasse"/>
-            </form>
-            <div class="Krankenkasse_value">0€</div>
-        </div>
-        <div>
-            <form action="" method="GET">
-                <input type="hidden" name="selection" value="10">
-                <input type="submit" value="Bemerkung"/>
-            </form>
-            <div class="Bemerkung_value">0€</div>
-        </div>
-    </div>
-    <div>
-        <th:block th:if="${selection == 4}">
-        <div th:replace="fragments/Auftragsdatenverwaltung/Augendaten/Refraktion.html"/>
-        </th:block>
-        <th:block th:if="${selection == 5}">
-            <div th:replace="fragments/Auftragsdatenverwaltung/Augendaten/Brillenfassung.html"/>
-        </th:block>
-        <th:block th:if="${selection == 6}">
-            <div th:replace="fragments/Auftragsdatenverwaltung/Augendaten/Brillenglas.html"/>
-        </th:block>
-        <th:block th:if="${selection == 7}">
-            <div th:replace="fragments/Auftragsdatenverwaltung/Augendaten/Veredelungen.html"/>
-        </th:block>
-        <th:block th:if="${selection == 8}">
-            <div th:replace="fragments/Auftragsdatenverwaltung/Augendaten/Zuschlaege.html"/>
-        </th:block>
-        <th:block th:if="${selection == 9}">
-            <div th:replace="fragments/Auftragsdatenverwaltung/Augendaten/Krankenkasse.html"/>
-        </th:block>
-        <th:block th:if="${selection == 10}">
-            <div th:replace="fragments/Auftragsdatenverwaltung/Augendaten/Bemerkung.html"/>
-        </th:block>
+       <table class="table">
+           <tr>
+               <th> &nbsp;</th>
+               <th colspan="4">R</th>
+               <th colspan="4">L</th>
+           </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td>HS I</td>
+                <td>A 0</td>
+                <td>HS II</td>
+                <td>A 90</td>
+                <td>HS I</td>
+                <td>A 0</td>
+                <td>HS II</td>
+                <td>A 90</td>
+            </tr>
+           <tr>
+               <td>zentral</td>
+               <td><input type="text" name="HS1r" class="input"/></td>
+               <td><input type="text" name="A0r" class="input"/></td>
+               <td><input type="text" name="HS2r" class="input"/></td>
+               <td><input type="text" name="A90r" class="input"/></td>
+               <td><input type="text" name="HS1l" class="input"/></td>
+               <td><input type="text" name="A0l" class="input"/></td>
+               <td><input type="text" name="HS2l" class="input"/></td>
+               <td><input type="text" name="A90l" class="input"/></td>
+           </tr>
+           <tr>
+               <td>&nbsp;</td>
+               <td>nasal</td>
+               <td>temp.</td>
+               <td>sup.</td>
+               <td>inf.</td>
+               <td>nasal</td>
+               <td>temp.</td>
+               <td>sup.</td>
+               <td>inf.</td>
+           </tr>
+           <tr>
+               <td>Sag/TTV</td>
+               <td><input type="text" name="nsr" class="input"/></td>
+               <td><input type="text" name="tsr" class="input"/></td>
+               <td><input type="text" name="hsr" class="input"/></td>
+               <td><input type="text" name="isr" class="input"/></td>
+               <td><input type="text" name="nsl" class="input"/></td>
+               <td><input type="text" name="tsl" class="input"/></td>
+               <td><input type="text" name="hsl" class="input"/></td>
+               <td><input type="text" name="isl" class="input"/></td>
+           </tr>
+           <tr>
+               <td>Epsilon</td>
+               <td><input type="text" name="ner" class="input" disabled/></td>
+               <td><input type="text" name="ter" class="input" disabled/></td>
+               <td><input type="text" name="her" class="input" disabled/></td>
+               <td><input type="text" name="ier" class="input" disabled/></td>
+               <td><input type="text" name="nel" class="input" disabled/></td>
+               <td><input type="text" name="tel" class="input" disabled/></td>
+               <td><input type="text" name="hel" class="input" disabled/></td>
+               <td><input type="text" name="iel" class="input" disabled/></td>
+           </tr>
+           <tr>
+               <td>Mittelwert</td>
+               <td colspan="4"><input type="text" name="mr" class="input" disabled/></td>
+               <td colspan="4"><input type="text" name="ml" class="input" disabled/></td>
+           </tr>
+       </table>
     </div>
 </th:block>
 </body>

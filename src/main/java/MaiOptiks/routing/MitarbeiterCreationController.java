@@ -5,13 +5,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class KundeNewController {
+public class MitarbeiterCreationController {
 
-    private static final String TITLE = "Kunde";
+    private static final String TITLE = "Mitarbeiter";
 
-    @RequestMapping("/kundeNew")
-    public String home(Model model) {
+    @RequestMapping("/mitarbeiter")
+    public String index(Model model) {
         model.addAttribute("title", TITLE);
-        return "Kunden/kundeNew";
+        return "mitarbeiter/index";
     }
 }

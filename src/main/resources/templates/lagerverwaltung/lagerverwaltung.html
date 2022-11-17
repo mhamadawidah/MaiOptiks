@@ -55,8 +55,7 @@
     <button class="button" onclick="insertLagerartikel()">Neu</button>
 </div>
 
-<div class="table">
-</div>
+<div class="table-container" id="customerTable"></div>
 
 </body>
 <script>
@@ -64,89 +63,34 @@
         window.location.href = link;
     }
 
-    function TabelleAnzeigen() {
-    doGetRequest(
+    function searchOrder() {
+        let artikelNr = document.getElementById('artikelNr').value;
+
+        doRequest(
+            'GET',
             '/api/artikels',
-            undefined,
-            (data) => {   // func
+            artikelNr,
+            (jsonString) => {   // func
+                let data = JSON.parse(jsonString);
+                // alert(data.exception);
                 createTable(data);
             });
     }
 
-  //  function ArtikelartFuellen() {
-  //  doGetRequest(
- //           '/api/artikelarts',
- //           undefined;
-//            });
- //   }
 
- //   function MaterialFuellen() {
- //   doGetRequest(
-//            '/api/materials',
-//            undefined;
-//            });
- //   }
+    function TabelleAnzeigen() {
+        debugger;
+        let tableContainer = 'customerTable';
 
- //   function FarbeFuellen() {
- //   doGetRequest(
- //           '/api/farbes',
- //           undefined;
-//            });
-//    }
-
-//    function LieferantFuellen() {
-//    doGetRequest(
-//            '/api/lieferants',
-//            undefined;
-//            });
-//    }
-
-    function createTable(data) {
-    debugger;
-        if (document.getElementsByClassName('table')[0].firstElementChild !== null) {
-            const entries = document.getElementsByTagName('TD');
-
-            for (let i = 0; i <= entries.length; i++) {
-                const values = Object.values(data[0]);
-
-                entries[i].innerHTML = values[i];
-            }
-        } else {
-            let tableContainer = document.getElementsByClassName('table')[0];
-            let table = document.createElement('TABLE');
-            let tableHead = document.createElement('THEAD');
-            let tableBody = document.createElement('TBODY');
-
-            table.appendChild(tableHead);
-            table.appendChild(tableBody);
-
-            let row1 = document.createElement('TR');
-            let row2 = document.createElement('TR');
-
-            const keys = Object.keys(data[0]);
-            const values = Object.values(data[0]);
-
-            keys
-                .map((item) => {
-                    let th = document.createElement('TH');
-                    let caps = item.charAt(0).toUpperCase() + item.slice(1);
-                    th.innerHTML = caps.valueOf();
-                    row1.appendChild(th);
-                });
-
-            values
-                .map((item) => {
-                    let td = document.createElement('TD');
-                    td.innerHTML = item.valueOf();
-                    row2.appendChild(td);
-                });
-
-            tableHead.appendChild(row1);
-            tableBody.appendChild(row2)
-
-            tableContainer.appendChild(table);
-        }
+    doGetRequest(
+            '/api/artikels',
+            '',
+            (data) => {   // func
+                createTable(data, tableContainer, 'lagerverwaltung');
+            });
     }
+
+
 
     function insertLagerartikel() {
         console.log("Hole Daten...")
@@ -154,22 +98,18 @@
         const Bezeichnung = document.getElementById("Bezeichnung").value
         const Einkaufspreis = document.getElementById("Einkaufspreis").value
         const Verkaufspreis = document.getElementById("Verkaufspreis").value
-       // const Artikelart = document.getElementById("Artikelart").value
-       // const Material = document.getElementById("Material").value
-       // const Farbe = document.getElementById("Farbe").value
-       // const Lieferant = document.getElementById("Lieferant").value
 
 
         //Json zusammenbauen
         let jsonObject = {
-            "artikelNr>": Artikelnummer,
+            "artikelNr": 1,
             "bezeichnung": Bezeichnung,
-            "artikelart": "Artikelart",
+            "artikelart": null,
             "einkaufspreis": Einkaufspreis,
             "verkaufspreis": Verkaufspreis,
-            "material": "Material",
-            "farbe": "Farbe",
-            "lieferant": "Lieferant"
+            "material": null,
+            "farbe": null,
+            "lieferant": null
         }
 
         console.log("Jason", jsonObject)
@@ -179,5 +119,72 @@
         })
         return jsonObject
     }
+    function createTable(data, containerId, target) {
+    // Bereits eine Tabelle vorhanden?
+    if (document.getElementById(containerId).firstElementChild !== null) {
+        const table = document.getElementsByTagName('TABLE')[0];
+
+        table.remove();
+        createTable(data, containerId, target);
+
+        return;
+    } else {
+        const tableContainer = document.getElementById(containerId);
+        const table = document.createElement('TABLE');
+        const tableHead = document.createElement('THEAD');
+        const tableBody = document.createElement('TBODY');
+        const dataCount = data.length;
+
+        table.appendChild(tableHead);
+        table.appendChild(tableBody);
+
+        const headerRow = document.createElement('TR');
+        const keys = Object.keys(data[0]);
+
+        keys
+            .map((item) => {
+                const th = document.createElement('TH');
+                let caps = item.charAt(0).toUpperCase() + item.slice(1);
+                th.innerHTML = caps.valueOf();
+                headerRow.appendChild(th);
+            });
+        // Für jeden Kunden neue Zeile erstellen
+        for (let i = 0; i < dataCount; i++) {
+            const dataRow = document.createElement('TR');
+            const values = Object.values(data[i]);
+
+            values
+                .map((item) => {
+                    const td = document.createElement('TD');
+                    if (item == null){
+                    td.innerHTML = "";
+                    }else{    
+                    td.innerHTML = item.valueOf();
+                    }
+                    dataRow.appendChild(td);
+                });
+
+            tableHead.appendChild(headerRow);
+            tableBody.appendChild(dataRow)
+        }
+
+        tableContainer.appendChild(table);
+    }
+
+    if (target !== undefined) {
+        let allRows = document.getElementsByTagName('TR');
+
+        for (let i = 0; i < allRows.length; i++) {
+            allRows[i].addEventListener('click', () => {
+                if (target === "neuer-kunde") {
+                    window.location.href = `/neuer-kunde?neu=false&kunnr=${data[i-1].kundenNr}&anrede=${data[i-1].anrede}&name=${data[i-1].name}&vorname=${data[i-1].vorname}&geburtsdatum=${data[i-1].geburtsdatum}&plz=${data[i-1].plz}&strasse=${data[i-1].strasse}&hausnr=${data[i-1].hausNr}&mail=${data[i-1].email}&tel=${data[i-1].telefonNr}&handy=${data[i-1].handy}&kknr=${data[i-1].krankenkassenNr}&vsnr=${data[i-1].versicherungsNr}&gueltigkeit=${data[i-1].gueltigkeit}&bemerkung=${data[i-1].bemerkung}`;;
+                }
+                if (target === "neuer-auftrag") {
+                    window.location.href = "/" // Weiterleiten zu neuer-auftrag
+                }
+            });
+        }
+    }
+}
 </script>
 </html>

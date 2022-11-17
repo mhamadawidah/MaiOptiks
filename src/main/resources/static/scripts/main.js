@@ -11,19 +11,27 @@ function doRequest(method, endpoint, key, json_data, func) {
         url += key;
     }
 
-    json_data = JSON.stringify(json_data);
+    //json_data = JSON.stringify(json_data);
+    if (typeof(json_data) === 'string')
+        json_data = JSON.parse(json_data);
+
     fetch(url, {
         method: method,
         headers: {
-            'Content-Type': 'application/json;charset=utf-8'
+            'Content-Type': 'application/json'
         },
         body: JSON.stringify(json_data),
     })
         .then(async (response) => {
             if (response.status >= 200 && response.status < 300) {
-                return response.json();
-            } else if (response.status === 404 && key) {
-                alert('\nEintrag nicht vorhanden.');
+                switch (method){
+                    case 'POST':
+                    case 'PUT':
+                        return response.text();
+                        break;
+                    default:
+                        return response.json();
+                }
             } else if (response.status >= 500) {
                 alert('\nServerfehler!\n\nBitte den Systemadministrator kontaktieren.');
             } else {
@@ -33,7 +41,7 @@ function doRequest(method, endpoint, key, json_data, func) {
             }
         })
         .then(async (data) => {
-            if (func !== undefined && data !== undefined && key !== undefined) {
+            if (func !== undefined && data !== undefined) {
                 if (typeof func === 'function') {
                     func(data);
                 }

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="de">
+<body>
+<th:block th:fragment="kunden">
+    <div class="main">
+        <div class="five">
+            <label class="">
+                Rezept vorhanden
+                <input class="data data-auftrag" id="rezepturvorhanden" type="checkbox"/>
+            </label>
+            <label class="">
+                Brillenglas bestellt
+                <input class="data data-auftrag" id="bestellt" type="checkbox"/>
+            </label>
+
+            <label class="">
+                Fertig
+                <input class="data data-auftrag" id="fertig" type="checkbox"/>
+            </label>
+
+            <label class="">
+                Abgeholt
+                <input class="data data-auftrag" id="abgeholt" type="checkbox"/>
+            </label>
+
+            <label class="">
+                Bezahlt
+                <input class="data data-auftrag" id="bezahlt" type="checkbox"/>
+            </label>
+        </div>
+
+        <div class="five">
+            <label class=""> Berater
+                <select class="data data-auftrag" name="berater" id="berater">
+                </select>
+            </label>
+            <label class=""> Werkstatt
+                <select class="data data-auftrag" name="werkstatt" id="werkstatt">
+                </select>
+            </label>
+            <div class="extra-logic-cl">
+                <label>
+                    Rückgabe
+                    <input type="checkbox" class= "data-auftrag" id="rueckgabe" onclick="
+                    if (!this.checked)
+                        document.getElementById('cl-old-ref').setAttribute('disabled','');
+                    else
+                        document.getElementById('cl-old-ref').removeAttribute('disabled');">
+                </label>
+                <label>
+                    id
+                    <input type="number" id="cl-old-ref" disabled>
+                </label>
+            </div>
+        </div>
+
+
+    </div>
+</th:block>
+</body>
+</html>

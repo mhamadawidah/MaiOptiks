@@ -26,30 +26,32 @@
 </div>
 
 <div class="data-control">
-    <input onclick="set_form_mode('s','exit-logic-1', 'Auftragsnummer')" type="button" value="Öffnen"/>
-    <input onclick="set_form_mode('a','exit-logic-1', 'Auftragsnummer')" type="button" value="Neu Hinzufügen"/>
+    <input onclick="set_form_mode('s','exit-logic-1', 'auftragsnr')" type="button" value="Öffnen" class="button"/>
+    <input onclick="set_form_mode('a','exit-logic-1', 'auftragsnr')" type="button" value="Neu Hinzufügen"
+           class="button"/>
 </div>
 <form onsubmit="document.getElementById('exit-logic-1').click(); return false;">
     <input id="tab-index" name="current_tab" type="hidden">
     <div class="head">
-        <input class="lockable lock-mode-a lock-mode-u" id="Auftragsnummer" type="number">
+        <div th:replace="fragments/Auftragsdatenverwaltung/auftrag.html"/>
     </div>
-
     <div class="body">
-        <div class="tab-buttons">
-            <input onclick="set_tab(1)" type="button" value="Auftrag"/>
-            <input onclick="set_tab(2)" type="button" value="Augendaten"/>
-            <input onclick="set_tab(4)" type="button" value="Brillenfassung"/>
-            <input onclick="set_tab(5)" type="button" value="Brillenglas"/>
-            <input onclick="set_tab(6)" type="button" value="Refraktion"/>
-            <input onclick="set_tab(7)" type="button" value="Veredelung"/>
-            <input onclick="set_tab(8)" type="button" value="Zuschläge"/>
-            <input onclick="set_tab(3)" type="button" value="Bemerkung"/>
+        <div class="tab-buttons" id="tab-buttons">
+            <input class="type-br type-cl button" onclick="set_tab(1)" type="button" value="Daten"/>
+            <input class="type-cl button" onclick="set_tab(2); danke();" type="button" value="Hornhaut"/>
+            <input class="type-br button" onclick="set_tab(4); danke();" type="button" value="Brillenfassung"/>
+            <input class="type-br type-cl button" onclick="set_tab(6); danke();" type="button" value="Refraktion"/>
+            <input class="type-br button"
+                   onclick="set_tab(7); danke();"
+                   type="button" value="Veredelung"/>
+            <input class="type-br button"
+                   onclick="set_tab(8); danke();"
+                   type="button" value="Zuschläge"/>
+            <input class="type-br type-cl button" onclick="set_tab(3)" type="button" value="Bemerkung"/>
         </div>
         <div class="tab-body">
-
             <div class="tab" id="tab-1">
-                <div th:replace="fragments/Auftragsdatenverwaltung/kunden.html"/>
+                <div th:replace="fragments/Auftragsdatenverwaltung/lieferdaten.html"/>
             </div>
             <div class="tab" id="tab-2">
                 <div th:replace="fragments/Auftragsdatenverwaltung/augendaten.html"/>
@@ -59,9 +61,6 @@
             </div>
             <div class="tab" id="tab-4">
                 <div th:replace="fragments/Auftragsdatenverwaltung/Brillenfassung.html"/>
-            </div>
-            <div class="tab" id="tab-5">
-                <div th:replace="fragments/Auftragsdatenverwaltung/Brillenglas.html"/>
             </div>
             <div class="tab" id="tab-6">
                 <div th:replace="fragments/Auftragsdatenverwaltung/Refraktion.html"/>
@@ -77,14 +76,17 @@
     </div>
 
     <div class="exit-logic">
-        <input class="action-button" type="button" id='exit-logic-1' value="Speichern" onclick="alert('oufvrea');"></input>
-        <input class="action-button" type="button" id='exit-logic-2' value="Zurück/Abbrechen"></input>
+        <input class="action-button button" type="button" id='exit-logic-1' value="Speichern" onclick=""></input>
+        <input class="action-button button" type="button" id='exit-logic-2' value="Zurück/Abbrechen"
+               onclick="openLink('./')"></input>
     </div>
 </form>
 </body>
 <script>
     //execute on load
-    set_tab(4);
-    load('exit-logic-1', 'Auftragsnummer');
+    set_tab(1);
+    load('exit-logic-1', 'auftragsnr');
+
+    set_tabs_visibility(document.getElementById('selection-artikelart'));
 </script>
 </html>

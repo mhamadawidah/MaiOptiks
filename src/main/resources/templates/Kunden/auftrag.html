@@ -6,6 +6,7 @@
 	<link rel="stylesheet" th:href="@{/css/main.css}"/>
 	<link rel="stylesheet" th:href="@{/css/startseite-style.css}"/>
 	<script th:src="@{/scripts/main.js}" type="text/javascript"></script>
+	<script th:src="@{/scripts/table.js}" type="text/javascript"></script>
 </head>
 <body>
 <div class="title-bar">
@@ -31,9 +32,10 @@
 
 <div class="direction-buttons">
 	<button class="button direction-button" onclick="openLink('./')">Startseite</button>
-	<button class="button direction-button" onclick="openLink('/neuer-kunde')">Neuer Kunde</button>
+	<button class="button direction-button" onclick="openLink('/auftragsdatenverwaltung?v=a')">Neuer Auftrag</button>
 	<button class="button direction-button" onclick="openLink('/organisation')">Organisation</button>
 	<button class="button direction-button" onclick="openLink('/führerscheinsehtest')">Führerschein-Sehtest</button>
+	<button class="button direction-button" onclick="openLink('/mitarbeiter')">Mitarbeiter</button>
 </div>
 
 </body>
@@ -59,63 +61,8 @@
 			'/api/auftrags/',
 			auftragsNr,
 			(data) => {   // func
-				createTable(data, auftragsNr);
+				createTable(data, auftragsNr, undefined);
 			});
-	}
-
-	function createTable(data, auftragsNr) {
-		// Bereits eine Tabelle vorhanden?
-		if (document.getElementsByClassName('table-container')[0].firstElementChild !== null) {
-			const entries = document.getElementsByTagName('TD');
-			// Tabellen Daten identisch mit Eingabe?
-			if (entries[0].innerHTML === auftragsNr) {
-				return;
-			}
-			// Vorhandene Zeile durch neue Daten ersetzen
-			const values = Object.values(data[0]);
-
-			for (let i = 0; i < entries.length; i++) {
-				entries[i].innerHTML = values[i];
-			}
-
-		} else {
-			const tableContainer = document.getElementsByClassName('table-container')[0];
-			const table = document.createElement('TABLE');
-			const tableHead = document.createElement('THEAD');
-			const tableBody = document.createElement('TBODY');
-
-			table.appendChild(tableHead);
-			table.appendChild(tableBody);
-
-			const headerRow = document.createElement('TR');
-			const dataRow = document.createElement('TR');
-
-			const keys = Object.keys(data[0]);
-			const values = Object.values(data[0]);
-
-			keys
-				.map((item) => {
-					const th = document.createElement('TH');
-					const caps = item.charAt(0).toUpperCase() + item.slice(1);
-					th.innerHTML = caps.valueOf();
-					headerRow.appendChild(th);
-				});
-
-			values
-				.map((item) => {
-					const td = document.createElement('TD');
-					td.innerHTML = item.valueOf();
-					dataRow.appendChild(td);
-				});
-
-			tableHead.appendChild(headerRow);
-			tableBody.appendChild(dataRow)
-			tableContainer.appendChild(table);
-		}
-
-		document.getElementsByTagName('TR')[0].addEventListener('click', () => {
-			window.location.href = '/kunde'; // TODO: Link zu Auftragsseite
-		});
 	}
 </script>
 </html>
