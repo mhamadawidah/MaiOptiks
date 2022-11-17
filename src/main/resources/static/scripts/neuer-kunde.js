@@ -1,6 +1,5 @@
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
-console.log("Params", urlParams.get('neu'))
 
 const form = document.getElementById("form");
 
@@ -21,10 +20,13 @@ const krankenkassenNr = document.getElementById("krankenkasse")
 
 if (urlParams.get('neu') === true || urlParams.get("neu") === null) {
     console.log("Neu anlegen")
+
+
     document.getElementById("submit-button").style.visibility = "visible";
     document.getElementById("button-bearbeiten").style.visibility = "hidden";
-
 } else {
+    
+
     document.getElementById("submit-button").style.visibility = "hidden";
     document.getElementById("button-bearbeiten").style.visibility = "visible";
 
@@ -42,52 +44,6 @@ if (urlParams.get('neu') === true || urlParams.get("neu") === null) {
     plz.disabled = true
     krankenkassenNr.disabled = true
     fillTextFields();
-}
-
-function setBearbeiten() {
-    console.log("qwertzui")
-    radios.forEach((radio) => {radio.disabled = false})
-    name.disabled = false
-    vorname.disabled = false
-    strasse.disabled = false
-    hausNr.disabled = false
-    geburtsdatum.disabled = false
-    telefonNr.disabled = false
-    handy.disabled = false
-    email.disabled = false
-    versicherungsNr.disabled = false
-    gueltigkeit.disabled = false
-    plz.disabled = false
-    krankenkassenNr.disabled = false
-
-    document.getElementById("button-bearbeiten").innerText = "Speichern";
-    document.getElementById("button-bearbeiten").setAttribute('onclick','speichern()')
-}
-
-function speichern() { debugger
-    doPutRequest(`/api/kundes/${urlParams.get("kunnr")}`, "",  getInputData(urlParams.get("kunnr")), (response) => {
-        console.log("RequestResponse PUT: ", response)
-        alert('\nÄnderungen gespeichert.');
-    })
-
-    radios.forEach((radio) => {radio.disabled = true})
-    name.disabled = true
-    vorname.disabled = true
-    strasse.disabled = true
-    hausNr.disabled = true
-    geburtsdatum.disabled = true
-    telefonNr.disabled = true
-    handy.disabled = true
-    email.disabled = true
-    versicherungsNr.disabled = true
-    gueltigkeit.disabled = true
-    plz.disabled = true
-    krankenkassenNr.disabled = true
-
-    document.getElementById("button-bearbeiten").innerText = "Bearbeiten";
-    document.getElementById("button-bearbeiten").setAttribute('onclick','setBearbeiten()')
-
-    console.log("gespeichert")
 }
 
 function fillTextFields() {
@@ -113,14 +69,69 @@ function fillTextFields() {
     krankenkassenNr.value = urlParams.get("kknr")
 }
 
+function setBearbeiten() {
+    radios.forEach((radio) => {radio.disabled = false})
+    name.disabled = false
+    vorname.disabled = false
+    strasse.disabled = false
+    hausNr.disabled = false
+    geburtsdatum.disabled = false
+    telefonNr.disabled = false
+    handy.disabled = false
+    email.disabled = false
+    versicherungsNr.disabled = false
+    gueltigkeit.disabled = false
+    plz.disabled = false
+    krankenkassenNr.disabled = false
+
+    document.getElementById("button-bearbeiten").innerText = "Speichern";
+    document.getElementById("button-bearbeiten").setAttribute('onclick','speichern()')
+}
+
+function speichern() {
+    let json = getInputData(urlParams.get("kunnr"))
+    if (json !== null) {
+        doPutRequest(`/api/kundes`, `/${urlParams.get("kunnr")}`, json, (response) => {
+            console.log("RequestResponse PUT: ", response)
+            alert('\nÄnderungen gespeichert.');
+        })
+
+        radios.forEach((radio) => {radio.disabled = true})
+        name.disabled = true
+        vorname.disabled = true
+        strasse.disabled = true
+        hausNr.disabled = true
+        geburtsdatum.disabled = true
+        telefonNr.disabled = true
+        handy.disabled = true
+        email.disabled = true
+        versicherungsNr.disabled = true
+        gueltigkeit.disabled = true
+        plz.disabled = true
+        krankenkassenNr.disabled = true
+
+        document.getElementById("button-bearbeiten").innerText = "Bearbeiten";
+        document.getElementById("button-bearbeiten").setAttribute('onclick','setBearbeiten()')
+
+        console.log("gespeichert")
+    } else {
+        console.log("Irgendwo Fehler PUT")
+    }
+}
+
 function createKunde() {
     // 1-> Placeholder für POST
     let json = getInputData(1);
-    doPostRequest('/api/kundes', json , (response) => {
-        console.log("RequestResponse POST: ", response)
-        alert('\nKunde angelegt.');
-    })
-    console.log("gespeichert")
+
+    if (json !== null) {
+        doPostRequest('/api/kundes', json , (response) => {
+            console.log("RequestResponse POST: ", response)
+            alert('\nKunde angelegt.');
+        })
+        console.log("gespeichert")
+    } else {
+        console.log("Irgendwo Fehler POST")
+    }
 }
 
 function getInputData(kundennr) {
@@ -132,9 +143,9 @@ function getInputData(kundennr) {
     if (!checkRequired([name, vorname, strasse, hausNr, geburtsdatum, telefonNr, handy, email, versicherungsNr, plz, gueltigkeit, krankenkassenNr])) {return}
     if (checkedRadio == -1) {console.log("Fehler Anrede"); error = true;}
     if (!checkEmail(email)) {console.log("Fehler Anrede"); error = true;}
-    if (!checkInput(name, /^[a-zA-Z]+$/) ) {console.log("Fehler Anrede"); error = true;}
-    if (!checkInput(vorname, /^[a-zA-Z]+$/)) {console.log("Fehler Anrede"); error = true;}
-    if (!checkInput(strasse, /^[a-zA-Z]+$/)) {console.log("Fehler Anrede"); error = true;}
+    if (!checkInput(name, /^[a-zA-ZäöüÄÖÜß]+$/) ) {console.log("Fehler Anrede"); error = true;}
+    if (!checkInput(vorname, /^[a-zA-ZäöüÄÖÜß]+$/)) {console.log("Fehler Anrede"); error = true;}
+    if (!checkInput(strasse, /^[a-zA-ZäöüÄÖÜß]+$/)) {console.log("Fehler Anrede"); error = true;}
     if (!checkInput(hausNr, /^[0-9]+$/)) {console.log("Fehler Anrede"); error = true;}
     if (!checkInput(telefonNr, /^[0-9 ]+$/)) {console.log("Fehler Anrede"); error = true;}
     if (!checkInput(handy, /^[0-9 ]+$/)) {console.log("Fehler Anrede"); error = true;}
@@ -144,7 +155,7 @@ function getInputData(kundennr) {
 
     if (error) {
         console.log("Irgendwo Error")
-        return; // Weitere Ausführung stoppen, falls irgendwo error
+        return null; // Weitere Ausführung stoppen, falls irgendwo error
     }
 
     //Json zusammenbauen
