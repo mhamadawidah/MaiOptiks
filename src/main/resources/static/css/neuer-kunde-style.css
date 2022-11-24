@@ -4,7 +4,7 @@
     font-size: 25px;
 }
 
-.button-startseite {
+.button-startseite, .button-bearbeiten {
     width: 10em;
     height: 2.5em;
     margin: 0.5%;
@@ -69,8 +69,6 @@
 }
 
 .input-radios {
-
-
     padding-top: 0.6em;
     height: 1.8em;
 }
