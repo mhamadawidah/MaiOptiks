@@ -40,13 +40,13 @@
 </div>
 
 <nav class="contextMenu" id="contextMenu">
-	<ul>
-		<li>
-			<i></i>
+	<ul class="contextMenuItems">
+		<li class="contextMenuItem">
+			<a href="#" class="contextMenuLink" data-action="change"></a>
 			<span>Bearbeiten</span>
 		</li>
-		<li>
-			<i></i>
+		<li class="contextMenuItem">
+			<a href="#" class="contextMenuLink" data-action="orders"></a>
 			<span>Aufträge</span>
 		</li>
 	</ul>
@@ -92,11 +92,15 @@
 				createTable(data, tableContainer, "neuer-kunde");
 			});
 	}
+
 	////////////////
 	// Kontext Menü
 	////////////////
+	const contextMenuClassName = 'contextMenu';
+	const contextMenuItemClassName = 'contextMenuItem';
+	const contextMenuLinkClassName = 'contextMenuLink';
 	const menu = document.querySelector('#contextMenu');
-	const active = 'contextMenu--active';
+	const contextMenuActive = 'contextMenu--active';
 	const taskItemClassName = 'dataCell';
 	let menuState = 0;
 	let clickCoords;
@@ -115,6 +119,7 @@
 			toggleMenuOn();
 			positionMenu(evt);
 		} else {
+			taskItemInContext = null;
 			toggleMenuOff();
 		}
 	});
@@ -123,21 +128,20 @@
 	function toggleMenuOn() {
 		if (menuState !== 1) {
 			menuState = 1;
-			menu.classList.add(active);
+			menu.classList.add(contextMenuActive);
 		}
 	}
 
 	// Menü ausblenden
 	function toggleMenuOff() {
-		if (menuState === 1) {
+		if (menuState !== 0) {
 			menuState = 0;
-			menu.classList.remove(active);
+			menu.classList.remove(contextMenuActive);
 		}
 	}
 
 	// Klick außerhalb der Tabelle?
 	function clickInsideElement(elm, className) {
-		debugger;
 		elm = elm.target;
 
 		if (elm.classList.contains(className)) {
@@ -199,13 +203,27 @@
 		return {x: posX, y: posY};
 	}
 
+	function menuItemListener(link) {
+		console.log('TaskId: ' + taskItemInContext.getAttribute('data-id')
+			+ 'Task action: ' + link.getAttribute('data-action'));
+		toggleMenuOff();
+	}
+
 	// Linksklick zum Deaktivieren
 	document.addEventListener('click', (evt) => {
-		let button = evt.button;
+		let clickElemIsLink = clickInsideElement(evt, contextMenuLinkClassName);
 
-		if (button === 0) {
-			toggleMenuOff();
+		if (clickElemIsLink) {
+			evt.preventDefault();
+			menuItemListener(clickElemIsLink);
+		} else {
+			let button = evt.button;
+
+			if (button === 0) {
+				toggleMenuOff();
+			}
 		}
+
 	});
 
 	// Escape zum Deaktivieren

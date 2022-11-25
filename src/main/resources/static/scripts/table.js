@@ -37,14 +37,13 @@ function createTable(data, containerId, target) {
 					const td = document.createElement('TD');
 					td.innerHTML = item.valueOf();
                     td.setAttribute('class', 'dataCell');
-                    
-                    
-                    
 					dataRow.appendChild(td);
 				});
 			
+			dataRow.setAttribute('data-id', `${i}`);
+			
 			tableHead.appendChild(headerRow);
-			tableBody.appendChild(dataRow)
+			tableBody.appendChild(dataRow);
 		}
 		
 		tableContainer.appendChild(table);
@@ -60,7 +59,7 @@ function createTable(data, containerId, target) {
 				}
 				
 				if (target === "neuer-auftrag") {
-					window.location.href = "/" // Weiterleiten zu neuer-auftrag
+					window.location.href = "/"; // Weiterleiten zu neuer-auftrag
 				}
 			});
 		}
