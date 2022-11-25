@@ -41,13 +41,16 @@
 
 <nav class="contextMenu" id="contextMenu">
 	<ul class="contextMenuItems">
-		<li class="contextMenuItem">
-			<a href="#" class="contextMenuLink" data-action="change"></a>
-			<span>Bearbeiten</span>
+		<li class="contextMenuItem" onclick="openLink('#')">
+			<a href="#"
+			   class="contextMenuLink"
+			   data-action="change">Bearbeiten</a>
 		</li>
-		<li class="contextMenuItem">
-			<a href="#" class="contextMenuLink" data-action="orders"></a>
-			<span>Aufträge</span>
+		<hr/>
+		<li class="contextMenuItem" onclick="openLink('/auftrag')">
+			<a href="/auftrag"
+			   class="contextMenuLink"
+			   data-action="orders">Aufträge</a>
 		</li>
 	</ul>
 </nav>
@@ -114,7 +117,9 @@
 
 	// Rechtsklickevent & Standardmenü verhindern
 	document.addEventListener('contextmenu', (evt) => {
-		if (clickInsideElement(evt, taskItemClassName)) {
+		taskItemInContext = clickInsideElement(evt, taskItemClassName);
+
+		if (taskItemInContext) {
 			evt.preventDefault();
 			toggleMenuOn();
 			positionMenu(evt);
@@ -204,7 +209,8 @@
 	}
 
 	function menuItemListener(link) {
-		console.log('TaskId: ' + taskItemInContext.getAttribute('data-id')
+		debugger;
+		console.log('TaskId: ' + taskItemInContext.getAttribute('id')
 			+ 'Task action: ' + link.getAttribute('data-action'));
 		toggleMenuOff();
 	}
@@ -234,7 +240,12 @@
 	};
 
 	// Fenstergröße verändert?
-	window.onresize = (evt) => {
+	window.onresize = () => {
+		toggleMenuOff();
+	}
+
+	// Mausrad bedient?
+	document.onscroll = () => {
 		toggleMenuOff();
 	}
 </script>
