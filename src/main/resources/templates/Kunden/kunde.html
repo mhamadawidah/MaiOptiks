@@ -40,14 +40,17 @@
 </div>
 
 <nav class="contextMenu" id="contextMenu">
-	<ul>
-		<li>
-			<i></i>
-			<span>Bearbeiten</span>
+	<ul class="contextMenuItems">
+		<li class="contextMenuItem" onclick="openLink('#')">
+			<a href="#"
+			   class="contextMenuLink"
+			   data-action="change">Bearbeiten</a>
 		</li>
-		<li>
-			<i></i>
-			<span>Aufträge</span>
+		<hr/>
+		<li class="contextMenuItem" onclick="openLink('/auftrag')">
+			<a href="/auftrag"
+			   class="contextMenuLink"
+			   data-action="orders">Aufträge</a>
 		</li>
 	</ul>
 </nav>
@@ -92,11 +95,15 @@
 				createTable(data, tableContainer, "neuer-kunde");
 			});
 	}
+
 	////////////////
 	// Kontext Menü
 	////////////////
+	const contextMenuClassName = 'contextMenu';
+	const contextMenuItemClassName = 'contextMenuItem';
+	const contextMenuLinkClassName = 'contextMenuLink';
 	const menu = document.querySelector('#contextMenu');
-	const active = 'contextMenu--active';
+	const contextMenuActive = 'contextMenu--active';
 	const taskItemClassName = 'dataCell';
 	let menuState = 0;
 	let clickCoords;
@@ -110,11 +117,14 @@
 
 	// Rechtsklickevent & Standardmenü verhindern
 	document.addEventListener('contextmenu', (evt) => {
-		if (clickInsideElement(evt, taskItemClassName)) {
+		taskItemInContext = clickInsideElement(evt, taskItemClassName);
+
+		if (taskItemInContext) {
 			evt.preventDefault();
 			toggleMenuOn();
 			positionMenu(evt);
 		} else {
+			taskItemInContext = null;
 			toggleMenuOff();
 		}
 	});
@@ -123,21 +133,20 @@
 	function toggleMenuOn() {
 		if (menuState !== 1) {
 			menuState = 1;
-			menu.classList.add(active);
+			menu.classList.add(contextMenuActive);
 		}
 	}
 
 	// Menü ausblenden
 	function toggleMenuOff() {
-		if (menuState === 1) {
+		if (menuState !== 0) {
 			menuState = 0;
-			menu.classList.remove(active);
+			menu.classList.remove(contextMenuActive);
 		}
 	}
 
 	// Klick außerhalb der Tabelle?
 	function clickInsideElement(elm, className) {
-		debugger;
 		elm = elm.target;
 
 		if (elm.classList.contains(className)) {
@@ -199,13 +208,28 @@
 		return {x: posX, y: posY};
 	}
 
+	function menuItemListener(link) {
+		debugger;
+		console.log('TaskId: ' + taskItemInContext.getAttribute('id')
+			+ 'Task action: ' + link.getAttribute('data-action'));
+		toggleMenuOff();
+	}
+
 	// Linksklick zum Deaktivieren
 	document.addEventListener('click', (evt) => {
-		let button = evt.button;
+		let clickElemIsLink = clickInsideElement(evt, contextMenuLinkClassName);
 
-		if (button === 0) {
-			toggleMenuOff();
+		if (clickElemIsLink) {
+			evt.preventDefault();
+			menuItemListener(clickElemIsLink);
+		} else {
+			let button = evt.button;
+
+			if (button === 0) {
+				toggleMenuOff();
+			}
 		}
+
 	});
 
 	// Escape zum Deaktivieren
@@ -216,7 +240,12 @@
 	};
 
 	// Fenstergröße verändert?
-	window.onresize = (evt) => {
+	window.onresize = () => {
+		toggleMenuOff();
+	}
+
+	// Mausrad bedient?
+	document.onscroll = () => {
 		toggleMenuOff();
 	}
 </script>

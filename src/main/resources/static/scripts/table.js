@@ -37,14 +37,13 @@ function createTable(data, containerId, target) {
 					const td = document.createElement('TD');
 					td.innerHTML = item.valueOf();
                     td.setAttribute('class', 'dataCell');
-                    
-                    
-                    
 					dataRow.appendChild(td);
 				});
+			debugger;
+			dataRow.setAttribute('id', `${i}`);
 			
 			tableHead.appendChild(headerRow);
-			tableBody.appendChild(dataRow)
+			tableBody.appendChild(dataRow);
 		}
 		
 		tableContainer.appendChild(table);
@@ -56,11 +55,26 @@ function createTable(data, containerId, target) {
 		for (let i = 0; i < allRows.length; i++) {
 			allRows[i].addEventListener('click', () => {
 				if (target === "neuer-kunde") {
-					window.location.href = `/neuer-kunde?neu=false&kunnr=${data[i - 1].kundenNr}&anrede=${data[i - 1].anrede}&name=${data[i - 1].name}&vorname=${data[i - 1].vorname}&geburtsdatum=${data[i - 1].geburtsdatum}&plz=${data[i - 1].plz}&strasse=${data[i - 1].strasse}&hausnr=${data[i - 1].hausNr}&mail=${data[i - 1].email}&tel=${data[i - 1].telefonNr}&handy=${data[i - 1].handy}&kknr=${data[i - 1].krankenkassenNr}&vsnr=${data[i - 1].versicherungsNr}&gueltigkeit=${data[i - 1].gueltigkeit}&bemerkung=${data[i - 1].bemerkung}`;
+					window.location.href = `/neuer-kunde?neu=false
+					&kunnr=${data[i - 1].kundenNr}
+					&anrede=${data[i - 1].anrede}
+					&name=${data[i - 1].name}
+					&vorname=${data[i - 1].vorname}
+					&geburtsdatum=${data[i - 1].geburtsdatum}
+					&plz=${data[i - 1].plz}
+					&strasse=${data[i - 1].strasse}
+					&hausnr=${data[i - 1].hausNr}
+					&mail=${data[i - 1].email}
+					&tel=${data[i - 1].telefonNr}
+					&handy=${data[i - 1].handy}
+					&kknr=${data[i - 1].krankenkassenNr}
+					&vsnr=${data[i - 1].versicherungsNr}
+					&gueltigkeit=${data[i - 1].gueltigkeit}
+					&bemerkung=${data[i - 1].bemerkung}`;
 				}
 				
 				if (target === "neuer-auftrag") {
-					window.location.href = "/" // Weiterleiten zu neuer-auftrag
+					window.location.href = "/"; // Weiterleiten zu neuer-auftrag
 				}
 			});
 		}
