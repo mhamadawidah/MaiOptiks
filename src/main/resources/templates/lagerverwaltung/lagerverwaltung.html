@@ -200,7 +200,7 @@ function LadenMit(data){
     let tableContainer = 'customerTable';
     for (let i = 0; i < data.length; i++) {
         let  hurenesohn = data[i].bezeichnung;
-        if (hurenesohn == document.getElementById("Suche").value){
+        if (hurenesohn.match(document.getElementById("Suche").value)){
             data2.push(data[i])
         }
     }    
