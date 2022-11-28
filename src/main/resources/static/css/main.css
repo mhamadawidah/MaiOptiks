@@ -59,15 +59,17 @@ html body {
 
 .title-bar {
     width: 100%;
-    overflow: auto;
+    height: 5.3em;
     top: 0;
+    overflow: auto;
     background: linear-gradient(var(--dark), var(--primary));
 }
 
 .vertical-bar {
-    width: 4%;
-    height: 90%;
+    width: 4.5em;
+    height: calc(100vh - 5.3em);
     right: 0;
+    bottom: 0;
     display: block;
     position: absolute;
     background: linear-gradient(var(--primary), var(--dark));

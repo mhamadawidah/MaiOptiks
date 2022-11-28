@@ -2,6 +2,7 @@
 <html lang="de">
 <body>
 <th:block th:fragment="auftrag">
+
     <div class="left">
         <label>
             Auftragsnummer
@@ -9,21 +10,23 @@
                    placeholder="Auftrags-Nr."
                    type="text"/>
         </label>
-        <label class="">
+        <label>
             Abrechnungsart
-            <select class="" name="abrechungsart">
-                <option></option>
+            <select class="lockable lock-mode-s data data-auftrag" name="abrechungsart" id="abrechnungs">
             </select>
         </label>
-        <label class="label2">
-            Datum <input class="date" name="datum" type="date">
+        <label>
+            Artikelart
+            <select class="lockable lock-mode-u" id="selection-artikelart" onclick="set_tabs_visibility(this);">
+                <option>Brille</option>
+                <option>Kontaktlinse</option>
+            </select>
         </label>
     </div>
-
     <div class="right">
-        <label class=""> Kunde
-            <select class="" name="werkstatt">
-                <option></option>
+        <label class="">
+            Kunde
+            <select class="lockable lock-mode-s data data-auftrag" name="kunde" id="kundenNr">
             </select>
         </label>
     </div>
