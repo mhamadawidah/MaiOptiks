@@ -22,7 +22,7 @@
 .table-container {
 	top: 25%;
 	left: 0.5%;
-	width: 95vw;
+	width: 94vw;
 	height: 65%;
 	position: absolute;
 	overflow: auto;
@@ -70,7 +70,7 @@
 }
 
 .table-container tbody {
-	cursor: help;
+	cursor: alias;
 }
 
 .table-container body {
@@ -106,6 +106,10 @@
 	display: block;
 	margin-bottom: 0.5rem;
 	cursor: pointer;
+}
+
+.contextMenuItem:first-child {
+    margin-top: 0.5rem;
 }
 
 .contextMenuItem:last-child {
