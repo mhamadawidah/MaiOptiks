@@ -55,7 +55,7 @@ function createTable(data, containerId, target) {
 		for (let i = 0; i < allRows.length; i++) {
 			allRows[i].addEventListener('click', () => {
 				if (target === "neuer-kunde") {
-					window.location.href = `/neuer-kunde?neu=false
+					window.location.href = `/neuer-kunde?neu=einsehen
 					&kunnr=${data[i - 1].kundenNr}
 					&anrede=${data[i - 1].anrede}
 					&name=${data[i - 1].name}

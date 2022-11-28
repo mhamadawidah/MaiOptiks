@@ -17,15 +17,13 @@ const gueltigkeit = document.getElementById("gueltigkeit");
 const plz = document.getElementById("plz");
 const krankenkassenNr = document.getElementById("krankenkasse");
 
-
-if (urlParams.get('neu') === true || urlParams.get("neu") === null) {
+if (urlParams.get('neu') === null) {
     console.log("Neu anlegen");
-
     document.getElementById("heading").innerText = "Neuer Kunde";
     document.getElementById("submit-button").style.visibility = "visible";
     document.getElementById("button-bearbeiten").style.visibility = "hidden";
-} else {
-    console.log("Bearbeiten");
+} else if (urlParams.get("neu") === "einsehen") {
+    console.log("einsehen");
     document.getElementById("heading").innerText = `Kunde Nr: ${urlParams.get("kunnr")}`;
     document.getElementById("submit-button").style.visibility = "hidden";
     document.getElementById("button-bearbeiten").style.visibility = "visible";
@@ -44,6 +42,13 @@ if (urlParams.get('neu') === true || urlParams.get("neu") === null) {
     plz.disabled = true;
     krankenkassenNr.disabled = true;
     fillTextFields();
+} else if (urlParams.get("neu") === "bearbeiten") {
+    console.log("bearbeiten");
+    document.getElementById("heading").innerText = `Kunde Nr: ${urlParams.get("kunnr")}`;
+    document.getElementById("submit-button").style.visibility = "hidden";
+    document.getElementById("button-bearbeiten").style.visibility = "visible";
+    fillTextFields();
+    setBearbeiten();
 }
 
 function fillTextFields() {
