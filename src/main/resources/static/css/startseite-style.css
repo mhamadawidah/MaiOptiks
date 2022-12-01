@@ -70,7 +70,7 @@
 }
 
 .table-container tbody {
-	cursor: alias;
+	cursor: pointer;
 }
 
 .table-container body {
