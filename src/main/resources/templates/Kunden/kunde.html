@@ -42,13 +42,13 @@
 
 <nav class="contextMenu" id="contextMenu">
     <ul class="contextMenuItems">
-        <li class="contextMenuItem" onclick="openLink(changeLink)">
+        <li class="contextMenuItem" id="1">
             <a class="contextMenuLink"
                data-action="change"
                href="#">Bearbeiten</a>
         </li>
         <hr/>
-        <li class="contextMenuItem" onclick="openLink(orderLink)">
+        <li class="contextMenuItem" id="2">
             <a class="contextMenuLink"
                data-action="orders"
                href="#">Aufträge</a>
@@ -58,9 +58,6 @@
 </body>
 <script>
     startContextMenu();
-
-    const changeLink = startContextMenu()?.change;
-    const orderLink = startContextMenu()?.order;
 
     document.getElementById('lastname').addEventListener('keyup', (e) => {
         if (e.key === 'Enter') {

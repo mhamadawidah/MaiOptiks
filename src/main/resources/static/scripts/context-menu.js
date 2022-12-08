@@ -3,6 +3,8 @@ function startContextMenu() {
     const menu = document.querySelector('#contextMenu');
     const contextMenuActive = 'contextMenu--active';
     const taskItemClassName = 'dataCell';
+    const menuItemsObject = {};
+    const page = document.getElementsByClassName('heading')[0].innerHTML;
     let menuState = 0;
     let clickCoords;
     let clickCoordsX;
@@ -12,20 +14,19 @@ function startContextMenu() {
     let windowWidth;
     let windowHeight;
     let taskItemInContext;
-    var changeLink;
-    var orderLink;
+    let changeLink;
+    let orderLink;
 
     function init() {
         clickListener();
         keyListener();
         resizeListener();
         scrollListener();
-        debugger;
-        //contextMenuListener();
+        return contextMenuListener();
     }
 
 // Rechtsklickevent & Standardmenü verhindern
-   // function contextMenuListener() {
+    function contextMenuListener() {
         document.addEventListener('contextmenu', (evt) => {
             taskItemInContext = clickInsideElement(evt, taskItemClassName);
 
@@ -33,13 +34,13 @@ function startContextMenu() {
                 evt.preventDefault();
                 toggleMenuOn();
                 positionMenu(evt);
-                 return fillData(taskItemInContext.parentNode);
+                fillData(taskItemInContext.parentNode);
             } else {
                 taskItemInContext = null;
                 toggleMenuOff();
             }
         });
-    //}
+    }
 
 // Menü anzeigen
     function toggleMenuOn() {
@@ -121,82 +122,88 @@ function startContextMenu() {
     }
 
     function menuItemListener(link) {
-        debugger;
-        console.log('TaskId: ' + taskItemInContext.getAttribute('id')
+        console.log('TaskId: ' + taskItemInContext.getAttribute('id') // TODO: Entfernen sobald läuft
             + 'Task action: ' + link.getAttribute('data-action'));
         toggleMenuOff();
     }
 
-// Passende Daten/Aufträge im Link übergeben
+    /**
+     * Passende Daten im Link übergeben
+     *
+     * Hier muss eventuell eine IF erstellt und die passenden Links ergänzt werden!
+     *
+     * @param node
+     */
     function fillData(node) {
-        let kundenNr,
-            anrede,
-            name,
-            vorname,
-            strasse,
-            hausNr,
-            geburtsdatum,
-            telefonNr,
-            handy,
-            email,
-            versicherungsNr,
-            gueltigkeit,
-            bemerkung,
-            plz,
-            krankenkassenNr;
+        if (page === 'Kunde') {
+            let kundenNr,
+                anrede,
+                name,
+                vorname,
+                strasse,
+                hausNr,
+                geburtsdatum,
+                telefonNr,
+                handy,
+                email,
+                versicherungsNr,
+                gueltigkeit,
+                bemerkung,
+                plz,
+                krankenkassenNr;
 
-        for (let i = 0; i < node.children.length; i++) {
-            console.log(node.children[i].innerHTML);
-            switch (i) {
-                case 0:
-                    kundenNr = node.children[i].innerHTML;
-                    break;
-                case 1:
-                    anrede = node.children[i].innerHTML;
-                    break;
-                case 2:
-                    name = node.children[i].innerHTML;
-                    break;
-                case 3:
-                    vorname = node.children[i].innerHTML;
-                    break;
-                case 4:
-                    strasse = node.children[i].innerHTML;
-                    break;
-                case 5:
-                    hausNr = node.children[i].innerHTML;
-                    break;
-                case 6:
-                    geburtsdatum = node.children[i].innerHTML;
-                    break;
-                case 7:
-                    telefonNr = node.children[i].innerHTML;
-                    break;
-                case 8:
-                    handy = node.children[i].innerHTML;
-                    break;
-                case 9:
-                    email = node.children[i].innerHTML;
-                    break;
-                case 10:
-                    versicherungsNr = node.children[i].innerHTML;
-                    break;
-                case 11:
-                    gueltigkeit = node.children[i].innerHTML;
-                    break;
-                case 12:
-                    bemerkung = node.children[i].innerHTML;
-                    break;
-                case 13:
-                    plz = node.children[i].innerHTML;
-                    break;
-                case 14:
-                    krankenkassenNr = node.children[i].innerHTML;
+            for (let i = 0; i < node.children.length; i++) {
+                console.log(node.children[i].innerHTML);
+                switch (i) {
+                    case 0:
+                        kundenNr = node.children[i].innerHTML;
+                        break;
+                    case 1:
+                        anrede = node.children[i].innerHTML;
+                        break;
+                    case 2:
+                        name = node.children[i].innerHTML;
+                        break;
+                    case 3:
+                        vorname = node.children[i].innerHTML;
+                        break;
+                    case 4:
+                        strasse = node.children[i].innerHTML;
+                        break;
+                    case 5:
+                        hausNr = node.children[i].innerHTML;
+                        break;
+                    case 6:
+                        geburtsdatum = node.children[i].innerHTML;
+                        break;
+                    case 7:
+                        telefonNr = node.children[i].innerHTML;
+                        break;
+                    case 8:
+                        handy = node.children[i].innerHTML;
+                        break;
+                    case 9:
+                        email = node.children[i].innerHTML;
+                        break;
+                    case 10:
+                        versicherungsNr = node.children[i].innerHTML;
+                        break;
+                    case 11:
+                        gueltigkeit = node.children[i].innerHTML;
+                        break;
+                    case 12:
+                        bemerkung = node.children[i].innerHTML;
+                        break;
+                    case 13:
+                        plz = node.children[i].innerHTML;
+                        break;
+                    case 14:
+                        krankenkassenNr = node.children[i].innerHTML;
+                }
             }
-        }
 
-        // Link für Bearbeiten
-        changeLink = `/neuer-kunde?neu=bearbeiten
+            // Link für Bearbeiten
+            changeLink = `/neuer-kunde?neu=bearbeiten
 					&kunnr=${kundenNr}
 					&anrede=${anrede}
 					&name=${name}
@@ -213,8 +220,19 @@ function startContextMenu() {
 					&gueltigkeit=${gueltigkeit}
 					&bemerkung=${bemerkung}`;
 
-        // Link für Aufträge
-        orderLink = `/auftragsdatenverwaltung?v=s&kid=${kundenNr}&auto=1`;
+            // Link für Aufträge
+            orderLink = `/auftragsdatenverwaltung?v=s&kid=${kundenNr}&auto=1`;
+
+            Object.defineProperties(menuItemsObject, {
+                change: {
+                    value: changeLink
+                },
+                order: {
+                    value: orderLink
+                }
+
+            }); // TODO: Links als value
+        }
     }
 
 // Linksklick zum Deaktivieren
@@ -261,8 +279,15 @@ function startContextMenu() {
 
     init();
 
-    return {
-        change: changeLink,
-        order: orderLink
-    };
+    // Hier müssen die neue erstellten Links ergänzt werden // TODO: Object links
+    if (page === 'Kunde') {
+        debugger;
+        menuItemsObject.change.onclick = function () {
+            window.location.href = changeLink;
+        };
+
+        menuItemsObject.order.onclick = function () {
+            window.location.href = orderLink;
+        };
+    }
 }
