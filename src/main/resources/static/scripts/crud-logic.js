@@ -72,4 +72,6 @@ function load(action_id, key_field_id) {
     }
 
     fill_selections(); // set selection options with data
+    custom_params(url.searchParams);
+
 }

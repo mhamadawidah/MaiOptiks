@@ -25,7 +25,7 @@ function get_newest_key() {
     });
 }
 
-function fill_selections() {
+function fill_selections(call_after_load_func, call_after_load_option) {
     let kundeSelection = document.getElementById('kundenNr');
 
     doGetRequest('/api/kundes?name=%2A&vorname=%2A', '', (data) => {
@@ -35,6 +35,12 @@ function fill_selections() {
             opt.innerHTML = data[i]['vorname'] + ' ' + data[i]['name']
             kundeSelection.appendChild(opt);
         }
+        let kid = document.getElementById('hidden-kid').value;
+        if (kid !== undefined && kid !== ''){
+            kundeSelection.value = kid;
+            document.getElementById('exit-logic-1').click();
+        }
+
     });
 
     let auftragsartenSelection = document.getElementById('abrechnungs');
@@ -208,6 +214,16 @@ function build_json(group_class) {
     return data;
 }
 
-function danke(){
+function custom_params(params) {
+    let kid = params.get('kid');
+    if (kid !== undefined) {
+        if (params.get('v') === 's')
+            document.getElementById('hidden-kid').value = kid;
+
+    }
+
+}
+
+function danke() {
     alert('Die Datenspeicherung ist hier momentan deaktivert. 🤷‍');
 }

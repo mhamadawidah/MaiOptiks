@@ -34,3 +34,7 @@ function search(){
 function fill_selections() {
     // Fill all selections here (with options from the api f.i.)
 }
+
+function custom_params(params){
+    // manage you own url params here
+}
