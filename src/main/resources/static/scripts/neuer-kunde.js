@@ -1,140 +1,156 @@
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
-console.log("Params", urlParams.get('neu'))
 
 const form = document.getElementById("form");
 
-const radios = [document.getElementById("anrede1"), document.getElementById("anrede2"), document.getElementById("anrede3")]
-const name = document.getElementById("name")
-const vorname = document.getElementById("vorname")
-const strasse = document.getElementById("strasse")
-const hausNr = document.getElementById("hausnummer")
-const geburtsdatum = document.getElementById("geburtsdatum")
-const telefonNr = document.getElementById("telefon")
-const handy = document.getElementById("mobil")
-const email = document.getElementById("mail")
-const versicherungsNr = document.getElementById("versicherung")
-const gueltigkeit = document.getElementById("gueltigkeit")
-const plz = document.getElementById("plz")
-const krankenkassenNr = document.getElementById("krankenkasse")
+const radios = [document.getElementById("anrede1"), document.getElementById("anrede2"), document.getElementById("anrede3")];
+const name = document.getElementById("name");
+const vorname = document.getElementById("vorname");
+const strasse = document.getElementById("strasse");
+const hausNr = document.getElementById("hausnummer");
+const geburtsdatum = document.getElementById("geburtsdatum");
+const telefonNr = document.getElementById("telefon");
+const handy = document.getElementById("mobil");
+const email = document.getElementById("mail");
+const versicherungsNr = document.getElementById("versicherung");
+const gueltigkeit = document.getElementById("gueltigkeit");
+const plz = document.getElementById("plz");
+const krankenkassenNr = document.getElementById("krankenkasse");
 
-
-if (urlParams.get('neu') === true || urlParams.get("neu") === null) {
-    console.log("Neu anlegen")
+if (urlParams.get('neu') === null) {
+    console.log("Neu anlegen");
+    document.getElementById("heading").innerText = "Neuer Kunde";
     document.getElementById("submit-button").style.visibility = "visible";
     document.getElementById("button-bearbeiten").style.visibility = "hidden";
-
-} else {
+} else if (urlParams.get("neu") === "einsehen") {
+    console.log("einsehen");
+    document.getElementById("heading").innerText = `Kunden-Nr: ${urlParams.get("kunnr")}`;
     document.getElementById("submit-button").style.visibility = "hidden";
     document.getElementById("button-bearbeiten").style.visibility = "visible";
 
-    radios.forEach((radio) => {radio.disabled = true})
-    name.disabled = true
-    vorname.disabled = true
-    strasse.disabled = true
-    hausNr.disabled = true
-    geburtsdatum.disabled = true
-    telefonNr.disabled = true
-    handy.disabled = true
-    email.disabled = true
-    versicherungsNr.disabled = true
-    gueltigkeit.disabled = true
-    plz.disabled = true
-    krankenkassenNr.disabled = true
+    radios.forEach((radio) => {radio.disabled = true});
+    name.disabled = true;
+    vorname.disabled = true;
+    strasse.disabled = true;
+    hausNr.disabled = true;
+    geburtsdatum.disabled = true;
+    telefonNr.disabled = true;
+    handy.disabled = true;
+    email.disabled = true;
+    versicherungsNr.disabled = true;
+    gueltigkeit.disabled = true;
+    plz.disabled = true;
+    krankenkassenNr.disabled = true;
     fillTextFields();
-}
-
-function setBearbeiten() {
-    console.log("qwertzui")
-    radios.forEach((radio) => {radio.disabled = false})
-    name.disabled = false
-    vorname.disabled = false
-    strasse.disabled = false
-    hausNr.disabled = false
-    geburtsdatum.disabled = false
-    telefonNr.disabled = false
-    handy.disabled = false
-    email.disabled = false
-    versicherungsNr.disabled = false
-    gueltigkeit.disabled = false
-    plz.disabled = false
-    krankenkassenNr.disabled = false
-
-    document.getElementById("button-bearbeiten").innerText = "Speichern";
-    document.getElementById("button-bearbeiten").setAttribute('onclick','speichern()')
-}
-
-function speichern() { debugger
-    doPutRequest(`/api/kundes/${urlParams.get("kunnr")}`, "",  getInputData(urlParams.get("kunnr")), (response) => {
-        console.log("RequestResponse PUT: ", response)
-        alert('\nÄnderungen gespeichert.');
-    })
-
-    radios.forEach((radio) => {radio.disabled = true})
-    name.disabled = true
-    vorname.disabled = true
-    strasse.disabled = true
-    hausNr.disabled = true
-    geburtsdatum.disabled = true
-    telefonNr.disabled = true
-    handy.disabled = true
-    email.disabled = true
-    versicherungsNr.disabled = true
-    gueltigkeit.disabled = true
-    plz.disabled = true
-    krankenkassenNr.disabled = true
-
-    document.getElementById("button-bearbeiten").innerText = "Bearbeiten";
-    document.getElementById("button-bearbeiten").setAttribute('onclick','setBearbeiten()')
-
-    console.log("gespeichert")
+} else if (urlParams.get("neu") === "bearbeiten") {
+    console.log("bearbeiten");
+    document.getElementById("heading").innerText = `Kunde Nr: ${urlParams.get("kunnr")}`;
+    document.getElementById("submit-button").style.visibility = "hidden";
+    document.getElementById("button-bearbeiten").style.visibility = "visible";
+    fillTextFields();
+    setBearbeiten();
 }
 
 function fillTextFields() {
     if (urlParams.get("anrede") === "Herr") {
-        radios[1].checked = true
+        radios[1].checked = true;
     } else if (urlParams.get("anrede") === "Frau") {
-        radios[0].checked = true
+        radios[0].checked = true;
     } else {
-        radios[3].checked = true
+        radios[3].checked = true;
     }
 
-    name.value = urlParams.get("name")
-    vorname.value = urlParams.get("vorname")
-    strasse.value = urlParams.get("strasse")
-    hausNr.value = urlParams.get("hausnr")
-    geburtsdatum.value = urlParams.get("geburtsdatum")
-    telefonNr.value = urlParams.get("tel")
-    handy.value = urlParams.get("handy")
-    email.value = urlParams.get("mail")
-    versicherungsNr.value = urlParams.get("vsnr")
-    gueltigkeit.value = urlParams.get("gueltigkeit")
-    plz.value = urlParams.get("plz")
-    krankenkassenNr.value = urlParams.get("kknr")
+    name.value = urlParams.get("name");
+    vorname.value = urlParams.get("vorname");
+    strasse.value = urlParams.get("strasse");
+    hausNr.value = urlParams.get("hausnr");
+    geburtsdatum.value = urlParams.get("geburtsdatum");
+    telefonNr.value = urlParams.get("tel");
+    handy.value = urlParams.get("handy");
+    email.value = urlParams.get("mail");
+    versicherungsNr.value = urlParams.get("vsnr");
+    gueltigkeit.value = urlParams.get("gueltigkeit");
+    plz.value = urlParams.get("plz");
+    krankenkassenNr.value = urlParams.get("kknr");
+}
+
+function setBearbeiten() {
+    radios.forEach((radio) => {radio.disabled = false;})
+    name.disabled = false;
+    vorname.disabled = false;
+    strasse.disabled = false;
+    hausNr.disabled = false;
+    geburtsdatum.disabled = false;
+    telefonNr.disabled = false;
+    handy.disabled = false;
+    email.disabled = false;
+    versicherungsNr.disabled = false;
+    gueltigkeit.disabled = false;
+    plz.disabled = false;
+    krankenkassenNr.disabled = false;
+
+    document.getElementById("button-bearbeiten").innerText = "Speichern";
+    document.getElementById("button-bearbeiten").setAttribute('onclick','speichern()');
+}
+
+function speichern() {
+    let json = getInputData(urlParams.get("kunnr"));
+    if (json !== null) {
+        doPutRequest(`/api/kundes`, `/${urlParams.get("kunnr")}`, json, (response) => {
+            console.log("RequestResponse PUT: ", response);
+            alert('\nÄnderungen gespeichert.');
+        })
+
+        radios.forEach((radio) => {radio.disabled = true;});
+        name.disabled = true;
+        vorname.disabled = true;
+        strasse.disabled = true;
+        hausNr.disabled = true;
+        geburtsdatum.disabled = true;
+        telefonNr.disabled = true;
+        handy.disabled = true;
+        email.disabled = true;
+        versicherungsNr.disabled = true;
+        gueltigkeit.disabled = true;
+        plz.disabled = true;
+        krankenkassenNr.disabled = true;
+
+        document.getElementById("button-bearbeiten").innerText = "Bearbeiten";
+        document.getElementById("button-bearbeiten").setAttribute('onclick','setBearbeiten()');
+
+        console.log("gespeichert");
+    } else {
+        console.log("Irgendwo Fehler PUT");
+    }
 }
 
 function createKunde() {
     // 1-> Placeholder für POST
     let json = getInputData(1);
-    doPostRequest('/api/kundes', json , (response) => {
-        console.log("RequestResponse POST: ", response)
-        alert('\nKunde angelegt.');
-    })
-    console.log("gespeichert")
+
+    if (json !== null) {
+        doPostRequest('/api/kundes', json , (response) => {
+            console.log("RequestResponse POST: ", response);
+            alert('\nKunde angelegt.');
+        })
+        console.log("gespeichert");
+    } else {
+        console.log("Irgendwo Fehler POST");
+    }
 }
 
 function getInputData(kundennr) {
-    console.log("Hole Daten...")
+    console.log("Hole Daten...");
 
-    let error = false
-    let checkedRadio = checkRadios(radios)
+    let error = false;
+    let checkedRadio = checkRadios(radios);
 
     if (!checkRequired([name, vorname, strasse, hausNr, geburtsdatum, telefonNr, handy, email, versicherungsNr, plz, gueltigkeit, krankenkassenNr])) {return}
     if (checkedRadio == -1) {console.log("Fehler Anrede"); error = true;}
     if (!checkEmail(email)) {console.log("Fehler Anrede"); error = true;}
-    if (!checkInput(name, /^[a-zA-Z]+$/) ) {console.log("Fehler Anrede"); error = true;}
-    if (!checkInput(vorname, /^[a-zA-Z]+$/)) {console.log("Fehler Anrede"); error = true;}
-    if (!checkInput(strasse, /^[a-zA-Z]+$/)) {console.log("Fehler Anrede"); error = true;}
+    if (!checkInput(name, /^[a-zA-ZäöüÄÖÜß]+$/) ) {console.log("Fehler Anrede"); error = true;}
+    if (!checkInput(vorname, /^[a-zA-ZäöüÄÖÜß]+$/)) {console.log("Fehler Anrede"); error = true;}
+    if (!checkInput(strasse, /^[a-zA-ZäöüÄÖÜß]+$/)) {console.log("Fehler Anrede"); error = true;}
     if (!checkInput(hausNr, /^[0-9]+$/)) {console.log("Fehler Anrede"); error = true;}
     if (!checkInput(telefonNr, /^[0-9 ]+$/)) {console.log("Fehler Anrede"); error = true;}
     if (!checkInput(handy, /^[0-9 ]+$/)) {console.log("Fehler Anrede"); error = true;}
@@ -143,11 +159,11 @@ function getInputData(kundennr) {
     if (!checkInput(krankenkassenNr, /[a-zA-Z0-9]+$/)) {console.log("Fehler Anrede"); error = true;}
 
     if (error) {
-        console.log("Irgendwo Error")
-        return; // Weitere Ausführung stoppen, falls irgendwo error
+        console.log("Irgendwo Error");
+        return null; // Weitere Ausführung stoppen, falls irgendwo error
     }
 
-    //Json zusammenbauen
+    // Json zusammenbauen
     let jsonObject = {
         "kundenNr": parseInt(kundennr),
         "anrede": radios[checkedRadio].value,
@@ -164,11 +180,11 @@ function getInputData(kundennr) {
         "bemerkung": "",
         "plz": plz.value,
         "krankenkassenNr": krankenkassenNr.value
-    }
+    };
 
-    console.log("JSONObject: ", jsonObject)
+    console.log("JSONObject: ", jsonObject);
 
-    return jsonObject
+    return jsonObject;
 }
 
 // Show Error Msg

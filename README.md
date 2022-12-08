@@ -98,6 +98,12 @@ Sobald die Seite einen eigenen Controller hat, kann sie wie folgt verlinkt werde
 <br>
 [Gestaltungsprinzipien-GUI](https://kstlinfo-my.sharepoint.com/:w:/g/personal/frederik_niehaus_campus_kstl_de/EcWEIKDGMy1ArE_qtgtFMDMBiosmJyTMwmDV3nzhrczZiQ?e=J3oAxF)
 <br>
+[Anwendungsfalldiagramm](https://lucid.app/lucidchart/46d28bac-b1f3-4d47-94a3-1a963b8c2960/edit?viewport_loc=-11%2C-11%2C1480%2C692%2C0_0&invitationId=inv_e1e6c435-8538-4b85-855c-a4f5d97a316d)
+<br>
+[Sequenzdiagramm](https://lucid.app/lucidchart/46e6ae4b-b368-4175-91a9-97e53a2ae29a/edit?viewport_loc=485%2C546%2C2969%2C1350%2C0_0&invitationId=inv_a4d777bd-0825-4ba3-bb75-bf0e3e5f04bc)
+<br>
+[Klassen- & Aktivitätsdiagramm](https://lucid.app/lucidchart/74e23248-d422-45c8-9d10-2eb39771ab80/edit?invitationId=inv_5070b5eb-c54e-4dc1-87b9-4d0cc70f2180&page=0_0#)
+<br>
 [Offene Fragen](https://kstlinfo-my.sharepoint.com/:w:/g/personal/tom_volmer_campus_kstl_de/EUrBypv57p1ErC1QBrgPygkBY4vRZXs8ILlXe7xXHVHI8g?e=I6wIcR)
 ## Links external ressources
 [ISO-3166 ALPHA2](https://de.wikipedia.org/wiki/ISO-3166-1-Kodierliste)
