@@ -1,0 +1,39 @@
+<!DOCTYPE>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org/">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title th:text="${title}"></title>
+
+  <link rel="stylesheet" th:href="@{/css/main.css}">
+  <link rel="stylesheet" th:href="@{/css/formular-editor.css}">
+  <script type="text/javascript" th:src="@{/scripts/main.js}"></script>
+</head>
+<body>
+<div class="title-bar">
+  <h1 class="heading">Formular-Editor</h1>
+</div>
+
+<div class="vertical-bar">
+  <p></p>
+</div>
+
+<div class="inner-window">
+  <div class="header">
+    <button class="button button-startseite" onclick="openLink('/')">Startseite</button>
+    <hr class="linetop">
+  </div>
+</div>
+<script>
+let stateCheck = setInterval(() => {
+  if (document. readyState === 'complete') {
+    clearInterval(stateCheck); // document ready
+    alert("Keine Formulare gefunden!")
+  }
+}, 100);
+
+stateCheck();
+</script>
+</body>
+</html>

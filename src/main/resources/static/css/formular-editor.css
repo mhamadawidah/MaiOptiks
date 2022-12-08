@@ -1,0 +1,16 @@
+.inner-window {
+    display: flex;
+    flex-direction: column;
+    min-height: 70%;
+}
+
+.header {
+    width: 96%;
+    text-align: left;
+    font-size: 25px;
+}
+.header .button-startseite {
+    width: 10em;
+    height: 2.5em;
+    margin: 0.5%;
+}
