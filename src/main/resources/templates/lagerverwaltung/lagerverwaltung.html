@@ -48,7 +48,7 @@
 </div>
 
 <div>
-    <input class="input" type="text" placeholder="Suchen">
+    <input class="input" type="text" placeholder="Suchen" id = "Suche">
     <button class="button" type="submit" onclick="TabelleAnzeigen()">Alles anzeigen</button>
 
     <button class="button" style="margin-left: 20px">Speichern</button>
@@ -73,7 +73,11 @@
             (jsonString) => {   // func
                 let data = JSON.parse(jsonString);
                 // alert(data.exception);
+                if (document.getElementById("Suche").value == ""){
                 createTable(data);
+                }else{
+                    LadenMit(daten);
+                }
             });
     }
 
@@ -86,7 +90,11 @@
             '/api/artikels',
             '',
             (data) => {   // func
+            if (document.getElementById("Suche").value == ""){
                 createTable(data, tableContainer, 'lagerverwaltung');
+            }else{
+                    LadenMit(data);
+                }
             });
     }
 
@@ -185,6 +193,18 @@
             });
         }
     }
+}
+
+function LadenMit(data){
+    let data2 = [];
+    let tableContainer = 'customerTable';
+    for (let i = 0; i < data.length; i++) {
+        let  hurenesohn = data[i].bezeichnung;
+        if (hurenesohn.match(document.getElementById("Suche").value)){
+            data2.push(data[i])
+        }
+    }    
+    createTable(data2, tableContainer, 'lagerverwaltung');
 }
 </script>
 </html>
