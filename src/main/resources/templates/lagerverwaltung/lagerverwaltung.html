@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title class="heading">Lagerverwaltung</title>
+
+    <link rel="stylesheet" th:href="@{/css/main.css}"/>
+    <link rel="stylesheet" th:href="@{/css/lagerverwaltung-style.css}">
+    <script type="text/javascript" th:src="@{/scripts/main.js}"></script>
+</head>
+<body>
+<div class="title-bar">
+    <h1 class="heading">Lagerverwaltung</h1>
+</div>
+
+<div class="vertical-bar">
+    <p></p>
+</div>
+
+<div class="header">
+    <button class="button button-startseite" onclick="openLink('/organisation')"><a>Zurück</a></button>
+    <hr class="linetop">
+</div>
+
+<div>
+    <input class="input" id="Artikelnummer" type="text" placeholder="Artikelnummer">
+    <input class="input" id="Bezeichnung" type="text" placeholder="Bezeichnung"><br><br>
+</div>
+
+<div>
+<select class="select">
+    <option>Artikelart</option>
+</select>
+<select class="select">
+    <option>Material</option>
+</select>
+<select class="select">
+    <option>Farbe</option>
+</select>
+<select class="select">
+    <option>Lieferant</option>
+</select><br><br>
+
+<input class="input" id="Einkaufspreis" type="text" placeholder="Einkaufspreis">
+<input class="input" id="Verkaufspreis" type="text" placeholder="Verkaufspreis"><br><br>
+</div>
+
+<div>
+    <input class="input" type="text" placeholder="Suchen" id = "Suche">
+    <button class="button" type="submit" onclick="TabelleAnzeigen()">Alles anzeigen</button>
+
+    <button class="button" style="margin-left: 20px">Speichern</button>
+    <button class="button" onclick="insertLagerartikel()">Neu</button>
+</div>
+
+<div class="table-container" id="customerTable"></div>
+
+</body>
+<script>
+    function openLink(link) {
+        window.location.href = link;
+    }
+
+    function searchOrder() {
+        let artikelNr = document.getElementById('artikelNr').value;
+
+        doRequest(
+            'GET',
+            '/api/artikels',
+            artikelNr,
+            (jsonString) => {   // func
+                let data = JSON.parse(jsonString);
+                // alert(data.exception);
+                if (document.getElementById("Suche").value == ""){
+                createTable(data);
+                }else{
+                    LadenMit(daten);
+                }
+            });
+    }
+
+
+    function TabelleAnzeigen() {
+        debugger;
+        let tableContainer = 'customerTable';
+
+    doGetRequest(
+            '/api/artikels',
+            '',
+            (data) => {   // func
+            if (document.getElementById("Suche").value == ""){
+                createTable(data, tableContainer, 'lagerverwaltung');
+            }else{
+                    LadenMit(data);
+                }
+            });
+    }
+
+
+
+    function insertLagerartikel() {
+        console.log("Hole Daten...")
+        const Artikelnummer = document.getElementById("Artikelnummer").value
+        const Bezeichnung = document.getElementById("Bezeichnung").value
+        const Einkaufspreis = document.getElementById("Einkaufspreis").value
+        const Verkaufspreis = document.getElementById("Verkaufspreis").value
+
+
+        //Json zusammenbauen
+        let jsonObject = {
+            "artikelNr": 1,
+            "bezeichnung": Bezeichnung,
+            "artikelart": null,
+            "einkaufspreis": Einkaufspreis,
+            "verkaufspreis": Verkaufspreis,
+            "material": null,
+            "farbe": null,
+            "lieferant": null
+        }
+
+        console.log("Jason", jsonObject)
+
+        doPostRequest('/api/artikels',  jsonObject, (response) => {
+            console.log("Hier bin ich", response)
+        })
+        return jsonObject
+    }
+    function createTable(data, containerId, target) {
+    // Bereits eine Tabelle vorhanden?
+    if (document.getElementById(containerId).firstElementChild !== null) {
+        const table = document.getElementsByTagName('TABLE')[0];
+
+        table.remove();
+        createTable(data, containerId, target);
+
+        return;
+    } else {
+        const tableContainer = document.getElementById(containerId);
+        const table = document.createElement('TABLE');
+        const tableHead = document.createElement('THEAD');
+        const tableBody = document.createElement('TBODY');
+        const dataCount = data.length;
+
+        table.appendChild(tableHead);
+        table.appendChild(tableBody);
+
+        const headerRow = document.createElement('TR');
+        const keys = Object.keys(data[0]);
+
+        keys
+            .map((item) => {
+                const th = document.createElement('TH');
+                let caps = item.charAt(0).toUpperCase() + item.slice(1);
+                th.innerHTML = caps.valueOf();
+                headerRow.appendChild(th);
+            });
+        // Für jeden Kunden neue Zeile erstellen
+        for (let i = 0; i < dataCount; i++) {
+            const dataRow = document.createElement('TR');
+            const values = Object.values(data[i]);
+
+            values
+                .map((item) => {
+                    const td = document.createElement('TD');
+                    if (item == null){
+                    td.innerHTML = "";
+                    }else{    
+                    td.innerHTML = item.valueOf();
+                    }
+                    dataRow.appendChild(td);
+                });
+
+            tableHead.appendChild(headerRow);
+            tableBody.appendChild(dataRow)
+        }
+
+        tableContainer.appendChild(table);
+    }
+
+    if (target !== undefined) {
+        let allRows = document.getElementsByTagName('TR');
+
+        for (let i = 0; i < allRows.length; i++) {
+            allRows[i].addEventListener('click', () => {
+                if (target === "neuer-kunde") {
+                    window.location.href = `/neuer-kunde?neu=false&kunnr=${data[i-1].kundenNr}&anrede=${data[i-1].anrede}&name=${data[i-1].name}&vorname=${data[i-1].vorname}&geburtsdatum=${data[i-1].geburtsdatum}&plz=${data[i-1].plz}&strasse=${data[i-1].strasse}&hausnr=${data[i-1].hausNr}&mail=${data[i-1].email}&tel=${data[i-1].telefonNr}&handy=${data[i-1].handy}&kknr=${data[i-1].krankenkassenNr}&vsnr=${data[i-1].versicherungsNr}&gueltigkeit=${data[i-1].gueltigkeit}&bemerkung=${data[i-1].bemerkung}`;;
+                }
+                if (target === "neuer-auftrag") {
+                    window.location.href = "/" // Weiterleiten zu neuer-auftrag
+                }
+            });
+        }
+    }
+}
+
+function LadenMit(data){
+    let data2 = [];
+    let tableContainer = 'customerTable';
+    for (let i = 0; i < data.length; i++) {
+        let  hurenesohn = data[i].bezeichnung;
+        if (hurenesohn.match(document.getElementById("Suche").value)){
+            data2.push(data[i])
+        }
+    }    
+    createTable(data2, tableContainer, 'lagerverwaltung');
+}
+</script>
+</html>
