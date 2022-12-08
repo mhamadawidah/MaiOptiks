@@ -25,7 +25,6 @@
 </div>
 
 <div>
-    <input class="input" id="Artikelnummer" type="text" placeholder="Artikelnummer">
     <input class="input" id="Bezeichnung" type="text" placeholder="Bezeichnung"><br><br>
 </div>
 
@@ -102,10 +101,14 @@
 
     function insertLagerartikel() {
         console.log("Hole Daten...")
-        const Artikelnummer = document.getElementById("Artikelnummer").value
         const Bezeichnung = document.getElementById("Bezeichnung").value
+        document.getElementById("Bezeichnung").value=""
         const Einkaufspreis = document.getElementById("Einkaufspreis").value
+        document.getElementById("Einkaufspreis").value=""
         const Verkaufspreis = document.getElementById("Verkaufspreis").value
+        document.getElementById("Verkaufspreis").value=""
+
+        alert("Neuen Artikel erfasst!")
 
 
         //Json zusammenbauen
@@ -196,11 +199,15 @@
 }
 
 function LadenMit(data){
+    debugger;
     let data2 = [];
     let tableContainer = 'customerTable';
     for (let i = 0; i < data.length; i++) {
-        let  hurenesohn = data[i].bezeichnung;
-        if (hurenesohn.match(document.getElementById("Suche").value)){
+        let Datenvergleich = data[i].bezeichnung;
+        let a = String.prototype.toUpperCase.call(Datenvergleich);
+        let vergleich = document.getElementById("Suche").value
+        let b = String.prototype.toUpperCase.call(vergleich)
+        if (a.match(b)){
             data2.push(data[i])
         }
     }    
