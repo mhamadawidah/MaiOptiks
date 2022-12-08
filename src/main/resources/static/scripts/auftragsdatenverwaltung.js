@@ -11,7 +11,7 @@ function set_tab(tab_id) {
         tab.classList.remove('hidden');
 
         if (tab.id != 'tab-' + tab_id)
-            tab.classList.add('hidden')
+            tab.classList.add('hidden');
     }
 }
 
@@ -199,7 +199,7 @@ function build_json(group_class) {
     for (let i = 0; i < update.length; i++) {
         let obj = update.item(i);
         if (obj.type === 'checkbox') {
-            data += JSON.stringify(obj.id) + ':' + JSON.stringify(obj.value === 'on') + ',';
+            data += JSON.stringify(obj.id) + ':' + JSON.stringify(obj.checked) + ',';
         } else
             data += JSON.stringify(obj.id) + ':' + JSON.stringify(obj.value) + ',';
     }
