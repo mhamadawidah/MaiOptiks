@@ -1,0 +1,81 @@
+body {
+    height: 100vh;
+}
+
+.main {
+    height: 70%;
+    border: 1px solid black;
+    width: 70%;
+    margin: 5.3em auto 5.3em auto;
+}
+
+.mahnwindow {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    font-size: 1em;
+    justify-content: center;
+}
+
+.mahnheader {
+    background: white;
+    border: 1px solid gray;
+    text-align: center;
+    flex: 0.5;
+}
+
+.mahntext {
+    background: white;
+    border: 1px solid gray;
+    text-align: center;
+    flex: 1;
+}
+
+.mahnfooter {
+    background: white;
+    flex: 0.15;
+    border: 1px solid gray;
+    text-align: center;
+}
+
+.container-art {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.container-art > button {
+    height: 2em;
+    width: 6em;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.container-kunde {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    margin-left: 1em;
+    flex-wrap: wrap;
+}
+
+.container-kunde > p {
+    margin-left: 0.3em;
+    text-size: 0.5em;
+    flex-wrap: wrap;
+}
+
+.mahntext > textarea {
+    resize: none;
+    margin: 0.7em;
+    width: 90%;
+    height: 90%;
+}
+
+.mahnfooter button {
+    margin-top: auto;
+    margin-bottom: auto;
+    height: 2em;
+    width: 6em;
+}
