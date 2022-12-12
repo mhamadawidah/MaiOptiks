@@ -12,19 +12,20 @@ function doRequest(method, endpoint, key, json_data, func) {
     }
 
     //json_data = JSON.stringify(json_data);
-    if (typeof(json_data) === 'string')
-        json_data = JSON.parse(json_data);
+    if (typeof (json_data) === 'object') {
+        json_data = JSON.stringify(json_data);
+    }
 
     fetch(url, {
         method: method,
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(json_data),
+        body: json_data,
     })
         .then(async (response) => {
             if (response.status >= 200 && response.status < 300) {
-                switch (method){
+                switch (method) {
                     case 'POST':
                     case 'PUT':
                         return response.text();
