@@ -1,3 +1,28 @@
+/*
+Um das Kontextmenü zu nutzen, muss es auf eine bestimmte Weise aufgebaut werden.
+Aufbau:
+
+<nav class="contextMenu" id="contextMenu">
+    <ul class="contextMenuItems">
+        <li class="contextMenuItem" id="1">
+            <a class="contextMenuLink"
+               data-action="change"
+               href="#"><Menüpunkt1></a>
+        </li>
+        <hr/>
+        <li class="contextMenuItem" id="2">
+            <a class="contextMenuLink"
+               data-action="orders"
+               href="#"><Menüpunkt2></a>
+        </li>
+    </ul>
+</nav>
+
+Es können beliebig viele Menüpunkte ergänzt werden.
+Die hinterlegten Links, welche aufgerufen werden müssen ggf. definiert werden (s. Funktion "fillData").
+Hierbei ist der übergebene Parameter "node" die Zeile des Elements welches angeklickt wurde.
+*/
+
 function startContextMenu() {
     //// Helfer-Funktionen ////
 
