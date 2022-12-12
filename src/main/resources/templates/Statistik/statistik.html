@@ -18,6 +18,7 @@
 </div>
 
 <div class="header-button">
+    <button class=" button button-startseite" onclick="openLink('/organisation')">Zurück</button>
     <button class=" button button-startseite" onclick="openLink('/')">Startseite</button>
     <button class=" button button-startseite" onclick="Laden()">Laden</button>
     <hr class="linetop">
@@ -39,8 +40,8 @@
         <h4 id = Alter></h4>
     </div>
 </div> 
-
-<div class = "statistik">
+<div class="table-container" id="alterTable"></div>
+<!-- <div class = "statistik">
     <div>
         <h4>Anzahl Kunden (0-20 Jahren):</h4>
         <h4 id = AnzKund20></h4>
@@ -61,7 +62,7 @@
         <h4>Anzahl Kunden (81+ Jahren):</h4>
         <h4 id = AnzKund99></h4>
     </div>
-</div>
+</div> -->
 
 <hr class="linebottom">
 
@@ -87,7 +88,8 @@
        <h4 id = aufaktjahr></h4>
     </div>
 </div>
-<div class = "statistik">
+<div class="table-container" id="customerTable"></div>
+<!-- <div class = "statistik">
     <div>
         <h4> Januar</h4>
         <h4 id = m1></h4>
@@ -136,7 +138,7 @@
         <h4>Dezember</h4>
         <h4 id = m12></h4>
     </div>
-</div>
+</div> -->
 <div class = "statistik">
     <div>
         <h4>Anzahl Aufträge im Jahr:</h4>
@@ -199,11 +201,36 @@
         <h4 id = bm12></h4>
     </div>
 </div>
+<div id="chart">
+	
+</div>
 
 <hr class="linebottom">
 
 </body>
 <script>
+    function Table(Monate){
+        debugger;
+        let data = [];
+        
+        let jsonObject = {
+            'Januar': Monate[0].value,
+            'Februar': Monate[1].value,
+            'März': Monate[2].value,
+            'April': Monate[3].value,
+            'Mai': Monate[4].value,
+            'Juni': Monate[5].value,
+            'Juli': Monate[6].value,
+            'August': Monate[7].value,
+            'Sebtember': Monate[8].value,
+            'Oktober': Monate[9].value,
+            'November': Monate[10].value,
+            'Dezember': Monate[11].value
+        }
+        data.push(jsonObject);
+        let tableContainer = 'customerTable';
+        createTable(data, tableContainer, 'statistik');
+    }
 
     function Laden(){
         Kunden();
@@ -211,7 +238,6 @@
     }
     //Kunden Statistik
     function Kunden(){
-        debugger;
         
         doGetRequest(
             '/api/kundes/all',
@@ -221,12 +247,11 @@
                 Altersdurschschnitt(data);
             }); 
     }
-    function createTable(data){
-        debugger;
-        alert(data);
-    }
+    // function createTable(data){
+    //     alert(data);
+    // }
     function anzKundenZeig(data){
-        debugger;
+
         document.getElementById("AnzKund").innerHTML =data.length + " Kunden";
         let kund20 = 0;
         let kund40 = 0;
@@ -263,11 +288,21 @@
                 kund99 = kund99 + 1;
             }
         }
-        document.getElementById("AnzKund20").innerHTML = kund20 + " Kunden";
-        document.getElementById("AnzKund40").innerHTML = kund40 + " Kunden";
-        document.getElementById("AnzKund60").innerHTML = kund60 + " Kunden";
-        document.getElementById("AnzKund80").innerHTML = kund80 + " Kunden";
-        document.getElementById("AnzKund99").innerHTML = kund99 + " Kunden";
+        let data5 = []
+        let jsonObject = {
+            '0-20': kund20,
+            '21-40': kund40,
+            '41-60': kund60,
+            '61-80': kund80,
+            '81+': kund99
+        }
+        data5.push(jsonObject);
+        createTable(data5, 'alterTable', 'statistik');
+        // document.getElementById("AnzKund20").innerHTML = kund20 + " Kunden";
+        // document.getElementById("AnzKund40").innerHTML = kund40 + " Kunden";
+        // document.getElementById("AnzKund60").innerHTML = kund60 + " Kunden";
+        // document.getElementById("AnzKund80").innerHTML = kund80 + " Kunden";
+        // document.getElementById("AnzKund99").innerHTML = kund99 + " Kunden";
     }
     function Altersdurschschnitt(data){
         let jahr = new Date().getFullYear();
@@ -314,7 +349,6 @@
             }); 
     }
     function anzAuftragZeig(data){
-        debugger;
         document.getElementById("anzAuftrag").innerHTML = data.length +" Aufträge";
     }
     function AufKun(data){
@@ -381,19 +415,33 @@
                 }
             }
         };
-        document.getElementById("aufaktjahr").innerHTML = Auftragjahr + " Aufträge";
-        document.getElementById("m1").innerHTML = auf1 + " Aufträge";
-        document.getElementById("m2").innerHTML = auf2 + " Aufträge";
-        document.getElementById("m3").innerHTML = auf3 + " Aufträge";
-        document.getElementById("m4").innerHTML = auf4 + " Aufträge";
-        document.getElementById("m5").innerHTML = auf5 + " Aufträge";
-        document.getElementById("m6").innerHTML = auf6 + " Aufträge";
-        document.getElementById("m7").innerHTML = auf7 + " Aufträge";
-        document.getElementById("m8").innerHTML = auf8 + " Aufträge";
-        document.getElementById("m9").innerHTML = auf9 + " Aufträge";
-        document.getElementById("m10").innerHTML = auf10 + " Aufträge";
-        document.getElementById("m11").innerHTML = auf11 + " Aufträge";
-        document.getElementById("m12").innerHTML = auf12 + " Aufträge";
+        let data5 = [];
+        data5.push(auf1);
+        data5.push(auf2);
+        data5.push(auf3);
+        data5.push(auf4);
+        data5.push(auf5);
+        data5.push(auf6);
+        data5.push(auf7);
+        data5.push(auf8);
+        data5.push(auf9);
+        data5.push(auf10);
+        data5.push(auf11);
+        data5.push(auf12);
+        Table(data5);
+        // document.getElementById("aufaktjahr").innerHTML = Auftragjahr + " Aufträge";
+        // document.getElementById("m1").innerHTML = auf1 + " Aufträge";
+        // document.getElementById("m2").innerHTML = auf2 + " Aufträge";
+        // document.getElementById("m3").innerHTML = auf3 + " Aufträge";
+        // document.getElementById("m4").innerHTML = auf4 + " Aufträge";
+        // document.getElementById("m5").innerHTML = auf5 + " Aufträge";
+        // document.getElementById("m6").innerHTML = auf6 + " Aufträge";
+        // document.getElementById("m7").innerHTML = auf7 + " Aufträge";
+        // document.getElementById("m8").innerHTML = auf8 + " Aufträge";
+        // document.getElementById("m9").innerHTML = auf9 + " Aufträge";
+        // document.getElementById("m10").innerHTML = auf10 + " Aufträge";
+        // document.getElementById("m11").innerHTML = auf11 + " Aufträge";
+        // document.getElementById("m12").innerHTML = auf12 + " Aufträge";
     }
     function bevJahrAuf(data){
     if (document.getElementById('jahreingabe').value !== 0 && document.getElementById('jahreingabe').value > 1000 && document.getElementById('jahreingabe').value < 9999){
@@ -461,6 +509,73 @@
         document.getElementById("bm10").innerHTML = auf10 + " Aufträge";
         document.getElementById("bm11").innerHTML = auf11 + " Aufträge";
         document.getElementById("bm12").innerHTML = auf12 + " Aufträge";
+    }
+}
+function createTable(data, containerId, target) {
+    // Bereits eine Tabelle vorhanden?
+    if (document.getElementById(containerId).firstElementChild !== null) {
+        const table = document.getElementsByTagName('TABLE')[0];
+
+        table.remove();
+        createTable(data, containerId, target);
+
+        return;
+    } else {
+        const tableContainer = document.getElementById(containerId);
+        const table = document.createElement('TABLE');
+        const tableHead = document.createElement('THEAD');
+        const tableBody = document.createElement('TBODY');
+        const dataCount = data.length;
+
+        table.appendChild(tableHead);
+        table.appendChild(tableBody);
+
+        const headerRow = document.createElement('TR');
+        const keys = Object.keys(data[0]);
+
+        keys
+            .map((item) => {
+                const th = document.createElement('TH');
+                let caps = item.charAt(0).toUpperCase() + item.slice(1);
+                th.innerHTML = caps.valueOf();
+                headerRow.appendChild(th);
+            });
+        // Für jeden Kunden neue Zeile erstellen
+        for (let i = 0; i < dataCount; i++) {
+            const dataRow = document.createElement('TR');
+            const values = Object.values(data[i]);
+
+            values
+                .map((item) => {
+                    const td = document.createElement('TD');
+                    if (item == null){
+                    td.innerHTML = "0";
+                    }else{    
+                    td.innerHTML = item.valueOf();
+                    }
+                    dataRow.appendChild(td);
+                });
+
+            tableHead.appendChild(headerRow);
+            tableBody.appendChild(dataRow)
+        }
+
+        tableContainer.appendChild(table);
+    }
+
+    if (target !== undefined) {
+        let allRows = document.getElementsByTagName('TR');
+
+        for (let i = 0; i < allRows.length; i++) {
+            allRows[i].addEventListener('click', () => {
+                if (target === "neuer-kunde") {
+                    window.location.href = `/neuer-kunde?neu=false&kunnr=${data[i-1].kundenNr}&anrede=${data[i-1].anrede}&name=${data[i-1].name}&vorname=${data[i-1].vorname}&geburtsdatum=${data[i-1].geburtsdatum}&plz=${data[i-1].plz}&strasse=${data[i-1].strasse}&hausnr=${data[i-1].hausNr}&mail=${data[i-1].email}&tel=${data[i-1].telefonNr}&handy=${data[i-1].handy}&kknr=${data[i-1].krankenkassenNr}&vsnr=${data[i-1].versicherungsNr}&gueltigkeit=${data[i-1].gueltigkeit}&bemerkung=${data[i-1].bemerkung}`;;
+                }
+                if (target === "neuer-auftrag") {
+                    window.location.href = "/" // Weiterleiten zu neuer-auftrag
+                }
+            });
+        }
     }
 }
 </script>
