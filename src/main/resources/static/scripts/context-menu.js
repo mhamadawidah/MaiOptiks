@@ -1,64 +1,13 @@
 function startContextMenu() {
-    const contextMenuLinkClassName = 'contextMenuLink';
-    const menu = document.querySelector('#contextMenu');
-    const contextMenuActive = 'contextMenu--active';
-    const taskItemClassName = 'dataCell';
-    const menuItemsObject = {};
-    const page = document.getElementsByClassName('heading')[0].innerHTML;
-    let menuState = 0;
-    let clickCoords;
-    let clickCoordsX;
-    let clickCoordsY;
-    let menuWidth;
-    let menuHeight;
-    let windowWidth;
-    let windowHeight;
-    let taskItemInContext;
-    let changeLink;
-    let orderLink;
+    //// Helfer-Funktionen ////
 
-    function init() {
-        clickListener();
-        keyListener();
-        resizeListener();
-        scrollListener();
-        return contextMenuListener();
-    }
-
-// Rechtsklickevent & Standardmenü verhindern
-    function contextMenuListener() {
-        document.addEventListener('contextmenu', (evt) => {
-            taskItemInContext = clickInsideElement(evt, taskItemClassName);
-
-            if (taskItemInContext) {
-                evt.preventDefault();
-                toggleMenuOn();
-                positionMenu(evt);
-                fillData(taskItemInContext.parentNode);
-            } else {
-                taskItemInContext = null;
-                toggleMenuOff();
-            }
-        });
-    }
-
-// Menü anzeigen
-    function toggleMenuOn() {
-        if (menuState !== 1) {
-            menuState = 1;
-            menu.classList.add(contextMenuActive);
-        }
-    }
-
-// Menü ausblenden
-    function toggleMenuOff() {
-        if (menuState !== 0) {
-            menuState = 0;
-            menu.classList.remove(contextMenuActive);
-        }
-    }
-
-// Klick außerhalb der Tabelle?
+    /**
+     * Klick außerhalb der Tabelle?
+     *
+     * @param elm
+     * @param className
+     * @returns {{classList}|*|boolean}
+     */
     function clickInsideElement(elm, className) {
         elm = elm.target;
 
@@ -75,7 +24,154 @@ function startContextMenu() {
         return false;
     }
 
-// Kontext Menu an Position des Cursors verschieben
+    /**
+     * Position des Cursors beim Klick ermitteln
+     *
+     * @param evt
+     * @returns {{x: number, y: number}}
+     */
+    function getPosition(evt) {
+        let posX = 0;
+        let posY = 0;
+
+        if (!evt) evt = window.event;
+
+        if (evt.pageX || evt.pageY) {
+            posX = evt.pageX;
+            posY = evt.pageY;
+        } else if (evt.clientX || evt.clientY) {
+            posX = evt.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
+            posY = evt.clientY + document.body.scrollTop + document.documentElement.scrollTop;
+        }
+
+        return {x: posX, y: posY};
+    }
+
+    //// Kern-Funktionen ////
+
+    const contextMenuLinkClassName = 'contextMenuLink';
+    const menu = document.querySelector('#contextMenu');
+    const contextMenuActive = 'contextMenu--active';
+    const taskItemClassName = 'dataCell';
+    const menuItems = document.getElementsByClassName('contextMenuItem');
+    const page = document.getElementsByClassName('heading')[0].innerHTML;
+    let menuState = 0;
+    let clickCoords;
+    let clickCoordsX;
+    let clickCoordsY;
+    let menuWidth;
+    let menuHeight;
+    let windowWidth;
+    let windowHeight;
+    let taskItemInContext;
+    let changeLink;
+    let orderLink;
+
+    /**
+     * Start aller Kern-Funktionen
+     */
+    function init() {
+        clickListener();
+        keyListener();
+        resizeListener();
+        scrollListener();
+        contextMenuListener();
+    }
+
+    /**
+     * Rechtsklick-Event & Standardmenü verhindern
+     */
+    function contextMenuListener() {
+        document.addEventListener('contextmenu', (evt) => {
+            taskItemInContext = clickInsideElement(evt, taskItemClassName);
+
+            if (taskItemInContext) {
+                evt.preventDefault();
+                toggleMenuOn();
+                positionMenu(evt);
+                fillData(taskItemInContext.parentNode);
+            } else {
+                taskItemInContext = null;
+                toggleMenuOff();
+            }
+        });
+    }
+
+    /**
+     * Linksklick zum Deaktivieren
+     */
+    function clickListener() {
+        document.addEventListener('click', (evt) => {
+            let clickElemIsLink = clickInsideElement(evt, contextMenuLinkClassName);
+
+            if (clickElemIsLink) {
+                evt.preventDefault();
+                menuItemListener(clickElemIsLink);
+            } else {
+                let button = evt.button;
+
+                if (button === 0) {
+                    toggleMenuOff();
+                }
+            }
+
+        });
+    }
+
+    /**
+     * Escape zum Deaktivieren
+     */
+    function keyListener() {
+        window.onkeyup = (evt) => {
+            if (evt.key === 'Escape') {
+                toggleMenuOff();
+            }
+        };
+    }
+
+    /**
+     * Fenstergröße zum Deaktivieren
+     */
+    function resizeListener() {
+        window.onresize = () => {
+            toggleMenuOff();
+        }
+    }
+
+    /**
+     * Scrollen zum Deaktivieren
+     */
+    function scrollListener() {
+        document.getElementsByClassName('table-container')[0].addEventListener('scroll', () => {
+            toggleMenuOff();
+        });
+    }
+
+    /**
+     * Menü anzeigen
+     */
+    function toggleMenuOn() {
+        if (menuState !== 1) {
+            menuState = 1;
+            menu.classList.add(contextMenuActive);
+        }
+    }
+
+    /**
+     * Menü ausblenden
+     */
+    function toggleMenuOff() {
+        if (menuState !== 0) {
+            menuState = 0;
+            menu.classList.remove(contextMenuActive);
+        }
+    }
+
+    /**
+     * Kontext Menu an Position des Cursors verschieben
+     *
+     * @param evt
+     */
     function positionMenu(evt) {
         clickCoords = getPosition(evt);
         clickCoordsX = clickCoords.x + 'px';
@@ -103,34 +199,21 @@ function startContextMenu() {
         }
     }
 
-// Position des Cursors beim Klick ermitteln
-    function getPosition(evt) {
-        let posX = 0;
-        let posY = 0;
-
-        if (!evt) evt = window.event;
-
-        if (evt.pageX || evt.pageY) {
-            posX = evt.pageX;
-            posY = evt.pageY;
-        } else if (evt.clientX || evt.clientY) {
-            posX = evt.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
-            posY = evt.clientY + document.body.scrollTop + document.documentElement.scrollTop;
-        }
-
-        return {x: posX, y: posY};
-    }
-
+    /**
+     * Daten der jeweiligen Zeile erhalten
+     *
+     * @param link
+     */
     function menuItemListener(link) {
-        console.log('TaskId: ' + taskItemInContext.getAttribute('id') // TODO: Entfernen sobald läuft
-            + 'Task action: ' + link.getAttribute('data-action'));
+       // console.log('TaskId: ' + taskItemInContext.getAttribute('id') // Helfer für Daten in Konsole
+        //    + 'Task action: ' + link.getAttribute('data-action'));
         toggleMenuOff();
     }
 
     /**
      * Passende Daten im Link übergeben
      *
-     * Hier muss eventuell eine IF erstellt und die passenden Links ergänzt werden!
+     * Elseif erstellen, falls neue Links ergänzt werden!
      *
      * @param node
      */
@@ -202,7 +285,7 @@ function startContextMenu() {
                 }
             }
 
-            // Link für Bearbeiten
+            // Link für Kunde bearbeiten
             changeLink = `/neuer-kunde?neu=bearbeiten
 					&kunnr=${kundenNr}
 					&anrede=${anrede}
@@ -220,74 +303,22 @@ function startContextMenu() {
 					&gueltigkeit=${gueltigkeit}
 					&bemerkung=${bemerkung}`;
 
-            // Link für Aufträge
+            // Link für Aufträge des Kunden
             orderLink = `/auftragsdatenverwaltung?v=s&kid=${kundenNr}&auto=1`;
+        } /* elseif (page === '') {
 
-            Object.defineProperties(menuItemsObject, {
-                change: {
-                    value: changeLink
-                },
-                order: {
-                    value: orderLink
-                }
-
-            }); // TODO: Links als value
-        }
+             } */
     }
 
-// Linksklick zum Deaktivieren
-    function clickListener() {
-        document.addEventListener('click', (evt) => {
-            let clickElemIsLink = clickInsideElement(evt, contextMenuLinkClassName);
-
-            if (clickElemIsLink) {
-                evt.preventDefault();
-                menuItemListener(clickElemIsLink);
-            } else {
-                let button = evt.button;
-
-                if (button === 0) {
-                    toggleMenuOff();
-                }
-            }
-
-        });
-    }
-
-// Escape zum Deaktivieren
-    function keyListener() {
-        window.onkeyup = (evt) => {
-            if (evt.key === 'Escape') {
-                toggleMenuOff();
-            }
-        };
-    }
-
-// Fenstergröße verändert?
-    function resizeListener() {
-        window.onresize = () => {
-            toggleMenuOff();
-        }
-    }
-
-// Mausrad bedient?
-    function scrollListener() {
-        document.getElementsByClassName('table-container')[0].addEventListener('scroll', () => {
-            toggleMenuOff();
-        });
-    }
-
+    /**
+     * Anwendung starten
+     */
     init();
 
-    // Hier müssen die neue erstellten Links ergänzt werden // TODO: Object links
+    // Hier müssen die neu erstellten Links ergänzt werden
     if (page === 'Kunde') {
-        debugger;
-        menuItemsObject.change.onclick = function () {
-            window.location.href = changeLink;
-        };
-
-        menuItemsObject.order.onclick = function () {
-            window.location.href = orderLink;
-        };
+        menuItems[0].onclick = function() { window.location.href = changeLink; }; // Erster Menüpunkt
+        menuItems[1].onclick = function() { window.location.href = orderLink; }; // Zweiter Menüpunkt
+        // usw...
     }
 }
