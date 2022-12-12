@@ -249,6 +249,62 @@ function startContextMenu() {
      */
     function fillData(node) {
         if (page === 'Kunde') {
+            // Use a Map object to store the values and their corresponding indices
+            const dataMap = new Map([
+                [0, 'kundenNr'],
+                [1, 'anrede'],
+                [2, 'name'],
+                [3, 'vorname'],
+                [4, 'strasse'],
+                [5, 'hausNr'],
+                [6, 'geburtsdatum'],
+                [7, 'telefonNr'],
+                [8, 'handy'],
+                [9, 'email'],
+                [10, 'versicherungsNr'],
+                [11, 'gueltigkeit'],
+                [12, 'bemerkung'],
+                [13, 'plz'],
+                [14, 'krankenkassenNr'],
+            ]);
+
+            // Loop through the children nodes
+            for (let i = 0; i < node.children.length; i++) {
+                // Use the Map object to directly access the value associated with the index
+                const value = node.children[i].innerHTML;
+                const key = dataMap.get(i);
+
+                // Set the value to the corresponding variable
+                window[key] = value;
+            }
+
+            // Link für Kunde bearbeiten
+            changeLink = `/neuer-kunde?neu=bearbeiten
+					&kunnr=${dataMap.get(0)}
+					&anrede=${dataMap.get(1)}
+					&name=${dataMap.get(2)}
+					&vorname=${dataMap.get(3)}
+					&geburtsdatum=${dataMap.get(4)}
+					&plz=${dataMap.get(5)}
+					&strasse=${dataMap.get(6)}
+					&hausnr=${dataMap.get(7)}
+					&mail=${dataMap.get(8)}
+					&tel=${dataMap.get(9)}
+					&handy=${dataMap.get(10)}
+					&kknr=${dataMap.get(11)}
+					&vsnr=${dataMap.get(12)}
+					&gueltigkeit=${dataMap.get(13)}
+					&bemerkung=${dataMap.get(14)}`;
+
+            // Link für Aufträge des Kunden
+            orderLink = `/auftragsdatenverwaltung?v=s&kid=${dataMap.get(0)}&auto=1`;
+        } /* elseif (page === '') {
+
+             } */
+        }
+
+    /*function fillData(node) {
+        if (page === 'Kunde') {
             let kundenNr,
                 anrede,
                 name,
@@ -313,32 +369,7 @@ function startContextMenu() {
                     case 14:
                         krankenkassenNr = node.children[i].innerHTML;
                 }
-            }
-
-            // Link für Kunde bearbeiten
-            changeLink = `/neuer-kunde?neu=bearbeiten
-					&kunnr=${kundenNr}
-					&anrede=${anrede}
-					&name=${name}
-					&vorname=${vorname}
-					&geburtsdatum=${geburtsdatum}
-					&plz=${plz}
-					&strasse=${strasse}
-					&hausnr=${hausNr}
-					&mail=${email}
-					&tel=${telefonNr}
-					&handy=${handy}
-					&kknr=${krankenkassenNr}
-					&vsnr=${versicherungsNr}
-					&gueltigkeit=${gueltigkeit}
-					&bemerkung=${bemerkung}`;
-
-            // Link für Aufträge des Kunden
-            orderLink = `/auftragsdatenverwaltung?v=s&kid=${kundenNr}&auto=1`;
-        } /* elseif (page === '') {
-
-             } */
-    }
+            }*/
 
     /**
      * Anwendung starten
