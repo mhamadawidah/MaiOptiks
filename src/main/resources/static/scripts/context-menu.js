@@ -294,7 +294,7 @@ function startContextMenu() {
 					&bemerkung=${dataMap.get(14)}`;
 
             // Link für Aufträge des Kunden
-            orderLink = `/auftragsdatenverwaltung?v=s&kid=${dataMap.get(0)}&auto=1`;
+            orderLink = `/auftragsdatenverwaltung?v=s&kid=${dataMap.get(0)}`;
         } /* elseif (page === '') {
 
              } */
