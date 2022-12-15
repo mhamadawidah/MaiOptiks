@@ -87,8 +87,9 @@
         <h4>Anzahl Aufträge im aktuellen Jahr:</h4>
        <h4 id = aufaktjahr></h4>
     </div>
+    <div class="table-container" id="customerTable"></div>
 </div>
-<div class="table-container" id="customerTable"></div>
+
 <!-- <div class = "statistik">
     <div>
         <h4> Januar</h4>
@@ -147,11 +148,12 @@
     <div>
         <input class="input" id="jahreingabe" placeholder= Jahr required type="int"/>
     </div>
+    <div class="table-container" id="customerTable2"></div>
     <div>
         <button class=" button button-startseite" onclick="LadenAuftrag()">Laden</button>
     </div>
 </div>
-<div class = "statistik">
+<!-- <div class = "statistik">
     <div>
         <h4>Januar</h4>
         <h4 id = bm1></h4>
@@ -200,7 +202,7 @@
         <h4>Dezember</h4>
         <h4 id = bm12></h4>
     </div>
-</div>
+</div> -->
 <div id="chart">
 	
 </div>
@@ -209,6 +211,28 @@
 
 </body>
 <script>
+    function Table2(Monate){
+        debugger;
+        let data = [];
+        
+        let jsonObject = {
+            'Januar': Monate[0].value,
+            'Februar': Monate[1].value,
+            'März': Monate[2].value,
+            'April': Monate[3].value,
+            'Mai': Monate[4].value,
+            'Juni': Monate[5].value,
+            'Juli': Monate[6].value,
+            'August': Monate[7].value,
+            'Sebtember': Monate[8].value,
+            'Oktober': Monate[9].value,
+            'November': Monate[10].value,
+            'Dezember': Monate[11].value
+        }
+        data.push(jsonObject);
+        let tableContainer = 'customerTable2';
+        createTable(data, tableContainer, 'statistik');
+    }
     function Table(Monate){
         debugger;
         let data = [];
@@ -496,19 +520,33 @@
                 }
             }
         };
-        document.getElementById("aufbevorjahr").innerHTML = Auftragjahr + " Aufträge";
-        document.getElementById("bm1").innerHTML = auf1 + " Aufträge";
-        document.getElementById("bm2").innerHTML = auf2 + " Aufträge";
-        document.getElementById("bm3").innerHTML = auf3 + " Aufträge";
-        document.getElementById("bm4").innerHTML = auf4 + " Aufträge";
-        document.getElementById("bm5").innerHTML = auf5 + " Aufträge";
-        document.getElementById("bm6").innerHTML = auf6 + " Aufträge";
-        document.getElementById("bm7").innerHTML = auf7 + " Aufträge";
-        document.getElementById("bm8").innerHTML = auf8 + " Aufträge";
-        document.getElementById("bm9").innerHTML = auf9 + " Aufträge";
-        document.getElementById("bm10").innerHTML = auf10 + " Aufträge";
-        document.getElementById("bm11").innerHTML = auf11 + " Aufträge";
-        document.getElementById("bm12").innerHTML = auf12 + " Aufträge";
+        let data5 = [];
+        data5.push(auf1);
+        data5.push(auf2);
+        data5.push(auf3);
+        data5.push(auf4);
+        data5.push(auf5);
+        data5.push(auf6);
+        data5.push(auf7);
+        data5.push(auf8);
+        data5.push(auf9);
+        data5.push(auf10);
+        data5.push(auf11);
+        data5.push(auf12);
+        Table2(data5);
+        // document.getElementById("aufbevorjahr").innerHTML = Auftragjahr + " Aufträge";
+        // document.getElementById("bm1").innerHTML = auf1 + " Aufträge";
+        // document.getElementById("bm2").innerHTML = auf2 + " Aufträge";
+        // document.getElementById("bm3").innerHTML = auf3 + " Aufträge";
+        // document.getElementById("bm4").innerHTML = auf4 + " Aufträge";
+        // document.getElementById("bm5").innerHTML = auf5 + " Aufträge";
+        // document.getElementById("bm6").innerHTML = auf6 + " Aufträge";
+        // document.getElementById("bm7").innerHTML = auf7 + " Aufträge";
+        // document.getElementById("bm8").innerHTML = auf8 + " Aufträge";
+        // document.getElementById("bm9").innerHTML = auf9 + " Aufträge";
+        // document.getElementById("bm10").innerHTML = auf10 + " Aufträge";
+        // document.getElementById("bm11").innerHTML = auf11 + " Aufträge";
+        // document.getElementById("bm12").innerHTML = auf12 + " Aufträge";
     }
 }
 function createTable(data, containerId, target) {
