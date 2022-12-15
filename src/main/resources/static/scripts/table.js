@@ -74,7 +74,15 @@ function createTable(data, containerId, target) {
 				}
 				
 				if (target === "neuer-auftrag") {
-					window.location.href = "/"; // Weiterleiten zu neuer-auftrag
+					window.location.href = `/auftragsdatenverwaltung?v=a&kid=${data[i - 1].kundenNr}`;
+				}
+
+				if (target === 'mitarbeiter-bearbeiten') {
+					set_tab(3)
+				}
+
+				if (target === 'arzt-bearbeiten') {
+					set_tab(4);
 				}
 			});
 		}
