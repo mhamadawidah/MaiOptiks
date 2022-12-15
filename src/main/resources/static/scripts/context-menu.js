@@ -1,7 +1,7 @@
 /*
 Um das Kontextmenü zu nutzen, muss es auf eine bestimmte Weise aufgebaut werden.
 Dies passiert im jeweiligen HTML Skript.
-Dieses Skript muss wie gewohnt importiert werden:
+Das Kontextmenü Skript muss wie gewohnt importiert werden:
 
 <script th:src="@{/scripts/context-menu.js}" type="text/javascript"></script>
 
@@ -24,7 +24,7 @@ Aufbau:
 </nav>
 
 Es können beliebig viele Menüpunkte ergänzt werden.
-Die hinterlegten Links, welche aufgerufen werden müssen ggf. definiert werden (s. Funktion "fillData").
+Die hinterlegten Links, welche aufgerufen werden, müssen ggf. definiert werden (s. Funktion "fillData").
 Hierbei ist der übergebene Parameter "node" die Zeile des Elements welches angeklickt wurde.
 */
 
@@ -198,7 +198,7 @@ function startContextMenu() {
     }
 
     /**
-     * Kontext Menu an Position des Cursors verschieben
+     * Kontext Menu an Position des Cursors platzieren
      *
      * @param evt
      */
@@ -235,7 +235,7 @@ function startContextMenu() {
      * @param link
      */
     function menuItemListener(link) {
-       // console.log('TaskId: ' + taskItemInContext.getAttribute('id') // Helfer für Daten in Konsole
+        // console.log('TaskId: ' + taskItemInContext.getAttribute('id') // Helfer für Daten in Konsole
         //    + 'Task action: ' + link.getAttribute('data-action'));
         toggleMenuOff();
     }
@@ -249,92 +249,52 @@ function startContextMenu() {
      */
     function fillData(node) {
         if (page === 'Kunde') {
-            let kundenNr,
-                anrede,
-                name,
-                vorname,
-                strasse,
-                hausNr,
-                geburtsdatum,
-                telefonNr,
-                handy,
-                email,
-                versicherungsNr,
-                gueltigkeit,
-                bemerkung,
-                plz,
-                krankenkassenNr;
+            // Map Objekt um Werte aus node zu speichern
+            const dataMap = new Map([
+                [0, 'kundenNr'],
+                [1, 'anrede'],
+                [2, 'name'],
+                [3, 'vorname'],
+                [4, 'strasse'],
+                [5, 'hausNr'],
+                [6, 'geburtsdatum'],
+                [7, 'telefonNr'],
+                [8, 'handy'],
+                [9, 'email'],
+                [10, 'versicherungsNr'],
+                [11, 'gueltigkeit'],
+                [12, 'bemerkung'],
+                [13, 'plz'],
+                [14, 'krankenkassenNr'],
+            ]);
 
+            // Durch alle Children von node loopen und Map zuweisen
             for (let i = 0; i < node.children.length; i++) {
-                console.log(node.children[i].innerHTML);
-                switch (i) {
-                    case 0:
-                        kundenNr = node.children[i].innerHTML;
-                        break;
-                    case 1:
-                        anrede = node.children[i].innerHTML;
-                        break;
-                    case 2:
-                        name = node.children[i].innerHTML;
-                        break;
-                    case 3:
-                        vorname = node.children[i].innerHTML;
-                        break;
-                    case 4:
-                        strasse = node.children[i].innerHTML;
-                        break;
-                    case 5:
-                        hausNr = node.children[i].innerHTML;
-                        break;
-                    case 6:
-                        geburtsdatum = node.children[i].innerHTML;
-                        break;
-                    case 7:
-                        telefonNr = node.children[i].innerHTML;
-                        break;
-                    case 8:
-                        handy = node.children[i].innerHTML;
-                        break;
-                    case 9:
-                        email = node.children[i].innerHTML;
-                        break;
-                    case 10:
-                        versicherungsNr = node.children[i].innerHTML;
-                        break;
-                    case 11:
-                        gueltigkeit = node.children[i].innerHTML;
-                        break;
-                    case 12:
-                        bemerkung = node.children[i].innerHTML;
-                        break;
-                    case 13:
-                        plz = node.children[i].innerHTML;
-                        break;
-                    case 14:
-                        krankenkassenNr = node.children[i].innerHTML;
-                }
+                const value = node.children[i].innerHTML;
+
+                dataMap.set(i, value);
             }
 
             // Link für Kunde bearbeiten
             changeLink = `/neuer-kunde?neu=bearbeiten
-					&kunnr=${kundenNr}
-					&anrede=${anrede}
-					&name=${name}
-					&vorname=${vorname}
-					&geburtsdatum=${geburtsdatum}
-					&plz=${plz}
-					&strasse=${strasse}
-					&hausnr=${hausNr}
-					&mail=${email}
-					&tel=${telefonNr}
-					&handy=${handy}
-					&kknr=${krankenkassenNr}
-					&vsnr=${versicherungsNr}
-					&gueltigkeit=${gueltigkeit}
-					&bemerkung=${bemerkung}`;
+					&kunnr=${dataMap.get(0)}
+					&anrede=${dataMap.get(1)}
+					&name=${dataMap.get(2)}
+					&vorname=${dataMap.get(3)}
+					&geburtsdatum=${dataMap.get(4)}
+					&plz=${dataMap.get(5)}
+					&strasse=${dataMap.get(6)}
+					&hausnr=${dataMap.get(7)}
+					&mail=${dataMap.get(8)}
+					&tel=${dataMap.get(9)}
+					&handy=${dataMap.get(10)}
+					&kknr=${dataMap.get(11)}
+					&vsnr=${dataMap.get(12)}
+					&gueltigkeit=${dataMap.get(13)}
+					&bemerkung=${dataMap.get(14)}`;
 
             // Link für Aufträge des Kunden
-            orderLink = `/auftragsdatenverwaltung?v=s&kid=${kundenNr}&auto=1`;
+            orderLink = `/auftragsdatenverwaltung?v=s&kid=${dataMap.get(0)}`;
         } /* elseif (page === '') {
 
              } */
@@ -347,8 +307,12 @@ function startContextMenu() {
 
     // Hier müssen die neu erstellten Links ergänzt werden
     if (page === 'Kunde') {
-        menuItems[0].onclick = function() { window.location.href = changeLink; }; // Erster Menüpunkt
-        menuItems[1].onclick = function() { window.location.href = orderLink; }; // Zweiter Menüpunkt
+        menuItems[0].onclick = function () {
+            window.location.href = changeLink;
+        }; // Erster Menüpunkt
+        menuItems[1].onclick = function () {
+            window.location.href = orderLink;
+        }; // Zweiter Menüpunkt
         // usw...
     }
 }
