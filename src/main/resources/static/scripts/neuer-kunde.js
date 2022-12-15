@@ -44,7 +44,7 @@ if (urlParams.get('neu') === null) {
     fillTextFields();
 } else if (urlParams.get("neu") === "bearbeiten") {
     console.log("bearbeiten");
-    document.getElementById("heading").innerText = `Kunde Nr: ${urlParams.get("kunnr")}`;
+    document.getElementById("heading").innerText = `Kunden-Nr: ${urlParams.get("kunnr")}`;
     document.getElementById("submit-button").style.visibility = "hidden";
     document.getElementById("button-bearbeiten").style.visibility = "visible";
     fillTextFields();
