@@ -9,40 +9,44 @@
   <link rel="stylesheet" th:href="@{/css/mahnwesen-style.css}">
 </head>
 <body>
-<div class="title-bar">
-  <h1 class="heading">Mahnwesen</h1>
-</div>
-<div class="vertical-bar"></div>
+  <div class="title-bar">
+    <h1 class="heading">Mahnwesen</h1>
+  </div>
+  <div class="vertical-bar"></div>
 
-<div class="header">
-  <button class="button button-startseite" onclick="openLink('/')">Startseite</button>
-  <hr class="linetop">
-</div>
+  <div class="header">
+    <button class="button button-startseite" onclick="openLink('/')">Startseite</button>
+    <hr class="linetop">
+  </div>
 
-<div class="main">
-  <div class="mahnwindow">
-    <div class="mahnheader">
-      <h3>Art der Mahnung</h3>
+  <div class="main">
+    <div class="mahnwindow">
+      <div class="mahnheader">
+        <h3>Art der Mahnung</h3>
 
-      <div class="container-art">
-        <button>Zurück</button>
-        <p>Beispielmahnung</p>
-        <button>Weiter</button>
+        <div class="container-art">
+          <button>Zurück</button>
+          <p>Beispielmahnung</p>
+          <button>Weiter</button>
+        </div>
+
+        <div class="container-kunde">
+          <p>Auftragsnummer:</p>
+          <input class="input" id="auftragsnr" type="text" placeholder="Auftragsnr">
+          <button onclick="getKundeByAuftragsNr()">Suchen</button>
+          <p id="kundennummer">Kundennummer:</p>
+          <p id="kundenname">Kundenname:</p>
+        </div>
       </div>
-
-      <div class="container-kunde">
-        <p>Kundennummer:</p>
-        <p>Auftragsnummer:</p>
-        <p>Kundenname:</p>
+      <div class="mahntext">
+        <textarea>Hier steht ne fette Mahnung</textarea>
       </div>
-    </div>
-    <div class="mahntext">
-      <textarea>Hier steht ne fette Mahnung</textarea>
-    </div>
-    <div class="mahnfooter">
-      <button>Absenden</button>
+      <div class="mahnfooter">
+        <button onclick="readFile()">Absenden</button>
+      </div>
     </div>
   </div>
-</div>
+  <script type="text/javascript" th:src="@{/scripts/mahnwesen.js}"></script>
+  <script type="text/javascript" th:src="@{/scripts/main.js}"></script>
 </body>
 </html>
