@@ -15,7 +15,7 @@
     justify-content: space-evenly;
 }
 
-.head .left{
+.head .left {
     flex: 1 1 auto;
 }
 
@@ -46,6 +46,12 @@
 	width: 100%;
 }
 
+.select2 {
+    font-size: 17px;
+    width: 15%;
+    margin-right: 2%;
+}
+
 .body .label {
 	font-size: 17px;
 	width: 90%;
@@ -55,6 +61,12 @@
 .body .label2 {
 	font-size: 17px;
 	width: 90%;
+}
+
+.body .label3 {
+	font-size: 17px;
+	width: 90%;
+	text-align: left;
 }
 
 .body .input {
@@ -97,14 +109,49 @@
 
 .body .table {
     width: 90%;
+    border: none;
 }
 
-.body th tr{
+th {
+    border-left: 2px solid black;
+    border-bottom: 2px solid black;
+    border-top: none;
+    border-right: none;
+    background-color: #5ca9ff;
+    color: black;
+}
+
+td {
     width: 10%;
+    text-align: center;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    border: none;
+    background-color: #f5f5f5;
+}
+
+th[scope=row] {
+    text-align:right;
+    font-weight: bold;
+    border-top: none;
+    border-bottom: none;
+    border-left: none;
+    border-right: 2px solid black;
+    background-color: #f5f5f5;
+    color: black;
+}
+
+td[scope=line] {
+    border-top: none;
+    border-bottom: none;
+    border-left: none;
+    border-right: 2px solid black;
+    color: black;
 }
 
 .body .one {
     flex: 0 1 20%;
+    height: 50%;
 }
 
 .body .two {
@@ -121,7 +168,6 @@
 
 .body .five {
     flex: 0 0 30%;
-    height: 50%;
 }
 
 .body h3 {
