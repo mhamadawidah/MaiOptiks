@@ -1,7 +1,7 @@
 /*
 Um das Kontextmenü zu nutzen, muss es auf eine bestimmte Weise aufgebaut werden.
 Dies passiert im jeweiligen HTML Skript.
-Dieses Skript muss wie gewohnt importiert werden:
+Das Kontextmenü Skript muss wie gewohnt importiert werden:
 
 <script th:src="@{/scripts/context-menu.js}" type="text/javascript"></script>
 
@@ -24,7 +24,7 @@ Aufbau:
 </nav>
 
 Es können beliebig viele Menüpunkte ergänzt werden.
-Die hinterlegten Links, welche aufgerufen werden müssen ggf. definiert werden (s. Funktion "fillData").
+Die hinterlegten Links, welche aufgerufen werden, müssen ggf. definiert werden (s. Funktion "fillData").
 Hierbei ist der übergebene Parameter "node" die Zeile des Elements welches angeklickt wurde.
 */
 
@@ -198,7 +198,7 @@ function startContextMenu() {
     }
 
     /**
-     * Kontext Menu an Position des Cursors verschieben
+     * Kontext Menu an Position des Cursors platzieren
      *
      * @param evt
      */
@@ -235,7 +235,7 @@ function startContextMenu() {
      * @param link
      */
     function menuItemListener(link) {
-       // console.log('TaskId: ' + taskItemInContext.getAttribute('id') // Helfer für Daten in Konsole
+        // console.log('TaskId: ' + taskItemInContext.getAttribute('id') // Helfer für Daten in Konsole
         //    + 'Task action: ' + link.getAttribute('data-action'));
         toggleMenuOff();
     }
@@ -249,7 +249,7 @@ function startContextMenu() {
      */
     function fillData(node) {
         if (page === 'Kunde') {
-            // Use a Map object to store the values and their corresponding indices
+            // Map Objekt um Werte aus node zu speichern
             const dataMap = new Map([
                 [0, 'kundenNr'],
                 [1, 'anrede'],
@@ -268,14 +268,11 @@ function startContextMenu() {
                 [14, 'krankenkassenNr'],
             ]);
 
-            // Loop through the children nodes
+            // Durch alle Children von node loopen und Map zuweisen
             for (let i = 0; i < node.children.length; i++) {
-                // Use the Map object to directly access the value associated with the index
                 const value = node.children[i].innerHTML;
-                const key = dataMap.get(i);
 
-                // Set the value to the corresponding variable
-                window[key] = value;
+                dataMap.set(i, value);
             }
 
             // Link für Kunde bearbeiten
@@ -301,75 +298,7 @@ function startContextMenu() {
         } /* elseif (page === '') {
 
              } */
-        }
-
-    /*function fillData(node) {
-        if (page === 'Kunde') {
-            let kundenNr,
-                anrede,
-                name,
-                vorname,
-                strasse,
-                hausNr,
-                geburtsdatum,
-                telefonNr,
-                handy,
-                email,
-                versicherungsNr,
-                gueltigkeit,
-                bemerkung,
-                plz,
-                krankenkassenNr;
-
-            for (let i = 0; i < node.children.length; i++) {
-                console.log(node.children[i].innerHTML);
-                switch (i) {
-                    case 0:
-                        kundenNr = node.children[i].innerHTML;
-                        break;
-                    case 1:
-                        anrede = node.children[i].innerHTML;
-                        break;
-                    case 2:
-                        name = node.children[i].innerHTML;
-                        break;
-                    case 3:
-                        vorname = node.children[i].innerHTML;
-                        break;
-                    case 4:
-                        strasse = node.children[i].innerHTML;
-                        break;
-                    case 5:
-                        hausNr = node.children[i].innerHTML;
-                        break;
-                    case 6:
-                        geburtsdatum = node.children[i].innerHTML;
-                        break;
-                    case 7:
-                        telefonNr = node.children[i].innerHTML;
-                        break;
-                    case 8:
-                        handy = node.children[i].innerHTML;
-                        break;
-                    case 9:
-                        email = node.children[i].innerHTML;
-                        break;
-                    case 10:
-                        versicherungsNr = node.children[i].innerHTML;
-                        break;
-                    case 11:
-                        gueltigkeit = node.children[i].innerHTML;
-                        break;
-                    case 12:
-                        bemerkung = node.children[i].innerHTML;
-                        break;
-                    case 13:
-                        plz = node.children[i].innerHTML;
-                        break;
-                    case 14:
-                        krankenkassenNr = node.children[i].innerHTML;
-                }
-            }*/
+    }
 
     /**
      * Anwendung starten
@@ -378,8 +307,12 @@ function startContextMenu() {
 
     // Hier müssen die neu erstellten Links ergänzt werden
     if (page === 'Kunde') {
-        menuItems[0].onclick = function() { window.location.href = changeLink; }; // Erster Menüpunkt
-        menuItems[1].onclick = function() { window.location.href = orderLink; }; // Zweiter Menüpunkt
+        menuItems[0].onclick = function () {
+            window.location.href = changeLink;
+        }; // Erster Menüpunkt
+        menuItems[1].onclick = function () {
+            window.location.href = orderLink;
+        }; // Zweiter Menüpunkt
         // usw...
     }
 }
