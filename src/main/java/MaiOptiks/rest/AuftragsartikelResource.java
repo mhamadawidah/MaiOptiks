@@ -35,6 +35,11 @@ public class AuftragsartikelResource {
         return ResponseEntity.ok(auftragsartikelService.get(auftragsArtikelId));
     }
 
+    @GetMapping("/get/{auftragsNr}")
+    public ResponseEntity<List<AuftragsartikelDTO>> getByAuftragNr(@PathVariable Integer auftragsNr) {
+        return ResponseEntity.ok(auftragsartikelService.findAllByAuftragsNr(auftragsNr));
+    }
+
     @PostMapping
     @ApiResponse(responseCode = "201")
     public ResponseEntity<Integer> createAuftragsartikel(

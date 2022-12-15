@@ -1,5 +1,6 @@
 package MaiOptiks.rest;
 
+import MaiOptiks.model.AuftragsartikelDTO;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import MaiOptiks.model.HornhautDTO;
@@ -32,6 +33,11 @@ public class HornhautResource {
     @GetMapping("/{hornhautId}")
     public ResponseEntity<HornhautDTO> getHornhaut(@PathVariable final Integer hornhautId) {
         return ResponseEntity.ok(hornhautService.get(hornhautId));
+    }
+
+    @GetMapping("/get/{refraktionId}")
+    public ResponseEntity<List<HornhautDTO>> getByRefraktionId(@PathVariable Integer refraktionId) {
+        return ResponseEntity.ok(hornhautService.findAllByRefraktionId(refraktionId));
     }
 
     @PostMapping

@@ -4,6 +4,7 @@ import MaiOptiks.domain.Auftrag;
 import MaiOptiks.domain.Auftragsartikel;
 import MaiOptiks.domain.Brille;
 import MaiOptiks.model.AuftragsartikelDTO;
+import MaiOptiks.model.MaterialDTO;
 import MaiOptiks.repos.AuftragRepository;
 import MaiOptiks.repos.AuftragsartikelRepository;
 import MaiOptiks.repos.BrilleRepository;
@@ -18,8 +19,8 @@ import java.util.stream.Collectors;
 
 @Service
 public class AuftragsartikelService {
-
     private final AuftragsartikelRepository auftragsartikelRepository;
+
     private final AuftragRepository auftragRepository;
     private final BrilleRepository brilleRepository;
 
@@ -41,6 +42,13 @@ public class AuftragsartikelService {
         return auftragsartikelRepository.findById(auftragsArtikelId)
                 .map(auftragsartikel -> mapToDTO(auftragsartikel, new AuftragsartikelDTO()))
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+    }
+
+    public List<AuftragsartikelDTO> findAllByAuftragsNr(Integer auftragsNr) {
+        return auftragsartikelRepository.findAllByAuftragsNr(auftragsNr)
+                .stream()
+                .map(auftragsartikel -> mapToDTO(auftragsartikel, new AuftragsartikelDTO()))
+                .collect(Collectors.toList());
     }
 
     public Integer create(final AuftragsartikelDTO auftragsartikelDTO) {
@@ -81,5 +89,4 @@ public class AuftragsartikelService {
         auftragsartikel.setSehhilfe(sehhilfe);
         return auftragsartikel;
     }
-
 }
