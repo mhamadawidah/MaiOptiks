@@ -1,12 +1,9 @@
 let input_auftragsnr = document.getElementById("auftragsnr");
 let p_kundennummer = document.getElementById("kundennummer");
 let p_kundenname = document.getElementById("kundenname");
-
-let kunde = ""
+let p_auftragsnummer = document.getElementById("auftragsnummer");
 
 function getKundeByAuftragsNr() {
-
-
     doGetRequest(
         '/api/auftrags/',
         input_auftragsnr.value,
@@ -19,12 +16,10 @@ function getKundeByAuftragsNr() {
                 (data) => {   // func
                     console.log("data kunde", data)
 
-                    kunde = data.name
-                    console.log("kunde", kunde)
-
+                    p_kundenname.innerHTML = data.vorname + " " + data.name;
+                    p_kundennummer.innerHTML = data.kundenNr;
             });
     });
-
 
 }
 

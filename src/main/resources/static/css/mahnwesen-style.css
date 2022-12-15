@@ -58,23 +58,26 @@ body {
     margin-bottom: auto;
 }
 
-.container-kunde {
+.auftrag {
     display: flex;
-    flex-direction: row;
-    justify-content: left;
-    margin-left: 1em;
-    flex-wrap: wrap;
+    justify-content: center;
+    gap: 5px;
+    align-items: center;
 }
 
-.container-kunde > p {
-    margin-left: 0.3em;
-    text-size: 0.5em;
-    flex-wrap: wrap;
+.kunde {
+    display: flex;
+    justify-content: left;
+    gap: 5px;
+    align-items: center;
+}
+
+.kunde > p {
+    margin: 0;
 }
 
 .mahntext > textarea {
     resize: none;
-    margin: 0.7em;
     width: 100%;
     height: 90%;
 }
