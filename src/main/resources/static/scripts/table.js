@@ -39,7 +39,7 @@ function createTable(data, containerId, target) {
                     td.setAttribute('class', 'dataCell');
 					dataRow.appendChild(td);
 				});
-			debugger;
+
 			dataRow.setAttribute('id', `${i}`);
 			
 			tableHead.appendChild(headerRow);
