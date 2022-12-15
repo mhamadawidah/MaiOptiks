@@ -4,7 +4,6 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import MaiOptiks.model.AuftragDTO;
 import MaiOptiks.service.AuftragService;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -44,6 +43,23 @@ public class AuftragResource {
     @GetMapping("/getNextId")
     public ResponseEntity<BigDecimal> getNextId() {
         return ResponseEntity.ok(auftragService.getNextId());
+    }
+
+    @GetMapping("/getByKundenNr/{kundenNr}")
+    public ResponseEntity<List<AuftragDTO>> getByKundenNr(@PathVariable final Integer kundenNr) {
+
+        return ResponseEntity.ok(auftragService.getAuftragByKundenNr(kundenNr));
+    }
+
+    @GetMapping("/getByX")
+    public ResponseEntity<List<AuftragDTO>> getByKundenX(
+            @RequestParam(value = "kundenNr") Integer kundenNr,
+            @RequestParam(value = "beraterId") Integer beraterId,
+            @RequestParam(value = "werkstadtId") Integer werkstadtId,
+            @RequestParam(value = "abrechnungsart") Integer abrechnungsart
+    ) {
+
+        return ResponseEntity.ok(auftragService.getAuftragByX(kundenNr, beraterId, werkstadtId, abrechnungsart));
     }
 
     @PostMapping

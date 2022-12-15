@@ -56,6 +56,20 @@ public class AuftragService {
         return maxId.add(new BigDecimal(1));
     }
 
+    public List<AuftragDTO> getAuftragByKundenNr(Integer kundenNr) {
+        return auftragRepository.getAuftragByKundenNr(kundenNr)
+                .stream()
+                .map(auftrag -> mapToDTO(auftrag, new AuftragDTO()))
+                .collect(Collectors.toList());
+    }
+
+    public List<AuftragDTO> getAuftragByX(Integer kundenNr, Integer beraterId, Integer werkstadtId, Integer abrechnungsart) {
+        return auftragRepository.getAuftragByX(kundenNr, beraterId, werkstadtId, abrechnungsart)
+                .stream()
+                .map(auftrag -> mapToDTO(auftrag, new AuftragDTO()))
+                .collect(Collectors.toList());
+    }
+
     public Integer create(final AuftragDTO auftragDTO) {
         final Auftrag auftrag = new Auftrag();
         mapToEntity(auftragDTO, auftrag);
