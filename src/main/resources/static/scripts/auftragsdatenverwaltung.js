@@ -10,7 +10,7 @@ function set_tab(tab_id) {
 
         tab.classList.remove('hidden');
 
-        if (tab.id != 'tab-' + tab_id)
+        if (tab.id !== 'tab-' + tab_id)
             tab.classList.add('hidden')
     }
 }
