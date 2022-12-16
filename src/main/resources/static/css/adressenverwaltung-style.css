@@ -8,10 +8,10 @@
 }
 
 .search-fields {
-    height: 40%;
-    width: 40%;
-    left: 20%;
+    left: 2rem;
+    margin-top: 2rem;
 
+    background-color: red;
     position: absolute;
 }
 
@@ -20,10 +20,11 @@
 }
 
 .table-container {
-    top: 25%;
-    left: 0.5%;
-    width: 94vw;
-    height: 65%;
+    top: 10.3rem;
+    left: 16rem;
+    right: 5.5rem;
+    bottom: 4rem;
+background-color: red;
     position: absolute;
     overflow: auto;
 }
@@ -38,8 +39,8 @@
 
 /*Buttons*/
 .submit-button {
-    height: 9%;
-    width: 50%;
+    height: 2em;
+    width: 100%;
     margin-top: 0.8%;
 
     cursor: pointer;
@@ -85,7 +86,16 @@
     display: none;
 }
 
-.tab-buttons{
+.head {
+    width: calc(100vw - 4.5em);
+}
+
+.tab-body {
+    width: calc(100vw - 4.5em);
+    height: calc(100vh - 5.3em - 5%);
+}
+
+.tab-buttons {
     display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
     display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
     display: -ms-flexbox;      /* TWEENER - IE 10 */
@@ -95,5 +105,5 @@
 
 .tab-buttons input[type="button"]{
     flex: 1 1 auto;
-    width: 12.5%;
+    height: 3rem;
 }
