@@ -33,6 +33,7 @@
 <form onsubmit="document.getElementById('exit-logic-1').click(); return false;">
     <input id="tab-index" name="current_tab" type="hidden">
     <input id="hidden-kid" name="kid" type="hidden">
+    <input id="hidden-v" name="v" type="hidden">
     <div class="head">
         <div th:replace="fragments/Auftragsdatenverwaltung/auftrag.html"/>
     </div>
@@ -80,6 +81,9 @@
         <input class="action-button button" type="button" id='exit-logic-1' value="Speichern" onclick=""></input>
         <input class="action-button button" type="button" id='exit-logic-2' value="Zurück/Abbrechen"
                onclick="history.back()"></input>
+    </div>
+    <div id="search-table">
+
     </div>
 </form>
 </body>

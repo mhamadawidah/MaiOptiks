@@ -36,8 +36,9 @@ function fill_selections(call_after_load_func, call_after_load_option) {
             kundeSelection.appendChild(opt);
         }
         let kid = document.getElementById('hidden-kid').value;
-        if (kid !== undefined && kid !== ''){
+        if (kid !== undefined && kid !== '') {
             kundeSelection.value = kid;
+            if (isSearch())
             document.getElementById('exit-logic-1').click();
         }
 
@@ -107,11 +108,22 @@ function fill_selections(call_after_load_func, call_after_load_option) {
 }
 
 function clear() {
+    debugger;
     let datas = document.getElementsByClassName('data');
     for (let i = 0; i < datas.length; i++) {
         let data = datas.item(i);
+        debugger;
+        if (data.type === 'select-one') {
+            data.value = "-1";
+            continue;
+        }
+
+        if (data.type === 'checkbox') {
+            data.checked = '';
+            continue;
+        }
+
         data.value = '';
-        data.checked = '';
         data.removeAttribute('value');
     }
 }
@@ -119,10 +131,24 @@ function clear() {
 function search() {
     let key = document.getElementById('auftragsnr').value;
 
-    doGetRequest('/api/auftrags/', key, (data) => {
-        document.getElementById('auftragsnr').value = data['auftragsnummer'];
-        set_form_mode('u', 'exit-logic-1', 'auftragsnr');
-    });
+    if (key !== undefined && key !== '') {
+        doGetRequest('/api/auftrags/', key, (data) => {
+            document.getElementById('auftragsnr').value = data['auftragsnummer'];
+            set_form_mode('u', 'exit-logic-1', 'auftragsnr');
+        });
+        return;
+    }
+
+    let aid = document.getElementById('abrechnungs').value;
+    let bid = document.getElementById('betater').value;
+    let wid = document.getElementById('werkstatt').value;
+    let kid = document.getElementById('kundenNr').value;
+
+
+    doGetRequest('http://localhost:8080/api/auftrags/getByX'
+        , `?kundenNr=${kid}&beraterId=${bid}&werkstadtId=${wid}&abrechnungsart=${aid}`, (data) => {
+            createTable(data, 'search-table');
+        });
 }
 
 // add all data to database
@@ -216,8 +242,10 @@ function build_json(group_class) {
 
 function custom_params(params) {
     let kid = params.get('kid');
+    let v = params.get('v');
+    document.getElementById('hidden-v').value = v;
     if (kid !== undefined) {
-        if (params.get('v') === 's')
+        if (params.get('v') !== 'u')
             document.getElementById('hidden-kid').value = kid;
 
     }
@@ -225,5 +253,8 @@ function custom_params(params) {
 }
 
 function danke() {
-    alert('Die Datenspeicherung ist hier momentan deaktivert. 🤷‍');
+    //alert('Die Datenspeicherung ist hier momentan deaktivert. 🤷‍');
+}
+function isSearch(){
+    return document.getElementById('hidden-mode').value == "true";
 }
