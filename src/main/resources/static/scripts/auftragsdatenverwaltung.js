@@ -10,8 +10,8 @@ function set_tab(tab_id) {
 
         tab.classList.remove('hidden');
 
-        if (tab.id != 'tab-' + tab_id)
-            tab.classList.add('hidden');
+        if (tab.id !== 'tab-' + tab_id)
+            tab.classList.add('hidden')
     }
 }
 
@@ -108,7 +108,6 @@ function fill_selections(call_after_load_func, call_after_load_option) {
 }
 
 function clear() {
-    debugger;
     let datas = document.getElementsByClassName('data');
     for (let i = 0; i < datas.length; i++) {
         let data = datas.item(i);
@@ -240,21 +239,6 @@ function build_json(group_class) {
     return data;
 }
 
-function custom_params(params) {
-    let kid = params.get('kid');
-    let v = params.get('v');
-    document.getElementById('hidden-v').value = v;
-    if (kid !== undefined) {
-        if (params.get('v') !== 'u')
-            document.getElementById('hidden-kid').value = kid;
-
-    }
-
-}
-
-function danke() {
-    //alert('Die Datenspeicherung ist hier momentan deaktivert. 🤷‍');
-}
-function isSearch(){
-    return document.getElementById('hidden-mode').value == "true";
+function danke(){
+    alert('Die Datenspeicherung ist hier momentan deaktivert. 🤷‍');
 }

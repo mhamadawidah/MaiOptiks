@@ -5,6 +5,7 @@
     <title th:text="${title}"></title>
     <link rel="stylesheet" th:href="@{/css/main.css}"></link>
     <link rel="stylesheet" th:href="@{/css/kunde-style.css}"></link>
+    <link rel="stylesheet" th:href="@{/css/context-menu-style.css}"></link>
     <script th:src="@{/scripts/main.js}" type="text/javascript"></script>
     <script th:src="@{/scripts/table.js}" type="text/javascript"></script>
     <script th:src="@{/scripts/context-menu.js}" type="text/javascript"></script>
@@ -98,10 +99,5 @@
                 createTable(data, tableContainer, "neuer-kunde");
             });
     }
-
-    ////////////////
-    // Kontext Menü
-    ////////////////
-
 </script>
 </html>
