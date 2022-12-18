@@ -11,7 +11,7 @@
     position: relative;
     width: 92%;
     left: 2%;
-    display:flex;
+    display: flex;
     justify-content: space-evenly;
 }
 
@@ -26,24 +26,24 @@
     left: 2%;
 }
 
-.body .tab-buttons{
-    display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
-    display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
-    display: -ms-flexbox;      /* TWEENER - IE 10 */
-    display: -webkit-flex;     /* NEW - Chrome */
+.body .tab-buttons {
+    display: -webkit-box; /* OLD - iOS 6-, Safari 3.1-6 */
+    display: -moz-box; /* OLD - Firefox 19- (buggy but mostly works) */
+    display: -ms-flexbox; /* TWEENER - IE 10 */
+    display: -webkit-flex; /* NEW - Chrome */
     justify-content: space-evenly;
 }
 
-.body .tab-buttons input[type="button"]{
+.body .tab-buttons input[type="button"] {
     flex: 1 1 auto;
     width: 12.5%;
 }
 
 .select {
     position: relative;
-	font-size: 17px;
-	padding: 5px;
-	width: 100%;
+    font-size: 17px;
+    padding: 5px;
+    width: 100%;
 }
 
 .select2 {
@@ -53,20 +53,20 @@
 }
 
 .body .label {
-	font-size: 17px;
-	width: 90%;
-	text-align: center;
+    font-size: 17px;
+    width: 90%;
+    text-align: center;
 }
 
 .body .label2 {
-	font-size: 17px;
-	width: 90%;
+    font-size: 17px;
+    width: 90%;
 }
 
 .body .label3 {
-	font-size: 17px;
-	width: 90%;
-	text-align: left;
+    font-size: 17px;
+    width: 90%;
+    text-align: left;
 }
 
 .body .input {
@@ -104,7 +104,7 @@
 }
 
 .body .button {
-    padding: 0,5% 1%;
+    padding: 0, 5% 1%;
 }
 
 .body .table {
@@ -131,7 +131,7 @@ td {
 }
 
 th[scope=row] {
-    text-align:right;
+    text-align: right;
     font-weight: bold;
     border-top: none;
     border-bottom: none;
@@ -178,7 +178,7 @@ td[scope=line] {
     font-weight: bold;
 }
 
-.body{
+.body {
     position: relative;
     background: #f5f5f5;
     min-height: unset;
@@ -186,12 +186,13 @@ td[scope=line] {
     height: 100%;
     bottom: 2%;
 }
-.body .tab-body{
-    bottom:2%;
+
+.body .tab-body {
+    bottom: 2%;
 }
 
-.exit-logic{
-    display:flex;
+.exit-logic {
+    display: flex;
     justify-content: space-evenly;
     position: absolute;
     width: 34%;
@@ -199,22 +200,34 @@ td[scope=line] {
 
 }
 
-.exit-logic input[name='save']{
+.exit-logic input[name='save'] {
     flex: 1 1 auto;
     with: calc(32% / 2);
 }
 
-.exit-logic input[name='cancel']{
+.exit-logic input[name='cancel'] {
     flex: 1 1 auto;
     with: calc(32% / 2);
 }
 
-.body .F{
+.body .F {
     background: #004f9b;
     position: static;
     bottom: 0%;
 }
 
-.hidden{
-    display:none;
+.hidden {
+    display: none;
+}
+
+.search-table table{
+    position: sticky;
+    width: 80%;
+    height: 50%;
+    left: 5%;
+    right: 5%;
+    top: 25%;
+    bottom: 25%;
+    overflow-y: auto;
+    overflow-x: auto;
 }

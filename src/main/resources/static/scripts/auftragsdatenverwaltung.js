@@ -39,7 +39,7 @@ function fill_selections(call_after_load_func, call_after_load_option) {
         if (kid !== undefined && kid !== '') {
             kundeSelection.value = kid;
             if (isSearch())
-            document.getElementById('exit-logic-1').click();
+                document.getElementById('exit-logic-1').click();
         }
 
     });
@@ -111,7 +111,7 @@ function clear() {
     let datas = document.getElementsByClassName('data');
     for (let i = 0; i < datas.length; i++) {
         let data = datas.item(i);
-        debugger;
+
         if (data.type === 'select-one') {
             data.value = "-1";
             continue;
@@ -139,14 +139,22 @@ function search() {
     }
 
     let aid = document.getElementById('abrechnungs').value;
-    let bid = document.getElementById('betater').value;
+    let bid = document.getElementById('berater').value;
     let wid = document.getElementById('werkstatt').value;
     let kid = document.getElementById('kundenNr').value;
-
-
-    doGetRequest('http://localhost:8080/api/auftrags/getByX'
+    doGetRequest('/api/auftrags/getByX'
         , `?kundenNr=${kid}&beraterId=${bid}&werkstadtId=${wid}&abrechnungsart=${aid}`, (data) => {
-            createTable(data, 'search-table');
+            if (data.length === 0) {
+                noSearchData();
+                return;
+            }
+
+            createTable(data, 'search-table', (data2) => {
+                // manage selection of table select
+                set_form_mode('s', 'exit-logic-1', 'auftragsnr');
+                document.getElementById('auftragsnr').value = data2.auftragsnummer;
+                document.getElementById('exit-logic-1').click();
+            });
         });
 }
 
@@ -239,6 +247,29 @@ function build_json(group_class) {
     return data;
 }
 
-function danke(){
+function custom_params(params) {
+    set_hidden_item('kid', params.get('kid'));
+    set_hidden_item('v', params.get('v'));
+    // manage you own url params here
+}
+
+function danke() {
     alert('Die Datenspeicherung ist hier momentan deaktivert. 🤷‍');
+}
+
+function set_hidden_item(name, value) {
+    document.getElementById('hidden-' + name).value = value;
+}
+
+function get_hidden_item(name) {
+    return document.getElementById('hidden-' + name).value;
+}
+
+function isSearch() {
+    return get_hidden_item('v') === 's';
+}
+
+function noSearchData() {
+    alert('Es wurde nichts gefunden');
+    set_form_mode('s', 'exit-logic-1', 'auftragsnr');
 }
