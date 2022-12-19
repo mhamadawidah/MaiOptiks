@@ -25,9 +25,9 @@
         <h3>Bitte geben Sie eine Auftragsnummer an</h3>
 
         <div class="container-art">
-          <button>Zurück</button>
+          <button onclick="changeMahnung(-1)">Zurück</button>
           <p>Beispielmahnung</p>
-          <button>Weiter</button>
+          <button onclick="changeMahnung(1)">Weiter</button>
         </div>
 
         <div class="container-kunde">
@@ -47,7 +47,7 @@
         </div>
       </div>
       <div class="mahntext">
-        <textarea>Hier steht ne fette Mahnung</textarea>
+        <textarea id="textarea"></textarea>
       </div>
       <div class="mahnfooter">
         <button onclick="readFile()">Absenden</button>
