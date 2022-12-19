@@ -1,68 +1,97 @@
 <!DOCTYPE html>
 <html lang="de" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-	<meta charset="UTF-8">
-	<title th:text="${title}"></title>
-	<link rel="stylesheet" th:href="@{/css/main.css}"/>
-	<link rel="stylesheet" th:href="@{/css/neuer-kunde-style.css}">
-	<link rel="stylesheet" th:href="@{/css/adressenverwaltung-style.css}"/>
-	<script th:src="@{/scripts/main.js}" type="text/javascript"></script>
-	<script th:src="@{/scripts/table.js}" type="text/javascript"></script>
+    <meta charset="UTF-8">
+    <title th:text="${title}"></title>
+    <link rel="stylesheet" th:href="@{/css/main.css}"/>
+    <link rel="stylesheet" th:href="@{/css/adressenverwaltung-style.css}"/>
+    <link rel="stylesheet" th:href="@{/css/neuer-kunde-style.css}">
+    <script th:src="@{/scripts/main.js}" type="text/javascript"></script>
+    <script th:src="@{/scripts/table.js}" type="text/javascript"></script>
 </head>
 <body>
 <div class="title-bar">
-	<h1 class="heading">Adressenverwaltung</h1>
+    <h1 class="heading">Adressenverwaltung</h1>
 </div>
 
 <div class="vertical-bar">
-	<p></p>
+    <p></p>
 </div>
 
-<div class="head">
-	<div class="tab-buttons">
-		<input class="button" onclick="set_tab(1)" type="button" value="Mitarbeiter"/>
-		<input class="button" onclick="set_tab(2)" type="button" value="Ärzte"/>
-	</div>
+<div class="tab-buttons">
+    <input class="" onclick="set_tab(1)" type="button" value="Mitarbeiter"/>
+    <input class="" onclick="set_tab(2)" type="button" value="Ärzte"/>
 </div>
 
 <div class="tab-body">
-	<div class="tab" id="tab-1">
-		<div th:replace="fragments/Adressenverwaltung/mitarbeiter.html"></div>
-	</div>
+    <div class="tab" id="tab-1">
+        <div th:replace="fragments/Adressenverwaltung/mitarbeiter.html"></div>
+    </div>
 
-	<div class="tab" id="tab-2">
-		<div th:replace="fragments/Adressenverwaltung/aerzte.html"></div>
-	</div>
+    <div class="tab" id="tab-2">
+        <div th:replace="fragments/Adressenverwaltung/aerzte.html"></div>
+    </div>
 
-	<div class="tab" id="tab-3">
-		<div th:replace="fragments/Adressenverwaltung/mitarbeiter-bearbeiten.html"></div>
-	</div>
+    <div class="tab" id="tab-3">
+        <div th:replace="fragments/Adressenverwaltung/mitarbeiter-bearbeiten.html"></div>
+    </div>
 
-	<div class="tab" id="tab-4">
-		<div th:replace="fragments/Adressenverwaltung/aerzte-bearbeiten.html"></div>
-	</div>
+    <div class="tab" id="tab-4">
+        <div th:replace="fragments/Adressenverwaltung/aerzte-bearbeiten.html"></div>
+    </div>
 </div>
-
 <div class="direction-buttons">
+
 	<button class="button direction-button" onclick="openLink('./')">Startseite</button>
 	<button class="button direction-button" onclick="openLink('/organisation')">Zurück</button>
 	<button class="button direction-button" onclick="openLink('/mitarbeiter')">Mitarbeiter</button>
+
 </div>
 </body>
 <script>
-	function set_tab(tab_id) {
-		let tabs = document.getElementsByClassName('tab');
+    function set_tab(tab_id) {
+        let tabs = document.getElementsByClassName('tab');
 
-		for (let i = 0; i < tabs.length; i++) {
-			let tab = tabs.item(i);
+        for (let i = 0; i < tabs.length; i++) {
+            let tab = tabs.item(i);
 
-			tab.classList.remove('hidden');
+            tab.classList.remove('hidden');
 
-			if (tab.id !== 'tab-' + tab_id)
-				tab.classList.add('hidden')
-		}
-	}
+            if (tab.id !== 'tab-' + tab_id)
+                tab.classList.add('hidden')
+        }
+    }
 
-	set_tab(1);
+    function searchEmployee() {
+        let name = document.getElementById('name').value;
+        let lastname = document.getElementById('lastname').value;
+        let tableContainer = 'employeeTable';
+
+        switch (true) {
+            case (lastname === '' && name === ''):
+                lastname = '*';
+                name = '*';
+                break;
+            case (lastname === '' && name !== ''):
+                lastname = '*';
+                break;
+            case (lastname !== '' && name === ''):
+                name = '*';
+                break;
+        }
+
+        let key = `?name=${lastname}&vorname=${name}`;
+
+        doGetRequest(
+            '/api/mitarbeiters',
+            key,
+            (data) => {
+                createTable(data, tableContainer, (data2) => {
+                    set_tab(3);
+                });
+            });
+    }
+
+    set_tab(1);
 </script>
 </html>

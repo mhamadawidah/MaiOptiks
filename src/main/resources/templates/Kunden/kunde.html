@@ -96,7 +96,23 @@
             '/api/kundes',
             key,
             (data) => {   // func
-                createTable(data, tableContainer, "neuer-kunde");
+                createTable(data, tableContainer, (data2) => {
+                    window.location.href = `/neuer-kunde?neu=einsehen
+					&kunnr=${data2.kundenNr}
+					&anrede=${data2.anrede}
+					&name=${data2.name}
+					&vorname=${data2.vorname}
+					&geburtsdatum=${data2.geburtsdatum}
+					&plz=${data2.plz}
+					&strasse=${data2.strasse}
+					&hausnr=${data2.hausNr}
+					&mail=${data2.email}
+					&tel=${data2.telefonNr}
+					&handy=${data2.handy}
+					&kknr=${data2.krankenkassenNr}
+					&vsnr=${data2.versicherungsNr}
+					&gueltigkeit=${data2.gueltigkeit}
+					&bemerkung=${data2.bemerkung}`;});
             });
     }
 </script>

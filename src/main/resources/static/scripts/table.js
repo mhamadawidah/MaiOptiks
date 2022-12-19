@@ -1,94 +1,80 @@
-function createTable(data, containerId, target) {
-	// Bereits eine Tabelle vorhanden?
-	if (document.getElementById(containerId)?.firstElementChild !== null) {
-		const table = document.getElementsByTagName('TABLE')[0];
-		
-		table.remove();
-		createTable(data, containerId, target);
-		
-		return;
-	} else {
-		if (data[0] !== undefined && data[0] !== null) {
-			const tableContainer = document.getElementById(containerId);
-			const table = document.createElement('TABLE');
-			const tableHead = document.createElement('THEAD');
-			const tableBody = document.createElement('TBODY');
-			const dataCount = data.length;
-			
-			table.appendChild(tableHead);
-			table.appendChild(tableBody);
-			
-			const headerRow = document.createElement('TR');
-			const keys = Object.keys(data[0]);
-			
-			keys
-				.map((item) => {
-					const th = document.createElement('TH');
-					let caps = item.charAt(0).toUpperCase() + item.slice(1);
-					th.innerHTML = caps.valueOf();
-					headerRow.appendChild(th);
-				});
-			// Für jeden Eintrag neue Zeile erstellen
-			for (let i = 0; i < dataCount; i++) {
-				const dataRow = document.createElement('TR');
-				const values = Object.values(data[i]);
-				
-				values
-					.map((item) => {
-						const td = document.createElement('TD');
-						td.innerHTML = item.valueOf();
-						td.setAttribute('class', 'dataCell');
-						dataRow.appendChild(td);
-					});
-				
-				dataRow.setAttribute('id', `${i}`);
-				
-				tableHead.appendChild(headerRow);
-				tableBody.appendChild(dataRow);
-			}
-			
-			tableContainer.appendChild(table);
-		} else {
-			alert('\nKeine Daten vorhanden');
-		}
-	}
-	
-	if (target !== undefined) {
-		let allRows = document.getElementsByTagName('TR');
-		
-		for (let i = 0; i < allRows.length; i++) {
-			allRows[i].addEventListener('click', () => {
-				if (target === "neuer-kunde") {
-					window.location.href = `/neuer-kunde?neu=einsehen
-					&kunnr=${data[i - 1].kundenNr}
-					&anrede=${data[i - 1].anrede}
-					&name=${data[i - 1].name}
-					&vorname=${data[i - 1].vorname}
-					&geburtsdatum=${data[i - 1].geburtsdatum}
-					&plz=${data[i - 1].plz}
-					&strasse=${data[i - 1].strasse}
-					&hausnr=${data[i - 1].hausNr}
-					&mail=${data[i - 1].email}
-					&tel=${data[i - 1].telefonNr}
-					&handy=${data[i - 1].handy}
-					&kknr=${data[i - 1].krankenkassenNr}
-					&vsnr=${data[i - 1].versicherungsNr}
-					&gueltigkeit=${data[i - 1].gueltigkeit}
-					&bemerkung=${data[i - 1].bemerkung}`;
-				}
-				
-				if (target === "neuer-auftrag") {
-					window.location.href = `/auftragsdatenverwaltung?v=a&kid=${data[i - 1].kundenNr}`;
-				}
+function createTable(data, containerId, selectedCallback, minColumns) {
+    // Bereits eine Tabelle vorhanden?
+    let tableContainer;
+    if (document.getElementById(containerId).firstElementChild !== null) {
+        const table = document.getElementsByTagName('TABLE')[0];
 
-				if (target === 'mitarbeiter-bearbeiten') {
-					set_tab(3)
-				}
+        table.remove();
+        createTable(data, containerId, selectedCallback);
 
-				if (target === 'arzt-bearbeiten') {
-					set_tab(4);
-				}
-			});
-		}
-	}
+        return;
+    } else {
+        tableContainer = document.getElementById(containerId);
+        const table = document.createElement('TABLE');
+        const tableHead = document.createElement('THEAD');
+        const tableBody = document.createElement('TBODY');
+        const dataCount = data.length;
+
+        table.appendChild(tableHead);
+        table.appendChild(tableBody);
+
+        const headerRow = document.createElement('TR');
+        const keys = Object.keys(data[0]);
+
+        keys
+            .map((item) => {
+                const th = document.createElement('TH');
+                let caps = item.charAt(0).toUpperCase() + item.slice(1);
+                th.innerHTML = caps.valueOf();
+                headerRow.appendChild(th);
+            });
+
+        if (minColumns === undefined)
+            minColumns = 0;
+
+        let emptyData;
+        if (data.length > 0) {
+            emptyData = Object.values(data[0]);
+            for (let i = 0; i < emptyData.length; i++) {
+                emptyData[i] = '';
+            }
+        }
+
+        // Für jeden Eintrag neue Zeile erstellen
+        for (let i = 0; i < dataCount || i < minColumns; i++) {
+
+            const dataRow = document.createElement('TR');
+            let values = Object.values(emptyData);
+            if (i < dataCount)
+                values = Object.values(data[i]);
+
+            values
+                .map((item) => {
+                    const td = document.createElement('TD');
+                    if (item !== undefined && item !== null)
+                        td.innerHTML = item.valueOf();
+                    else td.innerHTML = '';
+                    td.setAttribute('class', 'dataCell');
+                    dataRow.appendChild(td);
+                });
+
+            dataRow.setAttribute('id', `${i}`);
+
+            tableHead.appendChild(headerRow);
+            tableBody.appendChild(dataRow);
+        }
+
+        tableContainer.appendChild(table);
+    }
+
+    if (selectedCallback !== undefined) {
+
+        let allRows = tableContainer.getElementsByTagName('TR');
+
+        for (let i = 1 /* 0 === header*/; i < allRows.length; i++) {
+            allRows[i].addEventListener('click', () => {
+                selectedCallback(data[i - 1]);
+            });
+        }
+    }
 }

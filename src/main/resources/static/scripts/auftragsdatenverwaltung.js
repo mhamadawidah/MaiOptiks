@@ -25,7 +25,7 @@ function get_newest_key() {
     });
 }
 
-function fill_selections() {
+function fill_selections(call_after_load_func, call_after_load_option) {
     let kundeSelection = document.getElementById('kundenNr');
 
     doGetRequest('/api/kundes?name=%2A&vorname=%2A', '', (data) => {
@@ -35,6 +35,13 @@ function fill_selections() {
             opt.innerHTML = data[i]['vorname'] + ' ' + data[i]['name']
             kundeSelection.appendChild(opt);
         }
+        let kid = document.getElementById('hidden-kid').value;
+        if (kid !== undefined && kid !== '') {
+            kundeSelection.value = kid;
+            if (isSearch())
+                document.getElementById('exit-logic-1').click();
+        }
+
     });
 
     let auftragsartenSelection = document.getElementById('abrechnungs');
@@ -101,22 +108,59 @@ function fill_selections() {
 }
 
 function clear() {
+    removeBlur();
+    nukeSearchTable();
     let datas = document.getElementsByClassName('data');
     for (let i = 0; i < datas.length; i++) {
         let data = datas.item(i);
+
+        if (data.type === 'select-one') {
+            data.value = "-1";
+            continue;
+        }
+
+        if (data.type === 'checkbox') {
+            data.checked = '';
+            continue;
+        }
+
         data.value = '';
-        data.checked = '';
         data.removeAttribute('value');
     }
 }
 
 function search() {
+    applyBlur();
     let key = document.getElementById('auftragsnr').value;
 
-    doGetRequest('/api/auftrags/', key, (data) => {
-        document.getElementById('auftragsnr').value = data['auftragsnummer'];
-        set_form_mode('u', 'exit-logic-1', 'auftragsnr');
-    });
+    if (key !== undefined && key !== '') {
+        doGetRequest('/api/auftrags/', key, (data) => {
+            document.getElementById('auftragsnr').value = data['auftragsnummer'];
+            set_form_mode('u', 'exit-logic-1', 'auftragsnr');
+        });
+        return;
+    }
+
+    let aid = document.getElementById('abrechnungs').value;
+    let bid = document.getElementById('berater').value;
+    let wid = document.getElementById('werkstatt').value;
+    let kid = document.getElementById('kundenNr').value;
+    doGetRequest('/api/auftrags/getByX'
+        , `?kundenNr=${kid}&beraterId=${bid}&werkstadtId=${wid}&abrechnungsart=${aid}`, (data) => {
+            if (data.length === 0) {
+                noSearchData();
+                return;
+            }
+            document.getElementById('search-table').hidden = false;
+            createTable(data, 'search-table', (selected) => {
+                // manage selection of table select
+
+                set_form_mode('s', 'exit-logic-1', 'auftragsnr');
+                document.getElementById('auftragsnr').value = selected.auftragsnummer;
+                document.getElementById('exit-logic-1').click();
+                nukeSearchTable();
+            }, 14);
+        });
 }
 
 // add all data to database
@@ -199,7 +243,7 @@ function build_json(group_class) {
     for (let i = 0; i < update.length; i++) {
         let obj = update.item(i);
         if (obj.type === 'checkbox') {
-            data += JSON.stringify(obj.id) + ':' + JSON.stringify(obj.value === 'on') + ',';
+            data += JSON.stringify(obj.id) + ':' + JSON.stringify(obj.checked) + ',';
         } else
             data += JSON.stringify(obj.id) + ':' + JSON.stringify(obj.value) + ',';
     }
@@ -208,6 +252,42 @@ function build_json(group_class) {
     return data;
 }
 
-function danke(){
+function custom_params(params) {
+    set_hidden_item('kid', params.get('kid'));
+    set_hidden_item('v', params.get('v'));
+    // manage you own url params here
+}
+
+function danke() {
     alert('Die Datenspeicherung ist hier momentan deaktivert. 🤷‍');
+}
+
+function set_hidden_item(name, value) {
+    document.getElementById('hidden-' + name).value = value;
+}
+
+function get_hidden_item(name) {
+    return document.getElementById('hidden-' + name).value;
+}
+
+function isSearch() {
+    return get_hidden_item('v') === 's';
+}
+
+function noSearchData() {
+    alert('Es wurde nichts gefunden');
+    set_form_mode('s', 'exit-logic-1', 'auftragsnr');
+}
+
+function nukeSearchTable() {
+    if (document.getElementById('search-table').children.length > 0)
+        document.getElementById('search-table').children[0].remove();
+    document.getElementById('search-table').hidden = true;
+}
+
+function applyBlur() {
+    document.getElementById('mainWindow').style = ' filter: blur(5px); -webkit-filter: blur(5px);';
+}
+function removeBlur() {
+    document.getElementById('mainWindow').style = '';
 }
