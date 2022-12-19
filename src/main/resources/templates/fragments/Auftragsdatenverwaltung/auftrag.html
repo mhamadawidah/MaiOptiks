@@ -6,27 +6,27 @@
     <div class="left">
         <label>
             Auftragsnummer
-            <input class="date lockable lock-mode-a lock-mode-u" id="auftragsnr" name="auftragsnr"
+            <input class="date lockable lock-mode-a lock-mode-u select2" id="auftragsnr" name="auftragsnr"
                    placeholder="Auftrags-Nr."
                    type="text"/>
         </label>
         <label>
             Abrechnungsart
-            <select class="lockable lock-mode-s data data-auftrag" name="abrechungsart" id="abrechnungs">
+            <select class="data data-auftrag select2" name="abrechungsart" id="abrechnungs">
+                <option class="hideable hide-mode-u hide-mode-a" value="-1">-/-</option>
             </select>
         </label>
         <label>
             Artikelart
-            <select class="lockable lock-mode-u" id="selection-artikelart" onclick="set_tabs_visibility(this);">
+            <select class="lockable lock-mode-u select2" id="selection-artikelart" onclick="set_tabs_visibility(this);">
                 <option>Brille</option>
                 <option>Kontaktlinse</option>
             </select>
         </label>
-    </div>
-    <div class="right">
-        <label class="">
+        <label>
             Kunde
-            <select class="lockable lock-mode-s data data-auftrag" name="kunde" id="kundenNr">
+            <select class="data data-auftrag select2" name="kunde" id="kundenNr">
+                <option class="hideable hide-mode-a hide-mode-u" value="-1">-/-</option>
             </select>
         </label>
     </div>

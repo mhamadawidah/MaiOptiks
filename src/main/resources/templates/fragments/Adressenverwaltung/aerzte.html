@@ -45,7 +45,9 @@
             '/api/arzts',
             key,
             (data) => {   // func
-                createTable(data, tableContainer, "aerzte-bearbeiten");
+                createTable(data, tableContainer, (data2) => {
+                    set_tab(4);
+                });
             });
     }
 
