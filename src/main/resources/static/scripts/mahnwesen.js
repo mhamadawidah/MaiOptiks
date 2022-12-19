@@ -7,19 +7,30 @@ let textarea = document.getElementById("textarea");
 let rechnungsnummer = ""
 let datum = ""
 
+let currentText = 0
+
 function getKundeByAuftragsNr() {
+    if (input_auftragsnr.value === null || input_auftragsnr.value === "") {
+        console.log("expr Error")
+            alert("Bitte geben Sie eine Auftragsnummer ein!")
+            return;
+        }
+
+    const expression = /^[0-9]+$/
+    if (!expression.test(input_auftragsnr.value.trim())) {
+    console.log("expr Error")
+        alert("Die Auftragsnummer darf nur aus Zahlen bestehen!")
+        return;
+    }
+
     doGetRequest(
         '/api/auftrags/',
         input_auftragsnr.value,
         (data) => {
-            console.log("data auftrag", data)
-
             doGetRequest(
                 '/api/kundes/',
                 data.kundenNr,
                 (data) => {
-                    console.log("data kunde", data)
-
                     p_kundenname.innerHTML = data.vorname + " " + data.name;
                     p_kundennummer.innerHTML = data.kundenNr;
                     p_auftragsnummer.innerHTML = input_auftragsnr.value;
@@ -34,15 +45,13 @@ function getKundeByAuftragsNr() {
     });
 }
 
-let currentText = 0
-
 function changeMahnung(direction) {
-    console.log("currentText", currentText)
     if (p_auftragsnummer.innerHTML === "" || p_auftragsnummer.innerHTML === null) {
-    console.log("falsch")
+        alert("Bitte geben Sie eine Autragsnummer ein!")
         return;
     }
-    console.log("durch")
+
+    input_auftragsnr.style.BorderColor = "black";
 
     currentText = currentText + direction
 
@@ -85,4 +94,13 @@ function changeMahnung(direction) {
         default:
             textarea.innerHTML = "Erste Mahnung";
     }
+}
+
+function sendMahnung() {
+    if (p_auftragsnummer.innerHTML === "" || p_auftragsnummer.innerHTML === null) {
+        alert("Bitte geben Sie eine Autragsnummer ein!")
+        return;
+    }
+
+    alert("Mahnung versendet!")
 }
