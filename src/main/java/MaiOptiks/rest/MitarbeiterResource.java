@@ -24,6 +24,10 @@ public class MitarbeiterResource {
         this.mitarbeiterService = mitarbeiterService;
     }
 
+    /**
+     * Deprecated. Use {@link MitarbeiterResource#getAll(String, String)} instead.
+     */
+    @Deprecated
     @GetMapping
     public ResponseEntity<List<MitarbeiterDTO>> getAllMitarbeiters() {
         return ResponseEntity.ok(mitarbeiterService.findAll());
@@ -33,6 +37,23 @@ public class MitarbeiterResource {
     public ResponseEntity<MitarbeiterDTO> getMitarbeiter(
             @PathVariable final Integer mitarbeiterNr) {
         return ResponseEntity.ok(mitarbeiterService.get(mitarbeiterNr));
+    }
+
+    @GetMapping("/getAll")
+    public ResponseEntity<List<MitarbeiterDTO>> getAll(@RequestParam(value="name") String name, @RequestParam(value="vorname") String vorname) {
+        if (name.trim().equalsIgnoreCase("*") && vorname.trim().equalsIgnoreCase("*"))
+        {
+            return ResponseEntity.ok(mitarbeiterService.findAll());
+        }
+        if (vorname.trim().equalsIgnoreCase("*"))
+        {
+            return ResponseEntity.ok(mitarbeiterService.getByName(name));
+        }
+        if (name.trim().equalsIgnoreCase("*"))
+        {
+            return ResponseEntity.ok(mitarbeiterService.getByVorname(vorname));
+        }
+        return ResponseEntity.ok(mitarbeiterService.getByNameAndVorname(name, vorname));
     }
 
     @PostMapping
