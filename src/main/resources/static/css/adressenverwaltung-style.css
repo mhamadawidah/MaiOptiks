@@ -10,8 +10,6 @@
 .search-fields {
     left: 2rem;
     margin-top: 2rem;
-
-    background-color: red;
     position: absolute;
 }
 
@@ -24,7 +22,6 @@
     left: 16rem;
     right: 5.5rem;
     bottom: 4rem;
-background-color: red;
     position: absolute;
     overflow: auto;
 }
@@ -35,6 +32,10 @@ background-color: red;
     width: 90%;
     left: 0.5%;
     bottom: 2%;
+}
+
+h3 {
+    text-align: center;
 }
 
 /*Buttons*/

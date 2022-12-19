@@ -1,0 +1,37 @@
+.input {
+    height: 90%;
+    width: 60%;
+}
+
+.input2 {
+    height: 35%;
+    width: 60%;
+}
+
+.body {
+    width: 80%;
+    margin-right: 20%;
+    text-align: right;
+    margin-top: 1%;
+    padding-bottom: 5%;
+    display: flex;
+    justify-content: center;
+    gap: 3em;
+    flex-wrap: wrap;
+}
+
+.block {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    flex: 0 1 30%;
+}
+
+.button {
+    margin: 1%;
+    padding: 0.4% 1.2%;
+}
+
+.button2 {
+    width: 30%;
+}
