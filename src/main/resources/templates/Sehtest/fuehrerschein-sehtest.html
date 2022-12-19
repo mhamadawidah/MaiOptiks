@@ -15,90 +15,101 @@
     <p></p>
 </div>
 <br>
-<button type="button" class="button zurück" onclick="openLink('/')">Zurück</button>
+<button type="button" class="button zurück" onclick="openLink('/')"><span class="material-symbols-outlined">arrow_back</span>Zurück</button>
 <div class="box">
-    <h2 class="center"> Sehtestbescheinigung</h2>
-    <h4 class="center"> (Anlage 6 Nummer 1.1 der Fahrerlaubnis-Verordnung)</h4>
-    <div class="center"> von Bewerbern um die Erteilung einer Fahrerlaubnis der Klassen AM, A1, A2, A, B, BE, L oder T</div>
-    <br>
-    <div>
-        Nr. 161 &emsp; &emsp; &emsp; * W2765<br><br>
-        Seriennummer Führerscheinsehtestgerät:<br>
-        60100/84826940
-    </div>
-    <div class="box2"> Amtlich anerkannte Sehteststelle:</div>
-    <div class="right">
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" class="textbox"><br>
-        <label for="vorname">Vorname:</label>
-        <input type="text" id="vorname" name="vorname" class="textbox"><br>
-        <label for="geburtstag"> Geburtstag:</label>  &emsp; &emsp;
-        <input type="date" id="geburtstag" name="geburtstag" class="textbox">
-    </div>
-    <hr>
-    <div>
-        &nbsp; Der Sehtest wurde durchgeführt   &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;
-        <input type="checkbox" id="Identitaet" name="Identitaet" value="Indent" class="ausweis">
-        <label for="Identitaet" class="ausweis"> Identität nachgewiesen </label><br><br>
-        <input type="radio" id="ohneSehhilfe" name="Sehhilfe" value="ohne" > <label for="ohneSehhilfe"> ohne Sehhilfe </label>
-        &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &nbsp;
-        &emsp; &emsp; &emsp; Ausweisdokument <br>
-        <input type="radio" id="mitSehhilfe" name="Sehhilfe" value="mit"><label for="mitSehhilfe"> mit Sehhilfe </label>
-        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-        <label for="nr" class="ausweis">Nr.:</label> <input type="text" id="nr" name="nr" class="textbox">
-    </div>
-    <hr>
-    <label for="ergebnis">Ergebnis des Sehtests:</label>
-    <input type="text" id="ergebnis" name="ergebnis" class="textbox">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    <input type="checkbox" id="drucken" name="drucken" value="drucken">
-    <label for="drucken"> Blatt1: für die Auswertstelle drucken </label>
-    <hr>
-    <div class="schärfe">Die entsprechende zentrale Tagessehschärfe beträgt: &nbsp; &nbsp; &nbsp; &nbsp;
-        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Der Sehtest ist<br> <br>
-        0,7 oder mehr: &nbsp;
-        <input type="radio" id="mehrr" name="rechts" value="mehrr">
-        <label for="mehrr"> rechts </label>
-        <input type="radio" id="mehrl" name="links" value="mehrl">
-        <label for="mehrl"> links </label> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-        <input type="radio" id="bestanden" name="bestehen" value="bestanden">
-        <label for="bestanden"> bestanden  </label><br>
-        weniger: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &thinsp;
-        <input type="radio" id="wenigerr" name="rechts" value="wenigerr">
-        <label for="wenigerr"> rechts </label>
-        <input type="radio" id="wenigerl" name="links" value="wenigerl">
-        <label for="wenigerl"> links </label> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-        <input type="radio" id="nichtbest" name="bestehen" value="nichbest">
-        <label for="nichtbest"> nicht bestanden </label>
-    </div>
-    <hr>
-    <input type="checkbox" id="zweifel" name="zweifel" value="zweifel">
-    <label for="zweifel"> Sonstige Zweifel an ausreichenden Sehvermögen <br> &nbsp; &nbsp; &nbsp; gemäß Anlage 6 der Fahrerlaubnis-Verordnung </label>
-    <br><br>
-    <label for="zweifeltb">Art der Zweifel:</label>
-    <input type="text" id="zweifeltb" name="zweifeltb" class="textbox breit">
-    <hr>
-    <div>Ist der Sehtest bestanden, so fügen Sie bitte diese Bescheinigung dem Antrag auf Erteilung der Fahrerlaubnis bei,
-        die Bescheinigung bleibt zwei Jahre gültig. Ist der Sehtest nicht bestanden oder bestehen sonstige Zweifel am
-        ausreichenden Sehvermögen, so müssen Sie eine augenärztliche Untersuchung durchführen lassen
-        (§12 Absatz 5 der Fahrerlaubnis-Verordnung)</div>
-    <input type="text" id="ort" name="ort" placeholder="Ort" class="textbox">
-    , den
-    <input type="date" id="datum" name="datum" class="textbox">
-    <br><br>
-    <div class="linie">Unterschrift des Sehtesters</div>
+    <div id="divToBePrinted">
+        <h2 class="center"> Sehtestbescheinigung</h2>
+        <h4 class="center"> (Anlage 6 Nummer 1.1 der Fahrerlaubnis-Verordnung)</h4>
+        <div class="center"> von Bewerbern um die Erteilung einer Fahrerlaubnis der Klassen AM, A1, A2, A, B, BE, L oder T</div>
+        <br>
+        <div>
+            Nr. 161 &emsp; &emsp; &emsp; * W2765<br><br>
+            Seriennummer Führerscheinsehtestgerät:<br>
+            60100/84826940
+        </div>
+        <div class="box2"> Amtlich anerkannte Sehteststelle:</div>
+        <div class="right">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" class="textbox"><br>
+            <label for="vorname">Vorname:</label>
+            <input type="text" id="vorname" name="vorname" class="textbox"><br>
+            <label for="geburtstag"> Geburtstag:</label>  &emsp; &emsp;
+            <input type="date" id="geburtstag" name="geburtstag" class="textbox">
+        </div>
+        <hr>
+        <div>
+            &nbsp; Der Sehtest wurde durchgeführt   &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;
+            <input type="checkbox" id="Identitaet" name="Identitaet" value="Indent" class="ausweis">
+            <label for="Identitaet" class="ausweis"> Identität nachgewiesen </label><br><br>
+            <input type="radio" id="ohneSehhilfe" name="Sehhilfe" value="ohne" > <label for="ohneSehhilfe"> ohne Sehhilfe </label>
+            &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &nbsp;
+            &emsp; &emsp; &emsp; Ausweisdokument <br>
+            <input type="radio" id="mitSehhilfe" name="Sehhilfe" value="mit"><label for="mitSehhilfe"> mit Sehhilfe </label>
+            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+            <label for="nr" class="ausweis">Nr.:</label> <input type="text" id="nr" name="nr" class="textbox">
+        </div>
+        <hr>
+        <label for="ergebnis">Ergebnis des Sehtests:</label>
+        <input type="text" id="ergebnis" name="ergebnis" class="textbox">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+        <input type="checkbox" id="drucken" name="drucken" value="drucken">
+        <label for="drucken"> Blatt1: für die Auswertstelle drucken </label>
+        <hr>
+        <div class="schärfe">Die entsprechende zentrale Tagessehschärfe beträgt: &nbsp; &nbsp; &nbsp; &nbsp;
+            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Der Sehtest ist<br> <br>
+            0,7 oder mehr: &nbsp;
+            <input type="radio" id="mehrr" name="rechts" value="mehrr">
+            <label for="mehrr"> rechts </label>
+            <input type="radio" id="mehrl" name="links" value="mehrl">
+            <label for="mehrl"> links </label> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+            <input type="radio" id="bestanden" name="bestehen" value="bestanden">
+            <label for="bestanden"> bestanden  </label><br>
+            weniger: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &thinsp;
+            <input type="radio" id="wenigerr" name="rechts" value="wenigerr">
+            <label for="wenigerr"> rechts </label>
+            <input type="radio" id="wenigerl" name="links" value="wenigerl">
+            <label for="wenigerl"> links </label> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+            <input type="radio" id="nichtbest" name="bestehen" value="nichbest">
+            <label for="nichtbest"> nicht bestanden </label>
+        </div>
+        <hr>
+        <input type="checkbox" id="zweifel" name="zweifel" value="zweifel">
+        <label for="zweifel"> Sonstige Zweifel an ausreichenden Sehvermögen <br> &nbsp; &nbsp; &nbsp; gemäß Anlage 6 der Fahrerlaubnis-Verordnung </label>
+        <br><br>
+        <label for="zweifeltb">Art der Zweifel:</label>
+        <input type="text" id="zweifeltb" name="zweifeltb" class="textbox breit">
+        <hr>
+        <div>Ist der Sehtest bestanden, so fügen Sie bitte diese Bescheinigung dem Antrag auf Erteilung der Fahrerlaubnis bei,
+            die Bescheinigung bleibt zwei Jahre gültig. Ist der Sehtest nicht bestanden oder bestehen sonstige Zweifel am
+            ausreichenden Sehvermögen, so müssen Sie eine augenärztliche Untersuchung durchführen lassen
+            (§12 Absatz 5 der Fahrerlaubnis-Verordnung)</div>
+        <input type="text" id="ort" name="ort" placeholder="Ort" class="textbox">
+        , den
+        <input type="date" id="datum" name="datum" class="textbox">
+        <br><br>
+        <div class="linie">Unterschrift des Sehtesters</div>
 
-    <div class="box3"> Gebühr/einschl. MwSt.<br>
-        <div class="preis">6,50 €<br></div>
-        Dieser Bereich wird auf dem Ausdruck nicht angezeigt</div>
-    <button type="button" class="button" onclick="openLink('/')">Zurück</button>
-    <button type="button" class="button drucken">Drucken</button>
+        <div class="box3"> Gebühr/einschl. MwSt.<br>
+            <div class="preis">6,50 €<br></div>
+            Dieser Bereich wird auf dem Ausdruck nicht angezeigt</div>
+    </div>
+    <button type="button" class="button" onclick="openLink('/')"><span class="material-symbols-outlined">arrow_back</span>Zurück</button>
+    <button type="button" class="button drucken" onclick="printDiv('divToBePrinted')"><span class="material-symbols-outlined">print</span>Drucken</button>
 </div>
 </body>
 <script>
     document.getElementById('datum').value = new Date().toISOString().slice(0, 10);
     document.getElementById('ort').value = 'Westerkappeln';
+
+    function printDiv(divToBePrinted) {
+        const printContent = document.getElementById(divToBePrinted).innerHTML;
+        const originalContent = document.body.innerHTML;
+        // TODO: Style the printed page
+        document.body.innerHTML = printContent;
+        window.print();
+        document.body.innerHTML = originalContent;
+    }
 </script>
 </html>
