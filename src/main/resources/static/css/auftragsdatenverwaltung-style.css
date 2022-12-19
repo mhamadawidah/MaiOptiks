@@ -11,11 +11,12 @@
     position: relative;
     width: 92%;
     left: 2%;
-    display:flex;
+    display: flex;
     justify-content: space-evenly;
+    padding-bottom: 1%;
 }
 
-.head .left{
+.head .left {
     flex: 1 1 auto;
 }
 
@@ -26,35 +27,48 @@
     left: 2%;
 }
 
-.body .tab-buttons{
-    display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
-    display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
-    display: -ms-flexbox;      /* TWEENER - IE 10 */
-    display: -webkit-flex;     /* NEW - Chrome */
+.body .tab-buttons {
+    display: -webkit-box; /* OLD - iOS 6-, Safari 3.1-6 */
+    display: -moz-box; /* OLD - Firefox 19- (buggy but mostly works) */
+    display: -ms-flexbox; /* TWEENER - IE 10 */
+    display: -webkit-flex; /* NEW - Chrome */
     justify-content: space-evenly;
 }
 
-.body .tab-buttons input[type="button"]{
+.body .tab-buttons input[type="button"] {
     flex: 1 1 auto;
     width: 12.5%;
+    text-anchor: middle;
 }
 
 .select {
     position: relative;
-	font-size: 17px;
-	padding: 5px;
-	width: 100%;
+    font-size: 17px;
+    padding: 5px;
+    width: 100%;
+}
+
+.select2 {
+    font-size: 17px;
+    width: 15%;
+    margin-right: 2%;
 }
 
 .body .label {
-	font-size: 17px;
-	width: 90%;
-	text-align: center;
+    font-size: 17px;
+    width: 90%;
+    text-align: center;
 }
 
 .body .label2 {
-	font-size: 17px;
-	width: 90%;
+    font-size: 17px;
+    width: 90%;
+}
+
+.body .label3 {
+    font-size: 17px;
+    width: 90%;
+    text-align: left;
 }
 
 .body .input {
@@ -92,19 +106,54 @@
 }
 
 .body .button {
-    padding: 0,5% 1%;
+    padding: 0 5% 1%;
 }
 
 .body .table {
     width: 90%;
+    border: none;
 }
 
-.body th tr{
+#mainWindow th {
+    border-left: 2px solid black;
+    border-bottom: 2px solid black;
+    border-top: none;
+    border-right: none;
+    background-color: #5ca9ff;
+    color: black;
+}
+
+#mainWindow td {
     width: 10%;
+    text-align: center;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    border: none;
+    background-color: #f5f5f5;
+}
+
+#mainWindow th[scope=row] {
+    text-align: right;
+    font-weight: bold;
+    border-top: none;
+    border-bottom: none;
+    border-left: none;
+    border-right: 2px solid black;
+    background-color: #f5f5f5;
+    color: black;
+}
+
+#mainWindow td[scope=line] {
+    border-top: none;
+    border-bottom: none;
+    border-left: none;
+    border-right: 2px solid black;
+    color: black;
 }
 
 .body .one {
     flex: 0 1 20%;
+    height: 50%;
 }
 
 .body .two {
@@ -121,7 +170,6 @@
 
 .body .five {
     flex: 0 0 30%;
-    height: 50%;
 }
 
 .body h3 {
@@ -132,7 +180,7 @@
     font-weight: bold;
 }
 
-.body{
+.body {
     position: relative;
     background: #f5f5f5;
     min-height: unset;
@@ -140,35 +188,93 @@
     height: 100%;
     bottom: 2%;
 }
-.body .tab-body{
-    bottom:2%;
+
+.body .tab-body {
+    bottom: 2%;
 }
 
-.exit-logic{
-    display:flex;
+.exit-logic {
+    display: flex;
     justify-content: space-evenly;
     position: absolute;
-    width: 34%;
+    width: 22%;
     bottom: 0%;
+    margin-bottom: 0.5%;
+
 
 }
 
-.exit-logic input[name='save']{
+.exit-logic input[name='save'] {
     flex: 1 1 auto;
     with: calc(32% / 2);
+    margin: 0.5%;
+    size: 100%;
 }
 
-.exit-logic input[name='cancel']{
+.exit-logic input[name='cancel'] {
     flex: 1 1 auto;
     with: calc(32% / 2);
+    margin: 0.5%;
+    size: 100%;
 }
 
-.body .F{
+.body .F {
     background: #004f9b;
     position: static;
     bottom: 0%;
 }
 
-.hidden{
-    display:none;
+.hidden {
+    display: none;
+}
+
+.search-table {
+    position: fixed;
+    width: 94%;
+    height: 89%;
+    left: 0%;
+    top: 10%;
+    overflow-y: auto;
+    overflow-x: auto;
+}
+
+.search-table table th[scope=row] {
+    text-align: right;
+    font-weight: bold;
+    border-top: none;
+    border-bottom: 2px solid black;
+    border-left: none;
+    background-color: #f5f5f5;
+    color: black;
+}
+
+.search-table table td[scope=line] {
+    border-top: none;
+    border-bottom: none;
+    border-left: none;
+    border-right: 2px solid black;
+    color: black;
+}
+
+.search-table table th {
+    border-left: 2px solid black;
+    border-bottom: 2px solid black;
+    border-top: none;
+    border-right: none;
+    border-bottom: 2px solid black;
+    background-color: #5ca9ff;
+    color: black;
+}
+
+.search-table table td {
+    width: 10%;
+    text-align: center;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    border: none;
+    background-color: #f5f5f5;
+}
+
+#mainWindow .data-control {
+    padding: 1%;
 }

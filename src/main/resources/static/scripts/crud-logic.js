@@ -1,6 +1,7 @@
 // changes the form mode to the given form mode
 function set_form_mode(mode, action_button_id, key_field_id) {
     form_mode_lock(mode);
+    form_mode_hide(mode);
     let actionButton = document.getElementById(action_button_id);
     clear();
     switch (mode) {
@@ -35,6 +36,14 @@ function form_mode_lock(mode) {
     }
 }
 
+function form_mode_hide(mode){
+    let inputs = document.getElementsByClassName('hideable');
+    for (let i = 0; i < inputs.length; i++) {
+        let input = inputs.item(i);
+        input.classList.remove('hidden');
+        if (input.classList.contains('hide-mode-' + mode)) input.classList.add('hidden');
+    }
+}
 // call this at the end of the file. action_id = button to activate action. Returns id which has been given in the url
 function load(action_id, key_field_id) {
     let url = new URL(window.location.href)
@@ -63,4 +72,6 @@ function load(action_id, key_field_id) {
     }
 
     fill_selections(); // set selection options with data
+    custom_params(url.searchParams);
+
 }

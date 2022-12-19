@@ -11,7 +11,7 @@
 <body>
 <script th:src="@{/scripts/auftragsdatenverwaltung.js}" type="text/javascript"></script>
 <script th:src="@{/scripts/crud-logic.js}" type="text/javascript"></script>
-
+<script th:src="@{/scripts/table.js}" type="text/javascript"></script>
 </script>
 <div class="title-bar">
     <h1 class="heading">Auftragsdatenverwaltung</h1>
@@ -24,28 +24,29 @@
 <!--<label>Auftragsdatenverwaltung</label>-->
 
 </div>
-
-<div class="data-control">
-    <input onclick="set_form_mode('s','exit-logic-1', 'auftragsnr')" type="button" value="Öffnen" class="button"/>
-    <input onclick="set_form_mode('a','exit-logic-1', 'auftragsnr')" type="button" value="Neu Hinzufügen"
-           class="button"/>
-</div>
-<form onsubmit="document.getElementById('exit-logic-1').click(); return false;">
+<div id="mainWindow">
+    <div class="data-control">
+        <input onclick="set_form_mode('s','exit-logic-1', 'auftragsnr')" type="button" value="Öffnen" class="button"/>
+        <input onclick="set_form_mode('a','exit-logic-1', 'auftragsnr')" type="button" value="Neu Hinzufügen"
+               class="button"/>
+    </div>
     <input id="tab-index" name="current_tab" type="hidden">
+    <input id="hidden-kid" name="kid" type="hidden">
+    <input id="hidden-v" name="v" type="hidden">
     <div class="head">
         <div th:replace="fragments/Auftragsdatenverwaltung/auftrag.html"/>
     </div>
     <div class="body">
         <div class="tab-buttons" id="tab-buttons">
             <input class="type-br type-cl button" onclick="set_tab(1)" type="button" value="Daten"/>
-            <input class="type-cl button" onclick="set_tab(2); danke();" type="button" value="Hornhaut"/>
-            <input class="type-br button" onclick="set_tab(4); danke();" type="button" value="Brillenfassung"/>
-            <input class="type-br type-cl button" onclick="set_tab(6); danke();" type="button" value="Refraktion"/>
+            <input class="type-cl button" onclick="set_tab(2);" type="button" value="Hornhaut"/>
+            <input class="type-br button" onclick="set_tab(4);" type="button" value="Brillenfassung"/>
+            <input class="type-br type-cl button" onclick="set_tab(6);" type="button" value="Refraktion"/>
             <input class="type-br button"
-                   onclick="set_tab(7); danke();"
+                   onclick="set_tab(7);"
                    type="button" value="Veredelung"/>
             <input class="type-br button"
-                   onclick="set_tab(8); danke();"
+                   onclick="set_tab(8);"
                    type="button" value="Zuschläge"/>
             <input class="type-br type-cl button" onclick="set_tab(3)" type="button" value="Bemerkung"/>
         </div>
@@ -80,7 +81,10 @@
         <input class="action-button button" type="button" id='exit-logic-2' value="Zurück/Abbrechen"
                onclick="history.back()"></input>
     </div>
-</form>
+</div>
+<div class="search-table" id="search-table">
+
+</div>
 </body>
 <script>
     //execute on load

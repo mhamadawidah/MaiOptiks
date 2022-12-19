@@ -1,9 +1,10 @@
 /*
 Um das Kontextmenü zu nutzen, muss es auf eine bestimmte Weise aufgebaut werden.
 Dies passiert im jeweiligen HTML Skript.
-Das Kontextmenü Skript muss wie gewohnt importiert werden:
+Das Kontextmenü- & CSS-Skript muss wie gewohnt importiert werden:
 
-<script th:src="@{/scripts/context-menu.js}" type="text/javascript"></script>
+<script th:src="@{/scripts/context-menu.js}" type="text/javascript"></script> // JavaScript
+<link rel="stylesheet" th:href="@{/css/context-menu-style.css}"></link> // CSS
 
 Aufbau:
 

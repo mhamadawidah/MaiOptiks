@@ -5,6 +5,7 @@
     <title th:text="${title}"></title>
     <link rel="stylesheet" th:href="@{/css/main.css}"></link>
     <link rel="stylesheet" th:href="@{/css/kunde-style.css}"></link>
+    <link rel="stylesheet" th:href="@{/css/context-menu-style.css}"></link>
     <script th:src="@{/scripts/main.js}" type="text/javascript"></script>
     <script th:src="@{/scripts/table.js}" type="text/javascript"></script>
     <script th:src="@{/scripts/context-menu.js}" type="text/javascript"></script>
@@ -20,24 +21,24 @@
 
 <div class="customerButton-searchField">
     <div class="customers">
-        <button class="button customer-button" onclick="openLink('/auftrag')" type="button">Auftrag</button>
+        <button class="button customer-button" onclick="openLink('/auftrag')" type="button"><span class="material-symbols-outlined">article</span>Auftrag</button>
     </div>
 
     <div class="search-fields">
         <input class="input" id="lastname" placeholder="Name" type="text"></input><br>
         <input class="input" id="name" placeholder="Vorname" type="text"></input><br>
-        <button class="button submit-button" onclick="searchCustomer()">Suchen</button>
+        <button class="button submit-button" onclick="searchCustomer()"><span class="material-symbols-outlined">search</span>Suchen</button>
     </div>
 </div>
 
 <div class="table-container" id="customerTable"></div>
 
 <div class="direction-buttons">
-    <button class="button direction-button" onclick="openLink('./')">Startseite</button>
-    <button class="button direction-button" onclick="openLink('/neuer-kunde')">Neuer Kunde</button>
-    <button class="button direction-button" onclick="openLink('/organisation')">Organisation</button>
-    <button class="button direction-button" onclick="openLink('/führerscheinsehtest')">Führerschein-Sehtest</button>
-    <button class="button direction-button" onclick="openLink('/mitarbeiter')">Mitarbeiter</button>
+    <button class="button direction-button" onclick="openLink('./')"><span class="material-symbols-outlined">home</span>Startseite</button>
+    <button class="button direction-button" onclick="openLink('/neuer-kunde')"><span class="material-symbols-outlined">add</span>Neuer Kunde</button>
+    <button class="button direction-button" onclick="openLink('/organisation')"><span class="material-symbols-outlined">settings</span>Organisation</button>
+    <button class="button direction-button" onclick="openLink('/führerscheinsehtest')"><span class="material-symbols-outlined">clinical_notes</span>Führerschein-Sehtest</button>
+    <button class="button direction-button" onclick="openLink('/mitarbeiter')"><span class="material-symbols-outlined">groups</span>Mitarbeiter</button>
 </div>
 
 <nav class="contextMenu" id="contextMenu">
@@ -95,13 +96,24 @@
             '/api/kundes',
             key,
             (data) => {   // func
-                createTable(data, tableContainer, "neuer-kunde");
+                createTable(data, tableContainer, (data2) => {
+                    window.location.href = `/neuer-kunde?neu=einsehen
+					&kunnr=${data2.kundenNr}
+					&anrede=${data2.anrede}
+					&name=${data2.name}
+					&vorname=${data2.vorname}
+					&geburtsdatum=${data2.geburtsdatum}
+					&plz=${data2.plz}
+					&strasse=${data2.strasse}
+					&hausnr=${data2.hausNr}
+					&mail=${data2.email}
+					&tel=${data2.telefonNr}
+					&handy=${data2.handy}
+					&kknr=${data2.krankenkassenNr}
+					&vsnr=${data2.versicherungsNr}
+					&gueltigkeit=${data2.gueltigkeit}
+					&bemerkung=${data2.bemerkung}`;});
             });
     }
-
-    ////////////////
-    // Kontext Menü
-    ////////////////
-
 </script>
 </html>
