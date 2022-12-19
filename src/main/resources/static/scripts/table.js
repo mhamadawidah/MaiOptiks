@@ -1,14 +1,15 @@
-function createTable(data, containerId, target) {
+function createTable(data, containerId, selectedCallback, minColumns) {
     // Bereits eine Tabelle vorhanden?
+    let tableContainer;
     if (document.getElementById(containerId).firstElementChild !== null) {
         const table = document.getElementsByTagName('TABLE')[0];
 
         table.remove();
-        createTable(data, containerId, target);
+        createTable(data, containerId, selectedCallback);
 
         return;
     } else {
-        const tableContainer = document.getElementById(containerId);
+        tableContainer = document.getElementById(containerId);
         const table = document.createElement('TABLE');
         const tableHead = document.createElement('THEAD');
         const tableBody = document.createElement('TBODY');
@@ -27,15 +28,30 @@ function createTable(data, containerId, target) {
                 th.innerHTML = caps.valueOf();
                 headerRow.appendChild(th);
             });
+
+        if (minColumns === undefined)
+            minColumns = 0;
+
+        let emptyData;
+        if (data.length > 0) {
+            emptyData = Object.values(data[0]);
+            for (let i = 0; i < emptyData.length; i++) {
+                emptyData[i] = '';
+            }
+        }
+
         // Für jeden Eintrag neue Zeile erstellen
-        for (let i = 0; i < dataCount; i++) {
+        for (let i = 0; i < dataCount || i < minColumns; i++) {
+
             const dataRow = document.createElement('TR');
-            const values = Object.values(data[i]);
+            let values = Object.values(emptyData);
+            if (i < dataCount)
+                values = Object.values(data[i]);
 
             values
                 .map((item) => {
                     const td = document.createElement('TD');
-                    if (item !== null)
+                    if (item !== undefined && item !== null)
                         td.innerHTML = item.valueOf();
                     else td.innerHTML = '';
                     td.setAttribute('class', 'dataCell');
@@ -51,13 +67,13 @@ function createTable(data, containerId, target) {
         tableContainer.appendChild(table);
     }
 
-    if (target !== undefined) {
+    if (selectedCallback !== undefined) {
 
-        let allRows = document.getElementsByTagName('TR');
+        let allRows = tableContainer.getElementsByTagName('TR');
 
-        for (let i = 0; i < allRows.length; i++) {
+        for (let i = 1 /* 0 === header*/; i < allRows.length; i++) {
             allRows[i].addEventListener('click', () => {
-                target(data[i - 1]);
+                selectedCallback(data[i - 1]);
             });
         }
     }

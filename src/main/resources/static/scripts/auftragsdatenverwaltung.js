@@ -108,6 +108,8 @@ function fill_selections(call_after_load_func, call_after_load_option) {
 }
 
 function clear() {
+    removeBlur();
+    nukeSearchTable();
     let datas = document.getElementsByClassName('data');
     for (let i = 0; i < datas.length; i++) {
         let data = datas.item(i);
@@ -128,6 +130,7 @@ function clear() {
 }
 
 function search() {
+    applyBlur();
     let key = document.getElementById('auftragsnr').value;
 
     if (key !== undefined && key !== '') {
@@ -148,13 +151,15 @@ function search() {
                 noSearchData();
                 return;
             }
-
-            createTable(data, 'search-table', (data2) => {
+            document.getElementById('search-table').hidden = false;
+            createTable(data, 'search-table', (selected) => {
                 // manage selection of table select
+
                 set_form_mode('s', 'exit-logic-1', 'auftragsnr');
-                document.getElementById('auftragsnr').value = data2.auftragsnummer;
+                document.getElementById('auftragsnr').value = selected.auftragsnummer;
                 document.getElementById('exit-logic-1').click();
-            });
+                nukeSearchTable();
+            }, 14);
         });
 }
 
@@ -272,4 +277,17 @@ function isSearch() {
 function noSearchData() {
     alert('Es wurde nichts gefunden');
     set_form_mode('s', 'exit-logic-1', 'auftragsnr');
+}
+
+function nukeSearchTable() {
+    if (document.getElementById('search-table').children.length > 0)
+        document.getElementById('search-table').children[0].remove();
+    document.getElementById('search-table').hidden = true;
+}
+
+function applyBlur() {
+    document.getElementById('mainWindow').style = ' filter: blur(5px); -webkit-filter: blur(5px);';
+}
+function removeBlur() {
+    document.getElementById('mainWindow').style = '';
 }

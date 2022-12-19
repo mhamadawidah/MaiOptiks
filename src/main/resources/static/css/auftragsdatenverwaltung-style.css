@@ -104,7 +104,7 @@
 }
 
 .body .button {
-    padding: 0, 5% 1%;
+    padding: 0 5% 1%;
 }
 
 .body .table {
@@ -112,7 +112,7 @@
     border: none;
 }
 
-th {
+.mainWindow th {
     border-left: 2px solid black;
     border-bottom: 2px solid black;
     border-top: none;
@@ -121,7 +121,7 @@ th {
     color: black;
 }
 
-td {
+.mainWindow td {
     width: 10%;
     text-align: center;
     padding-top: 1%;
@@ -130,7 +130,7 @@ td {
     background-color: #f5f5f5;
 }
 
-th[scope=row] {
+.mainWindow th[scope=row] {
     text-align: right;
     font-weight: bold;
     border-top: none;
@@ -141,7 +141,7 @@ th[scope=row] {
     color: black;
 }
 
-td[scope=line] {
+.mainWindow td[scope=line] {
     border-top: none;
     border-bottom: none;
     border-left: none;
@@ -220,14 +220,16 @@ td[scope=line] {
     display: none;
 }
 
-.search-table table{
-    position: sticky;
-    width: 80%;
-    height: 50%;
-    left: 5%;
-    right: 5%;
-    top: 25%;
-    bottom: 25%;
+.search-table {
+    position: fixed;
+    width: 94%;
+    height: 89%;
+    left: 0%;
+    top: 10%;
     overflow-y: auto;
     overflow-x: auto;
+}
+
+.search-table table {
+
 }

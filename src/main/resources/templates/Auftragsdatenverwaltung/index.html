@@ -24,13 +24,12 @@
 <!--<label>Auftragsdatenverwaltung</label>-->
 
 </div>
-
-<div class="data-control">
-    <input onclick="set_form_mode('s','exit-logic-1', 'auftragsnr')" type="button" value="Öffnen" class="button"/>
-    <input onclick="set_form_mode('a','exit-logic-1', 'auftragsnr')" type="button" value="Neu Hinzufügen"
-           class="button"/>
-</div>
-<form onsubmit="document.getElementById('exit-logic-1').click(); return false;">
+<div id="mainWindow">
+    <div class="data-control">
+        <input onclick="set_form_mode('s','exit-logic-1', 'auftragsnr')" type="button" value="Öffnen" class="button"/>
+        <input onclick="set_form_mode('a','exit-logic-1', 'auftragsnr')" type="button" value="Neu Hinzufügen"
+               class="button"/>
+    </div>
     <input id="tab-index" name="current_tab" type="hidden">
     <input id="hidden-kid" name="kid" type="hidden">
     <input id="hidden-v" name="v" type="hidden">
@@ -82,10 +81,10 @@
         <input class="action-button button" type="button" id='exit-logic-2' value="Zurück/Abbrechen"
                onclick="history.back()"></input>
     </div>
-    <div class="" id="search-table">
+</div>
+<div class="search-table" id="search-table">
 
-    </div>
-</form>
+</div>
 </body>
 <script>
     //execute on load
