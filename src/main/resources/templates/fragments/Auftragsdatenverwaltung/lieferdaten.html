@@ -7,27 +7,27 @@
         <div class="block five">
             <label class="label2">
                 Rezept vorhanden
-                <input class="data data-auftrag" id="rezepturvorhanden" type="checkbox"/>
+                <input class="data data-auftrag lockable lock-mode-s" id="rezepturvorhanden" type="checkbox"/>
             </label>
 
             <label class="label2">
                 Brillenglas bestellt
-                <input class="data data-auftrag" id="bestellt" type="checkbox"/>
+                <input class="data data-auftrag lockable lock-mode-s" id="bestellt" type="checkbox"/>
             </label>
 
             <label class="label2">
                 Fertig
-                <input class="data data-auftrag" id="fertig" type="checkbox"/>
+                <input class="data data-auftrag lockable lock-mode-s" id="fertig" type="checkbox"/>
             </label>
 
             <label class="label2">
                 Abgeholt
-                <input class="data data-auftrag" id="abgeholt" type="checkbox"/>
+                <input class="data data-auftrag lockable lock-mode-s" id="abgeholt" type="checkbox"/>
             </label>
 
             <label class="label2">
                 Bezahlt
-                <input class="data data-auftrag" id="bezahlt" type="checkbox"/>
+                <input class="data data-auftrag lockable lock-mode-s" id="bezahlt" type="checkbox"/>
             </label>
         </div>
 
@@ -46,7 +46,7 @@
 
             <div class="extra-logic-cl">
                 <label class="label3">
-                    <input type="checkbox" class= "data-auftrag" id="rueckgabe" onclick="
+                    <input type="checkbox" class= "data-auftrag lockable lock-mode-s" id="rueckgabe" onclick="
                     if (!this.checked)
                         document.getElementById('cl-old-ref').setAttribute('disabled','');
                     else

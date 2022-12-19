@@ -13,6 +13,7 @@
     left: 2%;
     display: flex;
     justify-content: space-evenly;
+    padding-bottom: 1%;
 }
 
 .head .left {
@@ -37,6 +38,7 @@
 .body .tab-buttons input[type="button"] {
     flex: 1 1 auto;
     width: 12.5%;
+    text-anchor: middle;
 }
 
 .select {
@@ -112,7 +114,7 @@
     border: none;
 }
 
-.mainWindow th {
+#mainWindow th {
     border-left: 2px solid black;
     border-bottom: 2px solid black;
     border-top: none;
@@ -121,7 +123,7 @@
     color: black;
 }
 
-.mainWindow td {
+#mainWindow td {
     width: 10%;
     text-align: center;
     padding-top: 1%;
@@ -130,7 +132,7 @@
     background-color: #f5f5f5;
 }
 
-.mainWindow th[scope=row] {
+#mainWindow th[scope=row] {
     text-align: right;
     font-weight: bold;
     border-top: none;
@@ -141,7 +143,7 @@
     color: black;
 }
 
-.mainWindow td[scope=line] {
+#mainWindow td[scope=line] {
     border-top: none;
     border-bottom: none;
     border-left: none;
@@ -195,19 +197,25 @@
     display: flex;
     justify-content: space-evenly;
     position: absolute;
-    width: 34%;
+    width: 22%;
     bottom: 0%;
+    margin-bottom: 0.5%;
+
 
 }
 
 .exit-logic input[name='save'] {
     flex: 1 1 auto;
     with: calc(32% / 2);
+    margin: 0.5%;
+    size: 100%;
 }
 
 .exit-logic input[name='cancel'] {
     flex: 1 1 auto;
     with: calc(32% / 2);
+    margin: 0.5%;
+    size: 100%;
 }
 
 .body .F {
@@ -230,6 +238,43 @@
     overflow-x: auto;
 }
 
-.search-table table {
+.search-table table th[scope=row] {
+    text-align: right;
+    font-weight: bold;
+    border-top: none;
+    border-bottom: 2px solid black;
+    border-left: none;
+    background-color: #f5f5f5;
+    color: black;
+}
 
+.search-table table td[scope=line] {
+    border-top: none;
+    border-bottom: none;
+    border-left: none;
+    border-right: 2px solid black;
+    color: black;
+}
+
+.search-table table th {
+    border-left: 2px solid black;
+    border-bottom: 2px solid black;
+    border-top: none;
+    border-right: none;
+    border-bottom: 2px solid black;
+    background-color: #5ca9ff;
+    color: black;
+}
+
+.search-table table td {
+    width: 10%;
+    text-align: center;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    border: none;
+    background-color: #f5f5f5;
+}
+
+#mainWindow .data-control {
+    padding: 1%;
 }
