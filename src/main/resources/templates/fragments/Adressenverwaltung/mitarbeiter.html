@@ -2,6 +2,7 @@
 <html lang="de" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org/">
 <body>
 <th:block th:fragment="mitarbeiter">
+	<h3>Mitarbeiter</h3>
 	<div class="search-fields">
 		<input class="input" id="lastname" placeholder="Name" type="text"></input><br>
 		<input class="input" id="name" placeholder="Vorname" type="text"></input><br>
@@ -10,12 +11,6 @@
 
 	<div class="table-container" id="employeeTable"></div>
 
-	<div class="direction-buttons">
-		<button class="button direction-button" onclick="openLink('./')">Startseite</button>
-		<button class="button direction-button" onclick="openLink('/neuer-kunde')">Neuer Kunde</button>
-		<button class="button direction-button" onclick="openLink('/führerscheinsehtest')">Führerschein-Sehtest</button>
-		<button class="button direction-button" onclick="openLink('/mitarbeiter')">Mitarbeiter</button>
-	</div>
 </th:block>
 </body>
 <script>
