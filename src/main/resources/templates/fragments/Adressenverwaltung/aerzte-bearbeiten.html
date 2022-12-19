@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="de" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org/">
+<body>
+<th:block th:fragment="aerzte-bearbeiten">
+    <div class="inner-window">
+        <div class="header">
+            <button class="button button-startseite" onclick="history.back()">Zurück</button>
+            <button class="button button-bearbeiten" id="button-bearbeiten" onclick="setBearbeiten()">Bearbeiten</button>
+            <hr class="linetop">
+        </div>
+        <form onsubmit="return false" id="form">
+            <div class="main">
+                <div class="inputset">
+                    <h4>Person</h4>
+                    <div class="input-person">
+                        <div class="input-name">
+                            <label for="name">Name</label>
+                            <input class="input" id="name" type="text" placeholder="Name*">
+                            <small>Error message</small>
+                        </div>
+                        <div class="input-vorname">
+                            <label for="vorname">Vorname</label>
+                            <input class="input" id="vorname" type="text" placeholder="Vorname*">
+                            <small>Error message</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="inputset">
+                    <h4>Adresse</h4>
+                    <div class="input-country">
+                        <div class="input-plz">
+                            <label for="plz">PLZ</label>
+                            <input class="input" id="plz" type="text" placeholder="PLZ*">
+                            <small>Error message</small>
+                        </div>
+                        <div class="input-strasse">
+                            <label for="strasse">Strasse</label>
+                            <input class="input" id="strasse" type="text" placeholder="Straße*">
+                            <small>Error message</small>
+                        </div>
+                        <div class="input-hausnummer">
+                            <label for="hausnummer">Hausnummer</label>
+                            <input class="input" id="hausnummer" type="text" placeholder="Hausnummer*">
+                            <small>Error message</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="inputset">
+                    <h4>Telefon</h4>
+                    <div class="input-tel">
+                        <div class="input-email">
+                            <label for="mail">E-Mail</label>
+                            <input class="input" id="mail" type="email" placeholder="E-Mail*">
+                            <small>Error message</small>
+                        </div>
+                        <div class="input-telefon">
+                            <label for="telefon">Telefon-Nr</label>
+                            <input class="input" id="telefon" type="tel" placeholder="Telefon*">
+                            <small>Error message</small>
+                        </div>
+                        <div class="input-mobil">
+                            <label for="mobil">Handy-Nr</label>
+                            <input class="input" id="mobil" type="tel" placeholder="Mobil*">
+                            <small>Error message</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer">
+                <button class="button submit-button" id="submit-button" onclick="createArzt()">Arzt Anlegen</button>
+            </div>
+        </form>
+    </div>
+</th:block>
+</body>
+</html>
