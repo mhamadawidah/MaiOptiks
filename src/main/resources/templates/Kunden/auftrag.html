@@ -19,23 +19,23 @@
 
 <div class="customerButton-searchField">
 	<div class="customers">
-		<button class="button customer-button" onclick="openLink('/kunde')">Kunde</button>
+		<button class="button customer-button" onclick="openLink('/kunde')"><span class="material-symbols-outlined">person</span>Kunde</button>
 	</div>
 
 	<div class="search-fields">
 		<input class="input" id="auftragsNr" placeholder="Auftrags-Nr." required type="text"><br>
-		<button class="button submit-button" onclick="searchOrder()" type="submit">Suchen</button>
+		<button class="button submit-button" onclick="searchOrder()" type="submit"><span class="material-symbols-outlined">search</span>Suchen</button>
 	</div>
 </div>
 
 <div class="table-container"></div>
 
 <div class="direction-buttons">
-	<button class="button direction-button" onclick="openLink('./')">Startseite</button>
-	<button class="button direction-button" onclick="openLink('/auftragsdatenverwaltung?v=a')">Neuer Auftrag</button>
-	<button class="button direction-button" onclick="openLink('/organisation')">Organisation</button>
-	<button class="button direction-button" onclick="openLink('/führerscheinsehtest')">Führerschein-Sehtest</button>
-	<button class="button direction-button" onclick="openLink('/mitarbeiter')">Mitarbeiter</button>
+	<button class="button direction-button" onclick="openLink('./')"><span class="material-symbols-outlined">home</span>Startseite</button>
+	<button class="button direction-button" onclick="openLink('/auftragsdatenverwaltung?v=a')"><span class="material-symbols-outlined">add</span>Neuer Auftrag</button>
+	<button class="button direction-button" onclick="openLink('/organisation')"><span class="material-symbols-outlined">settings</span>Organisation</button>
+	<button class="button direction-button" onclick="openLink('/führerscheinsehtest')"><span class="material-symbols-outlined">clinical_notes</span>Führerschein-Sehtest</button>
+	<button class="button direction-button" onclick="openLink('/mitarbeiter')"><span class="material-symbols-outlined">groups</span>Mitarbeiter</button>
 </div>
 
 </body>

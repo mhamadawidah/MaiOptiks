@@ -2,6 +2,7 @@ package MaiOptiks.service;
 
 import MaiOptiks.domain.Hornhaut;
 import MaiOptiks.domain.Refraktion;
+import MaiOptiks.model.AuftragsartikelDTO;
 import MaiOptiks.model.HornhautDTO;
 import MaiOptiks.repos.HornhautRepository;
 import MaiOptiks.repos.RefraktionRepository;
@@ -28,6 +29,13 @@ public class HornhautService {
 
     public List<HornhautDTO> findAll() {
         return hornhautRepository.findAll(Sort.by("hornhautid"))
+                .stream()
+                .map(hornhaut -> mapToDTO(hornhaut, new HornhautDTO()))
+                .collect(Collectors.toList());
+    }
+
+    public List<HornhautDTO> findAllByRefraktionId(Integer refraktionId) {
+        return hornhautRepository.findAllBzRefraktionId(refraktionId)
                 .stream()
                 .map(hornhaut -> mapToDTO(hornhaut, new HornhautDTO()))
                 .collect(Collectors.toList());

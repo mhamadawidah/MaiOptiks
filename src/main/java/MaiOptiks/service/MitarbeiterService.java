@@ -53,6 +53,27 @@ public class MitarbeiterService {
         mitarbeiterRepository.save(mitarbeiter);
     }
 
+    public List<MitarbeiterDTO> getByNameAndVorname(final String name, final String vorname) {
+        return mitarbeiterRepository.findAllByNameAndVorname(name, vorname)
+                .stream()
+                .map(mitarbeiter -> MitarbeiterService.this.mapToDTO(mitarbeiter, new MitarbeiterDTO()))
+                .collect(Collectors.toList());
+    }
+
+    public List<MitarbeiterDTO> getByName(final String name) {
+        return mitarbeiterRepository.findAllByName(name)
+                .stream()
+                .map(mitarbeiter -> this.mapToDTO(mitarbeiter, new MitarbeiterDTO()))
+                .collect(Collectors.toList());
+    }
+
+    public List<MitarbeiterDTO> getByVorname(final String vorname) {
+        return mitarbeiterRepository.findAllByVorname(vorname)
+                .stream()
+                .map(mitarbeiterDTO -> MitarbeiterService.this.mapToDTO(mitarbeiterDTO, new MitarbeiterDTO()))
+                .collect(Collectors.toList());
+    }
+
     public void delete(final Integer mitarbeiterNr) {
         mitarbeiterRepository.deleteById(mitarbeiterNr);
     }

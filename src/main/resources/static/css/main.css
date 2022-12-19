@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0');
+
 :root {
     --somecolor: #007acc;
     --background: #f5f5f5;
@@ -6,6 +8,11 @@
     --dark: #004f9b;
     --button: #e1e1e1;
     --buttonHover: #bdbdbd;
+}
+
+.material-symbols-outlined {
+    vertical-align: bottom;
+    margin-right: 0.5rem;
 }
 
 html {
@@ -30,7 +37,7 @@ html body {
 .input {
     height: 7%;
     width: 49%;
-    border-radius: 5px;
+    border-radius: 0.7em;
     border: 1px solid black;
     padding: 0.5%;
     margin-top: 0.7%;
@@ -42,10 +49,10 @@ html body {
 }
 
 .button {
-    border-radius: 3px;
+    border-radius: 0.5rem;
     border: 1px solid black;
     font-family: "Roboto Light", sans-serif;
-    font-size: 17px;
+    font-size: 1.2rem;
     font-weight: bold;
     background-color: var(--button);
     color: black;
@@ -115,12 +122,3 @@ th {
     color: white;
     padding: 5px;
 }
-
-/*
-Farbpalette:
-Background: #f5f5f5
-Background: #e1e1e1
-Primary: #007acc
-Light: #5ca9ff
-Dark: #004f9b
-*/
