@@ -91,7 +91,7 @@
         <br><br>
         <div class="linie">Unterschrift des Sehtesters</div>
 
-        <div class="box3"> Gebühr/einschl. MwSt.<br>
+        <div class="box3" id="ausblendung"> Gebühr/einschl. MwSt.<br>
             <div class="preis">6,50 €<br></div>
             Dieser Bereich wird auf dem Ausdruck nicht angezeigt</div>
     </div>
@@ -104,12 +104,14 @@
     document.getElementById('ort').value = 'Westerkappeln';
 
     function printDiv(divToBePrinted) {
+        document.getElementById('ausblendung').style.display = "none";
         const printContent = document.getElementById(divToBePrinted).innerHTML;
         const originalContent = document.body.innerHTML;
         // TODO: Style the printed page
         document.body.innerHTML = printContent;
         window.print();
         document.body.innerHTML = originalContent;
+        document.getElementById('ausblendung').style.display = "initial";
     }
 </script>
 </html>
