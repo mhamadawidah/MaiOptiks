@@ -1,0 +1,110 @@
+/*Container*/
+.customers {
+    height: 20%;
+    width: 20%;
+    left: 0.5%;
+
+    position: absolute;
+}
+
+.search-fields {
+    left: 2rem;
+    margin-top: 2rem;
+    position: absolute;
+}
+
+.customerButton-searchField {
+    width: 40%;
+}
+
+.table-container {
+    top: 10.3rem;
+    left: 16rem;
+    right: 5.5rem;
+    bottom: 4rem;
+    position: absolute;
+    overflow: auto;
+}
+
+.direction-buttons {
+    position: absolute;
+    height: 5%;
+    width: 90%;
+    left: 0.5%;
+    bottom: 2%;
+}
+
+h3 {
+    text-align: center;
+}
+
+/*Buttons*/
+.submit-button {
+    height: 2em;
+    width: 100%;
+    margin-top: 0.8%;
+
+    cursor: pointer;
+}
+
+.customer-button {
+    height: 30%;
+    width: 80%;
+    margin-top: 2%;
+
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.direction-button {
+    height: 100%;
+    width: 19%;
+    margin-top: 0.5%;
+    margin-right: 0.1%;
+
+    cursor: pointer;
+}
+
+/*Tabelle*/
+.table-container table {
+    width: 100%;
+    height: auto;
+}
+
+.table-container tbody {
+    cursor: pointer;
+}
+
+.table-container body {
+    width: auto;
+}
+
+.table-container tr td {
+    white-space: nowrap;
+}
+
+.hidden {
+    display: none;
+}
+
+.head {
+    width: calc(100vw - 4.5em);
+}
+
+.tab-body {
+    width: calc(100vw - 4.5em);
+    height: calc(100vh - 5.3em - 5%);
+}
+
+.tab-buttons {
+    display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
+    display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+    display: -ms-flexbox;      /* TWEENER - IE 10 */
+    display: -webkit-flex;     /* NEW - Chrome */
+    justify-content: space-evenly;
+}
+
+.tab-buttons input[type="button"]{
+    flex: 1 1 auto;
+    height: 3rem;
+}

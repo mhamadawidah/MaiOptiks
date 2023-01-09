@@ -2,53 +2,59 @@
 <html lang="de">
 <body>
 <th:block th:fragment="kunden">
+    <h3> Daten</h3><br>
     <div class="main">
-        <div class="five">
-            <label class="">
+        <div class="block five">
+            <label class="label2">
                 Rezept vorhanden
-                <input class="data data-auftrag" id="rezepturvorhanden" type="checkbox"/>
+                <input class="data data-auftrag lockable lock-mode-s" id="rezepturvorhanden" type="checkbox"/>
             </label>
-            <label class="">
+
+            <label class="label2">
                 Brillenglas bestellt
-                <input class="data data-auftrag" id="bestellt" type="checkbox"/>
+                <input class="data data-auftrag lockable lock-mode-s" id="bestellt" type="checkbox"/>
             </label>
 
-            <label class="">
+            <label class="label2">
                 Fertig
-                <input class="data data-auftrag" id="fertig" type="checkbox"/>
+                <input class="data data-auftrag lockable lock-mode-s" id="fertig" type="checkbox"/>
             </label>
 
-            <label class="">
+            <label class="label2">
                 Abgeholt
-                <input class="data data-auftrag" id="abgeholt" type="checkbox"/>
+                <input class="data data-auftrag lockable lock-mode-s" id="abgeholt" type="checkbox"/>
             </label>
 
-            <label class="">
+            <label class="label2">
                 Bezahlt
-                <input class="data data-auftrag" id="bezahlt" type="checkbox"/>
+                <input class="data data-auftrag lockable lock-mode-s" id="bezahlt" type="checkbox"/>
             </label>
         </div>
 
-        <div class="five">
-            <label class=""> Berater
-                <select class="data data-auftrag" name="berater" id="berater">
+        <div class="block five">
+            <label class="label"> Berater
+                <select class="data data-auftrag select" name="berater" id="berater">
+                    <option class="hideable hide-mode-u hide-mode-a" value="-1" selected>-/-</option>
                 </select>
             </label>
-            <label class=""> Werkstatt
-                <select class="data data-auftrag" name="werkstatt" id="werkstatt">
+
+            <label class="label"> Werkstatt
+                <select class="data data-auftrag select" name="werkstatt" id="werkstatt">
+                    <option class="hideable hide-mode-u hide-mode-a" value="-1" selected>-/-</option>
                 </select>
             </label>
+
             <div class="extra-logic-cl">
-                <label>
-                    Rückgabe
-                    <input type="checkbox" class= "data-auftrag" id="rueckgabe" onclick="
+                <label class="label3">
+                    <input type="checkbox" class= "data-auftrag lockable lock-mode-s" id="rueckgabe" onclick="
                     if (!this.checked)
                         document.getElementById('cl-old-ref').setAttribute('disabled','');
                     else
                         document.getElementById('cl-old-ref').removeAttribute('disabled');">
+                    Rückgabe
                 </label>
-                <label>
-                    id
+                <label class="label3">
+                    <br>ID
                     <input type="number" id="cl-old-ref" disabled>
                 </label>
             </div>
