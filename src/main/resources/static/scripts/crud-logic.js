@@ -7,6 +7,7 @@ function set_form_mode(mode, action_button_id, key_field_id) {
     switch (mode) {
         case 'a': // add
             actionButton.value = 'Hinzufügen';
+            actionButton.innerHTML = '<span class="material-symbols-outlined">add</span>';
             actionButton.setAttribute('onclick','add(); ');
             get_newest_key();
             break;

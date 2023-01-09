@@ -20,6 +20,10 @@
     flex: 1 1 auto;
 }
 
+.header {
+    padding: 1%;
+}
+
 .body {
     position: relative;
     width: 92%;
@@ -195,7 +199,7 @@
 
 .exit-logic {
     display: flex;
-    justify-content: space-evenly;
+    left: 2%;
     position: absolute;
     width: 22%;
     bottom: 0%;
@@ -277,4 +281,26 @@
 
 #mainWindow .data-control {
     padding: 1%;
+}
+
+/*Buttons*/
+
+.tab-button {
+    height: 2em;
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+    border: 1px solid black;
+    font-family: "Roboto Light", sans-serif;
+    font-size: 1.2rem;
+    font-weight: bold;
+    background-color: var(--button);
+    color: black;
+
+    cursor: pointer;
+}
+
+.button-index {
+    width: 10em;
+    height: 2.5em;
+    margin: 0.5%;
 }
